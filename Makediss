@@ -216,3 +216,7 @@ if test $retval -ne 0
   else
     echo 
 fi
+
+
+# Make it a PDF
+dvipdf ${DISS}.dvi
