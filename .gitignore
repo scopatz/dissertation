@@ -3,9 +3,12 @@
 *.blg
 *.dvi
 *.idx
+*.ilg
+*.ind
 *.lof
 *.log
 *.log
 *.lot
 *.toc
 *.pdf
+*.ps

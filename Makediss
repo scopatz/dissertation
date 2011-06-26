@@ -202,20 +202,23 @@ echo
 
 ps -eo cmd 2>/dev/null | grep -v grep | grep "gv" \
 			| grep "$DISS.ps" > /dev/null 2>&1
-retval="$?"
-if test $retval -ne 0
-  then
-    echo 
-    echo "	View Postscript? <return/n> "
-    read reply
-    if test "$reply" != "n"
-      then
-        gv $DISS.ps &
-        # gv -media letter -noresize $DISS.ps &
-    fi
-  else
-    echo 
-fi
+
+
+# Don't prompt to show post-script.  That is silly.
+#retval="$?"
+#if test $retval -ne 0
+#  then
+#    echo 
+#    echo "	View Postscript? <return/n> "
+#    read reply
+#    if test "$reply" != "n"
+#      then
+#        gv $DISS.ps &
+#        # gv -media letter -noresize $DISS.ps &
+#    fi
+#  else
+#    echo 
+#fi
 
 
 # Make it a PDF
