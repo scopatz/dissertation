@@ -34,6 +34,18 @@ R = \sigma \cdot \phi \cdot 10^{-24}
 where $R$ [hz] is the reaction rate, $\sigma$ [barns] is the one-group cross section, and
 $\phi$ [n/cm\superscript{2}/s] is the energy-integrated flux.
 
+The group constants $\sigma_{itg}$ are themselves parameterized by nuclide, time, and 
+incident neutron energy.  Nuclides are indexed by $i$, times are indexed by $t$, and 
+energy is indexed by $g$ with the lower indices representing higher energy groups.
+
+To fully describe a reactor, several reation types are required.  The type also augments
+the group constant notation by being a comma-separated preposition to the index.  For
+example, the total cross section would be represented by the symbol $\sigma_{t,itg}$.
+Table \ref{reaction_type_table} displays the reactions used in this study, their 
+symbolic abbreviations, and the cooresponding MT number coming from ENDF specification
+\cite{MFMT}.
+
+
 \section{Multigroup Reactor Model}
 \index{Multigroup Reactor Model@\emph{Multigroup Reactor Model}}
 We
