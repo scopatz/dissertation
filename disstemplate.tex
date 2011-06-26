@@ -99,14 +99,14 @@
      %
      % The default value is `B.S., M.S.'
 
-\graduationmonth{December}
+\graduationmonth{August}
      % Graduation month, either May, August, or December, in the form
      % as `\graduationmonth{May}'. Do not abbreviate.
      %
      % The default value (either May, August, or December) is guessed
      % according to the time of running LaTeX.
 
-\graduationyear{2007}
+\graduationyear{2011}
      % Graduation year, in the form as `\graduationyear{2001}'.
      % Use a 4 digit (not a 2 digit) number.
      %
@@ -231,6 +231,14 @@
                 % Now @ cannot be used in commands.
 
 \makeindex      % Make the index
+
+%
+% My Macros
+%
+%General Short-Cut Commands
+\newcommand{\superscript}[1]{\ensuremath{^{\textrm{#1}}}}
+\newcommand{\subscript}[1]{\ensuremath{_{\textrm{#1}}}}
+\newcommand{\nuc}[2]{\superscript{#2}{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %		The document starts here.                                    %
