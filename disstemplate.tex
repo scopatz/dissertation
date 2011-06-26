@@ -71,8 +71,7 @@
 % 
 %
 \supervisor
-	[Isaac Newton]
-	{Johannes Kepler}
+    {Erich Schneider}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -87,34 +86,34 @@
 %
 %
 \committeemembers
-	[Erwin Schr\"odinger]
-	[Albert Einstein]
-	[Charles Townes]
-	{Arthur Schawlow}
+    [Steven Biegalski]
+    [Sheldon Landsberger]
+	[Mark Deinert]
+	{Man-Sung Yim}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\previousdegrees{B.S.}
+\previousdegrees{M.S.E.}
      % The abbreviated form of your previous degree(s).
      % E.g., \previousdegrees{B.S., MBA}.
      %
      % The default value is `B.S., M.S.'
 
-%\graduationmonth{...}      
+\graduationmonth{December}
      % Graduation month, either May, August, or December, in the form
      % as `\graduationmonth{May}'. Do not abbreviate.
      %
      % The default value (either May, August, or December) is guessed
      % according to the time of running LaTeX.
 
-%\graduationyear{...}   
+\graduationyear{2007}
      % Graduation year, in the form as `\graduationyear{2001}'.
      % Use a 4 digit (not a 2 digit) number.
      %
      % The default value is guessed according to the time of 
      % running LaTeX.
 
-%\typist{...}       
+\typist{the author}
      % The name(s) of typist(s), put `the author' if you do it yourself.
      % E.g., `\typist{Maryann Hersey and the author}'.
      %
@@ -149,29 +148,29 @@
 %\singlespacequote
 \oneandonehalfspacequote
 
-\topmargin 0.125in	% Adjust this value if the PostScript file output
-			% of your dissertation has incorrect top and 
-			% bottom margins. Print a copy of at least one
-			% full page of your dissertation (not the first
-			% page of a chapter) and measure the top and
-			% bottom margins with a ruler. You must have
-			% a top margin of 1.5" and a bottom margin of
-			% at least 1.25". The page numbers must be at
-			% least 1.00" from the bottom of the page.
-			% If the margins are not correct, adjust this
-			% value accordingly and re-compile and print again.
-			%
-			% The default value is 0.125"
+\topmargin 0.125in  % Adjust this value if the PostScript file output
+                    % of your dissertation has incorrect top and 
+                    % bottom margins. Print a copy of at least one
+                    % full page of your dissertation (not the first
+                    % page of a chapter) and measure the top and
+                    % bottom margins with a ruler. You must have
+                    % a top margin of 1.5" and a bottom margin of
+                    % at least 1.25". The page numbers must be at
+                    % least 1.00" from the bottom of the page.
+                    % If the margins are not correct, adjust this
+                    % value accordingly and re-compile and print again.
+                    %
+                    % The default value is 0.125"
 
-		% If you want to adjust other margins, they are in the
-		% utdiss2-nn.sty file near the top. If you are using
-		% the shell script Makediss on a Unix/Linux system, make
-		% your changes in the utdiss2-nn.sty file instead of
-		% utdiss2.sty because Makediss will overwrite any changes
-		% made to utdiss2.sty.
+                    % If you want to adjust other margins, they are in the
+                    % utdiss2-nn.sty file near the top. If you are using
+                    % the shell script Makediss on a Unix/Linux system, make
+                    % your changes in the utdiss2-nn.sty file instead of
+                    % utdiss2.sty because Makediss will overwrite any changes
+                    % made to utdiss2.sty.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Some optional commands to be tested.				     %
+% Some optional commands to be tested.                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % If there are 10 or more sections, 10 or more subsections for a section,
@@ -183,7 +182,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%	Some math support.					     %
+%	Some math support.                                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %	Theorem environments (these need the amsthm package)
@@ -218,28 +217,28 @@
 
 \newcommand{\amslatex}{\AmS-\LaTeX{}}
 
-\chardef\bslash=`\\	% \bslash makes a backslash (in tt fonts)
-			%	p. 424, TeXbook
+\chardef\bslash=`\\ % \bslash makes a backslash (in tt fonts)
+                    %	p. 424, TeXbook
 
 \newcommand{\cn}[1]{\texttt{\bslash #1}}
 
-\makeatletter		% Starts section where @ is considered a letter
-			% and thus may be used in commands.
+\makeatletter   % Starts section where @ is considered a letter
+                % and thus may be used in commands.
 \def\square{\RIfM@\bgroup\else$\bgroup\aftergroup$\fi
   \vcenter{\hrule\hbox{\vrule\@height.6em\kern.6em\vrule}%
                                               \hrule}\egroup}
-\makeatother		% Ends sections where @ is considered a letter.
-			% Now @ cannot be used in commands.
+\makeatother    % Ends sections where @ is considered a letter.
+                % Now @ cannot be used in commands.
 
-\makeindex    % Make the index
+\makeindex      % Make the index
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%		The document starts here.			     %
+%		The document starts here.                                    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
-\copyrightpage          % Produces the copyright page.
+\copyrightpage  % Produces the copyright page.
 
 
 %
@@ -251,12 +250,12 @@
 %	If you are writing a masters thesis or report, you MUST REVERSE
 %	the order of the \commcertpage and \titlepage commands below.
 %
-\commcertpage           % Produces the Committee Certification
-			%   of Approved Version page (doctoral)
-			%   or Signature page (masters).
-			%		20 Mar 2002	cwm
+\commcertpage   % Produces the Committee Certification
+                % of Approved Version page (doctoral)
+                % or Signature page (masters).
+                %   20 Mar 2002 cwm
 
-\titlepage              % Produces the title page.
+\titlepage      % Produces the title page.
 
 
 
@@ -266,14 +265,13 @@
 %
 \begin{dedication}
 \index{Dedication@\emph{Dedication}}%
-Dedicated to my wife Shirley.
+For the Horde!
 \end{dedication}
 
 
 \begin{acknowledgments}		% Optional
 \index{Acknowledgments@\emph{Acknowledgments}}%
-I wish to thank the multitudes of people who helped me. Time would
-fail me to tell of \ldots
+Thank you.  I'll be here til Thursday.
 \end{acknowledgments}
 
 
@@ -318,17 +316,17 @@ This document and its source file show to write a Doctoral Dissertation using
 % of the include statements (something I found helpful in my own
 % dissertation).
 %
-\include{chapter-introduction}
+%\include{chapter-introduction}
 
-\include{chapter-instructions}
+%\include{chapter-instructions}
 
-\include{chapter-howtouse}
+%\include{chapter-howtouse}
 
-\include{chapter-makingbib}
+%\include{chapter-makingbib}
 
-\include{chapter-tables+figs}
+%\include{chapter-tables+figs}
 
-\include{chapter-math}
+%\include{chapter-math}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -341,44 +339,49 @@ This document and its source file show to write a Doctoral Dissertation using
 \appendices
 \index{Appendices@\emph{Appendices}}%
 
-\include{chapter-appendix1}
+%\include{chapter-appendix1}
 
-\include{chapter-appendix2}
+%\include{chapter-appendix2}
 
-\include{chapter-appendix3}
+%\include{chapter-appendix3}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Generate the bibliography.					     %
+% Generate the bibliography.                                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%								     %
+%                                                                    %
 % NOTE: For master's theses and reports, NOTHING is permitted to     %
-%	come between the bibliography and the vita. The command      %
-%	to generate the index (if used) MUST be moved to before      %
-%	this section.						     %
-%								     %
-\nocite{*}      % This command causes all items in the 		     %
-                % bibliographic database to be added to 	     %
-                % the bibliography, even if they are not 	     %
-                % explicitly cited in the text. 		     %
-		%						     %
-\bibliographystyle{plain}  % Here the bibliography 		     %
-\bibliography{library}        % is inserted.			     %
-\index{Bibliography@\emph{Bibliography}}%			     %
+%   come between the bibliography and the vita. The command          %
+%   to generate the index (if used) MUST be moved to before          %
+%   this section.                                                    %
+%                                                                    %
+
+%\nocite{*}
+            % This command causes all items in the
+            % bibliographic database to be added to
+            % the bibliography, even if they are not
+            % explicitly cited in the text.
+            %
+            % Not using because my bib file is generated
+            % by Mendeley...which makes it huge.
+
+\bibliographystyle{plain}   % Here the bibliography
+\bibliography{library}      % is inserted.
+\index{Bibliography@\emph{Bibliography}}%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Generate the index.						     %
+% Generate the index.                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%								     %
+%                                                                    %
 % NOTE: For master's theses and reports, NOTHING is permitted to     %
-%	come between the bibliography and the vita. This section     %
-%	to generate the index (if used) MUST be moved to before      %
-%	the bibliography section.				     %
-%								     %
-\printindex%    % Include the index here. Comment out this line      %
-%		% with a percent sign if you do not want an index.   %
+%   come between the bibliography and the vita. This section         %
+%   to generate the index (if used) MUST be moved to before          %
+%   the bibliography section.                                        %
+%                                                                    %
+\printindex % Include the index here. Comment out this line          %
+%           % with a percent sign if you do not want an index.       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -387,23 +390,13 @@ This document and its source file show to write a Doctoral Dissertation using
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{vita}
-Craig William McCluskey
-was born in Minneapolis, Minnesota on 20 May 1950, the son of
-Dr. William R. McCluskey and Lucilla W. McCluskey.  He received the Bachelor
-of Science degree in Engineering from the California Institute of Technology
-and was commissioned an Officer in the United States Air Force in 1971.
-He entered active duty in October, 1971, and was stationed in Denver, Colorado,
-Colorado Springs, Colorado, Panama City, Florida, and Sacramento, California.
-He separated from the USAF in 1975 and worked as an engineer for several small
-electronics companies in California before moving to Colorado Springs, Colorado
-to work for Hewlett-Packard in 1979. He left Hewlett-Packard in 1989 and joined
-a small company based in Herndon, Virginia, working out of his house as a
-``remote'' engineer designing parts of the Alexis satellite for Los Alamos
-National Laboratories. Laid off when his portion of the satellite was
-completed, he applied to the University of Texas at Austin for enrollment
-in their physics program. He was accepted and started graduate studies in
-August, 1991.
+Victor Frankenstein is the son of Alphonse Frankenstein and Caroline Beaufort, who died of scarlet fever when Victor was young. Victor has two younger brothers \u2014 William, the youngest, who is killed by Victor's creation, and Ernest, the middle child, who wants to join the Foreign Service like a "true Genevese". Victor falls in love with Elizabeth, who became his adoptive "cousin."
 
+As a young man, Frankenstein is interested in the works in alchemists such as Cornelius Agrippa, Paracelsus, and Albertus Magnus, and he longs to discover the fabled elixir of life. He loses interest in both these pursuits and in science as a whole after seeing the remains of a tree struck by lightning. However, at the University of Ingolstadt, Frankenstein develops a fondness for chemistry, and becomes obsessed with the idea of creating life in inanimate matter through artificial means, leaving university to pursue this goal for the next two years.
+
+Assembling a humanoid creature perhaps by the use of a chemical, apparatus or a combination of both (he avoids the question three times when asked), Frankenstein successfully brings it to life only to be repulsed by its monstrous ugliness. He abandons and flees his creation, who disappears and soon embarks upon a journey of vengeance that results in the death of his younger brother, William. The creature approaches Frankenstein and begs him to create a female companion for him; Frankenstein agrees, but ultimately destroys this creation, aghast at the idea of a race of monsters. Enraged, the creature swears revenge and, on Frankenstein's wedding night, kills Elizabeth (his creator's new bride), as well as his best friend Henry Clerval.
+
+Frankenstein pursues the "fiend" or "daemon" (as he calls his creation) to the Arctic with the intent of destroying it; he ultimately fails in his mission, however, when he falls through an ice flow and contracts severe pneumonia. He is rescued by a passing freighter, but dies after relating his tale to the ship's captain. His creature, upon discovering the death of its creator, is overcome by sorrow and vows to commit suicide by burning himself alive in "the Northernmost extremity of the globe"; he then disappears, never to be seen or heard from again.
 \end{vita}
 
 \end{document}
