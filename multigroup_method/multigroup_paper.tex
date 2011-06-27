@@ -103,6 +103,30 @@ and the flux would increase because fewer neutrons are destroyed in this regime.
 cross section library capture such effects is the primary advantage of a multigroup model
 over the traditional one-group method.
 
+\begin{table}[htbp]
+\begin{center}
+\caption{CHAR Parameters that Define a Perturbation}
+\label{char_perturbable_variables}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Parameter}            & \textbf{Symbol}      & \textbf{Units} \\
+\hline
+Fuel Density                  & $\rho_{\mbox{fuel}}$ & g/cm\superscript{3}  \\
+Cladding Density              & $\rho_{\mbox{clad}}$ & g/cm\superscript{3}  \\
+Coolant Density               & $\rho_{\mbox{cool}}$ & g/cm\superscript{3}  \\
+Fuel Cell Radius              & $r_{\mbox{fuel}}$    & cm \\
+Void Cell Radius              & $r_{\mbox{void}}$    & cm \\
+Cladding Cell Radius          & $r_{\mbox{clad}}$    & cm \\
+Unit Cell Pitch               & $\ell$               & cm \\
+Number of Burn Regions        & $b_r$                &  \\
+Fuel Specific Power           & $p_s$                & MW/kgIHM \\
+Initial Nuclide Mass Fraction & $T_{i0}$             & kg\subscript{i}/kgIHM \\
+Burn Times                    & $t$                  & days \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
 The code which produces the cross section library is known as CHAR (CITEME).  Char currently
 has that ability to adjust a reactor template based on a many inital parameters.  These fall
 conceptually into three categories: geometric properties, material properties, and time.
