@@ -38,12 +38,48 @@ The group constants $\sigma_{itg}$ are themselves parameterized by nuclide, time
 incident neutron energy.  Nuclides are indexed by $i$, times are indexed by $t$, and 
 energy is indexed by $g$ with the lower indices representing higher energy groups.
 
-To fully describe a reactor, several reation types are required.  The type also augments
-the group constant notation by being a comma-separated preposition to the index.  For
-example, the total cross section would be represented by the symbol $\sigma_{t,itg}$.
-Table \ref{reaction_type_table} displays the reactions used in this study, their 
-symbolic abbreviations, and the cooresponding MT number coming from ENDF specification
-\cite{MFMT}.
+\begin{table}[htbp]
+\begin{center}
+\caption{Neutron Reaction Types}
+\label{reaction_type_table}
+\begin{tabular}{|l||c|c|}
+\hline
+\textbf{Name}                               & \textbf{Symbol} & \textbf{MT} \\
+\hline
+Total                                       & $t$             & 1  \\
+Scattering                                  & $s$             & 2 + 4 \\
+Elastic Scattering                          & $e$             & 2 \\
+Inelastic Scattering                        & $i$             & 4 = sum(51, 91) \\
+$n$\superscript{th}-state Inelastic Scatter & $i\{n\}$        & 50 + $n$ \\
+(n, 2n)                                     & $2n$            & 16 \\
+(n, 3n)                                     & $3n$            & 17 \\
+Fission                                     & $f$             & 18 = 19 + 20 + 21 +38 \\
+First-chance Fission                        & $f19$           & 19 \\
+Second-chance Fission                       & $f20$           & 20 \\
+Third-chance Fission                        & $f21$           & 21 \\
+Fourth-chance Fission                       & $f38$           & 38 \\
+Absorption                                  & $a$             & 27 = 18 + sum(102, 107) \\
+Neutron Capture                             & $\gamma$        & 102 \\
+Proton                                      & $p$             & 103 \\
+Deuterium                                   & $d$             & 104 \\
+Tritium                                     & \nuc{H}{3}      & 105 \\
+Helium-3                                    & \nuc{He}{3}     & 106 \\
+Alpha                                       & $\alpha$        & 107 \\
+Metastable Neutron Capture                  & $\gamma*$       & $\dagger$ \\
+Metastable (n, 2n*)                         & $2n*$           & $\dagger$ \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+To fully describe a reactor, several neutron reation types are required.  The type 
+also augments the group constant notation by being a comma-separated preposition to 
+the index.  For example, the total cross section would be represented by the symbol 
+$\sigma_{t,itg}$. Table \ref{reaction_type_table} displays the reactions used in this 
+study, their symbolic abbreviations, and the cooresponding MT number coming from ENDF 
+specification \cite{MFMT}.  Entries whose MT number is given as a $\dagger$ indicates 
+that the generation of these tallies was performed in a special way (see below).
 
 
 \section{Multigroup Reactor Model}
