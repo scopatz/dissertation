@@ -165,6 +165,18 @@ the lengths of the parameter arrays.  \emph{In concreto}, Table \ref{char_param_
 displays the perturbtaions when the fuel density has two values, the initial \nuc{U}{235} mass 
 fraction also takes two values, and the group constants are calculated at three burn steps.
 
+While Table \ref{char_param_outer_product} represents a simple set of reactors, this formulation 
+allows for the easy expansion and extention of input parameters, and thus new pertubations. 
+Including additional values for any parameter would extend the number of rows in the table.  
+Including other parameters, such as initial \nuc{U}{236} concentration, would expand the number of
+columns in the perturbation table, effectively increasing the dimensionality parameterized.
+A particularly aggresive strategy would be to include the mass fractions of all actinides initially
+present in the core.  In a recycle senario, this would increase the number of parameters by 
+appoxrimately an order of magnitude.  
+
+For the remainder of the this study the perturbations presented in Table \ref{char_param_outer_product}
+were sufficient to demonstrate the validity of the multigroup method.
+
 \section{Multigroup Reactor Model}
 \index{Multigroup Reactor Model@\emph{Multigroup Reactor Model}}
 We
