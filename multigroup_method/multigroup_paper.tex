@@ -34,6 +34,10 @@ R = \sigma \cdot \phi \cdot 10^{-24}
 where $R$ [hz] is the reaction rate, $\sigma$ [barns] is the one-group cross section, and
 $\phi$ [n/cm\superscript{2}/s] is the energy-integrated flux.
 
+The remainder of this section is deliniated into a discussion on notation, how initial 
+reactor conditions are specified, and the three methods that were used to compute the
+cross sections.
+
 \subsection{Notation}
 \index{Notation@\emph{Notation}}
 The group constants $\sigma_{itg}$ are themselves parameterized by nuclide, time, and 
@@ -160,7 +164,7 @@ in char.
 
 Every parameter is specified with one or more values.  The outer product of all parameter
 values defines the set of perturbations for which the group constants are calculated.
-The total number of pertubaations $n_{\mbox{pert}}$ is therefore given by the product of 
+The total number of perturbations, $n_{\mbox{pert}}$, is therefore given by the product of 
 the lengths of the parameter arrays.  \emph{In concreto}, Table \ref{char_param_outer_product} 
 displays the perturbtaions when the fuel density has two values, the initial \nuc{U}{235} mass 
 fraction also takes two values, and the group constants are calculated at three burn steps.
