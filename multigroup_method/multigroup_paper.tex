@@ -202,12 +202,18 @@ but are still computable via Serpent.
 Foremost of the non-standard calculations is the group-to-group scattering cross section
 $\sigma_{s,itgh}$.  Among the region-based output of Seperpent are both a group transfer
 probability matrix $P_{gh}$ as well as the group-to-group scattering cross section
-as calculated via the constraint in equation \ref{gtg_constraint}.
+as calculated via the constraints in equations \ref{gtg_constraint} \& \ref{gtg_calc}.
 \begin{equation}
 \label{gtg_constraint}
-\Sum_h^G P_{gh} = 1 \\
+\sum_h^G P_{gh} = 1
+\end{equation}
+\begin{equation}
+\label{gtg_calc}
 \sigma_{s,gh} = P_{gh} \cdot \sigma_{s,g}
 \end{equation}
+However, the group transfer probability, and thus the group-to-group scattering cross-sections
+are functions of the entire region and not individual species within that region.  
+
 
 \section{Multigroup Reactor Model}
 \index{Multigroup Reactor Model@\emph{Multigroup Reactor Model}}
