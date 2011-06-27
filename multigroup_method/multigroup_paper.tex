@@ -34,6 +34,8 @@ R = \sigma \cdot \phi \cdot 10^{-24}
 where $R$ [hz] is the reaction rate, $\sigma$ [barns] is the one-group cross section, and
 $\phi$ [n/cm\superscript{2}/s] is the energy-integrated flux.
 
+\subsection{Notation}
+\index{Notation@\emph{Notation}}
 The group constants $\sigma_{itg}$ are themselves parameterized by nuclide, time, and 
 incident neutron energy.  Nuclides are indexed by $i$, times are indexed by $t$, and 
 energy is indexed by $g$ with the lower indices representing higher energy groups.
@@ -44,7 +46,7 @@ energy is indexed by $g$ with the lower indices representing higher energy group
 \label{reaction_type_table}
 \begin{tabular}{|l||c|c|}
 \hline
-\textbf{Name}                               & \textbf{Symbol} & \textbf{MT} \\
+\textbf{Tally}                              & \textbf{Symbol} & \textbf{MT} \\
 \hline
 Total                                       & $t$             & 1  \\
 Scattering                                  & $s$             & 2 + 4 \\
@@ -80,6 +82,32 @@ $\sigma_{t,itg}$. Table \ref{reaction_type_table} displays the reactions used in
 study, their symbolic abbreviations, and the cooresponding MT number coming from ENDF 
 specification \cite{MFMT}.  Entries whose MT number is given as a $\dagger$ indicates 
 that the generation of these tallies was performed in a special way (see below).
+Additionally, the group-to-group scattering cross section is denoted by the symbol
+$\sigma_{s,itgh}$ where $g$ denotes the incident neutron energy (as before) and $h$
+gives the exiting neutron energy.
+
+\subsection{Parameterization of Initial Conditions}
+\index{Parameterization of Initial Conditions@\emph{Parameterization of Initial Conditions}}
+The multigroup reactor model requires a library of pre-computed group constants which it uses
+to calculate run-time cross section values for the core.  This library must therefore satisfy 
+two conditions.  The first is that it contain group constant information for all independent, 
+mutable parameters of interest.  The second is that the values of these variables must span 
+their cooresponding range of interest.  
+
+Changes in these parameters would then elicit changes in the cross section values. Differences
+in the group contants would thus be picked up by the RMG.  For example, take the case of 
+neutron self-shielding in a material with a strong resonance aborption peak.  As the number 
+denisty of the absorober increases, the group constant in the spectrum around the peak may 
+plument because the flux bottoms out.  In a relatively dilute medium, the group constant 
+and the flux would increase because fewer neutrons are destroyed in this regime.  That the 
+cross section library capture such effects is the primary advantage of a multigroup model
+over the traditional one-group method.
+
+The code which produces the cross section library is known as CHAR (CITEME).  Char currently
+has that ability to adjust a reactor template based on a many inital parameters.  These fall
+conceptually into three categories: geometric properties, material properties, and time.
+Table \ref{char_perturbable_variables} lists the parameters that define a \emph{perturbation}
+in char.
 
 
 \section{Multigroup Reactor Model}
