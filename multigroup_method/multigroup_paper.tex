@@ -181,6 +181,34 @@ appoxrimately an order of magnitude.
 For the remainder of the this study the perturbations presented in Table \ref{char_param_outer_product}
 were sufficient to demonstrate the validity of the multigroup method.
 
+\subsection{Cross Section Generation: Serpent}
+\index{Cross Section Generation: Serpent@\emph{Cross Section Generation: Serpent}}
+Of the over 3000 nuclides, continuous cross section information is available for only 
+approximately 400 major species.  Moreover, not all reactions are tallied 
+for these nuclides.  However, where fundemental cross section data exists for a nuclide
+and a reaction, it is preferable to use this high-fidelity information to compute group
+constants over other methods discussed below.
+
+$G$-group cross sections are assembled for each pertubation using the Monte Carlo neutron
+transport code Serpent \cite{Lepp2011}.  Char fills a templated Serpent input deck with the
+perturbation values and then executes the transport code.  The templates use a combination 
+of detectors in the fuel, cladding, and coolant regions as well as the universe metrics that 
+Serpent outputs to determine the group constants.
+
+In almost every case, the detectors specified with the appropriate MT number suffice.  
+However, some tallies (and some reaction-like parameters) are not given by detectors
+but are still computable via Serpent.
+
+Foremost of the non-standard calculations is the group-to-group scattering cross section
+$\sigma_{s,itgh}$.  Among the region-based output of Seperpent are both a group transfer
+probability matrix $P_{gh}$ as well as the group-to-group scattering cross section
+as calculated via the constraint in equation \ref{gtg_constraint}.
+\begin{equation}
+\label{gtg_constraint}
+\Sum_h^G P_{gh} = 1 \\
+\sigma_{s,gh} = P_{gh} \cdot \sigma_{s,g}
+\end{equation}
+
 \section{Multigroup Reactor Model}
 \index{Multigroup Reactor Model@\emph{Multigroup Reactor Model}}
 We
