@@ -94,14 +94,14 @@ two conditions.  The first is that it contain group constant information for all
 mutable parameters of interest.  The second is that the values of these variables must span 
 their cooresponding range of interest.  
 
-Changes in these parameters would then elicit changes in the cross section values. Differences
-in the group contants would thus be picked up by the RMG.  For example, take the case of 
-neutron self-shielding in a material with a strong resonance aborption peak.  As the number 
-denisty of the absorober increases, the group constant in the spectrum around the peak may 
-plument because the flux bottoms out.  In a relatively dilute medium, the group constant 
-and the flux would increase because fewer neutrons are destroyed in this regime.  That the 
-cross section library capture such effects is the primary advantage of a multigroup model
-over the traditional one-group method.
+Changes in the inital parameter conditions would then elicit changes in the cross section 
+values. Differences in the group contants would thus be picked up by the RMG.  For example, 
+take the case of neutron self-shielding in a material with a strong resonance aborption peak.  
+As the number denisty of the absorober increases, the group constant in the spectrum around 
+the peak may plument because the flux bottoms out.  In a relatively dilute medium, the group 
+constant and the flux would increase because fewer neutrons (in an absolute sense) are destroyed 
+in this regime.  That the  cross section library captures such effects is the primary advantage 
+of a multigroup model over the traditional one-group method.
 
 \begin{table}[htbp]
 \begin{center}
@@ -128,11 +128,42 @@ Burn Times                    & $t$                  & days \\
 \end{table}
 
 The code which produces the cross section library is known as CHAR (CITEME).  Char currently
-has that ability to adjust a reactor template based on a many inital parameters.  These fall
+has the ability to adjust a reactor template based on many inital parameters.  These fall
 conceptually into three categories: geometric properties, material properties, and time.
 Table \ref{char_perturbable_variables} lists the parameters that define a \emph{perturbation}
 in char.
 
+\begin{table}[htbp]
+\begin{center}
+\caption{CHAR Outer Product Perturbations}
+\label{char_param_outer_product}
+\begin{tabular}{|ccccccccccc|}
+\hline
+\textbf{$\rho_{\mbox{fuel}}$} & \textbf{$\rho_{\mbox{clad}}$} & \textbf{$\rho_{\mbox{cool}}$} & \textbf{$r_{\mbox{fuel}}$} & \textbf{$r_{\mbox{void}}$} & \textbf{$r_{\mbox{clad}}$} & \textbf{$\ell$} & \textbf{$b_r$} & \textbf{$p_s$} & \textbf{$T_{\mbox{\nuc{U}{235}0}}$} & \textbf{$t$} \\
+\hline
+10.165 & 5.87 & 0.73 & 0.41 & 0.4185 & 0.475 & 1.3127 & 10 & 0.04 & 0.03 & 0    \\ 
+10.165 & 5.87 & 0.73 & 0.41 & 0.4185 & 0.475 & 1.3127 & 10 & 0.04 & 0.03 & 2100 \\ 
+10.165 & 5.87 & 0.73 & 0.41 & 0.4185 & 0.475 & 1.3127 & 10 & 0.04 & 0.03 & 4200 \\ 
+10.165 & 5.87 & 0.73 & 0.41 & 0.4185 & 0.475 & 1.3127 & 10 & 0.04 & 0.05 & 0    \\ 
+10.165 & 5.87 & 0.73 & 0.41 & 0.4185 & 0.475 & 1.3127 & 10 & 0.04 & 0.05 & 2100 \\ 
+10.165 & 5.87 & 0.73 & 0.41 & 0.4185 & 0.475 & 1.3127 & 10 & 0.04 & 0.05 & 4200 \\ 
+11.235 & 5.87 & 0.73 & 0.41 & 0.4185 & 0.475 & 1.3127 & 10 & 0.04 & 0.03 & 0    \\ 
+11.235 & 5.87 & 0.73 & 0.41 & 0.4185 & 0.475 & 1.3127 & 10 & 0.04 & 0.03 & 2100 \\ 
+11.235 & 5.87 & 0.73 & 0.41 & 0.4185 & 0.475 & 1.3127 & 10 & 0.04 & 0.03 & 4200 \\ 
+11.235 & 5.87 & 0.73 & 0.41 & 0.4185 & 0.475 & 1.3127 & 10 & 0.04 & 0.05 & 0    \\ 
+11.235 & 5.87 & 0.73 & 0.41 & 0.4185 & 0.475 & 1.3127 & 10 & 0.04 & 0.05 & 2100 \\ 
+11.235 & 5.87 & 0.73 & 0.41 & 0.4185 & 0.475 & 1.3127 & 10 & 0.04 & 0.05 & 4200 \\ 
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Every parameter is specified with one or more values.  The outer product of all parameter
+values defines the set of perturbations for which the group constants are calculated.
+The total number of pertubaations $n_{\mbox{pert}}$ is therefore given by the product of 
+the lengths of the parameter arrays.  \emph{In concreto}, Table \ref{char_param_outer_product} 
+displays the perturbtaions when the fuel density has two values, the initial \nuc{U}{235} mass 
+fraction also takes two values, and the group constants are calculated at three burn steps.
 
 \section{Multigroup Reactor Model}
 \index{Multigroup Reactor Model@\emph{Multigroup Reactor Model}}
