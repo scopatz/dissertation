@@ -5,7 +5,7 @@
 \tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm, minimum height=2em]
 
 \begin{figure}
-\caption{Multigroup Reactor Model Method Diagram}
+\caption{Multigroup Reactor Model Flow Diagram}
 \label{rmg_method_diagram}
 \begin{tikzpicture}[node distance = 5cm, auto]
     % Place nodes
@@ -15,11 +15,12 @@
 	\node [block, fill=green!20, right of=known] (given) {\underline{Given}:\\
         $a_r$\\
 		$t=0$};
-	\node [block, text width=20em, fill=blue!20, below of=given, node distance=2.5cm] (interpolate) {\underline{Interpolate}:
+	\node [block, text width=16em, fill=blue!20, below of=given, node distance=2.5cm] (interpolate) {\underline{Interpolate}:
 		find $\left\{p_1, p_2\ldots, p_{n_p} \right\}$\\
-		$\sigma_{r_x,itg} = \frac{\sigma_{r_x,ip_2g} - \sigma_{r_x,ip_1g}}{a_{p_2} - a_{p_1}}(a_r - a_{p_1}) + \sigma_{r_x,ip_1g}$};
-	\node [block, below of=interpolate, fill=yellow!40, text width=20em, node distance=2.5cm] (eigen) 
-		{\underline{Calculate}:\\
+		$f_a = \sum_a \frac{a_r - a_{p_1}}{a_{p_2} - a_{p_1}}$\\
+		$\sigma_{r_x,itg} = (\sigma_{r_x,ip_2g} - \sigma_{r_x,ip_1g})f_a + \sigma_{r_x,ip_1g}$};
+	\node [block, below of=interpolate, fill=yellow!40, text width=14em, node distance=2.5cm] (eigen) 
+		{\underline{Calculate Criticality}:\\
 		$\left(A_{tgh} - \frac{1}{k}F_{tgh}\right)\phi_{tg}=0$};
 	\node [block, left of=eigen, node distance=5.5cm, fill=purple!20] (store1){\underline{Store}:\\
 		$k_t$\\
@@ -27,7 +28,7 @@
 	\node [block, text width=14em, fill=blue!20, below of=store1, node distance=2.5cm] (set) {\underline{Set}:\\
 	    $\Delta s=s_{t+1}-s_t$\\
 		$\Phi_{t+1} = \Phi_t + \Delta s \sum_{g=1}^G \phi_{tg}$};
-	\node [block, text width=20em, below of=eigen, fill=yellow!40, node distance=5cm] (transmute){\underline{Transmute}:\\
+	\node [block, text width=10em, below of=eigen, fill=yellow!40, node distance=5cm] (transmute){\underline{Transmute}:\\
 		$T_{it+1}=e^{M_{tij}\Delta s}T_{it}$\\
 		\underline{Calculate}: $\mbox{BU}_t$};
 	\node [block, above of=transmute, node distance=2.5cm, fill=purple!20] (store2){\underline{Store}:\\
