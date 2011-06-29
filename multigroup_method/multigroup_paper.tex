@@ -345,6 +345,67 @@ cross section $\sigma_{s,itgh}$ is desired, effectively adding an additional dim
 Furthermore, because scattering reactions are mainly about energy transfer between the neutron and 
 nuclide, the material tempurature $T$ [K] is also important.
 
+Equation \ref{scat_ce} represents a coninuous energy model of the scattering cross section for a free gas
+\cite{Yamamoto2006, Mattes2005}.
+\begin{equation}
+\label{scat_ce}
+\sigma_s(E) = 4 \pi b^2 \cdot \left(1 - \frac{2E}{931.46 \cdot m_n}\right) \cdot
+              \left(1 + \frac{m_n}{M_A} \frac{kT}{E} \cdot e^{-\frac{M_A}{m_n}\frac{E}{kT}}\right) 
+              \cdot \left(1 - \mbox{Exp}\left[-\sqrt{\frac{0.1}{E}}\right]\right)
+\end{equation}
+where $b$ [cm] is the bound scattering length of the target nucleus, $E$ [MeV] is the incident
+neutron energy, $m_n$ is mass of the neutron, $M_A$ is the mass of the target nucleus, and
+$k$ [MeV/K] is Boltzmann's constant.
+
+Term by term, $4 \pi b^2$ represents a base estimate of the scattering cross section.  
+The $\left(1 - \frac{2E}{931.46 \cdot m_n}\right)$ term is a relativitstic correction
+factor for $b$.  The remaining two terms are an adjusted neutron exiting-energy itegrated 
+reprentation of the scattering kernel $S(\alpha, \beta)$ for a free gas.
+
+The bound scattering length for a nuclide is computed via coherent and incoherent components
+(equation \ref{scat_len}).
+\begin{equation}
+\label{scat_len}
+b = \sqrt{\left| b_{\mbox{coh}} \right|^2 + \left| b_{\mbox{inc}} \right|^2}
+\end{equation}
+Values for the scattering lengths were obtained from \cite{Sears1992}.  For nuclides
+that do not appear in this tabulation, a $b$ of the nuclide of the same element was
+used as a surrogate.  If the entire element was absent from the tabulation, then the 
+scattering length of the next lowest Z-numbered nuclide was substituted instead.
+
+The group-to-group scattering cross section may thus be caluclated as in equation \ref{scat_collapse}.
+\begin{equation}
+\label{scat_collapse}
+\sigma_{s,gh} = \frac{\int_{E_g}^{E_{g+1}} \int_{E_h}^{E_{h+1}} \sigma_s(E) P(E \to E^\prime) \phi_g(E) dE^\prime dE}
+                     {\int_{E_g}^{E_{g+1}} \phi_g(E) dE}
+\end{equation}
+with $E^\prime$ as the exiting neutron energy and $P(E \to E^\prime)$ being the differential probability of 
+scattering from one energy to another.  This probability is computed via equation \ref{P_E_to_E_prime}
+\begin{equation}
+\label{P_E_to_E_prime}
+P(E \to E^\prime) = \frac{1}{E + kT - \left(\frac{M_A - m_n}{M_A + m_n}\right)^2 E}
+\end{equation}
+Note that equation \ref{P_E_to_E_prime} is only valid on the range 
+\begin{equation}
+\label{P_E_to_E_prime_range}
+\left(\frac{M_A - m_n}{M_A + m_n}\right)^2 E \le E^\prime \le E + kT
+\end{equation}
+For all values of $E^\prime$ outside of this range, $P(E \to E^\prime) = 0$.
+
+Subjecting the numerically computed the double integral in equation \ref{scat_collapse} 
+to the incident scattering constraint yields the appropriate group constant (equation \ref{scat_constraint}).
+\begin{equation}
+\label{scat_constraint}
+\sigma_{s,g} = \sum_h^G \sigma_{s,gh}
+\end{equation}
+
+Finally, the total cross section may be expressed a the sume between the absorption and scattering
+cross sections, as computed in the models above.
+\begin{equation}
+\label{tot_xs_model}
+\sigma_{t,g} = \sigma_{s,g} + \sigma_{a,g}
+\end{equation}
+
 \section{Multigroup Reactor Model}
 \index{Multigroup Reactor Model@\emph{Multigroup Reactor Model}}
 We
