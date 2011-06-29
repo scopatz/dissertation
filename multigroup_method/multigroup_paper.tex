@@ -494,6 +494,7 @@ here has proven invaluable towards the RMG benchmaking efforts.
 
 \section{Multigroup Reactor Model}
 \index{Multigroup Reactor Model@\emph{Multigroup Reactor Model}}
+\label{mg_sec:rmg_model}
 The multigroup reactor model uses the group constant library developed in the previous 
 section to compute critiality and burnup metrics for a nuclear power reactor (NPR).
 The RMG is specified by a several parameters, among which all those present in Table
@@ -507,16 +508,26 @@ in the perturbation table, the RMG execution remains meaningful.
 
 \input{multigroup_method/figs/method_diagram}
 
-A flowsheet for the RMG methodology is presented in Figure \ref{rmg_method_diagram}.
+A flowsheet for the RMG methodology is presented in Figure \ref{rmg_method_diagram}.  As is
+seen, the reactor model contains three main calculation stages for each burn time step.
+First there is a nearest neighbor \& interpolation calculation for determining the group
+constants for this time step.  Following this is flux-criticality calculation.  Lastly, the reactor
+has a burnup-transmutation computation before contining to the next time step.  The algorithms
+implemented are discussed in \S \ref{mg_sec:nn_xs}-\ref{mg_sec:trans_calc}.
 
-\subsection{Nearest Neightbor Cross Section Calculation}
+
+\subsection{Nearest Neighbor Cross Section Calculation}
 \index{Nearest Neighbor Cross Section Calculation@\emph{Nearest Neighbor Cross Section Calculation}}
+\label{mg_sec:nn_xs}
+
 
 \subsection{Criticality Calculation}
 \index{Criticality Calculation@\emph{Criticality Calculation}}
+\label{mg_sec:crit_calc}
 
 \subsection{Transmutation Calculation}
 \index{Transmutation Calculation@\emph{Transmutation Calculation}}
+\label{mg_sec:trans_calc}
 
 
 
