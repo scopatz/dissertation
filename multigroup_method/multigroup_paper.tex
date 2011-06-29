@@ -36,7 +36,7 @@ $\phi$ [n/cm\superscript{2}/s] is the energy-integrated flux.
 
 The remainder of this section is deliniated into a discussion on notation, how initial 
 reactor conditions are specified, the three methods that were used to compute the
-cross sections, and te.
+cross sections, and the validation technique used.
 
 \subsection{Notation}
 \index{Notation@\emph{Notation}}
@@ -427,6 +427,66 @@ constants for a reaction $r_x$ were estimated using equation \ref{group_const_es
 \end{equation}
 In the case where even this method fails (negative cross sections computed or data not available), 
 a zero values is finally assumed for this group constant.
+
+\subsection{Cross Section Validation}
+\index{Cross Section Validation@\emph{Cross Section Validation}}
+Due to the quatity of cross section data produced through the three above methods, the 
+impossibility of comprehensivvely visually inspecting it all for `goodness', and the errors 
+prone to human inspection, an automatic validation procedure known as \emph{unit testing}
+was employed.  Here, the units are inperpeted as the group constants.   A suite of tests 
+executed against these units ensures that the cross sections remain physically valid 
+individually as well as in relation to each other. What follows are the definitions of the 
+physical tests which make up the suite.  All cross sections present in the library were tested 
+in this manner.
+
+The most basic test is to verify that all group constants are real and non-negative valued 
+(infinite and not-a-number values are not allowed).  
+\begin{equation}
+\label{nn_ut}
+0 \le \sigma_{r_x,itg} < \infty
+\end{equation}
+While this may seem to be a trivial 
+condition, if such values are allowed to pass through, a single bad group-constant may 
+propogate to all portions of an RMG calculation.
+
+No less important, is the constraint that all group constants are less than or equal to 
+the total cross section.
+\begin{equation}
+\label{tot_xs_ut}
+\sigma_{r_x,itg} \le \sigma_{t,itg}
+\end{equation}
+Morover, if a nuclide is fissionable, the following conditions apply.
+\begin{equation}
+\label{nu_fiss_ut}
+1 \le \bar{\nu}_{itg} \le 5.5
+\end{equation}
+\begin{equation}
+\label{chi_fiss_ut}
+\sum_g^G \chi_{itg} = 1
+\end{equation}
+If the nuclide is not fissionable, the following condtions are used instead.
+\begin{equation}
+\label{not_fiss_ut}
+\sigma_{f,itg} = \bar{\nu}_{itg} = \chi_{itg} = 0
+\end{equation}
+The relation between scattering group constants is also defined as follows, to 
+machine precision.
+\begin{equation}
+\label{scat_xs_ut}
+\sigma_{s,itg} = \sum_h^G \sigma_{s,itgh}
+\end{equation}
+Lastly, it is required that the non-fission absorpotion cross sections sum 
+to less than or equal to the absorption tally.
+\begin{equation}
+\label{scat_xs_ut}
+\sum_{r_x} \sigma_{r_x,itg} \le \sigma_{a,itg}
+\end{equation}
+Further conditions could be added to the suite, such as ensuring that the sum of 
+all non-total group constants is less than equal to $\sigma_{t,itg}$.  However, 
+such summation tests are typically expressions of more primitive error in the 
+cross sections that are captured by the tests above.  The test suite developed
+here has proven invaluable towards the RMG benchmaking efforts.
+
 
 \section{Multigroup Reactor Model}
 \index{Multigroup Reactor Model@\emph{Multigroup Reactor Model}}
