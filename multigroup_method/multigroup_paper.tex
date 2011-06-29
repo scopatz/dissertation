@@ -40,9 +40,10 @@ cross sections, and the validation technique used.
 
 \subsection{Notation}
 \index{Notation@\emph{Notation}}
-The group constants $\sigma_{itg}$ are themselves parameterized by nuclide, time, and 
-incident neutron energy.  Nuclides are indexed by $i$, times are indexed by $t$, and 
-energy is indexed by $g$ with the lower indices representing higher energy groups.
+The group constants $\sigma_{itg}$ or $\sigma_{ipg}$ are themselves parameterized by nuclide, 
+time or perturbation (see following section), and  incident neutron energy.  Nuclides are indexed by 
+$i$, times are indexed by $t$, pertubations are indexed by $p$, and energy is indexed by $g$ with the 
+lower indices representing higher energy groups.
 
 \begin{table}[htbp]
 \begin{center}
@@ -200,7 +201,7 @@ However, some tallies (and some reaction-like parameters) are not given by detec
 but are still computable via Serpent.
 
 Foremost of the non-standard calculations is the group-to-group scattering cross section
-$\sigma_{s,itgh}$.  Among the region-based output of Seperpent are both a group transfer
+$\sigma_{s,ipgh}$.  Among the region-based output of Seperpent are both a group transfer
 probability matrix $P_{gh}$ as well as the group-to-group scattering cross section
 as calculated via the constraints in equations \ref{gtg_constraint} \& \ref{gtg_calc}.
 \begin{equation}
@@ -218,7 +219,7 @@ Unfortunately, the RMG itself requires that the group-to-group scattering cross 
 per nuclide. To this end, the authors modified the source code of Serpent to include an optional 
 additional mode where $P_{gh}$ is calculated for only a specific sub-material in a region.    
 Using this mode with a one-nuclide material, equation \ref{gtg_calc}, and the detector calculated
-scattering cross section $\sigma_{s,itg}$, the group-to-group scattering cross section could 
+scattering cross section $\sigma_{s,ipg}$, the group-to-group scattering cross section could 
 be computed for a single species.
 
 The next supplemental calculation that char performs comes more from a defficiency in the 
@@ -240,26 +241,26 @@ the Seprent tally to calculate the group constants desired, as seen in equations
 \ref{msex}.
 \begin{equation}
 \label{msground}
-\sigma_{\gamma,itg} = \frac{\sigma_{\gamma_{\mbox{tot}},itg}}{1 + r_{\mbox{meta}}}
+\sigma_{\gamma,ipg} = \frac{\sigma_{\gamma_{\mbox{tot}},ipg}}{1 + r_{\mbox{meta}}}
 \end{equation}
 \begin{equation}
 \label{msex}
-\sigma_{\gamma*,itg} = r_{\mbox{meta}} \cdot \sigma_{\gamma,itg}
+\sigma_{\gamma*,ipg} = r_{\mbox{meta}} \cdot \sigma_{\gamma,ipg}
 \end{equation}
-In equation \ref{msground}, the $\sigma_{\gamma_{\mbox{tot}},itg}$ represents the total neutron
+In equation \ref{msground}, the $\sigma_{\gamma_{\mbox{tot}},ipg}$ represents the total neutron
 capture cross section.  This is what is provided by the Serpent via MT 102.  However, cinder 
 lists the ground and metastable states separately.  For most nuclides that do not have a metastable state, the 
-ground state interaction is the total (\emph{i.e.} $\sigma_{\gamma,itg} = \sigma_{\gamma_{\mbox{tot}},itg}$).
+ground state interaction is the total (\emph{i.e.} $\sigma_{\gamma,ipg} = \sigma_{\gamma_{\mbox{tot}},ipg}$).
 The RMG expects the interaction tallies to be split out, as in cinder.  Analogous equations are 
 derivable for the (n, 2n) and (n, 2n*) situation.
 
 Furthermore, the average number of neutrons produced per fission event $\bar{\nu}$ is also 
-calculated in special way via Serpent.  The psuedo-tally number $-7$ yields $\bar{\nu}\sigma_{f,itg}$.
+calculated in special way via Serpent.  The psuedo-tally number $-7$ yields $\bar{\nu}\sigma_{f,ipg}$.
 Using the fission group constant calculated from serpent in the usual way, an expression for $\bar{\nu}$
 is trivially obtained (equation \ref{mg_nubar}).
 \begin{equation}
 \label{mg_nubar}
-\bar{\nu}_{itg} = \frac{\bar{\nu}\sigma_{f,itg}}{\sigma_{f,itg}}
+\bar{\nu}_{ipg} = \frac{\bar{\nu}\sigma_{f,ipg}}{\sigma_{f,ipg}}
 \end{equation}
 
 The final psuedo-tally that is calculated via serpent is the fission neutron energy spectrum, $\chi$.
@@ -309,7 +310,7 @@ f_u = \frac{E_{g+1} - E_{n_u}}{E_{n_u+1} - E_{n_u}}
 \end{equation}
 \begin{equation}
 \label{fiss_group_collapse}
-\sigma_{f,itg} = \frac{f_l\sigma_{f,itn_l-1}\phi_{n_l-1} + \sum_{n=n_l}^{n_u} \sigma_{f,itn}\phi_n + f_l\sigma_{f,itn_u+1}\phi_{n_u+1}}{f_l\phi_{n_l-1} + \sum_{n=n_l}^{n_u} \phi_n  + f_u\phi_{n_u+1}}
+\sigma_{f,ipg} = \frac{f_l\sigma_{f,ipn_l-1}\phi_{n_l-1} + \sum_{n=n_l}^{n_u} \sigma_{f,ipn}\phi_n + f_l\sigma_{f,ipn_u+1}\phi_{n_u+1}}{f_l\phi_{n_l-1} + \sum_{n=n_l}^{n_u} \phi_n  + f_u\phi_{n_u+1}}
 \end{equation}
 Equations \ref{n_lower}-\ref{f_upper} define lower and upper indices and linear energy fractions
 which aid in calculating group constants in which the boundaries only partially overlap.
@@ -330,18 +331,18 @@ type is available in Cinder, a group collapse on the 64-group data is performed.
 type is not present for a nuclide, the interaction is assumed to be impossible and zero values
 are returned.
 
-The absorption cross section $\sigma_{a,itg}$ is simply the sum of its constituient elements, as 
+The absorption cross section $\sigma_{a,ipg}$ is simply the sum of its constituient elements, as 
 computed above.  Set $r_x$ as a non-fission absorption reaction type, then
 \begin{equation}
 \label{sig_a_model}
-\sigma_{a,itg} = \sigma_{f,itg} + \sum_{r_x} \sigma_{r_x,itg}
+\sigma_{a,ipg} = \sigma_{f,ipg} + \sum_{r_x} \sigma_{r_x,ipg}
 \end{equation}
 Cinder includes several reactions that are not tracked by the RMG or Char, such as (n, 4n). 
 However, these interactions are included in the absorprion reaction estimate here.  
 
 Considerably more complicated is the physical model of the scattering cross section.  Unfortunately, 
 Cinder provides no pretabulated 64-group data to collapse.  Moreover, the group-to-group scattering
-cross section $\sigma_{s,itgh}$ is desired, effectively adding an additional dimension to compute.
+cross section $\sigma_{s,ipgh}$ is desired, effectively adding an additional dimension to compute.
 Furthermore, because scattering reactions are mainly about energy transfer between the neutron and 
 nuclide, the material tempurature $T$ [K] is also important.
 
@@ -443,7 +444,7 @@ The most basic test is to verify that all group constants are real and non-negat
 (infinite and not-a-number values are not allowed).  
 \begin{equation}
 \label{nn_ut}
-0 \le \sigma_{r_x,itg} < \infty
+0 \le \sigma_{r_x,ipg} < \infty
 \end{equation}
 While this may seem to be a trivial 
 condition, if such values are allowed to pass through, a single bad group-constant may 
@@ -453,36 +454,36 @@ No less important, is the constraint that all group constants are less than or e
 the total cross section.
 \begin{equation}
 \label{tot_xs_ut}
-\sigma_{r_x,itg} \le \sigma_{t,itg}
+\sigma_{r_x,ipg} \le \sigma_{t,ipg}
 \end{equation}
 Morover, if a nuclide is fissionable, the following conditions apply.
 \begin{equation}
 \label{nu_fiss_ut}
-1 \le \bar{\nu}_{itg} \le 5.5
+1 \le \bar{\nu}_{ipg} \le 5.5
 \end{equation}
 \begin{equation}
 \label{chi_fiss_ut}
-\sum_g^G \chi_{itg} = 1
+\sum_g^G \chi_{ipg} = 1
 \end{equation}
 If the nuclide is not fissionable, the following condtions are used instead.
 \begin{equation}
 \label{not_fiss_ut}
-\sigma_{f,itg} = \bar{\nu}_{itg} = \chi_{itg} = 0
+\sigma_{f,ipg} = \bar{\nu}_{ipg} = \chi_{ipg} = 0
 \end{equation}
 The relation between scattering group constants is also defined as follows, to 
 machine precision.
 \begin{equation}
 \label{scat_xs_ut}
-\sigma_{s,itg} = \sum_h^G \sigma_{s,itgh}
+\sigma_{s,ipg} = \sum_h^G \sigma_{s,ipgh}
 \end{equation}
 Lastly, it is required that the non-fission absorpotion cross sections sum 
 to less than or equal to the absorption tally.
 \begin{equation}
 \label{scat_xs_ut}
-\sum_{r_x} \sigma_{r_x,itg} \le \sigma_{a,itg}
+\sum_{r_x} \sigma_{r_x,ipg} \le \sigma_{a,ipg}
 \end{equation}
 Further conditions could be added to the suite, such as ensuring that the sum of 
-all non-total group constants is less than equal to $\sigma_{t,itg}$.  However, 
+all non-total group constants is less than equal to $\sigma_{t,ipg}$.  However, 
 such summation tests are typically indicative of a more primitive error in the 
 group constants.  These basic errors are sufficiently captured by the tests above, 
 without adding extraneous noise to the failure analysis.  The test suite developed
