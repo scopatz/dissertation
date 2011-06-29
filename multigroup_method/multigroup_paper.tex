@@ -269,6 +269,51 @@ capture per nuclide effects, $\chi$ varies only slightly among different species
 Moreover, since a Serpent run is performed for each perturbation, changes to 
 the initial conditions are still encapsulated.  Thus the induced error on the RMG is very low.
 
+
+\subsection{Cross Section Generation: Physical Models \& CINDER}
+\index{Cross Section Generation: Physical Models@\emph{Cross Section Generation: Physical Models}}
+As mentioned in the previous section, continuous energy cross section data is available for only 
+a small fraction of the nuclides, though arguably the most important ones.  However, some species 
+may have signifigcant fuel cycle importance and yet do not have highest-fidelity data available.
+
+In this case, Char and the RMG `fall-back' to using a combination of Cinder data and fundemental 
+physical models to estimate the group constants. The first stage in this calculation, as with the 
+metastable-to-ground ratio, is to use Serpent to compute a 64-group high-fidelity flux $\phi_n$
+which matches the structure used in the Cinder library.  If Cinder data exists for a nuclide for 
+a reaction, a simple collapse down to $G$-groups is performed.  For other reactions physical
+models are used.  In all cases if Cinder data and physical models are not available, then group
+constants of zero are assumed.  Note that group constants tabulated in this way, while dependent 
+on changes in the spectrum, are independent of effects such as self-shielding.
+The remainder of this section discusses the reactions individually.
+
+First, Cinder includes cross section information for fission reaction.  If a nuclide does not 
+contain fission cross section information it is a safe assuption that either the species 
+is not fissionable or is an actinide of such high order that it exists in a reactor in vanishingly 
+small quantities.  If $n$ indexes $N=64$ groups from Cinder and $E$ denotes the enegry boundaries[MeV], 
+the $G$-group collapsed fission cross section may be computed as in equation \ref{fiss_group_collapse}.
+\begin{equation}
+\label{n_lower}
+n_l = \min(n|E_g<E_n)
+\end{equation}
+\begin{equation}
+\label{n_upper}
+n_u = \max(n|E_n<E_{g+1}) - 1
+\end{equation}
+\begin{equation}
+\label{f_lower}
+f_l = \frac{E_{n_l} - E_g}{E_{n_l} - E_{n_l-1}}
+\end{equation}
+\begin{equation}    
+\label{f_upper}
+f_u = \frac{E_{g+1} - E_{n_u}}{E_{n_u+1} - E_{n_u}}
+\end{equation}
+\begin{equation}
+\label{fiss_group_collapse}
+\sigma_{f,itg} = \frac{f_l\sigma_{f,itn_l-1}\phi_{n_l-1} + \sum_{n=n_l}^{n_u} \sigma_{f,itn}\phi_n + f_l\sigma_{f,itn_u+1}\phi_{n_u+1}}{f_l\phi_{n_l-1} + \sum_{n=n_l}^{n_u} \phi_n  + f_u\phi_{n_u+1}}
+\end{equation}
+Equations \ref{n_lower}-\ref{f_upper} define lower and upper indices and linear energy fractions
+which aid in calculating group constants in which the boundaries only partially overlap.
+
 \section{Multigroup Reactor Model}
 \index{Multigroup Reactor Model@\emph{Multigroup Reactor Model}}
 We
