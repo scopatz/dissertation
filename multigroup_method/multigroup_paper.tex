@@ -494,7 +494,29 @@ here has proven invaluable towards the RMG benchmaking efforts.
 
 \section{Multigroup Reactor Model}
 \index{Multigroup Reactor Model@\emph{Multigroup Reactor Model}}
-We
+The multigroup reactor model uses the group constant library developed in the previous 
+section to compute critiality and burnup metrics for a nuclear power reactor (NPR).
+The RMG is specified by a several parameters, among which all those present in Table
+\ref{char_perturbable_variables} are included.
+
+However, the advantage of the RMG method here is that the values of the reactor paramaters
+need not exactly match any of the pertubations (Table \ref{char_param_outer_product}) in the 
+cross section library.  Other methods are often invalidated when the conditions under which 
+the group constants were computed are altered.  However, by including a robust set of values
+in the perturbation table, the RMG execution remains meaningful.
+
+A flowsheet for the RMG methodology is presented in Figure.
+
+\subsection{Nearest Neightbor Cross Section Calculation}
+\index{Nearest Neighbor Cross Section Calculation@\emph{Nearest Neighbor Cross Section Calculation}}
+
+\subsection{Criticality Calculation}
+\index{Criticality Calculation@\emph{Criticality Calculation}}
+
+\subsection{Transmutation Calculation}
+\index{Transmutation Calculation@\emph{Transmutation Calculation}}
+
+
 
 \section{Benchmark}
 \index{Benchmark@\emph{Benchmark}}
