@@ -314,6 +314,16 @@ f_u = \frac{E_{g+1} - E_{n_u}}{E_{n_u+1} - E_{n_u}}
 Equations \ref{n_lower}-\ref{f_upper} define lower and upper indices and linear energy fractions
 which aid in calculating group constants in which the boundaries only partially overlap.
 
+Cinder does not include $\bar{\nu}$ data and so for nuclides where the fission cross-section is 
+non-zero, a constant value of 2.5 was assumed. Cinder also does not include fission neutron 
+spectrum information.  Where fission is possible, the physical model seen in equation \ref{chi_model}
+was discretized to $G$-groups.
+\begin{equation}
+\label{chi_model}
+\chi(E) = 0.453 \cdot e^{-1.036E} \cdot \sinh\left(\sqrt{2.29E}\right)
+\end{equation}
+This spectrum comes from \nuc{U}{235}, but may be used for other nuclides as well \cite{Lamarsh2002}.
+
 \section{Multigroup Reactor Model}
 \index{Multigroup Reactor Model@\emph{Multigroup Reactor Model}}
 We
