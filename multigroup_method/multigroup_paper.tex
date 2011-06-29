@@ -406,6 +406,28 @@ cross sections, as computed in the models above.
 \sigma_{t,g} = \sigma_{s,g} + \sigma_{a,g}
 \end{equation}
 
+\subsection{Cross Section Generation: Interpolation}
+\index{Cross Section Generation: Interpolation@\emph{Cross Section Generation: Interpolation}}
+The last class of nuclides are those for which there are no continuous energy cross section data 
+available and do not have enough of a fuel cycle impact which warrents computing group constants 
+via physical models.  Due to the unimportance of these species, only the roughest of estimates
+of their cross sections is needed.  Moreover, such estimation may be done at RMG run-time rather 
+than durring library generation.
+
+The Korea Atomic Energy Research Institute (KAERI) provides simple cross section information
+for alomst 3000 nuclides at a variety of energies \cite{KAER2000}.  Specifially, data for
+thermal (2.53E-08 [MeV]) and fission spectrum average (taken as 1.0 [MeV]) was used as represetative
+thermal and fast cross sections.  Ignoring all other effects (particularly epithermal resonances), 
+group constants were computed by lineraly interpolating these two cross sections.  Call 
+$\sigma_{r_x}^t$ and $\sigma_{r_x}^f$ the thermal and fast cross sections respectively.  The group
+constants for a reaction $r_x$ were estimated using equation \ref{group_const_est}.
+\begin{equation}
+\label{group_const_est}
+\sigma_{r_x,g} = \frac{\sigma_{r_x}^f - \sigma_{r_x}^t}{1 - \mbox{2.53E-08}} \cdot (E_g - \mbox{2.53E-08}) + \sigma_{r_x}^t
+\end{equation}
+In the case where even this method fails (negative cross sections computed or data not available), 
+a zero values is finally assumed for this group constant.
+
 \section{Multigroup Reactor Model}
 \index{Multigroup Reactor Model@\emph{Multigroup Reactor Model}}
 We
