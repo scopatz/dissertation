@@ -324,6 +324,27 @@ was discretized to $G$-groups.
 \end{equation}
 This spectrum comes from \nuc{U}{235}, but may be used for other nuclides as well \cite{Lamarsh2002}.
 
+Non-fission absorption reaction cross sections ($\gamma$, 2n, 3n, $p$, $d$, \nuc{H}{3}, \nuc{He}{3}, 
+$\alpha$, $\gamma*$, 2n*) are computed similarlly to the fission group constant.  If a reaction 
+type is available in Cinder, a group collapse on the 64-group data is performed.  If the reaction 
+type is not present for a nuclide, the interaction is assumed to be impossible and zero values
+are returned.
+
+The absorption cross section $\sigma_{a,itg}$ is simply the sum of its constituient elements, as 
+computed above.  Set $r_x$ as a non-fission absorption reaction type, then
+\begin{equation}
+\label{sig_a_model}
+\sigma_{a,itg} = \sigma_{f,itg} + \sum_{r_x} \sigma_{r_x,itg}
+\end{equation}
+Cinder includes several reactions that are not tracked by the RMG or Char, such as (n, 4n). 
+However, these interactions are included in the absorprion reaction estimate here.  
+
+Considerably more complicated is the physical model of the scattering cross section.  Unfortunately, 
+Cinder provides no pretabulated 64-group data to collapse.  Moreover, the group-to-group scattering
+cross section $\sigma_{s,itgh}$ is desired, effectively adding an additional dimension to compute.
+Furthermore, because scattering reactions are mainly about energy transfer between the neutron and 
+nuclide, the material tempurature $T$ [K] is also important.
+
 \section{Multigroup Reactor Model}
 \index{Multigroup Reactor Model@\emph{Multigroup Reactor Model}}
 We
