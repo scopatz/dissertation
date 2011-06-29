@@ -13,34 +13,30 @@
 		$\bullet$ $\sigma_{r_x,ipg}$ \, $\bullet$ $\bar{\nu}_{ipg}$\\
 		$\bullet$ $\sigma_{s,ipgh}$  \, $\bullet$ $\chi_{ipg}$};
 	\node [block, fill=green!20, right of=known] (given) {\underline{Given}:\\
+        $a_r$\\
 		$t=0$};
 	\node [block, text width=20em, fill=blue!20, below of=given, node distance=2.5cm] (interpolate) {\underline{Interpolate}:
-		find $\left\{ m | \Phi_m \leq \Phi_n \leq \Phi_{m+1} \right\}$\\
-		$f(\Phi_n,i) = \frac{f(\Phi_{m+1}) - f(\Phi_m)}{\Phi_{m+1} - \Phi_m} (\Phi_n - \Phi_m) + f(\Phi_m)$\\
-		for $f$ in $\left[w^0, \sigma^0, \Delta\sigma \right]$,\\ 
-		using $\Delta w(\Phi_n, i)=w^0(\Phi_n,i)-w(\Phi_n,i)$};
+		find $\left\{p_1, p_2\ldots, p_{n_p} \right\}$\\
+		$\sigma_{r_x,itg} = \frac{\sigma_{r_x,ip_2g} - \sigma_{r_x,ip_1g}}{a_{p_2} - a_{p_1}}(a_r - a_{p_1}) + \sigma_{r_x,ip_1g}$};
 	\node [block, below of=interpolate, fill=yellow!40, text width=20em, node distance=2.5cm] (eigen) 
 		{\underline{Calculate}:\\
-		$\bullet$ $A(\Phi_n)=A^0(\Phi_n)+\Delta A(\Phi_n, \Delta w(\Phi_n, i))$\\
-		$\bullet$ $F(\Phi_n)=F^0(\Phi_n)+\Delta F(\Phi_n, \Delta w(\Phi_n, i))$\\
-		$\bullet$ $\left( A(\Phi_n) - \frac{1}{k}F(\Phi_n) \right)\phi(\Phi_n)=0$};
+		$\left(A_{tgh} - \frac{1}{k}F_{tgh}\right)\phi_{tg}=0$};
 	\node [block, left of=eigen, node distance=5.5cm, fill=purple!20] (store1){\underline{Store}:\\
-		$\phi_g(\Phi_n)$\\
-		$k(\Phi_n)$};
+		$k_t$\\
+		$\phi_{tg}$};
 	\node [block, text width=14em, fill=blue!20, below of=store1, node distance=2.5cm] (set) {\underline{Set}:\\
-		$\Delta t=t_{n+1}-t_n$\\
-		$\Phi_{n+1} = \Phi_n + \Delta t \sum_{g=1}^G \phi_g(\Phi_n)$};
+	    $\Delta s=s_{t+1}-s_t$\\
+		$\Phi_{t+1} = \Phi_t + \Delta s \sum_{g=1}^G \phi_{tg}$};
 	\node [block, text width=20em, below of=eigen, fill=yellow!40, node distance=5cm] (transmute){\underline{Transmute}:\\
-		$w(\Phi_{n+1},i)=e^{M(\Phi_n)\Delta t}w(\Phi_n,i)$\\
-		\underline{Calculate}: $\mbox{BU}(\Phi_{n+1})$};
+		$T_{it+1}=e^{M_{tij}\Delta s}T_{it}$\\
+		\underline{Calculate}: $\mbox{BU}_t$};
 	\node [block, above of=transmute, node distance=2.5cm, fill=purple!20] (store2){\underline{Store}:\\
-		$w(\Phi_{n+1},i)$\\
-		$\mbox{BU}(\Phi_{n+1})$};
+		$T_{it+1}$\\
+		$\mbox{BU}_t$};
 	\node [decision, right of=store2, text width=5.5em, node distance=4.5cm] (morestep) {\underline{More steps?}\\
-		$\Phi_n\to \Phi_{n+1}$\\
-		$n\to n+1$};
+		$t\to t+1$};
 	\node [block, below of=morestep, text width=10em, sharp corners] (continue) 
-		{\underline{Continue}: Keep going with prior methodology.}; 
+		{\underline{Continue} with batch averaging methodology.}; 
 
 	% Draw edges
 	\path [line] (known) -- (given);
