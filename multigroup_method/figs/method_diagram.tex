@@ -1,0 +1,57 @@
+% Define block styles
+\tikzstyle{decision} = [diamond, very thick, draw, fill=red!75, text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw,  very thick, fill=white!20, text width=5em, text centered, rounded corners, minimum height=2em]
+\tikzstyle{line} = [draw, very thick, color=black!100, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm, minimum height=2em]
+
+\begin{figure}
+\caption{Multigroup Reactor Model Method Diagram}
+\label{rmg_method_diagram}
+\begin{tikzpicture}[node distance = 5cm, auto]
+    % Place nodes
+	\node [block, text width=12em, sharp corners] (known) {\underline{Known}: from library,\\ 
+		$\bullet$ $\sigma_{r_x,ipg}$ \, $\bullet$ $\bar{\nu}_{ipg}$\\
+		$\bullet$ $\sigma_{s,ipgh}$  \, $\bullet$ $\chi_{ipg}$};
+	\node [block, fill=green!20, right of=known] (given) {\underline{Given}:\\
+		$t=0$};
+	\node [block, text width=20em, fill=blue!20, below of=given, node distance=2.5cm] (interpolate) {\underline{Interpolate}:
+		find $\left\{ m | \Phi_m \leq \Phi_n \leq \Phi_{m+1} \right\}$\\
+		$f(\Phi_n,i) = \frac{f(\Phi_{m+1}) - f(\Phi_m)}{\Phi_{m+1} - \Phi_m} (\Phi_n - \Phi_m) + f(\Phi_m)$\\
+		for $f$ in $\left[w^0, \sigma^0, \Delta\sigma \right]$,\\ 
+		using $\Delta w(\Phi_n, i)=w^0(\Phi_n,i)-w(\Phi_n,i)$};
+	\node [block, below of=interpolate, fill=yellow!40, text width=20em, node distance=2.5cm] (eigen) 
+		{\underline{Calculate}:\\
+		$\bullet$ $A(\Phi_n)=A^0(\Phi_n)+\Delta A(\Phi_n, \Delta w(\Phi_n, i))$\\
+		$\bullet$ $F(\Phi_n)=F^0(\Phi_n)+\Delta F(\Phi_n, \Delta w(\Phi_n, i))$\\
+		$\bullet$ $\left( A(\Phi_n) - \frac{1}{k}F(\Phi_n) \right)\phi(\Phi_n)=0$};
+	\node [block, left of=eigen, node distance=5.5cm, fill=purple!20] (store1){\underline{Store}:\\
+		$\phi_g(\Phi_n)$\\
+		$k(\Phi_n)$};
+	\node [block, text width=14em, fill=blue!20, below of=store1, node distance=2.5cm] (set) {\underline{Set}:\\
+		$\Delta t=t_{n+1}-t_n$\\
+		$\Phi_{n+1} = \Phi_n + \Delta t \sum_{g=1}^G \phi_g(\Phi_n)$};
+	\node [block, text width=20em, below of=eigen, fill=yellow!40, node distance=5cm] (transmute){\underline{Transmute}:\\
+		$w(\Phi_{n+1},i)=e^{M(\Phi_n)\Delta t}w(\Phi_n,i)$\\
+		\underline{Calculate}: $\mbox{BU}(\Phi_{n+1})$};
+	\node [block, above of=transmute, node distance=2.5cm, fill=purple!20] (store2){\underline{Store}:\\
+		$w(\Phi_{n+1},i)$\\
+		$\mbox{BU}(\Phi_{n+1})$};
+	\node [decision, right of=store2, text width=5.5em, node distance=4.5cm] (morestep) {\underline{More steps?}\\
+		$\Phi_n\to \Phi_{n+1}$\\
+		$n\to n+1$};
+	\node [block, below of=morestep, text width=10em, sharp corners] (continue) 
+		{\underline{Continue}: Keep going with prior methodology.}; 
+
+	% Draw edges
+	\path [line] (known) -- (given);
+	\path [line] (given) -- (interpolate);
+	\path [line] (interpolate) -- (eigen);
+	\path [line] (eigen) -- (store1);
+	\path [line] (store1) -- (set); 
+	\path [line] (set) |- (transmute);
+	\path [line] (transmute) -- (store2);
+	\path [line] (store2) -- (morestep);
+	\path [line] (morestep) |- node [pos=0.2] {yes} (interpolate);
+	\path [line] (morestep) -- node [pos=0.5] {no}  (continue);
+\end{tikzpicture}
+\end{figure}
