@@ -519,6 +519,29 @@ implemented are discussed in \S \ref{mg_sec:nn_xs}-\ref{mg_sec:trans_calc}.
 \subsection{Nearest Neighbor Cross Section Calculation}
 \index{Nearest Neighbor Cross Section Calculation@\emph{Nearest Neighbor Cross Section Calculation}}
 \label{mg_sec:nn_xs}
+The process of converting from the perturbation-based cross section library $\sigma_{r_x,ipg}$ to 
+group constants as a function of burn time in the RMG $\sigma_{r_x,itg}$ involves a nearest 
+neighbor calculation as well as a multi-dimensional linear interpolation.
+
+Call $a$ a perturbable reactor parameter, such as fuel density or burn time (\emph{i.e.} the 
+columns in Table \ref{char_perturbable_variables}).   With $p$ as the perturbation index 
+such that $1 \le p \le n_p$ (\emph{i.e.} the row number of Table \ref{char_param_outer_product}), 
+then $a_p$ denotes the value of this reactor parameter for this perturbation.  Furthermore, call
+$a_r$ the value of this parameter on the reactor model itself.
+
+In order to peform the correct interpolation, the two perturbations that are closest to the current
+state of the reactor, $a_1^*$ \& $a_2^*$, must be found.  Here the $a_p^*$ notation indicates that 
+the indices have been sorted in order of increasing distance.  
+
+However, the space that the reactor parameters live in is at least 10-dimensional.  Moreover, 
+the scale for these parameters may vary greatly from one $a$ to the next.  Therefore, a realistic
+nearness metric must normalize the values for these parameters individually before calculating a
+global distance.  Equation \ref{nn_distance} calculates $d_p$, the distance of the $p$\superscript{th} 
+perturbation from the state of reactor.
+\begin{equation}
+\label{nn_distance}
+d_p = \sum_a \left(\frac{a_r - a_p}{a_{n_p}}\right)^2
+\end{equation}
 
 
 \subsection{Criticality Calculation}

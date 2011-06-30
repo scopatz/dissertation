@@ -16,9 +16,9 @@
         $a_r$\\
 		$t=0$};
 	\node [block, text width=16em, fill=blue!20, below of=given, node distance=2.5cm] (interpolate) {\underline{Interpolate}:
-		find $\left\{p_1, p_2\ldots, p_{n_p} \right\}$\\
-		$f_a = \sum_a \frac{a_r - a_{p_1}}{a_{p_2} - a_{p_1}}$\\
-		$\sigma_{r_x,itg} = (\sigma_{r_x,ip_2g} - \sigma_{r_x,ip_1g})f_a + \sigma_{r_x,ip_1g}$};
+		find $\left\{p_1^*, p_2^*,\ldots, p_{n_p}^*\right\}$\\
+		$f_a = \sum_a \frac{a_r - a_1^*}{a_2^* - a_1^*}$\\
+		$\sigma_{r_x,itg} = (\sigma_{r_x,ip_2^*g} - \sigma_{r_x,ip_1^*g})f_a + \sigma_{r_x,ip_1^*g}$};
 	\node [block, below of=interpolate, fill=yellow!40, text width=14em, node distance=2.5cm] (eigen) 
 		{\underline{Calculate Criticality}:\\
 		$\left(A_{tgh} - \frac{1}{k}F_{tgh}\right)\phi_{tg}=0$};
