@@ -23,7 +23,7 @@ is independent of the flux.  Moreover changing reaction rates also invalidate th
 transmutation matricies.  
 
 Therefore, the RMG, in a level of sophistication above the R1G, must be able to calculate
-the multigroup flux.  To do so requires multigroup microscopic neutron cross-sections.  
+the multigroup flux spectrum.  To do so requires multigroup microscopic neutron cross-sections.  
 Using the cross-sections as independent reactor parameters in a multigroup sense is 
 effectively equivelent to removing the flux from the reaction rates in the one-group case.
 This is seen in Equation \ref{reaction_rate_calc}
@@ -42,7 +42,7 @@ cross sections, and the validation technique used.
 \index{Notation@\emph{Notation}}
 The group constants $\sigma_{itg}$ or $\sigma_{ipg}$ are themselves parameterized by nuclide, 
 time or perturbation (see following section), and  incident neutron energy.  Nuclides are indexed by 
-$i$, times are indexed by $t$, pertubations are indexed by $p$, and energy is indexed by $g$ with the 
+$i$, times are indexed by $t$, pertubations are indexed by $p$, and energy is indexed by $g$ with 
 lower indices representing higher energy groups.
 
 \begin{table}[htbp]
@@ -96,7 +96,7 @@ gives the exiting neutron energy.
 The multigroup reactor model requires a library of pre-computed group constants which it uses
 to calculate run-time cross section values for the core.  This library must therefore satisfy 
 two conditions.  The first is that it contain group constant information for all independent, 
-mutable parameters of interest.  The second is that the values of these variables must span 
+mutable parameters of interest.  The second is that the parameter values must span 
 their cooresponding range of interest.  
 
 Changes in the inital parameter conditions would then elicit changes in the cross section 
@@ -165,10 +165,11 @@ in char.
 
 Every parameter is specified with one or more values.  The outer product of all parameter
 values defines the set of perturbations for which the group constants are calculated.
-The total number of perturbations, $n_{\mbox{pert}}$, is therefore given by the product of 
+The total number of perturbations, $n_p$, is therefore given by the product of 
 the lengths of the parameter arrays.  \emph{In concreto}, Table \ref{char_param_outer_product} 
 displays the perturbtaions when the fuel density has two values, the initial \nuc{U}{235} mass 
-fraction also takes two values, and the group constants are calculated at three burn steps.
+fraction also takes two values, the group constants are calculated at three burn steps, and all 
+other parameters are single valued
 
 While Table \ref{char_param_outer_product} represents a simple set of reactors, this formulation 
 allows for the easy expansion and extention of input parameters, and thus new pertubations. 
@@ -218,9 +219,9 @@ are functions of the entire region and not individual species within that region
 Unfortunately, the RMG itself requires that the group-to-group scattering cross sections be provided 
 per nuclide. To this end, the authors modified the source code of Serpent to include an optional 
 additional mode where $P_{gh}$ is calculated for only a specific sub-material in a region.    
-Using this mode with a one-nuclide material, equation \ref{gtg_calc}, and the detector calculated
-scattering cross section $\sigma_{s,ipg}$, the group-to-group scattering cross section could 
-be computed for a single species.
+Using this mode with a single nuclide material and the detector calculated
+scattering cross section $\sigma_{s,ipg}$, the group-to-group scattering cross section was computed 
+for a single species via equation \ref{gtg_calc}.
 
 The next supplemental calculation that char performs comes more from a defficiency in the 
 ENDF specification than from Serpent.  Reactions which leave the final nucleus in an energy
