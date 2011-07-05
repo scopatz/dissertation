@@ -545,8 +545,10 @@ global distance.  Equation \ref{nn_distance} calculates $d_p$, the distance of t
 perturbation from the state of reactor.
 \begin{equation}
 \label{nn_distance}
-d_p = \sum_a \left(\frac{a_r - a_p}{a_{n_p}}\right)^2
+d_p = \sqrt{\sum_a \left(\frac{a_r - a_p}{a_{n_p}}\right)^2}
 \end{equation}
+Thus $p^*$ and $a_p^*$ are defined via the sequence $p^* = \left\{p | d_p \le d_{p+1}\right\}$.
+
 
 
 \subsection{Criticality Calculation}
