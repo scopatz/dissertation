@@ -549,11 +549,31 @@ d_p = \sqrt{\sum_a \left(\frac{a_r - a_p}{a_{n_p}}\right)^2}
 \end{equation}
 Thus $p^*$ and $a_p^*$ are defined via the sequence $p^* = \left\{p | d_p \le d_{p+1}\right\}$.
 
+Since $a_1^*$ and $a_2^*$ represent the value of a parameter at the two closest pertubations to the
+current state of the reactor, a unitless multidimentional linear interpolation factor $x_f$ may be defined.
+\begin{equation}
+\label{x_factor}
+x_f = \sum_a \left(\frac{a_r - a_1^*}{a_2^* - a_1^*}\right)
+\end{equation}
+This is then used to generate group constants for all reactions at all times from perturbation information
+available in the cross section library. 
+\begin{equation}
+\label{sig_multi_interp}
+\sigma_{r_x,itg} = (\sigma_{r_x,ip_2^*g} - \sigma_{r_x,ip_1^*g}) \cdot x_f  + \sigma_{r_x,ip_1^*g}
+\end{equation}
+Note, that $x_f$ is invalidated whenever the state of the reactor changes.  Since burnup time is one of 
+the parameters, $x_f$ must be recalculated every time step but is otherwise constant for all nuclides
+for all reactions.
 
 
 \subsection{Criticality Calculation}
 \index{Criticality Calculation@\emph{Criticality Calculation}}
 \label{mg_sec:crit_calc}
+Now that group constants have been built for the reactor specified, the next phase of the reactor 
+calculation is to estimate the neutron flux spectrum and the multiplication factor given the current 
+material stream of the core. (Naturally, the initial heavy metal stream must be provided.)
+
+The flux spectrum is computed through the 
 
 \subsection{Transmutation Calculation}
 \index{Transmutation Calculation@\emph{Transmutation Calculation}}
