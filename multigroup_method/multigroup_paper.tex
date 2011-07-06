@@ -573,7 +573,31 @@ Now that group constants have been built for the reactor specified, the next pha
 calculation is to estimate the neutron flux spectrum and the multiplication factor given the current 
 material stream of the core. (Naturally, the initial heavy metal stream must be provided.)
 
-The flux spectrum is computed through the 
+The flux spectrum is computed through an interative matrix method.  Call $N_{q,it}$ [atoms/cm\superscript{3}] 
+the number density for the $i$\superscript{th} nuclide at time $t$ in the $q$\superscript{th} region 
+(fuel, cladding, coolant).  The macroscopic cross section of a region is therefore given by equation 
+\ref{region_xs}.
+\begin{equation}
+\label{region_xs}
+\Sigma_{r_x,q,tg} = \sum_i^I N_{q,it} \cdot \sigma_{r_x,itg}
+\end{equation}
+Since the fuel and coolant are the only two regions with significant neutronic characterisics, 
+homogenized full-core cross sections are given by the reduction in equation \ref{region_collapse}
+\begin{equation}
+\label{region_collapse}
+\Sigma_{r_x,tg} = \frac{V_{\mbox{fuel}}\Sigma_{r_x,\mbox{fuel},tg} + \zeta_{tg}V_{\mbox{cool}}\Sigma_{r_x,\mbox{cool},tg}}
+                       {V_{\mbox{fuel}} + \zeta_{tg}V_{\mbox{cool}}}
+\end{equation}
+Here, $\zeta_{tg}$ is the thermal disadvantage factor per group.  This is computed via the macroscropic 
+cross sections and the lattice functions found in \cite{Lamarsh2002}.
+
+The absorption or $A$-matrix is defined as 
+\begin{equation}
+\label{A_matrix}
+A_{tgh} = I_G \times \Sigma_{t,tg} - \Sigma_{s,tgh}
+\end{equation}
+where $I_G$ is the $G \times G$ identity matrix. The fission source or $F$-matrix is defined
+by
 
 \subsection{Transmutation Calculation}
 \index{Transmutation Calculation@\emph{Transmutation Calculation}}
