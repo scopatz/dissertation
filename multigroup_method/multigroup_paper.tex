@@ -596,8 +596,42 @@ The absorption or $A$-matrix is defined as
 \label{A_matrix}
 A_{tgh} = I_G \times \Sigma_{t,tg} - \Sigma_{s,tgh}
 \end{equation}
-where $I_G$ is the $G \times G$ identity matrix. The fission source or $F$-matrix is defined
-by
+where $I_G$ is the $G \times G$ identity matrix. The fission source or $F$-matrix is defined by
+\begin{equation}
+\label{F_matrix}
+F_{tgh} = \chi_{\mbox{fuel},tg} \times \bar{\nu} \Sigma_{f,\mbox{fuel},tg}
+\end{equation}
+The multigroup flux spectrum is then calculated via the linear relation in equation \ref{A_eq_F}.
+\begin{equation}
+\label{A_eq_F}
+A_{tgh} \cdot \phi_{tg} = \frac{1}{k} F_{tgh} \cdot \phi_{tg}
+\end{equation}
+To solve this equation in an efficient iteraive fashion, note that the expression 
+$\frac{1}{k}A^{-1}F$ is a single matrix.  Using the superscript $m$ to indicate the loop
+index, equations \ref{next_flux} \& \ref{next_k} may be successively applied 
+until convergence.
+\begin{equation}
+\label{next_flux}
+\phi_{tg}^{m+1} = \frac{1}{k^m} A_{tgh}^{-1} F_{tgh} \cdot \phi_{tg}^{m+1}
+\end{equation}
+\begin{equation}
+\label{next_k}
+k^{m+1} = k^m  \frac{\sum_g^G \bar{\nu} \Sigma_{f,\mbox{fuel},tg} \phi_{tg}^{m+1}}
+                         {\sum_g^G \bar{\nu} \Sigma_{f,\mbox{fuel},tg} \phi_{tg}^m}
+\end{equation}
+The convergenge criteria are defined by equations \ref{converge_flux} and \ref{converge_k}
+or when $m=100$.
+\begin{equation}
+\label{converge_flux}
+\left|\frac{\phi_{tg}^{m+1} - \phi_{tg}^m}{\phi_{tg}^{m+1}}\right| = \epsilon
+\end{equation}
+\begin{equation}
+\label{converge_k}
+\left|\frac{k_t^{m+1} - k_t^m}{k_t^{m+1}}\right| = \epsilon
+\end{equation}
+For this study a value of $\epsilon=0.005$ was taken and convergence was typically 
+reached within two or three iterations.
+
 
 \subsection{Transmutation Calculation}
 \index{Transmutation Calculation@\emph{Transmutation Calculation}}
