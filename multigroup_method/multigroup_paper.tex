@@ -632,6 +632,37 @@ or when $m=100$.
 For this study a value of $\epsilon=0.005$ was taken and convergence was typically 
 reached within two or three iterations.
 
+The iterative algorithm described by equations \ref{next_flux} \& \ref{next_k} is 
+sufficient for finding the shape of the neutron flux spectrum.  However, $k^m$ and 
+$\phi_{tg}^m$ are more properly interperted as unormalized eigenvalues and eigenvectors
+of the linear eqution in \ref{A_eq_F}.  Normalization, is therefore required to 
+discern the `true' values of  $k_t$ and $\phi_{tg}$.
+
+In general, there are two methods with which to normalize the overall flux spectrum: constant flux
+per unit time and constant power.  The constant flux mechanism is trivial and due to the nature of 
+the burnup calculation here, the constant power condition was used.  Recall that the state of the 
+RMG is partially given by the specific power, $p_s$ [MW/kg].  Denote the one-group fission cross
+section as $\Sigma_{f,\mbox{fuel},t}$.
+\begin{equation}
+\label{one_group_fission}
+\Sigma_{f,\mbox{fuel},t} = \frac{\sum_g^G \Sigma_{f,\mbox{fuel},tg}\phi_{tg}^m}
+                                {\sum_g^G \phi_{tg}^m}
+\end{equation}
+The total flux for time $t$ is thus given by equation \ref{total_flux_rescale}.
+\begin{equation}
+\label{total_flux_rescale}
+\phi_t = p_s \cdot  \rho_{\mbox{fuel}} \cdot \frac{1}
+                                                  {\mbox{3.284E-14} \cdot \Sigma_{f,\mbox{fuel},t}}
+\end{equation}
+Here, the value of 3.284E-14 [kJ/n] acts as a conversion factor assuming an average 
+energy release of 205 [MeV/fission].  This value may used to rescale the spectrum 
+as seen in equation \ref{spectrum_rescale}
+\begin{equation}
+\label{spectrum_rescale}
+\phi_{tg} = \phi_t \cdot  \frac{\phi_{tg}^m}
+                               {\sum_g^G \phi_{tg}^m}
+\end{equation}
+
 
 \subsection{Transmutation Calculation}
 \index{Transmutation Calculation@\emph{Transmutation Calculation}}
