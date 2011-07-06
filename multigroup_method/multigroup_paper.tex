@@ -663,11 +663,24 @@ as seen in equation \ref{spectrum_rescale}
                                {\sum_g^G \phi_{tg}^m}
 \end{equation}
 
+The multiplication factor $k_t$ of the RMG is handled by another side calculation which 
+uses the rescaled flux spectrum.  Here, $k_t$ is computed strictly as a function of the 
+material and neutronic properties of the core.
+\begin{equation}
+\label{k_rescale}
+\phi_{tg} = P_{\mbox{NL}} \cdot \frac{\sum_g^G V_{\mbox{fuel}} \cdot \bar{\nu}\Sigma_{f,\mbox{fuel},tg} \cdot \phi_{tg}}
+                                {\sum_g^G \left(V_{\mbox{fuel}} \cdot \Sigma_{a,\mbox{fuel},tg} + \zeta_{tg} \cdot V_{\mbox{cool}} \cdot \Sigma_{a,\mbox{cool},tg}\right) \cdot  \phi_{tg}}
+\end{equation}
+In equation \ref{k_rescale}, $P_{NL}$ represents the non-leakage probability and must be externally supplied
+to the reactor model.  A representative value of $P_{NL} = 0.98$ was used for this study.
+
 
 \subsection{Transmutation Calculation}
 \index{Transmutation Calculation@\emph{Transmutation Calculation}}
 \label{mg_sec:trans_calc}
-
+The last portion of the coupled multigroup reactor calculation is the transmutation calculation.
+This step takes the fuel vector at time $t$ and burns it to obtain the fuel vector at time $t+1$.
+Many approahes
 
 
 \section{Benchmark}
