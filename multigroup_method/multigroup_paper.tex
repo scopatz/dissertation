@@ -680,7 +680,20 @@ to the reactor model.  A representative value of $P_{NL} = 0.98$ was used for th
 \label{mg_sec:trans_calc}
 The last portion of the coupled multigroup reactor calculation is the transmutation calculation.
 This step takes the fuel vector at time $t$ and burns it to obtain the fuel vector at time $t+1$.
-Many approahes
+
+Many approahes to solving this large set of ordinary differential equations may be taken \cite{Isotalo2011}.  
+Call $T_{it}$ a vector of $i$-nuclides at time $t$.  The value of $T_{it}$ may then be expressed as 
+\begin{equation}
+\label{transmute_dt}
+\frac{dT_{it}}{dt} = \left(-\lambda_{it}^{\mbox{eff}} + \sum_{j \ne i}^I  b_{jit}^{\mbox{eff}} \lambda_j^{\mbox{eff}}\right) T_{it}
+\end{equation}
+where $\lambda_i^{\mbox{eff}}$ is the effective decay-constant for the $i$\superscript{th} nuclide at time $t$ (equation \ref{effective_decay}), 
+and $b_{jit}^{\mbox{eff}}$ is the effective branch ratio from nuclide $j$ to nuclide $i$ at time $t$ (equation \ref{effective_branch}). 
+\begin{equation}
+\label{effective_decay}
+\lambda_{it}^{\mbox{eff}} = \lambda_i + \sum_{r_x} \sum_g^G \sigma_{r_x,itg} \cdot \phi_{tg} \cdot 10^{-24}
+\end{equation}
+
 
 
 \section{Benchmark}
