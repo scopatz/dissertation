@@ -800,7 +800,53 @@ Lastly, the fuel region density lies exactly between two of the perturbation ste
 perturbations with the minimal distance to the reactor will flank the fuel density but otherwise 
 match the core.
 
-Next the burnup calculation may be 
+Next, the critiality calculation is compared for the Serpent case and the RMG.  This consists of 
+contrasting the multiplication factor and the flux spectrum at different burn times.  In all further
+benchmarks, the errors in the two-point comparison are defined by fractional deviation.  Call, $a_r$ 
+a parameter computed via the RMG and $a_s$ the same paramter from the Serpent model.  Equation 
+\ref{r_s_fractional_deviation} is the fractional deviation $\varepsilon$ such that values for which the RMG
+over-predicts will be positive and under-predictions will be negative.
+\begin{equation}
+\label{r_s_fractional_deviation}
+\varepsilon = \frac{a_r}{a_s} - 1
+\end{equation}
+Figure \ref{k_compare} displays the comparison for $k$.  
+\begin{figure}[htbp]
+\caption{Multiplication Factor Benchmark}
+\label{k_compare}
+\begin{center}
+\includegraphics[scale=0.5]{multigroup_method/figs/benchmark/k.eps}
+\end{center}
+\end{figure}
+Note that the error bars on the RMG curve in Figure \ref{k_compare} represent the fractional 
+deviation, which takes on a value of less than 1\% at every burnup step.  
+The error bars on the Serpent curve are the stochastic modeling errors inherent in any Monte
+Carlo calculation and do not represent errors in the cross sections like $\varepsilon$.
+Additionally, these two curves are seen to have slightly different slopes due to errors in the
+cross sections which nuclides included burnup-criticality calculation.
+
+Aditionally the flux spectrum at the begining-of-life (BOL) (0 days) and end-of-life (EOL) (365 days)
+may be seen in Figures \ref{spec_BOL} \& \ref{spec_EOL}.
+\begin{figure}[htbp]
+\caption{BOL Neutron Flux Spectrum Benchmark}
+\label{spec_BOL}
+\begin{center}
+\includegraphics[scale=0.5]{multigroup_method/figs/benchmark/Normalized_Flux_at_0_days.eps}
+\end{center}
+\end{figure}
+\begin{figure}[htbp]
+\caption{EOL Neutron Flux Spectrum Benchmark}
+\label{spec_EOL}
+\begin{center}
+\includegraphics[scale=0.5]{multigroup_method/figs/benchmark/Normalized_Flux_at_365_days.eps}
+\end{center}
+\end{figure}
+By inspection, there is good agreement between the RMG and Serpent spectra.  Quatitatively, 
+the fractional deviation lies between 0.5 - 5\% for most groups.  The groups for which 
+significantly larger $\varepsilon$ are present (10 - 140\%) are categorically the groups 
+where the flux is smaller by orders of magnitudes.  Thus the term $\varepsilon\phi_g$ lies
+within appropriate limits for all groups.
+
 
 \section{Conclusion \& Future Work}
 \index{Conclusion \& Future Work@\emph{Conclusion \& Future Work}}

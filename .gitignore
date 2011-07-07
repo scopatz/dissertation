@@ -12,3 +12,4 @@
 *.toc
 *.pdf
 *.ps
+multigroup_method/figs/benchmark/*.eps
