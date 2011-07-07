@@ -742,7 +742,63 @@ complete.
 
 \section{Benchmark}
 \index{Benchmark@\emph{Benchmark}}
-Can
+The RMG was validated against a Serpent model of the same standard light-water reactor core.  
+The state of the reactor for the both RMG and Serpent was taken at an off-perturbation point in 
+order to test the nearest-neighbor interpolation in addtional to the criticality and burnup calculations.  
+The reactor state is for this benchmark is shown in Table \ref{benchmark_rx_state}. 
+\begin{table}[htbp]
+\begin{center}
+\caption{Benchmark Reactor State}
+\label{benchmark_rx_state}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Parameter}            & \textbf{Symbol}      & \textbf{Value} \\
+\hline
+Fuel Density                  & $\rho_{\mbox{fuel}}$ & 10.7 g/cm\superscript{3}  \\
+Cladding Density              & $\rho_{\mbox{clad}}$ & 5.87 g/cm\superscript{3}  \\
+Coolant Density               & $\rho_{\mbox{cool}}$ & 0.73 g/cm\superscript{3}  \\
+Fuel Cell Radius              & $r_{\mbox{fuel}}$    & 0.412 cm \\
+Void Cell Radius              & $r_{\mbox{void}}$    & 0.4205 cm \\
+Cladding Cell Radius          & $r_{\mbox{clad}}$    & 0.475 cm \\
+Unit Cell Pitch               & $\ell$               & 1.33 cm \\
+Number of Burn Regions        & $b_r$                & 10 \\
+Fuel Specific Power           & $p_s$                & 0.04 MW/kgIHM \\
+Initial \nuc{U}{235} Mass Fraction & $T_{\mbox{\nuc{U}{235}}0}$ & 0.05 kg\subscript{i}/kgIHM \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+The burnup times that were computed for the reactor ranged from 0 to 365 days with a step size of 
+40.556 days.  The initial heavy metal concentrations, which was used for benchmarking purposes only, 
+may be seen in Table \ref{benchmark_IHM}.
+\begin{table}[htbp]
+\begin{center}
+\caption{Benchmark Reactor Initial Heavy Metal}
+\label{benchmark_IHM}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Nuclide} & \textbf{$T_{i0}$} \\
+\hline
+\nuc{U}{234}     & 0.01 \\
+\nuc{U}{235}     & 0.05 \\
+\nuc{U}{238}     & 0.94 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+The nearest neighbor vector $p^*$ for all time steps, in terms of indices
+of the perturbation Table \ref{char_param_outer_product}, is given in equation \ref{nn_res}.
+\begin{equation}
+\label{nn_res}
+\{p^*\} = \{4, 10,  5, 11,  6, 12,  1,  7,  2,  8,  3,  9\}
+\end{equation}
+The reason this vector is expected is because the computation is closest to zero time for all 
+time steps.  Moreover the intial \nuc{U}{235} vector falls exactly on one of the perturbation cases.
+Lastly, the fuel region density lies exactly between two of the perturbation steps.  Thus, the 
+perturbations with the minimal distance to the reactor will flank the fuel density but otherwise 
+match the core.
 
 \section{Conclusion \& Future Work}
 \index{Conclusion \& Future Work@\emph{Conclusion \& Future Work}}
