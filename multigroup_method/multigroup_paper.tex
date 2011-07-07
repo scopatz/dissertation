@@ -822,8 +822,9 @@ Note that the error bars on the RMG curve in Figure \ref{k_compare} represent th
 deviation, which takes on a value of less than 1\% at every burnup step.  
 The error bars on the Serpent curve are the stochastic modeling errors inherent in any Monte
 Carlo calculation and do not represent errors in the cross sections like $\varepsilon$.
-Additionally, these two curves are seen to have slightly different slopes due to errors in the
-cross sections which nuclides included burnup-criticality calculation.
+Additionally, these two curves both adhear to the linear reactivity model but are seen to have slightly 
+different slopes due to errors in the cross sections and discrepencies in which nuclides are included in 
+the burnup-criticality calculation.
 
 Aditionally the flux spectrum at the begining-of-life (BOL) (0 days) and end-of-life (EOL) (365 days)
 may be seen in Figures \ref{spec_BOL} \& \ref{spec_EOL}.
@@ -847,6 +848,35 @@ significantly larger $\varepsilon$ are present (10 - 140\%) are categorically th
 where the flux is smaller by orders of magnitudes.  Thus the term $\varepsilon\phi_g$ lies
 within appropriate limits for all groups.
 
+Lastly in terms of the reactor model flow, the transmutation calculation must be benchmarked.
+Figures XXX - XXX display the time evolution of the mass fractions of various important nuclides. 
+This set includes the actinides initially present and many of those bred in as well a various 
+fission products that are tracked in the VISION suite.  In these figures, $\varepsilon$ is defined 
+as before and is again displayed as the error bars on the RMG curve.   Unfortunately, Serpent does
+not report errors associated with the mass fraction so this curve does not have associated error bars.
+
+XXX - Add mass fraction figures here.
+
+As is seen in these figures, there is good agrement between the transmutation vectors computed by
+Serpent and those computed by the RMG via Origen.  The instances with non-trivial disagreements are 
+largely in the higher order actinides.  These nuclides exist in such small amounts, that the relatively
+high errors do not adeversely effect the neutronic performance of the fuel.
+
+However, the true strength of the RMG methodology is 
+that it takes into account the time evolotion of the cross sections as well.  For the same set 
+of nuclides above, Figures XXX - XXX display total, absorption, scattering and fission one-group 
+cross sections as a function of burn time.  One-group cross sections are used here in favor 
+of the multigroup cross sections because they capture the total differences between data sets 
+while removing the complexity of plotting three dimensional information.
+
+XXX - Add 1G XS figures here.
+
+Lastly, since the one-group cross sections are feed to Origen to make a transmutation library, it is important 
+to ensure that no library is reaction is far off from a benchmark value.  Tables XXX - XXX display the 
+nuclides with the highest $\varepsilon$ (in decending order) at any time step for absorption and scattering
+reactions for the fission products and for absorption, scattering and fission reactions for the actinides.
+These tables have been filtered to remove species that have very short half lives within the reactor.
+As Tables XXX - XXX display, even in the worst case the cross sections meet within acceptable levels or error.
 
 \section{Conclusion \& Future Work}
 \index{Conclusion \& Future Work@\emph{Conclusion \& Future Work}}
