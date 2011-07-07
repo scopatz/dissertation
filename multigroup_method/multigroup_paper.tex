@@ -687,13 +687,57 @@ Call $T_{it}$ a vector of $i$-nuclides at time $t$.  The value of $T_{it}$ may t
 \label{transmute_dt}
 \frac{dT_{it}}{dt} = \left(-\lambda_{it}^{\mbox{eff}} + \sum_{j \ne i}^I  b_{jit}^{\mbox{eff}} \lambda_j^{\mbox{eff}}\right) T_{it}
 \end{equation}
-where $\lambda_i^{\mbox{eff}}$ is the effective decay-constant for the $i$\superscript{th} nuclide at time $t$ (equation \ref{effective_decay}), 
-and $b_{jit}^{\mbox{eff}}$ is the effective branch ratio from nuclide $j$ to nuclide $i$ at time $t$ (equation \ref{effective_branch}). 
+where $\lambda_i^{\mbox{eff}}$ [hz] is the effective decay-constant for the $i$\superscript{th} nuclide at time $t$ (equation \ref{effective_decay}), 
+and $b_{ijt}^{\mbox{eff}}$ is the effective branch ratio from nuclide $i$ to nuclide $j$ at time $t$ (equation \ref{effective_branch}). 
 \begin{equation}
 \label{effective_decay}
 \lambda_{it}^{\mbox{eff}} = \lambda_i + \sum_{r_x} \sum_g^G \sigma_{r_x,itg} \cdot \phi_{tg} \cdot 10^{-24}
 \end{equation}
+\begin{equation}
+\label{effective_branch}
+b_{ijt}^{\mbox{eff}} = \frac{b_{ij} + \sum_{r_x} \sum_g^G \gamma_{r_x,ij} \sigma_{r_x,itg} \phi_{tg} \cdot 10^{-24}}
+                            {\lambda_{it}^{\mbox{eff}}}
+\end{equation}
+Here, $\lambda_i$ \& $b_{ij}$ are the standard radioactive decay constant and branch ratio.  Because equations
+\ref{effective_decay} \& \ref{effective_branch} depend on the group constants and the flux spectrum, the 
+effective decay contants and branch ratios are a function of time in the core.  Additionally, the summations
+over $r_x$ include any neutron reactions that cause transmutations.  The unitless parameter $\gamma_{r_x,ij}$
+represents the yield from $i$ to $j$ for a given reaction.  (Most notably, $\gamma_{r_x,ij}$ takes a non-unity
+value for fission reactions.)
 
+Defining a transmutation matrix $M_{ijt}$ such that
+\begin{equation}
+\label{transmute_M}
+M_{ijt} = -\lambda_{it}^{\mbox{eff}}\delta_{ij} + b_{jit}^{\mbox{eff}} \lambda_j^{\mbox{eff}}
+\end{equation}
+the solution to equation \ref{transmute_dt} may be expressed as a matrix exponential
+\begin{equation}
+\label{transmute_sol}
+T_{it+1} = e^{M_{ijt}\Delta t} T_{it}
+\end{equation}
+where $\Delta t$ [s] is the time between burnup steps $t$ and $t+1$.
+
+Rather than solving this matrix exponential explicitly, ORIGEN 2.2 \cite{Croff2002} was used 
+to calculate the nuclide vector $T_{it+1}$.  Origen has the capability to take an input vector 
+$T_{it}$ and one-group cross sections and perform the transmutation calculation.  The one-group 
+cross sections that Origen requires are for constituent absorption reactions.  Namely, these are 
+$r_x = \gamma, 2n, 3n, f, \alpha, p, \gamma^*, 2n^*$.  Such cross sections may be found via 
+a simple group collapse as seen in equation \ref{origen_gc}.
+\begin{equation}
+\label{origen_gc}
+\sigma_{r_x,it} = \frac{1}{\phi_t} \sum_g^G \sigma_{r_x,itg} \phi_{tg}
+\end{equation}
+Filling an Origen cross section template with the $\sigma_{r_x,it}$ for all available nuclides
+provides the transmutation code a customized library for the RMG at time $t$.  Executing Origen
+with this library, for an input vector $T_{it}$, with a constant power irradiation at $p_s$ for
+$\Delta t / 86400$ days provides the output nuclide concentration vector.
+
+Therefore the
+time evolution of the flux spectrum and the neutronic characteristics of the fuel are accounted
+for by the RMG burnup model.  This final transmutation step effectively increments the reactor
+calculation to the next time step.  If more time steps were specified, the RMG calculation returns
+to the nearest-neighbor cross section interpolation calculation.  Otherwise, the RMG calculation is
+complete.
 
 
 \section{Benchmark}
