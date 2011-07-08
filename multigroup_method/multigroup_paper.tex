@@ -976,11 +976,20 @@ between data sets while removing the complexity of plotting three dimensional in
 \end{figure}
 
 Lastly, since the one-group cross sections are feed to Origen to make a transmutation library, it is important 
-to ensure that no library is reaction is far off from a benchmark value.  Tables XXX - XXX display the 
+to ensure that no library is reaction is far off from a benchmark value.  Tables 
+\ref{rank_Actinide_sigma_s_table}-\ref{rank_Actinide_sigma_f_table} display the 
 nuclides with the highest $\varepsilon$ (in decending order) at any time step for absorption and scattering
 reactions for the fission products and for absorption, scattering and fission reactions for the actinides.
 These tables have been filtered to remove species that have very short half lives within the reactor.
-As Tables XXX - XXX display, even in the worst case the cross sections meet within acceptable levels or error.
+As Tables \ref{rank_Actinide_sigma_s_table}-\ref{rank_Actinide_sigma_f_table} display, even in the worst case 
+the cross sections meet within acceptable levels or error.
+
+\input{multigroup_method/figs/benchmark/rank_table_Actinide_sigma_s}
+\input{multigroup_method/figs/benchmark/rank_table_Fission_Product_sigma_s}
+\input{multigroup_method/figs/benchmark/rank_table_Actinide_sigma_a}
+\input{multigroup_method/figs/benchmark/rank_table_Fission_Product_sigma_a}
+\input{multigroup_method/figs/benchmark/rank_table_Actinide_sigma_f}
+
 
 \section{Conclusion \& Future Work}
 \index{Conclusion \& Future Work@\emph{Conclusion \& Future Work}}
