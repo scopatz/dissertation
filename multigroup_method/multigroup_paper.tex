@@ -849,7 +849,7 @@ where the flux is smaller by orders of magnitudes.  Thus the term $\varepsilon\p
 within appropriate limits for all groups.
 
 Lastly in terms of the reactor model flow, the transmutation calculation must be benchmarked.
-Figures \ref{act_benchmark}-\ref{act_fp_benchmark_cont} display the time evolution of the mass 
+Figures \ref{act_benchmark}-\ref{fp_benchmark} display the time evolution of the mass 
 fractions of various important nuclides. This set includes the actinides initially present and 
 many of those bred in as well a various fission products that are tracked in the VISION suite.  
 In these figures, $\varepsilon$ is defined as before and is again displayed as the error bars on 
@@ -890,22 +890,22 @@ so this curve does not have associated error bars.
 \begin{center}
 \includegraphics[scale=0.3]{multigroup_method/figs/benchmark/CM245_Mass_Fraction_.eps}
 \includegraphics[scale=0.3]{multigroup_method/figs/benchmark/CM246_Mass_Fraction_.eps}
-\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/KR81_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/SE79_Mass_Fraction_.eps}
 \includegraphics[scale=0.3]{multigroup_method/figs/benchmark/KR85_Mass_Fraction_.eps}
 \includegraphics[scale=0.3]{multigroup_method/figs/benchmark/SR90_Mass_Fraction_.eps}
-\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/ZR90_Mass_Fraction_.eps}
 \includegraphics[scale=0.3]{multigroup_method/figs/benchmark/ZR93_Mass_Fraction_.eps}
 \includegraphics[scale=0.3]{multigroup_method/figs/benchmark/TC99_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/I129_Mass_Fraction_.eps}
 \end{center}
 \end{figure}
 \begin{figure}[htbp]
-\caption{Fission Product Mass Fraction Benchmarks (Cont.)}
-\label{act_fp_benchmark_cont}
+\caption{Fission Product Mass Fraction Benchmarks}
+\label{fp_benchmark}
 \begin{center}
-\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/I129_Mass_Fraction_.eps}
 \includegraphics[scale=0.3]{multigroup_method/figs/benchmark/PD107_Mass_Fraction_.eps}
 \includegraphics[scale=0.3]{multigroup_method/figs/benchmark/CS134_Mass_Fraction_.eps}
 \includegraphics[scale=0.3]{multigroup_method/figs/benchmark/CS137_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/SM151_Mass_Fraction_.eps}
 \end{center}
 \end{figure}
 
@@ -917,12 +917,63 @@ high errors do not adeversely effect the neutronic performance of the fuel.
 
 However, the true strength of the RMG methodology is 
 that it takes into account the time evolotion of the cross sections as well.  For the same set 
-of nuclides above, Figures XXX - XXX display total, absorption, scattering and fission one-group 
-cross sections as a function of burn time.  One-group cross sections are used here in favor 
-of the multigroup cross sections because they capture the total differences between data sets 
-while removing the complexity of plotting three dimensional information.
+of nuclides above, Figures \ref{act_xs_benchmark}-\ref{fp_xs_benchmark} display total, absorption,
+scattering and fission one-group cross sections as a function of burn time.  One-group cross sections 
+are used here in favor of the multigroup cross sections because they capture the total differences 
+between data sets while removing the complexity of plotting three dimensional information.
 
-XXX - Add 1G XS figures here.
+\begin{figure}[htbp]
+\caption{Actinide One-Group Cross-Section Benchmarks}
+\label{act_xs_benchmark}
+\begin{center}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/U234_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/U235_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/U236_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/U238_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/NP237_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/PU238_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/PU239_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/PU240_1g_xs.eps}
+\end{center}
+\end{figure}
+\begin{figure}[htbp]
+\caption{Actinide One-Group Cross-Section Benchmarks (Cont.)}
+\label{act_xs_benchmark_cont}
+\begin{center}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/PU241_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/PU242_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/AM241_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/AM242_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/AM243_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/CM242_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/CM243_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/CM244_1g_xs.eps}
+\end{center}
+\end{figure}
+\begin{figure}[htbp]
+\caption{Actinide \& Fission Product One-Group Cross-Section Benchmarks}
+\label{act_fp_xs_benchmark}
+\begin{center}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/CM245_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/CM246_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/SE79_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/KR85_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/SR90_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/ZR93_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/TC99_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/I129_1g_xs.eps}
+\end{center}
+\end{figure}
+\begin{figure}[htbp]
+\caption{Fission Product One-Group Cross-Section Benchmarks}
+\label{fp_xs_benchmark}
+\begin{center}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/PD107_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/CS134_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/CS137_1g_xs.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/SM151_1g_xs.eps}
+\end{center}
+\end{figure}
 
 Lastly, since the one-group cross sections are feed to Origen to make a transmutation library, it is important 
 to ensure that no library is reaction is far off from a benchmark value.  Tables XXX - XXX display the 
