@@ -1014,5 +1014,29 @@ be required if the number of steps is too coarse in the area of interest.  This 
 in other ways as well.  Using a higher order polynomial fit or a spline interpolation would 
 remove the use of a simple linear interpolation and may be more acurate.
 
-Moreover, the static perturbation table as formulated is a static construct.  Simple cahnges to the table
-require a complete re-computation of the outer product of all parameters.
+Moreover, the perturbation table as formulated is static.  Simple cahnges to the table
+require a complete re-computation of the outer product of all parameters.  While not computationally
+intensive on its own, the perturbation table determines the state of the reactor and thus the 
+value of all of the group constants in the reactor library.  In effect, it is the keystone of the RMG, 
+as invalidating it invalidates all other parts of the reactor library.  
+
+A more dynamic perturbation table, and thus more dynamic reactor library, would allow for the RMG to 
+handle an increased number of reactor cases without causing a reset of all cases previously computed.
+One method of implementation would be to allow the parameters in the pertubation table to be stochcatically
+generated.  Each parameter $a_p$ would be given a range on which it would be randomly sampled to form a 
+perturbation vector.  The exception to this is that burnup times would remain static and sequential, as
+in the current formulation.  Such an implementation would enable the easy extention of the perturbation 
+table (\emph{i.e.} adding rows).  Where this ability becomes particularly important is in the case 
+where there are a large number of parameters, such as the strategy where the initial concentration of 
+every actinide is varied.  Here, the option space is much more efficiently covered by a stochcastic 
+perturbation table than an outer product one.
+
+Lastly, refinements and optimizations to the existing model may be made.  For example, the current 
+transmutation calculation is backed by Origen.  More sophisticated methods which minimize global error 
+could be implemented into the RMG.  However, even the matrix exponential method used here is 
+sufficient for most calculations.
+
+In conclusion, the RMG satisfies the requirements of correctly handling changes in the neutron flux 
+spectrum while mainiting comperable (though somewhat slower) runtimes to the one-group reactor model.
+Future work will include the refinement mentioned above and the inclusion in a fuel cycle modeling 
+framework.
