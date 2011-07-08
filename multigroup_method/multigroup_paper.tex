@@ -3,7 +3,28 @@
 
 \section{Introduction}
 \index{Introduction@\emph{Introduction}}
-Nothing to see here.
+Previous studies have examined the use quickly executing, dominant physics codes for use in the
+nuclear fuel cycle.  Unlike analytic techniques (such as neutron transport) which seek to completely 
+solve fundemental physical systems, dominant physics codes parameterize the system and use interpolations
+of results from stricter analytic methods to form a quick, run-time solution to the system at hand.
+
+Dominant physics methods may be used for any fuel cycle component: enrichment, reactors, reprocesing, 
+repositories, \emph{etc}.  However, their greatest advantage comes for such components whose analytic
+techniques are computationally intensive.  Thus previous work has focused on reactors and repositories.
+
+The dominant physics reactor methodologies to date have been one-energy group, fluenece-based parameterizations.
+Neutron production \& destruction rates and transmutation matrices as a function of fluence 
+(time-integrated flux) were recorded for each species initial present in the core.  A linear combination of 
+the inital nuclides was then used to compute the multiplication factor, fuel burnup, and used fuel 
+vector at discharge.
+
+Unfortunately, because of the constant flux irradiation method used to generate the parameterizations, 
+the above model was not sensitive to changes in the flux spectrum over the course of the burn.  The 
+requirement of a static flux spectrum limits the type of reactors that may be studied using such a 
+dominant physics methodology.  In seeking to expand the types of reactors model-able from the 
+current fast reactors and light-water reactors, the flux spectrum must be folded back into the 
+underlying parameterization.
+
 
 \section{Multigroup Cross Section Generation}
 \index{Multigroup Cross Section Generatrion@\emph{Multigroup Cross Section Generation}}
