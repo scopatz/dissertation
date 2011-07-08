@@ -849,13 +849,66 @@ where the flux is smaller by orders of magnitudes.  Thus the term $\varepsilon\p
 within appropriate limits for all groups.
 
 Lastly in terms of the reactor model flow, the transmutation calculation must be benchmarked.
-Figures XXX - XXX display the time evolution of the mass fractions of various important nuclides. 
-This set includes the actinides initially present and many of those bred in as well a various 
-fission products that are tracked in the VISION suite.  In these figures, $\varepsilon$ is defined 
-as before and is again displayed as the error bars on the RMG curve.   Unfortunately, Serpent does
-not report errors associated with the mass fraction so this curve does not have associated error bars.
+Figures \ref{act_benchmark}-\ref{act_fp_benchmark_cont} display the time evolution of the mass 
+fractions of various important nuclides. This set includes the actinides initially present and 
+many of those bred in as well a various fission products that are tracked in the VISION suite.  
+In these figures, $\varepsilon$ is defined as before and is again displayed as the error bars on 
+the RMG curve.   Unfortunately, Serpent does not report errors associated with the mass fraction 
+so this curve does not have associated error bars.
 
-XXX - Add mass fraction figures here.
+\begin{figure}[htbp]
+\caption{Actinide Mass Fraction Benchmarks}
+\label{act_benchmark}
+\begin{center}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/U234_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/U235_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/U236_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/U238_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/NP237_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/PU238_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/PU239_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/PU240_Mass_Fraction_.eps}
+\end{center}
+\end{figure}
+\begin{figure}[htbp]
+\caption{Actinide Mass Fraction Benchmarks (Cont.)}
+\label{act_benchmark_cont}
+\begin{center}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/PU241_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/PU242_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/AM241_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/AM242_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/AM243_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/CM242_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/CM243_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/CM244_Mass_Fraction_.eps}
+\end{center}
+\end{figure}
+\begin{figure}[htbp]
+\caption{Actinide \& Fission Product Mass Fraction Benchmarks}
+\label{act_fp_benchmark}
+\begin{center}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/CM245_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/CM246_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/KR81_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/KR85_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/SR90_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/ZR90_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/ZR93_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/TC99_Mass_Fraction_.eps}
+\end{center}
+\end{figure}
+\begin{figure}[htbp]
+\caption{Fission Product Mass Fraction Benchmarks (Cont.)}
+\label{act_fp_benchmark_cont}
+\begin{center}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/I129_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/PD107_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/CS134_Mass_Fraction_.eps}
+\includegraphics[scale=0.3]{multigroup_method/figs/benchmark/CS137_Mass_Fraction_.eps}
+\end{center}
+\end{figure}
+
 
 As is seen in these figures, there is good agrement between the transmutation vectors computed by
 Serpent and those computed by the RMG via Origen.  The instances with non-trivial disagreements are 
