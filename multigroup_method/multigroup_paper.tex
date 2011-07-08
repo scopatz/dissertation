@@ -993,5 +993,26 @@ the cross sections meet within acceptable levels or error.
 
 \section{Conclusion \& Future Work}
 \index{Conclusion \& Future Work@\emph{Conclusion \& Future Work}}
-Do it!
+The multigroup reactor model presented in this study provides a method for dynamically
+computing group constants for any reactor state.  While the inital cross section library
+generation stage may be computationally expensive (days), the resulting RMG calculations take
+only a fraction of the time to execute (seconds).  This dramatic difference in time scales
+makes the RMG well-suited to nuclear fuel cycle simulations.
 
+Still, the RMG is subject to certain, natural constraints.  First, in moving from one- to $G$-groups,
+the RMG will necessarily always take more computational resources to execute than the one-group
+reactor model previously presented.  However, the benefit of using additional groups is that the flux
+spectrum is allowed to change over the course of the fuel burn.  For fast reactors or standard light 
+water reactor, changes in the spectrum are minimal so the error induced by the R1G from a static spectrum
+is negligible.  On the other hand, the RMG enables appropriate modeling of forms such as inert matrix 
+fuel for which R1G models would fundementally break.
+
+Another constraint with the RMG as formulated is that a multidimensional linear interpolation is 
+used when calculating $\sigma_{r_x,itg}$ from the reactor library $\sigma_{r_x,ipg}$.  Therefore, 
+in order to capture non-linear effects in the cross sections, a refinement to the time grid may 
+be required if the number of steps is too coarse in the area of interest.  This problem may be solved
+in other ways as well.  Using a higher order polynomial fit or a spline interpolation would 
+remove the use of a simple linear interpolation and may be more acurate.
+
+Moreover, the static perturbation table as formulated is a static construct.  Simple cahnges to the table
+require a complete re-computation of the outer product of all parameters.
