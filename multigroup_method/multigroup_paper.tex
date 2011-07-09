@@ -25,9 +25,26 @@ dominant physics methodology.  In seeking to expand the types of reactors model-
 current fast reactors and light-water reactors, the flux spectrum must be folded back into the 
 underlying parameterization.
 
+This study proposes a multi-energy group reactor model, which will account for changes in the neutron
+flux spectrum as a function of burn time.  Because the flux is not constant, parameterization in 
+terms of fluence is no longer an optimal choice.  Here instead, the reactor library contains 
+cross section data as a function of burn time under a constant power irradiation.  The reactor model 
+uses pertubations of these cross sections to compute the same information as in the one-group 
+formulation.  Namely, the multiplication factor, fuel burnup, and fuel vector at all desired burn times
+are calculated.  In addition, the flux spectrum is also solved for.
+
+The multigroup reactor model is discussed in the following sections.  In \S \ref{mg_sec:xs_gen} 
+there is an in depth treatment of the formulation of the cross section library and reactor 
+parameterization.  Then \S \ref{mg_sec:rmg_model} explains the run-time reactor model that 
+utilizes the cross section library.  Following this, \S \ref{mg_sec:benchmark} presents a 
+benchmark of this method to a standard light water reactor.  Finally, \S \ref{mg_sec:conc}
+colcudes this study with current limitiations of the method and presents opportunities for
+future work.
+
 
 \section{Multigroup Cross Section Generation}
 \index{Multigroup Cross Section Generatrion@\emph{Multigroup Cross Section Generation}}
+\label{mg_sec:xs_gen}
 When seeking to parameterize nuclear power reactors as a function of initial conditions, 
 the set of possible independent parameters quickly becomes large. In addition to geometric 
 design considerations, the fuel characteristics of the reactor must also be accounted for.
@@ -763,6 +780,7 @@ complete.
 
 \section{Benchmark}
 \index{Benchmark@\emph{Benchmark}}
+\label{mg_sec:benchmark}
 The RMG was validated against a Serpent model of the same standard light-water reactor core.  
 The state of the reactor for the both RMG and Serpent was taken at an off-perturbation point in 
 order to test the nearest-neighbor interpolation in addtional to the criticality and burnup calculations.  
@@ -1014,6 +1032,7 @@ the cross sections meet within acceptable levels or error.
 
 \section{Conclusion \& Future Work}
 \index{Conclusion \& Future Work@\emph{Conclusion \& Future Work}}
+\label{mg_sec:conc}
 The multigroup reactor model presented in this study provides a method for dynamically
 computing group constants for any reactor state.  While the inital cross section library
 generation stage may be computationally expensive (days), the resulting RMG calculations take
