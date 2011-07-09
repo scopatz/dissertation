@@ -5,17 +5,17 @@
 \index{Introduction@\emph{Introduction}}
 Previous studies have examined the use quickly executing, dominant physics codes for use in the
 nuclear fuel cycle.  Unlike analytic techniques (such as neutron transport) which seek to completely 
-solve fundemental physical systems, dominant physics codes parameterize the system and use interpolations
+solve fundamental physical systems, dominant physics codes parameterize the system and use interpolations
 of results from stricter analytic methods to form a quick, run-time solution to the system at hand.
 
-Dominant physics methods may be used for any fuel cycle component: enrichment, reactors, reprocesing, 
+Dominant physics methods may be used for any fuel cycle component: enrichment, reactors, reprocessing, 
 repositories, \emph{etc}.  However, their greatest advantage comes for such components whose analytic
 techniques are computationally intensive.  Thus previous work has focused on reactors and repositories.
 
-The dominant physics reactor methodologies to date have been one-energy group, fluenece-based parameterizations.
+The dominant physics reactor methodologies to date have been one-energy group, fluence-based parameterizations.
 Neutron production \& destruction rates and transmutation matrices as a function of fluence 
 (time-integrated flux) were recorded for each species initial present in the core.  A linear combination of 
-the inital nuclides was then used to compute the multiplication factor, fuel burnup, and used fuel 
+the initial nuclides was then used to compute the multiplication factor, fuel burnup, and used fuel 
 vector at discharge.
 
 Unfortunately, because of the constant flux irradiation method used to generate the parameterizations, 
@@ -29,7 +29,7 @@ This study proposes a multi-energy group reactor model, which will account for c
 flux spectrum as a function of burn time.  Because the flux is not constant, parameterization in 
 terms of fluence is no longer an optimal choice.  Here instead, the reactor library contains 
 cross section data as a function of burn time under a constant power irradiation.  The reactor model 
-uses pertubations of these cross sections to compute the same information as in the one-group 
+uses perturbations of these cross sections to compute the same information as in the one-group 
 formulation.  Namely, the multiplication factor, fuel burnup, and fuel vector at all desired burn times
 are calculated.  In addition, the flux spectrum is also solved for.
 
@@ -38,7 +38,7 @@ there is an in depth treatment of the formulation of the cross section library a
 parameterization.  Then \S \ref{mg_sec:rmg_model} explains the run-time reactor model that 
 utilizes the cross section library.  Following this, \S \ref{mg_sec:benchmark} presents a 
 benchmark of this method to a standard light water reactor.  Finally, \S \ref{mg_sec:conc}
-colcudes this study with current limitiations of the method and presents opportunities for
+concludes this study with current limitations of the method and presents opportunities for
 future work.
 
 
@@ -51,7 +51,7 @@ design considerations, the fuel characteristics of the reactor must also be acco
 
 In the one-energy-group reactor model (R1G), the initial loading was parameterized based
 on neutron production rates, neutron destruction rates, and transmutation matrices per
-nuclide \cite{Scopatz2009d}.  All of these metrics are a function of flunece.  (Under 
+nuclide \cite{Scopatz2009d}.  All of these metrics are a function of fluence.  (Under 
 constant irradiation, fluence is a clear surrogate for time.)
 
 A $G$-energy-group reactor model (RMG) seeks to re-parameterize the one-group formulation 
@@ -587,8 +587,8 @@ d_p = \sqrt{\sum_a \left(\frac{a_r - a_p}{a_{n_p}}\right)^2}
 \end{equation}
 Thus $p^*$ and $a_p^*$ are defined via the sequence $p^* = \left\{p | d_p \le d_{p+1}\right\}$.
 
-Since $a_1^*$ and $a_2^*$ represent the value of a parameter at the two closest pertubations to the
-current state of the reactor, a unitless multidimentional linear interpolation factor $x_f$ may be defined.
+Since $a_1^*$ and $a_2^*$ represent the value of a parameter at the two closest perturbations to the
+current state of the reactor, a unitless multidimensional linear interpolation factor $x_f$ may be defined.
 \begin{equation}
 \label{x_factor}
 x_f = \sum_a \left(\frac{a_r - a_1^*}{a_2^* - a_1^*}\right)
@@ -611,7 +611,7 @@ Now that group constants have been built for the reactor specified, the next pha
 calculation is to estimate the neutron flux spectrum and the multiplication factor given the current 
 material stream of the core. (Naturally, the initial heavy metal stream must be provided.)
 
-The flux spectrum is computed through an interative matrix method.  Call $N_{q,it}$ [atoms/cm\superscript{3}] 
+The flux spectrum is computed through an iterative matrix method.  Call $N_{q,it}$ [atoms/cm\superscript{3}] 
 the number density for the $i$\superscript{th} nuclide at time $t$ in the $q$\superscript{th} region 
 (fuel, cladding, coolant).  The macroscopic cross section of a region is therefore given by equation 
 \ref{region_xs}.
@@ -619,14 +619,14 @@ the number density for the $i$\superscript{th} nuclide at time $t$ in the $q$\su
 \label{region_xs}
 \Sigma_{r_x,q,tg} = \sum_i^I N_{q,it} \cdot \sigma_{r_x,itg}
 \end{equation}
-Since the fuel and coolant are the only two regions with significant neutronic characterisics, 
+Since the fuel and coolant are the only two regions with significant neutronic characteristics, 
 homogenized full-core cross sections are given by the reduction in equation \ref{region_collapse}
 \begin{equation}
 \label{region_collapse}
 \Sigma_{r_x,tg} = \frac{V_{\mbox{fuel}}\Sigma_{r_x,\mbox{fuel},tg} + \zeta_{tg}V_{\mbox{cool}}\Sigma_{r_x,\mbox{cool},tg}}
                        {V_{\mbox{fuel}} + \zeta_{tg}V_{\mbox{cool}}}
 \end{equation}
-Here, $\zeta_{tg}$ is the thermal disadvantage factor per group.  This is computed via the macroscropic 
+Here, $\zeta_{tg}$ is the thermal disadvantage factor per group.  This is computed via the macroscopic 
 cross sections and the lattice functions found in \cite{Lamarsh2002}.
 
 The absorption or $A$-matrix is defined as 
@@ -644,7 +644,7 @@ The multigroup flux spectrum is then calculated via the linear relation in equat
 \label{A_eq_F}
 A_{tgh} \cdot \phi_{tg} = \frac{1}{k} F_{tgh} \cdot \phi_{tg}
 \end{equation}
-To solve this equation in an efficient iteraive fashion, note that the expression 
+To solve this equation in an efficient iterative fashion, note that the expression 
 $\frac{1}{k}A^{-1}F$ is a single matrix.  Using the superscript $m$ to indicate the loop
 index, equations \ref{next_flux} \& \ref{next_k} may be successively applied 
 until convergence.
@@ -657,7 +657,7 @@ until convergence.
 k^{m+1} = k^m  \frac{\sum_g^G \bar{\nu} \Sigma_{f,\mbox{fuel},tg} \phi_{tg}^{m+1}}
                          {\sum_g^G \bar{\nu} \Sigma_{f,\mbox{fuel},tg} \phi_{tg}^m}
 \end{equation}
-The convergenge criteria are defined by equations \ref{converge_flux} and \ref{converge_k}
+The convergence criteria are defined by equations \ref{converge_flux} and \ref{converge_k}
 or when $m=100$.
 \begin{equation}
 \label{converge_flux}
@@ -672,8 +672,8 @@ reached within two or three iterations.
 
 The iterative algorithm described by equations \ref{next_flux} \& \ref{next_k} is 
 sufficient for finding the shape of the neutron flux spectrum.  However, $k^m$ and 
-$\phi_{tg}^m$ are more properly interperted as unormalized eigenvalues and eigenvectors
-of the linear eqution in \ref{A_eq_F}.  Normalization, is therefore required to 
+$\phi_{tg}^m$ are more properly interpreted as unnormalized eigenvalues and eigenvectors
+of the linear equation in \ref{A_eq_F}.  Normalization, is therefore required to 
 discern the `true' values of  $k_t$ and $\phi_{tg}$.
 
 In general, there are two methods with which to normalize the overall flux spectrum: constant flux
@@ -719,7 +719,7 @@ to the reactor model.  A representative value of $P_{NL} = 0.98$ was used for th
 The last portion of the coupled multigroup reactor calculation is the transmutation calculation.
 This step takes the fuel vector at time $t$ and burns it to obtain the fuel vector at time $t+1$.
 
-Many approahes to solving this large set of ordinary differential equations may be taken \cite{Isotalo2011}.  
+Many approaches to solving this large set of ordinary differential equations may be taken \cite{Isotalo2011}.  
 Call $T_{it}$ a vector of $i$-nuclides at time $t$.  The value of $T_{it}$ may then be expressed as 
 \begin{equation}
 \label{transmute_dt}
@@ -738,7 +738,7 @@ b_{ijt}^{\mbox{eff}} = \frac{b_{ij} + \sum_{r_x} \sum_g^G \gamma_{r_x,ij} \sigma
 \end{equation}
 Here, $\lambda_i$ \& $b_{ij}$ are the standard radioactive decay constant and branch ratio.  Because equations
 \ref{effective_decay} \& \ref{effective_branch} depend on the group constants and the flux spectrum, the 
-effective decay contants and branch ratios are a function of time in the core.  Additionally, the summations
+effective decay constants and branch ratios are a function of time in the core.  Additionally, the summations
 over $r_x$ include any neutron reactions that cause transmutations.  The unitless parameter $\gamma_{r_x,ij}$
 represents the yield from $i$ to $j$ for a given reaction.  (Most notably, $\gamma_{r_x,ij}$ takes a non-unity
 value for fission reactions.)
@@ -783,7 +783,7 @@ complete.
 \label{mg_sec:benchmark}
 The RMG was validated against a Serpent model of the same standard light-water reactor core.  
 The state of the reactor for the both RMG and Serpent was taken at an off-perturbation point in 
-order to test the nearest-neighbor interpolation in addtional to the criticality and burnup calculations.  
+order to test the nearest-neighbor interpolation in additional to the criticality and burnup calculations.  
 The reactor state is for this benchmark is shown in Table \ref{benchmark_rx_state}. 
 \begin{table}[htbp]
 \begin{center}
@@ -834,15 +834,15 @@ of the perturbation Table \ref{char_param_outer_product}, is given in equation \
 \{p^*\} = \{4, 10,  5, 11,  6, 12,  1,  7,  2,  8,  3,  9\}
 \end{equation}
 The reason this vector is expected is because the computation is closest to zero time for all 
-time steps.  Moreover the intial \nuc{U}{235} vector falls exactly on one of the perturbation cases.
+time steps.  Moreover the initial \nuc{U}{235} vector falls exactly on one of the perturbation cases.
 Lastly, the fuel region density lies exactly between two of the perturbation steps.  Thus, the 
 perturbations with the minimal distance to the reactor will flank the fuel density but otherwise 
 match the core.
 
-Next, the critiality calculation is compared for the Serpent case and the RMG.  This consists of 
+Next, the criticality calculation is compared for the Serpent case and the RMG.  This consists of 
 contrasting the multiplication factor and the flux spectrum at different burn times.  In all further
 benchmarks, the errors in the two-point comparison are defined by fractional deviation.  Call, $a_r$ 
-a parameter computed via the RMG and $a_s$ the same paramter from the Serpent model.  Equation 
+a parameter computed via the RMG and $a_s$ the same parameter from the Serpent model.  Equation 
 \ref{r_s_fractional_deviation} is the fractional deviation $\varepsilon$ such that values for which the RMG
 over-predicts will be positive and under-predictions will be negative.
 \begin{equation}
@@ -861,11 +861,11 @@ Note that the error bars on the RMG curve in Figure \ref{k_compare} represent th
 deviation, which takes on a value of less than 1\% at every burnup step.  
 The error bars on the Serpent curve are the stochastic modeling errors inherent in any Monte
 Carlo calculation and do not represent errors in the cross sections like $\varepsilon$.
-Additionally, these two curves both adhear to the linear reactivity model but are seen to have slightly 
-different slopes due to errors in the cross sections and discrepencies in which nuclides are included in 
+Additionally, these two curves both adhere to the linear reactivity model but are seen to have slightly 
+different slopes due to errors in the cross sections and discrepancies in which nuclides are included in 
 the burnup-criticality calculation.
 
-Aditionally the flux spectrum at the begining-of-life (BOL) (0 days) and end-of-life (EOL) (365 days)
+Additionally the flux spectrum at the beginning-of-life (BOL) (0 days) and end-of-life (EOL) (365 days)
 may be seen in Figures \ref{spec_BOL} \& \ref{spec_EOL}.
 \begin{figure}[htbp]
 \caption{BOL Neutron Flux Spectrum Benchmark}
@@ -881,7 +881,7 @@ may be seen in Figures \ref{spec_BOL} \& \ref{spec_EOL}.
 \includegraphics[scale=0.5]{multigroup_method/figs/benchmark/Normalized_Flux_at_365_days.eps}
 \end{center}
 \end{figure}
-By inspection, there is good agreement between the RMG and Serpent spectra.  Quatitatively, 
+By inspection, there is good agreement between the RMG and Serpent spectra.  Quantitatively, 
 the fractional deviation lies between 0.5 - 5\% for most groups.  The groups for which 
 significantly larger $\varepsilon$ are present (10 - 140\%) are categorically the groups 
 where the flux is smaller by orders of magnitudes.  Thus the term $\varepsilon\phi_g$ lies
@@ -949,13 +949,13 @@ so this curve does not have associated error bars.
 \end{figure}
 
 
-As is seen in these figures, there is good agrement between the transmutation vectors computed by
+As is seen in these figures, there is good agreement between the transmutation vectors computed by
 Serpent and those computed by the RMG via Origen.  The instances with non-trivial disagreements are 
 largely in the higher order actinides.  These nuclides exist in such small amounts, that the relatively
-high errors do not adeversely effect the neutronic performance of the fuel.
+high errors do not adversely effect the neutronic performance of the fuel.
 
 However, the true strength of the RMG methodology is 
-that it takes into account the time evolotion of the cross sections as well.  For the same set 
+that it takes into account the time evolution of the cross sections as well.  For the same set 
 of nuclides above, Figures \ref{act_xs_benchmark}-\ref{fp_xs_benchmark} display total, absorption,
 scattering and fission one-group cross sections as a function of burn time.  One-group cross sections 
 are used here in favor of the multigroup cross sections because they capture the total differences 
@@ -1017,7 +1017,7 @@ between data sets while removing the complexity of plotting three dimensional in
 Lastly, since the one-group cross sections are feed to Origen to make a transmutation library, it is important 
 to ensure that no library is reaction is far off from a benchmark value.  Tables 
 \ref{rank_Actinide_sigma_s_table}-\ref{rank_Actinide_sigma_f_table} display the 
-nuclides with the highest $\varepsilon$ (in decending order) at any time step for absorption and scattering
+nuclides with the highest $\varepsilon$ (in descending order) at any time step for absorption and scattering
 reactions for the fission products and for absorption, scattering and fission reactions for the actinides.
 These tables have been filtered to remove species that have very short half lives within the reactor.
 As Tables \ref{rank_Actinide_sigma_s_table}-\ref{rank_Actinide_sigma_f_table} display, even in the worst case 
@@ -1034,7 +1034,7 @@ the cross sections meet within acceptable levels or error.
 \index{Conclusion \& Future Work@\emph{Conclusion \& Future Work}}
 \label{mg_sec:conc}
 The multigroup reactor model presented in this study provides a method for dynamically
-computing group constants for any reactor state.  While the inital cross section library
+computing group constants for any reactor state.  While the initial cross section library
 generation stage may be computationally expensive (days), the resulting RMG calculations take
 only a fraction of the time to execute (seconds).  This dramatic difference in time scales
 makes the RMG well-suited to nuclear fuel cycle simulations.
@@ -1045,16 +1045,16 @@ reactor model previously presented.  However, the benefit of using additional gr
 spectrum is allowed to change over the course of the fuel burn.  For fast reactors or standard light 
 water reactor, changes in the spectrum are minimal so the error induced by the R1G from a static spectrum
 is negligible.  On the other hand, the RMG enables appropriate modeling of forms such as inert matrix 
-fuel for which R1G models would fundementally break.
+fuel for which R1G models would fundamentally break.
 
 Another constraint with the RMG as formulated is that a multidimensional linear interpolation is 
 used when calculating $\sigma_{r_x,itg}$ from the reactor library $\sigma_{r_x,ipg}$.  Therefore, 
 in order to capture non-linear effects in the cross sections, a refinement to the time grid may 
 be required if the number of steps is too coarse in the area of interest.  This problem may be solved
 in other ways as well.  Using a higher order polynomial fit or a spline interpolation would 
-remove the use of a simple linear interpolation and may be more acurate.
+remove the use of a simple linear interpolation and may be more accurate.
 
-Moreover, the perturbation table as formulated is static.  Simple cahnges to the table
+Moreover, the perturbation table as formulated is static.  Simple changes to the table
 require a complete re-computation of the outer product of all parameters.  While not computationally
 intensive on its own, the perturbation table determines the state of the reactor and thus the 
 value of all of the group constants in the reactor library.  In effect, it is the keystone of the RMG, 
@@ -1062,13 +1062,13 @@ as invalidating it invalidates all other parts of the reactor library.
 
 A more dynamic perturbation table, and thus more dynamic reactor library, would allow for the RMG to 
 handle an increased number of reactor cases without causing a reset of all cases previously computed.
-One method of implementation would be to allow the parameters in the pertubation table to be stochcatically
+One method of implementation would be to allow the parameters in the perturbation table to be stochastically
 generated.  Each parameter $a_p$ would be given a range on which it would be randomly sampled to form a 
 perturbation vector.  The exception to this is that burnup times would remain static and sequential, as
-in the current formulation.  Such an implementation would enable the easy extention of the perturbation 
+in the current formulation.  Such an implementation would enable the easy extension of the perturbation 
 table (\emph{i.e.} adding rows).  Where this ability becomes particularly important is in the case 
 where there are a large number of parameters, such as the strategy where the initial concentration of 
-every actinide is varied.  Here, the option space is much more efficiently covered by a stochcastic 
+every actinide is varied.  Here, the option space is much more efficiently covered by a stochastic 
 perturbation table than an outer product one.
 
 Lastly, refinements and optimizations to the existing model may be made.  For example, the current 
@@ -1077,6 +1077,6 @@ could be implemented into the RMG.  However, even the matrix exponential method 
 sufficient for most calculations.
 
 In conclusion, the RMG satisfies the requirements of correctly handling changes in the neutron flux 
-spectrum while mainiting comperable (though somewhat slower) runtimes to the one-group reactor model.
+spectrum while maintaining comparable (though somewhat slower) runtimes to the one-group reactor model.
 Future work will include the refinement mentioned above and the inclusion in a fuel cycle modeling 
 framework.
