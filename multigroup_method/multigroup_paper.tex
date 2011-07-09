@@ -567,7 +567,7 @@ group constants as a function of burn time in the RMG $\sigma_{r_x,itg}$ involve
 neighbor calculation as well as a multi-dimensional linear interpolation.
 
 Call $a$ a perturbable reactor parameter, such as fuel density or burn time (\emph{i.e.} the 
-columns in Table \ref{char_perturbable_variables}).   With $p$ as the perturbation index 
+entries in Table \ref{char_perturbable_variables}).   With $p$ as the perturbation index 
 such that $1 \le p \le n_p$ (\emph{i.e.} the row number of Table \ref{char_param_outer_product}), 
 then $a_p$ denotes the value of this reactor parameter for this perturbation.  Furthermore, call
 $a_r$ the value of this parameter on the reactor model itself.
@@ -593,7 +593,7 @@ current state of the reactor, a unitless multidimensional linear interpolation f
 \label{x_factor}
 x_f = \sum_a \left(\frac{a_r - a_1^*}{a_2^* - a_1^*}\right)
 \end{equation}
-This is then used to generate group constants for all reactions at all times from perturbation information
+This is then used to generate group constants for all reactions from perturbation information
 available in the cross section library. 
 \begin{equation}
 \label{sig_multi_interp}
@@ -609,7 +609,7 @@ for all reactions.
 \label{mg_sec:crit_calc}
 Now that group constants have been built for the reactor specified, the next phase of the reactor 
 calculation is to estimate the neutron flux spectrum and the multiplication factor given the current 
-material stream of the core. (Naturally, the initial heavy metal stream must be provided.)
+core material. (Naturally, the initial heavy metal stream must be provided.)
 
 The flux spectrum is computed through an iterative matrix method.  Call $N_{q,it}$ [atoms/cm\superscript{3}] 
 the number density for the $i$\superscript{th} nuclide at time $t$ in the $q$\superscript{th} region 
@@ -645,7 +645,8 @@ The multigroup flux spectrum is then calculated via the linear relation in equat
 A_{tgh} \cdot \phi_{tg} = \frac{1}{k} F_{tgh} \cdot \phi_{tg}
 \end{equation}
 To solve this equation in an efficient iterative fashion, note that the expression 
-$\frac{1}{k}A^{-1}F$ is a single matrix.  Using the superscript $m$ to indicate the loop
+$\frac{1}{k}A^{-1}F$ is a single matrix which is independent of iteration number.  
+Using the superscript $m$ to indicate the loop
 index, equations \ref{next_flux} \& \ref{next_k} may be successively applied 
 until convergence.
 \begin{equation}
@@ -673,14 +674,14 @@ reached within two or three iterations.
 The iterative algorithm described by equations \ref{next_flux} \& \ref{next_k} is 
 sufficient for finding the shape of the neutron flux spectrum.  However, $k^m$ and 
 $\phi_{tg}^m$ are more properly interpreted as unnormalized eigenvalues and eigenvectors
-of the linear equation in \ref{A_eq_F}.  Normalization, is therefore required to 
+of the linear equation in \ref{A_eq_F}.  Normalization is, therefore, required to 
 discern the `true' values of  $k_t$ and $\phi_{tg}$.
 
 In general, there are two methods with which to normalize the overall flux spectrum: constant flux
 per unit time and constant power.  The constant flux mechanism is trivial and due to the nature of 
 the burnup calculation here, the constant power condition was used.  Recall that the state of the 
 RMG is partially given by the specific power, $p_s$ [MW/kg].  Denote the one-group fission cross
-section as $\Sigma_{f,\mbox{fuel},t}$.
+section as $\Sigma_{f,\mbox{fuel},t}$ [cm\superscript{-1}].
 \begin{equation}
 \label{one_group_fission}
 \Sigma_{f,\mbox{fuel},t} = \frac{\sum_g^G \Sigma_{f,\mbox{fuel},tg}\phi_{tg}^m}
@@ -692,7 +693,7 @@ The total flux for time $t$ is thus given by equation \ref{total_flux_rescale}.
 \phi_t = p_s \cdot  \rho_{\mbox{fuel}} \cdot \frac{1}
                                                   {\mbox{3.284E-14} \cdot \Sigma_{f,\mbox{fuel},t}}
 \end{equation}
-Here, the value of 3.284E-14 [kJ/n] acts as a conversion factor assuming an average 
+Here the value of 3.284E-14 [kJ/n] is a conversion factor assuming an average 
 energy release of 205 [MeV/fission].  This value may used to rescale the spectrum 
 as seen in equation \ref{spectrum_rescale}
 \begin{equation}
@@ -701,7 +702,7 @@ as seen in equation \ref{spectrum_rescale}
                                {\sum_g^G \phi_{tg}^m}
 \end{equation}
 
-The multiplication factor $k_t$ of the RMG is handled by another side calculation which 
+The multiplication factor of the RMG is handled by another side calculation which 
 uses the rescaled flux spectrum.  Here, $k_t$ is computed strictly as a function of the 
 material and neutronic properties of the core.
 \begin{equation}
@@ -710,7 +711,7 @@ material and neutronic properties of the core.
                                 {\sum_g^G \left(V_{\mbox{fuel}} \cdot \Sigma_{a,\mbox{fuel},tg} + \zeta_{tg} \cdot V_{\mbox{cool}} \cdot \Sigma_{a,\mbox{cool},tg}\right) \cdot  \phi_{tg}}
 \end{equation}
 In equation \ref{k_rescale}, $P_{NL}$ represents the non-leakage probability and must be externally supplied
-to the reactor model.  A representative value of $P_{NL} = 0.98$ was used for this study.
+to the reactor model.  A representative value of $P_{NL} = 0.95$ was used for this study.
 
 
 \subsection{Transmutation Calculation}
@@ -740,7 +741,7 @@ Here, $\lambda_i$ \& $b_{ij}$ are the standard radioactive decay constant and br
 \ref{effective_decay} \& \ref{effective_branch} depend on the group constants and the flux spectrum, the 
 effective decay constants and branch ratios are a function of time in the core.  Additionally, the summations
 over $r_x$ include any neutron reactions that cause transmutations.  The unitless parameter $\gamma_{r_x,ij}$
-represents the yield from $i$ to $j$ for a given reaction.  (Most notably, $\gamma_{r_x,ij}$ takes a non-unity
+represents the yield from $i$ to $j$ for a given reaction.  (Most notably, $\gamma_{f,ij}$ takes a non-unity
 value for fission reactions.)
 
 Defining a transmutation matrix $M_{ijt}$ such that
@@ -757,7 +758,7 @@ where $\Delta t$ [s] is the time between burnup steps $t$ and $t+1$.
 
 Rather than solving this matrix exponential explicitly, ORIGEN 2.2 \cite{Croff2002} was used 
 to calculate the nuclide vector $T_{it+1}$.  Origen has the capability to take an input vector 
-$T_{it}$ and one-group cross sections and perform the transmutation calculation.  The one-group 
+$T_{it}$ and one-group cross sections and perform the transmutation calculation above.  The one-group 
 cross sections that Origen requires are for constituent absorption reactions.  Namely, these are 
 $r_x = \gamma, 2n, 3n, f, \alpha, p, \gamma^*, 2n^*$.  Such cross sections may be found via 
 a simple group collapse as seen in equation \ref{origen_gc}.
@@ -808,7 +809,7 @@ Initial \nuc{U}{235} Mass Fraction & $T_{\mbox{\nuc{U}{235}}0}$ & 0.05 kg\subscr
 \end{center}
 \end{table}
 The burnup times that were computed for the reactor ranged from 0 to 365 days with a step size of 
-40.556 days.  The initial heavy metal concentrations, which was used for benchmarking purposes only, 
+40.556 days.  The initial heavy metal concentrations, which were used for benchmarking purposes only, 
 may be seen in Table \ref{benchmark_IHM}.
 \begin{table}[htbp]
 \begin{center}
@@ -841,9 +842,9 @@ match the core.
 
 Next, the criticality calculation is compared for the Serpent case and the RMG.  This consists of 
 contrasting the multiplication factor and the flux spectrum at different burn times.  In all further
-benchmarks, the errors in the two-point comparison are defined by fractional deviation.  Call, $a_r$ 
+benchmarks, the errors in the two-point comparison are defined by a fractional deviation.  Call, $a_r$ 
 a parameter computed via the RMG and $a_s$ the same parameter from the Serpent model.  Equation 
-\ref{r_s_fractional_deviation} is the fractional deviation $\varepsilon$ such that values for which the RMG
+\ref{r_s_fractional_deviation} is the fractional deviation $\varepsilon$ such that values which the RMG
 over-predicts will be positive and under-predictions will be negative.
 \begin{equation}
 \label{r_s_fractional_deviation}
@@ -857,10 +858,10 @@ Figure \ref{k_compare} displays the comparison for $k$.
 \includegraphics[scale=0.5]{multigroup_method/figs/benchmark/k.eps}
 \end{center}
 \end{figure}
-Note that the error bars on the RMG curve in Figure \ref{k_compare} represent the fractional 
-deviation, which takes on a value of less than 1\% at every burnup step.  
+Note that the fractional deviation error bars on the RMG curve in Figure \ref{k_compare} 
+take on a value of less than 1\% at every burnup step.  
 The error bars on the Serpent curve are the stochastic modeling errors inherent in any Monte
-Carlo calculation and do not represent errors in the cross sections like $\varepsilon$.
+Carlo calculation and do not represent inaccuracies in the cross sections, like $\varepsilon$.
 Additionally, these two curves both adhere to the linear reactivity model but are seen to have slightly 
 different slopes due to errors in the cross sections and discrepancies in which nuclides are included in 
 the burnup-criticality calculation.
