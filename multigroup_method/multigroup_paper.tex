@@ -888,13 +888,13 @@ significantly larger $\varepsilon$ are present (10 - 140\%) are categorically th
 where the flux is smaller by orders of magnitudes.  Thus the term $\varepsilon\phi_g$ lies
 within appropriate limits for all groups.
 
-Lastly in terms of the reactor model flow, the transmutation calculation must be benchmarked.
+Lastly in the reactor model flow, the transmutation calculation must be benchmarked.
 Figures \ref{act_benchmark}-\ref{fp_benchmark} display the time evolution of the mass 
 fractions of various important nuclides. This set includes the actinides initially present and 
-many of those bred in as well a various fission products that are tracked in the VISION suite.  
+bred in as well a various fission products that are tracked in the VISION suite.  
 In these figures, $\varepsilon$ is defined as before and is again displayed as the error bars on 
 the RMG curve.   Unfortunately, Serpent does not report errors associated with the mass fraction 
-so this curve does not have associated error bars.
+so such curves do not have associated error bars.
 
 \begin{figure}[htbp]
 \caption{Actinide Mass Fraction Benchmarks}
@@ -1016,13 +1016,13 @@ between data sets while removing the complexity of plotting three dimensional in
 \end{figure}
 
 Lastly, since the one-group cross sections are feed to Origen to make a transmutation library, it is important 
-to ensure that no library is reaction is far off from a benchmark value.  Tables 
+to ensure that no reaction is far off from a benchmark value.  Tables 
 \ref{rank_Actinide_sigma_s_table}-\ref{rank_Actinide_sigma_f_table} display the 
-nuclides with the highest $\varepsilon$ (in descending order) at any time step for absorption and scattering
+nuclides with the highest $|\varepsilon|$ (in descending order) at any time step for absorption and scattering
 reactions for the fission products and for absorption, scattering and fission reactions for the actinides.
 These tables have been filtered to remove species that have very short half lives within the reactor.
 As Tables \ref{rank_Actinide_sigma_s_table}-\ref{rank_Actinide_sigma_f_table} display, even in the worst case 
-the cross sections meet within acceptable levels or error.
+the cross sections meet within acceptable levels of error.
 
 \input{multigroup_method/figs/benchmark/rank_table_Actinide_sigma_s}
 \input{multigroup_method/figs/benchmark/rank_table_Fission_Product_sigma_s}
@@ -1040,7 +1040,7 @@ generation stage may be computationally expensive (days), the resulting RMG calc
 only a fraction of the time to execute (seconds).  This dramatic difference in time scales
 makes the RMG well-suited to nuclear fuel cycle simulations.
 
-Still, the RMG is subject to certain, natural constraints.  First, in moving from one- to $G$-groups,
+Still, the RMG is subject to certain natural constraints.  First, in moving from one- to $G$-groups,
 the RMG will necessarily always take more computational resources to execute than the one-group
 reactor model previously presented.  However, the benefit of using additional groups is that the flux
 spectrum is allowed to change over the course of the fuel burn.  For fast reactors or standard light 
@@ -1058,8 +1058,8 @@ remove the use of a simple linear interpolation and may be more accurate.
 Moreover, the perturbation table as formulated is static.  Simple changes to the table
 require a complete re-computation of the outer product of all parameters.  While not computationally
 intensive on its own, the perturbation table determines the state of the reactor and thus the 
-value of all of the group constants in the reactor library.  In effect, it is the keystone of the RMG, 
-as invalidating it invalidates all other parts of the reactor library.  
+value of all of the group constants in the reactor library.  In effect, it is the keystone of the RMG. 
+Invalidating the perturbation table invalidates all other parts of the reactor library.  
 
 A more dynamic perturbation table, and thus more dynamic reactor library, would allow for the RMG to 
 handle an increased number of reactor cases without causing a reset of all cases previously computed.
@@ -1068,7 +1068,7 @@ generated.  Each parameter $a_p$ would be given a range on which it would be ran
 perturbation vector.  The exception to this is that burnup times would remain static and sequential, as
 in the current formulation.  Such an implementation would enable the easy extension of the perturbation 
 table (\emph{i.e.} adding rows).  Where this ability becomes particularly important is in the case 
-where there are a large number of parameters, such as the strategy where the initial concentration of 
+where there are a large number of parameters, such as the strategy in which the initial concentration of 
 every actinide is varied.  Here, the option space is much more efficiently covered by a stochastic 
 perturbation table than an outer product one.
 
@@ -1079,5 +1079,5 @@ sufficient for most calculations.
 
 In conclusion, the RMG satisfies the requirements of correctly handling changes in the neutron flux 
 spectrum while maintaining comparable (though somewhat slower) runtimes to the one-group reactor model.
-Future work will include the refinement mentioned above and the inclusion in a fuel cycle modeling 
-framework.
+Future work could combine the refinements mentioned above and the inclusion of the RMG in a fuel cycle 
+modeling framework.
