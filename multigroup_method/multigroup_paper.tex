@@ -5,8 +5,8 @@
 \index{Introduction@\emph{Introduction}}
 Previous studies have examined the use quickly executing, dominant physics codes for use in the
 nuclear fuel cycle.  Unlike analytic techniques (such as neutron transport) which seek to completely 
-solve fundamental physical systems, dominant physics codes parameterize the system and use interpolations
-of results from stricter analytic methods to form a quick, run-time solution to the system at hand.
+solve fundamental physical systems, dominant physics codes parameterize the system.   Interpolations
+of parameterized results from stricter analytic methods form a quick, run-time solution to the system at hand.
 
 Dominant physics methods may be used for any fuel cycle component: enrichment, reactors, reprocessing, 
 repositories, \emph{etc}.  However, their greatest advantage comes for such components whose analytic
@@ -21,25 +21,25 @@ vector at discharge.
 Unfortunately, because of the constant flux irradiation method used to generate the parameterizations, 
 the above model was not sensitive to changes in the flux spectrum over the course of the burn.  The 
 requirement of a static flux spectrum limits the type of reactors that may be studied using such a 
-dominant physics methodology.  In seeking to expand the types of reactors model-able from the 
-current fast reactors and light-water reactors, the flux spectrum must be folded back into the 
+dominant physics methodology.  In seeking to expand the types of reactors model-able from 
+fast reactors and light-water reactors, the flux spectrum must be folded back into the 
 underlying parameterization.
 
 This study proposes a multi-energy group reactor model, which will account for changes in the neutron
-flux spectrum as a function of burn time.  Because the flux is not constant, parameterization in 
-terms of fluence is no longer an optimal choice.  Here instead, the reactor library contains 
-cross section data as a function of burn time under a constant power irradiation.  The reactor model 
+flux spectrum as a function of burn time and other reactor attributes.  Because the flux is not constant, 
+parameterization in terms of fluence is no longer an optimal choice.  Here instead, the reactor library 
+contains cross section data as a function of burn time under a constant power irradiation.  The reactor model 
 uses perturbations of these cross sections to compute the same information as in the one-group 
 formulation.  Namely, the multiplication factor, fuel burnup, and fuel vector at all desired burn times
-are calculated.  In addition, the flux spectrum is also solved for.
+are calculated.  By necessity, the flux spectrum itself is also solved for.
 
 The multigroup reactor model is discussed in the following sections.  In \S \ref{mg_sec:xs_gen} 
 there is an in depth treatment of the formulation of the cross section library and reactor 
 parameterization.  Then \S \ref{mg_sec:rmg_model} explains the run-time reactor model that 
 utilizes the cross section library.  Following this, \S \ref{mg_sec:benchmark} presents a 
 benchmark of this method to a standard light water reactor.  Finally, \S \ref{mg_sec:conc}
-concludes this study with current limitations of the method and presents opportunities for
-future work.
+concludes this study with observations on current limitations of the method and presents 
+opportunities for future work.
 
 
 \section{Multigroup Cross Section Generation}
