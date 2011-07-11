@@ -626,7 +626,7 @@ homogenized full-core cross sections are given by the reduction in equation \ref
 \Sigma_{r_x,tg} = \frac{V_{\mbox{fuel}}\Sigma_{r_x,\mbox{fuel},tg} + \zeta_{tg}V_{\mbox{cool}}\Sigma_{r_x,\mbox{cool},tg}}
                        {V_{\mbox{fuel}} + \zeta_{tg}V_{\mbox{cool}}}
 \end{equation}
-Here, $\zeta_{tg}$ is the thermal disadvantage factor per group.  This is computed via the macroscopic 
+Here, $\zeta_{tg}$ is the thermal disadvantage factor per group.  This may computed via the macroscopic 
 cross sections and the lattice functions found in \cite{Lamarsh2002}.
 
 The absorption or $A$-matrix is defined as 
@@ -707,11 +707,17 @@ uses the rescaled flux spectrum.  Here, $k_t$ is computed strictly as a function
 material and neutronic properties of the core.
 \begin{equation}
 \label{k_rescale}
-\phi_{tg} = P_{\mbox{NL}} \cdot \frac{\sum_g^G V_{\mbox{fuel}} \cdot \bar{\nu}\Sigma_{f,\mbox{fuel},tg} \cdot \phi_{tg}}
+k_t = P_{\mbox{NL}} \cdot \frac{\sum_g^G V_{\mbox{fuel}} \cdot \bar{\nu}\Sigma_{f,\mbox{fuel},tg} \cdot \phi_{tg}}
                                 {\sum_g^G \left(V_{\mbox{fuel}} \cdot \Sigma_{a,\mbox{fuel},tg} + \zeta_{tg} \cdot V_{\mbox{cool}} \cdot \Sigma_{a,\mbox{cool},tg}\right) \cdot  \phi_{tg}}
 \end{equation}
 In equation \ref{k_rescale}, $P_{NL}$ represents the non-leakage probability and must be externally supplied
-to the reactor model.  %A representative value of $P_{NL} = 0.95$ was used for this study.
+to the reactor model.  Note that together the $P_{NL}$ and $\zeta_{tg}$ are functionally adjustment parameters
+that which may be used to account for fundemental modeling errors in the geometery.  The non-leakeage 
+probability accounts for the fact that the reactor is modeled as an inifintely relefected system, whereas
+any real system will have physical limits.  By analogy, the thermal disadavantage factor corrects the flux 
+for errors stemming from a two-region lattice diffusion theory approximation.  Thus, the RMG may be `tuned'
+to work by variying $P_{NL}$ and $\zeta_{tg}$.  Reasonable limits on which to adjust these two parameters 
+vary by reactor type.
 
 
 \subsection{Transmutation Calculation}
