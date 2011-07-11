@@ -844,16 +844,16 @@ may be seen in Table \ref{benchmark_IHM}.
 
 
 The nearest neighbor vector $p^*$ for all time steps, in terms of indices
-of the perturbation Table \ref{char_param_outer_product}, is given in equation \ref{nn_res}.
-\begin{equation}
-\label{nn_res}
-\{p^*\} = \{4, 10,  5, 11,  6, 12,  1,  7,  2,  8,  3,  9\}
-\end{equation}
-The reason this vector is expected is because the computation is closest to zero time for all 
+of the perturbation Table \ref{char_param_outer_product}, is given in Table \ref{nn_table}.
+The reason this matrix is expected is because the computation is closest to zero time for all 
 time steps.  Moreover the initial \nuc{U}{235} vector falls exactly on one of the perturbation cases.
 Lastly, the fuel region density lies exactly between two of the perturbation steps.  Thus, the 
 perturbations with the minimal distance to the reactor will flank the fuel density but otherwise 
-match the core.
+match the core.  Note that, because of the linear interpolation of the group constants, only the 
+two leftmost $p^*$ columns (representing $p_1^*$ and $p_2^*$) influence the RMG calculation.  The 
+remaining columns are shown for demonstrative purposes only.
+
+\input{multigroup_method/figs/benchmark/nearest_neighbor_table}
 
 Next, the criticality calculation is compared for the Serpent case and the RMG.  This consists of 
 contrasting the multiplication factor and the flux spectrum at different burn times.  In all further
