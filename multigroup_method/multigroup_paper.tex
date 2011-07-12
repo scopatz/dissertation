@@ -170,7 +170,7 @@ Burn Times                    & $s$                  & days \\
 \end{center}
 \end{table}
 
-The code which produces the cross section library is known as CHAR (CITEME).  Char currently
+The code which produces the cross section library is known as CHAR.  Char currently
 has the ability to adjust a reactor template based on many initial parameters.  These fall
 conceptually into three categories: geometric properties, material properties, and time.
 Table \ref{char_perturbable_variables} lists the parameters that define a \emph{perturbation}
@@ -901,7 +901,10 @@ By inspection, there is good agreement between the RMG and Serpent spectra.  Qua
 the fractional deviation lies between 0.5 - 5\% for most groups.  The groups for which 
 significantly larger $\varepsilon$ are present (10 - 140\%) are categorically the groups 
 where the flux is smaller by orders of magnitudes.  Thus the term $\varepsilon\phi_g$ lies
-within appropriate limits for all groups.
+within appropriate limits for all groups.  Moreover, differences in Figures \ref{spec_BOL} \& 
+\ref{spec_EOL} is partially explained by the difference in regions for which the flux is defined.
+The Serpent curves here represent a homogenized full-core, while the RMG spectra are only for the 
+fuel region.
 
 Lastly in the reactor model flow, the transmutation calculation must be benchmarked.
 Figures \ref{act_benchmark}-\ref{fp_benchmark} display the time evolution of the mass 
@@ -968,7 +971,11 @@ so such curves do not have associated error bars.
 As is seen in these figures, there is good agreement between the transmutation vectors computed by
 Serpent and those computed by the RMG via Origen.  The instances with non-trivial disagreements are 
 largely in the higher order actinides.  These nuclides exist in such small amounts, that the relatively
-high errors do not adversely effect the neutronic performance of the fuel.
+high errors do not adversely effect the neutronic performance of the fuel.   Moreover, the errors in the
+mass concentrations of are largely a function of the error in flux the lowest energy groups.  While 
+the flux here is small, the cross sections (following a one-over-velocity dependence) are typically 
+larger than other parts of the spectrum.
+
 
 However, the true strength of the RMG methodology is 
 that it takes into account the time evolution of the cross sections as well.  For the same set 
