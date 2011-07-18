@@ -635,8 +635,15 @@ homogenized full-core cross sections are given by the reduction in equation \ref
 \Sigma_{r_x,tg} = \frac{V_{\mbox{fuel}}\Sigma_{r_x,\mbox{fuel},tg} + \zeta_{tg}V_{\mbox{cool}}\Sigma_{r_x,\mbox{cool},tg}}
                        {V_{\mbox{fuel}} + \zeta_{tg}V_{\mbox{cool}}}
 \end{equation}
-Here, $\zeta_{tg}$ is the thermal disadvantage factor per group.  This may computed via the macroscopic 
-cross sections and the lattice functions found in \cite{Lamarsh2002}.
+Here, $\zeta_{tg}$ is the disadvantage factor per group.  This may computed via the macroscopic 
+cross sections and the lattice functions found in \cite{Lamarsh2002}.  A more traditional
+total thermal disadvantage factor may be calculated from the product of the per group values 
+as seen in equation \ref{total_zeta}.
+\begin{equation}
+\label{total_zeta}
+\zeta_t = \prod_g^G \zeta_{tg}
+\end{equation}
+
 
 The absorption or $A$-matrix is defined as 
 \begin{equation}
@@ -905,6 +912,21 @@ where the flux may be smaller by orders of magnitudes.  Moreover, differences in
 The RMG curves here represent a homogenized full-core, while the Serpent spectra are only for the 
 fuel region.  Because of more scattering events in the coolant and more absorption reactions in the fuel, 
 the harder Serpent fuel spectrum is expected than that calculated by the RMG.
+
+Moreover, to compute the spectra above the disadvantage factor must be known.
+Figure \ref{zeta_BOL_EOL} shows $\zeta_{tg}$ as a function of group for both BOL \& EOL.
+The `total' values $\zeta_t$ show good agreement between the RMG and the traditional one-group
+thermal disadvantage factor.  Depending on geometery, $\zeta_t$ for an LWR lies approximately 
+on the range $[1.1, 1.3]$.
+
+\begin{figure}[htbp]
+\caption{Disadvantage Factor $\zeta_{tg}$ at BOL \& EOL}
+\label{zeta_BOL_EOL}
+\begin{center}
+\includegraphics[scale=0.5]{multigroup_method/figs/benchmark/zeta.eps}
+\end{center}
+\end{figure}
+
 
 Lastly in the reactor model flow, the transmutation calculation must be benchmarked.
 Figures \ref{act_benchmark}-\ref{fp_benchmark} display the time evolution of the mass 
