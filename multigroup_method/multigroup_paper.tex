@@ -130,7 +130,8 @@ specification \cite{MFMT}.  Entries whose MT number is given as a $\dagger$ indi
 that the generation of these tallies was performed in a special way (see below).
 Additionally, the group-to-group scattering cross section is denoted by the symbol
 $\sigma_{s,itgh}$ where $g$ denotes the incident neutron energy (as before) and $h$
-gives the exiting neutron energy.
+gives the exiting neutron energy.  Lastly, let $E_g$ [MeV] represent the group 
+energy boundaries.  Note that for $G$ groups, there will be $G+1$ boundaries.
 
 \subsection{Parameterization of Initial Conditions}
 \index{Parameterization of Initial Conditions@\emph{Parameterization of Initial Conditions}}
@@ -219,8 +220,8 @@ values defines the set of perturbations for which the group constants are calcul
 The total number of perturbations, $n_p$, is therefore given by the product of 
 the lengths of the parameter arrays.  \emph{In concreto}, Table \ref{char_param_outer_product} 
 displays the perturbations when the fuel density has two values, the initial \nuc{U}{235} mass 
-fraction also takes two values, the group constants are calculated at three burn steps, and all 
-other parameters are single valued
+fraction also takes two values, the group constants are calculated at five burn steps, and all 
+other parameters are single valued.
 
 While Table \ref{char_param_outer_product} represents a simple set of reactors, this formulation 
 allows for the easy expansion and extension of input parameters, and thus new perturbations. 
@@ -231,8 +232,32 @@ A particularly aggressive strategy would be to include the mass fractions of all
 present in the core.  In a recycle scenario, this would increase the number of parameters by 
 approximately an order of magnitude.  
 
+\begin{table}[htbp]
+\begin{center}
+\caption{CHAR Outer Product Perturbations}
+\label{group_boundaries}
+\begin{tabular}{|c|c||c|c|}
+\hline
+\textbf{$g$} & \textbf{$E_g$ [MeV]} & \textbf{$g$} & \textbf{$E_g$ [MeV]} \\
+\hline
+1  & 10      & 11 & 2.15E-5 \\ 
+2  & 1       & 12 & 1.29E-5 \\ 
+3  & 0.1     & 13 & 7.74E-6 \\
+4  & 0.01    & 14 & 4.64E-6 \\
+5  & 3.16E-3 & 15 & 2.78E-6 \\
+6  & 1.00E-3 & 16 & 1.67E-6 \\
+7  & 3.16E-4 & 17 & 1.00E-6 \\
+8  & 1.00E-4 & 18 & 1.00E-7 \\
+9  & 5.99E-5 & 19 & 1.00E-8 \\
+10 & 3.59E-5 & 10 & 1.00E-9 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
 For the remainder of the this study the perturbations presented in Table \ref{char_param_outer_product}
-were sufficient to demonstrate the validity of the multigroup method.
+were sufficient to demonstrate the validity of the multigroup method.  Table \ref{group_boundaries} 
+displays the group structure implemented.
 
 \subsection{Cross Section Generation: Serpent}
 \index{Cross Section Generation: Serpent@\emph{Cross Section Generation: Serpent}}
