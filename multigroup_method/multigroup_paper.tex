@@ -57,8 +57,9 @@ constant irradiation, fluence is a clear surrogate for time.)
 A $G$-energy-group reactor model (RMG) seeks to re-parameterize the one-group formulation 
 in terms of energy.  While the multi-group formulation will remain on a per nuclide basis, 
 the neutron reaction rates do not have have a meaningful per unit energy expression that 
-is independent of the flux.  Moreover changing reaction rates also invalidate the 
-transmutation matrices.  
+is independent of the flux.  Paramerteizing based on fluence was successful in R1G because 
+flux spectrum changes with respect to the buildup of new species were ignored.   However, 
+such changes based on initial composition are precisely what the RMG seeks to capture.
 
 Therefore, the RMG, in a level of sophistication above the R1G, must be able to calculate
 the multigroup flux spectrum.  To do so requires multigroup microscopic neutron cross-sections.  
@@ -69,7 +70,7 @@ This is seen in Equation \ref{reaction_rate_calc}
 \label{reaction_rate_calc}
 R = \sigma \cdot \phi \cdot 10^{-24}
 \end{equation}
-where $R$ [hz] is the reaction rate, $\sigma$ [barns] is the one-group cross section, and
+where $R$ [Hz] is the reaction rate, $\sigma$ [barns] is the one-group cross section, and
 $\phi$ [n/cm\superscript{2}/s] is the energy-integrated flux.
 
 The remainder of this section is delineated into a discussion on notation, how initial 
@@ -78,10 +79,12 @@ cross sections, and the validation technique used.
 
 \subsection{Notation}
 \index{Notation@\emph{Notation}}
-The group constants $\sigma_{itg}$ or $\sigma_{ipg}$ are themselves parameterized by nuclide, 
-time or perturbation (see following section), and  incident neutron energy.  Nuclides are indexed by 
-$i$, times are indexed by $t$, perturbations are indexed by $p$, and energy is indexed by $g$ with 
-lower indices representing higher energy groups.
+\label{mg_sec:notation}
+In the RMG, nuclides are indexed by $i$, times are indexed by $t$, perturbations are indexed by $p$, 
+and energy is indexed by $g$ with lower indices representing higher energy groups.
+Thus the group constants $\sigma_{itg}$ or $\sigma_{ipg}$ are themselves parameterized by nuclide, 
+time or perturbation (see \S \ref{mg_sec:param_ic}), and incident neutron energy.  
+
 
 \begin{table}[htbp]
 \begin{center}
@@ -131,6 +134,7 @@ gives the exiting neutron energy.
 
 \subsection{Parameterization of Initial Conditions}
 \index{Parameterization of Initial Conditions@\emph{Parameterization of Initial Conditions}}
+\label{mg_sec:param_ic}
 The multigroup reactor model requires a library of pre-computed group constants which it uses
 to calculate run-time cross section values for the core.  This library must therefore satisfy 
 two conditions.  The first is that it contain group constant information for all independent, 
