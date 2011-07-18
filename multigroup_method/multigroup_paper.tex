@@ -722,11 +722,11 @@ k_t = P_{\mbox{NL}} \cdot \frac{\sum_g^G V_{\mbox{fuel}} \cdot \bar{\nu}\Sigma_{
 In equation \ref{k_rescale}, $P_{NL}$ represents the non-leakage probability and must be externally supplied
 to the reactor model.  Note that together the $P_{NL}$ and $\zeta_{tg}$ are functionally adjustment parameters
 that which may be used to account for fundemental modeling errors in the geometery.  The non-leakeage 
-probability accounts for the fact that the reactor is modeled as an inifintely relefected system, whereas
+probability accounts for the fact that the reactor is modeled as an infinitely relefected system, whereas
 any real system will have physical limits.  By analogy, the thermal disadavantage factor corrects the flux 
 for errors stemming from a two-region lattice diffusion theory approximation.  Thus, the RMG may be `tuned'
-to work by variying $P_{NL}$ and $\zeta_{tg}$.  Reasonable limits on which to adjust these two parameters 
-vary by reactor type.
+to work by variying $P_{NL}$ and $\zeta_{tg}$.  Reasonable limits on which to adjust the non-leakage probability
+vary by reactor type.  The thermal disadvantge factor is calculated from two-region lattice functions.
 
 
 \subsection{Transmutation Calculation}
@@ -812,10 +812,10 @@ The reactor state is for this benchmark is shown in Table \ref{benchmark_rx_stat
 Fuel Density                  & $\rho_{\mbox{fuel}}$ & 10.7 g/cm\superscript{3}  \\
 Cladding Density              & $\rho_{\mbox{clad}}$ & 5.87 g/cm\superscript{3}  \\
 Coolant Density               & $\rho_{\mbox{cool}}$ & 0.73 g/cm\superscript{3}  \\
-Fuel Cell Radius              & $r_{\mbox{fuel}}$    & 0.412 cm \\
-Void Cell Radius              & $r_{\mbox{void}}$    & 0.4205 cm \\
+Fuel Cell Radius              & $r_{\mbox{fuel}}$    & 0.41 cm \\
+Void Cell Radius              & $r_{\mbox{void}}$    & 0.4185 cm \\
 Cladding Cell Radius          & $r_{\mbox{clad}}$    & 0.475 cm \\
-Unit Cell Pitch               & $\ell$               & 1.33 cm \\
+Unit Cell Pitch               & $\ell$               & 1.3127 cm \\
 Number of Burn Regions        & $b_r$                & 10 \\
 Fuel Specific Power           & $p_s$                & 0.04 MW/kgIHM \\
 Initial \nuc{U}{235} Mass Fraction & $T_{\mbox{\nuc{U}{235}}0}$ & 0.05 kg\subscript{i}/kgIHM \\
@@ -899,12 +899,12 @@ may be seen in Figures \ref{spec_BOL} \& \ref{spec_EOL}.
 \end{figure}
 By inspection, there is good agreement between the RMG and Serpent spectra.  Quantitatively, 
 the fractional deviation lies between 0.5 - 5\% for most groups.  The groups for which 
-significantly larger $\varepsilon$ are present (10 - 140\%) are categorically the groups 
-where the flux is smaller by orders of magnitudes.  Thus the term $\varepsilon\phi_g$ lies
-within appropriate limits for all groups.  Moreover, differences in Figures \ref{spec_BOL} \& 
-\ref{spec_EOL} is partially explained by the difference in regions for which the flux is defined.
-The Serpent curves here represent a homogenized full-core, while the RMG spectra are only for the 
-fuel region.
+significantly larger $\varepsilon$ are present (10 - 85\%) are categorically the low energy groups 
+where the flux may be smaller by orders of magnitudes.  Moreover, differences in Figures \ref{spec_BOL} \& 
+\ref{spec_EOL} are partially explained by the difference in regions for which the flux is defined.
+The RMG curves here represent a homogenized full-core, while the Serpent spectra are only for the 
+fuel region.  Because of more scattering events in the coolant and more absorption reactions in the fuel, 
+the harder Serpent fuel spectrum is expected than that calculated by the RMG.
 
 Lastly in the reactor model flow, the transmutation calculation must be benchmarked.
 Figures \ref{act_benchmark}-\ref{fp_benchmark} display the time evolution of the mass 
@@ -1037,8 +1037,8 @@ between data sets while removing the complexity of plotting three dimensional in
 \end{center}
 \end{figure}
 
-Lastly, since the one-group cross sections are feed to Origen to make a transmutation library, it is important 
-to ensure that no reaction is far off from a benchmark value.  Tables 
+Lastly, since the one-group cross sections are submitted to Origen to make a transmutation library, 
+it is important to ensure that no reaction is far off from a benchmark value.  Tables 
 \ref{rank_Actinide_sigma_s_table}-\ref{rank_Actinide_sigma_f_table} display the 
 nuclides with the highest $|\varepsilon|$ (in descending order) at any time step for absorption and scattering
 reactions for the fission products and for absorption, scattering and fission reactions for the actinides.
