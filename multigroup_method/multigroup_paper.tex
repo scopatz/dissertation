@@ -294,7 +294,9 @@ $G$-group cross sections are assembled for each perturbation using the Monte Car
 transport code Serpent \cite{Lepp2011}.  Char fills a templated Serpent input deck with the
 perturbation values and then executes the transport code.  The templates use a combination 
 of detectors in the fuel, cladding, and coolant regions as well as the universe metrics that 
-Serpent outputs to determine the group constants.
+Serpent outputs to determine the group constants.  Detectors tally volume averaged, energy 
+discretized parameters.  To obtain a group constant, the detector for the reaction rate of 
+a nuclide is divided (interally by Serpent) by the detector for the flux spectrum.
 
 In almost every case, the detectors specified with the appropriate MT number suffice.  
 However, some tallies (and some reaction-like parameters) are not given by detectors
