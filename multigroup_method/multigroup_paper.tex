@@ -506,8 +506,29 @@ constants for a reaction $r_x$ were estimated using equation \ref{group_const_es
 \label{group_const_est}
 \sigma_{r_x,g} = \frac{\sigma_{r_x}^f - \sigma_{r_x}^t}{1 - \mbox{2.53E-08}} \cdot (E_g - \mbox{2.53E-08}) + \sigma_{r_x}^t
 \end{equation}
-In the case where even this method fails (negative cross sections computed or data not available), 
-a zero values is finally assumed for this group constant.
+
+Alternatively, a simple two energy region method which accounts for the `one-over-v' dependence
+could be implemented.  Consider that for low energies, the cross section is roughly proportional 
+to the inverse of the neutron velocity $v$ [m/s].  The velocity itself is a simple function of 
+the neutron kinetic energy $v = \sqrt{2E/m_n}$.  Thus for low energies, the group constant may 
+be estimated via equation \ref{low_e_estimate}.
+\begin{equation}
+\label{low_e_estimate}
+\sigma_{r_x,g} = \sqrt{\frac{\mbox{2.53E-08}}{E_g}} \cdot \sigma_{r_x}^t \, \mbox{, where } E_g < \mbox{2.53E-08} \left(\frac{\sigma_{r_x}^t}{\sigma_{r_x}^f}\right)^2
+\end{equation}
+However for energies greater than the thermal-fast intersection point, the cross section may taken as 
+a simply the fast value.
+\begin{equation}
+\label{low_e_estimate}
+\sigma_{r_x,g} = \sigma_{r_x}^f \, \mbox{, where } \mbox{2.53E-08} \left(\frac{\sigma_{r_x}^t}{\sigma_{r_x}^f}\right)^2 \le E_g
+\end{equation}
+Since the nuclides for which the interpolation schema is used on are unimportant to the RMG,  
+this two energy region model does not add considerable fidelity to the overall model.
+
+In the case where even the interpolation methods above fail (negative cross sections computed or 
+data not available), a zero values is finally assumed for this group constant.  A zero value, rather 
+than indicating a lack of data, should be interpreted as this nuclide for this reaction having no
+importance to the overall reactor parameterization.
 
 \subsection{Cross Section Validation}
 \index{Cross Section Validation@\emph{Cross Section Validation}}
