@@ -11,7 +11,7 @@ rc('font', family='roman')
 
 
 fig=pylab.figure()
-ax=fig.add_subplot(111)
+ax=fig.add_subplot(111, aspect='equal')
 
 resolution = 50 # the number of vertices
 
@@ -28,10 +28,10 @@ ax.axis([-0.65635, 0.65635, -0.65635, 0.65635])
 
 rnames = ['fuel', 'void', 'clad']
 for i, r, n in zip(range(len(rnames)), radii[::-1], rnames):
-    plt.text((r/3), (r*i/(3+0.1*(i+1)))*np.sin(i*np.pi/6) - 0.04, "$r_{{\\mbox{{{0}}}}}$ = {1}".format(n, r))
+    plt.text((r/3), (r*i/(3+0.1*(i+1)))*np.sin(i*np.pi/6) - 0.04, "$r_{{\\mbox{{{0}}}}}$ = {1}".format(n, r), size='xx-small')
 
 plt.plot([-0.65635, 0.65635], [-(radii[0] + 0.65635)/2]*2, 'k-')
-plt.text(-0.1, -(radii[0] + 0.65635)/2 - 0.03, "pitch = {0}".format(0.65635*2))
+plt.text(-0.1, -(radii[0] + 0.65635)/2 - 0.03, "pitch = {0}".format(0.65635*2), size='small')
 
 plt.xlabel("x [cm]")
 plt.ylabel("y [cm]")

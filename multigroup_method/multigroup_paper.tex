@@ -1,8 +1,10 @@
 \chapter{Multigroup Reactor Methodology}
 \index{Multigroup Reactor Methodology@\emph{Multigroup Reactor Methodology}}
+\label{mg_paper}
 
 \section{Introduction}
 \index{Introduction@\emph{Introduction}}
+\label{mg_sec:intro}
 Previous studies have examined the use of quickly executing, essential-physics-capturing codes for within the
 nuclear fuel cycle.  Unlike analytic techniques (such as neutron transport) which seek to completely 
 solve fundamental physical systems, dominant physics codes parameterize the system.   Interpolations
@@ -257,7 +259,27 @@ approximately an order of magnitude.
 
 For the remainder of the this study the perturbations presented in Table \ref{char_param_outer_product}
 were sufficient to demonstrate the validity of the multigroup method.  Table \ref{group_boundaries} 
-displays the group structure implemented.
+displays the group structure implemented.  This group structure is designed to capture resonsnce 
+effects more finely than the fast and thermal regions.  Additionally, though the geometry could be varied, 
+it was fixed for the course of this study.  Figures \ref{fuel_pin_cell} \& \ref{lattice} show the fuel pin cell 
+as well as the 17x17 lattice that were used.  Numeric values for the lattice may be infered from 
+those of the unit cell.  Refelcting boundary conditions are applied to the lattice where required.
+
+\begin{figure}[htbp]
+\caption{Unit Fuel Pin Cell}
+\label{fuel_pin_cell}
+\begin{center}
+\includegraphics[scale=0.5]{multigroup_method/figs/fuel_pin_cell.eps}
+\end{center}
+\end{figure}
+\begin{figure}[htbp]
+\caption{Fuel Assemblly Lattice}
+\label{lattice}
+\begin{center}
+\includegraphics[scale=0.25]{multigroup_method/figs/lattice.eps}
+\end{center}
+\end{figure}
+
 
 \subsection{Cross Section Generation: Serpent}
 \index{Cross Section Generation: Serpent@\emph{Cross Section Generation: Serpent}}
