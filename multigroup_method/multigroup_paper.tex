@@ -260,10 +260,7 @@ approximately an order of magnitude.
 For the remainder of the this study the perturbations presented in Table \ref{char_param_outer_product}
 were sufficient to demonstrate the validity of the multigroup method.  Table \ref{group_boundaries} 
 displays the group structure implemented.  This group structure is designed to capture resonsnce 
-effects more finely than the fast and thermal regions.  Additionally, though the geometry could be varied, 
-it was fixed for the course of this study.  Figures \ref{fuel_pin_cell} \& \ref{lattice} show the fuel pin cell 
-as well as the 17x17 lattice that were used.  Numeric values for the lattice may be infered from 
-those of the unit cell.  Refelcting boundary conditions are applied to the lattice where required.
+effects more finely than the fast and thermal regions.  
 
 \begin{figure}[htbp]
 \caption{Unit Fuel Pin Cell}
@@ -279,6 +276,69 @@ those of the unit cell.  Refelcting boundary conditions are applied to the latti
 \includegraphics[scale=0.25]{multigroup_method/figs/lattice.eps}
 \end{center}
 \end{figure}
+
+Additionally, though the geometry could be varied, 
+it was fixed for the course of this study.  Figures \ref{fuel_pin_cell} \& \ref{lattice} show the fuel pin cell 
+as well as the 17x17 lattice that were used.  Numeric values for the lattice may be infered from 
+those of the unit cell.  Refelcting boundary conditions are applied to the lattice where required.
+
+\begin{table}[htbp]
+\begin{center}
+\caption{Mass Fractions in Fuel Region}
+\label{mass_frac_fuel}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{nuclide} & \textbf{mass fraction} \\
+\hline
+\nuc{O}{16}  & 0.11858 \\
+\nuc{U}{235} & 0.03966 \\
+\nuc{U}{238} & 0.84176 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+\begin{table}[htbp]
+\begin{center}
+\caption{Mass Fractions in Cladding Region}
+\label{mass_frac_clad}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{nuclide} & \textbf{mass fraction} \\
+\hline
+Zr          & 0.98135 \\
+Cr          & 0.00100 \\
+Fe          & 0.00135 \\
+Ni          & 0.00055 \\
+Sn          & 0.01450 \\
+\nuc{O}{16} & 0.11858 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+\begin{table}[htbp]
+\begin{center}
+\caption{Mass Fractions in Coolant Region}
+\label{mass_frac_cool}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{nuclide} & \textbf{mass fraction} \\
+\hline
+\nuc{H}{1}  & 0.11107    \\
+\nuc{O}{16} & 0.8886     \\
+\nuc{B}{10} & 6.0785E-05 \\
+\nuc{B}{11} & 0.00026914 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Lastly, default materials are specified. Table \ref{mass_frac_fuel} shows the uranium-oxide 
+fuel mass fractions for an initial heavy metal (IHM) with a 4.5\% \nuc{U}{235} enrichment.
+Table \ref{mass_frac_clad} gives the mass fractions for the cladding, where the elemental 
+entries have their natrually occuring isotopic distruption.  Table \ref{mass_frac_cool} 
+diplays the mass weights for borated light water.
+Note that these mass fractions may perturbed from the values in these tables, however 
+this is most commonly done for the fuel.
 
 
 \subsection{Cross Section Generation: Serpent}
