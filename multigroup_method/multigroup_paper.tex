@@ -432,6 +432,8 @@ capture per nuclide effects, $\chi(E)$ varies only slightly among different spec
 Moreover, since a Serpent run is performed for each perturbation, changes to 
 the initial conditions are still encapsulated.  Thus the induced error on the RMG is very low.
 
+Sample input deck listings that were used to calculate burnups, flux spectra, and group constants
+may be seen in Appendix \ref{appendix_serpent_input}.
 
 \subsection{Cross Section Generation: Physical Models \& CINDER}
 \index{Cross Section Generation: Physical Models@\emph{Cross Section Generation: Physical Models}}
@@ -509,25 +511,42 @@ cross section $\sigma_{s,ipgh}$ is desired, adding an additional dimension to co
 Furthermore, because scattering reactions are mainly about energy transfer between the neutron and 
 nuclide, the material temperature $T$ [K] is also important.
 
-Equation \ref{scat_ce} represents a continuous energy model of the scattering cross section for a free gas
-\cite{Yamamoto2006, Mattes2005}.
+Equation \ref{scat_ce} represents a continuous energy, double differential model of the scattering 
+cross section for a free gas \cite{Yamamoto2006, Mattes2005}.
 \begin{equation}
 \label{scat_ce}
-\sigma_s(E) = 4 \pi b^2 \cdot \left(1 - \frac{2E}{931.46 \cdot m_n}\right) \cdot
-              \left(1 + \frac{m_n}{M_A} \frac{kT}{E} \cdot e^{-\frac{M_A}{m_n}\frac{E}{kT}}\right) 
-              \cdot \left(1 - \mbox{Exp}\left[-\sqrt{\frac{0.1}{E}}\right]\right)
+\frac{d^2}{dE^\prime d\Omega} \sigma_s(E\to E^\prime, \Omega\to\Omega^\prime) = \frac{b^2}{kT} \cdot 
+            \left(1 - \frac{2E}{931.46 \cdot m_n}\right) \cdot
+            \sqrt{\frac{E^{\prime}}{E}} e^{-\frac{\beta}{2}} S(\alpha, \beta)
 \end{equation}
 where $b$ [cm] is the bound scattering length of the target nucleus, $E$ [MeV] is the incident
-neutron energy, $m_n$ is mass of the neutron, $M_A$ is the mass of the target nucleus, and
-$k$ [MeV/K] is Boltzmann's constant.
+neutron energy, $E^\prime$ [MeV] is exiting neutron energy, $\Omega$ [sr] is the incident 
+neutron solid angle, $\Omega^\prime$ [sr] is the exiting neutron solid angle,
+$m_n$ is mass of the neutron, 
+$M_A$ is the mass of the target nucleus, and $k$ [MeV/K] is Boltzmann's constant.  $S(\alpha, \beta)$
+represents the scattering kernel with the scattering parameters $\alpha$ and $\beta$ defined in 
+equations \ref{scat_alpha} \& \ref{scat_beta}.
+\begin{equation}
+\label{scat_alpha}
+\alpha = \frac{E^\prime + E - 2\sqrt{E^\prime E}\cos(\theta)}{\frac{M_A}{m_n}kT}
+\end{equation}
+\begin{equation}
+\label{scat_beta}
+\beta = \frac{E^\prime - E}{kT}
+\end{equation}
+Many approximations to the scattering kernel exist.  For a free gas, $S(\alpha, \beta)$ may be set 
+as in \ref{scat_kern}.
+\begin{equation}
+\label{scat_kern}
+S(\alpha, \beta) = \frac{1}{\sqrt{4\pi\alpha}} \mbox{Exp}(-\frac{\alpha^2 + \beta^2}{4\alpha})
+\end{equation}
 
-Term by term, $4 \pi b^2$ represents a base estimate of the scattering cross section.  
-The $\left(1 - \frac{2E}{931.46 \cdot m_n}\right)$ term is a relativistic correction
-factor for $b$.  The remaining two terms are an adjusted, neutron-exiting-energy-integrated 
-representation of the scattering kernel $S(\alpha, \beta)$ for a free gas.
-
+The term $4 \pi b^2$ represents a base estimate of the scattering cross section
+(the so-called bound scattering cross section $\sigma_b$).  
+Moreover, the $\left(1 - \frac{2E}{931.46 \cdot m_n}\right)$ term in equation \ref{scat_ce} is 
+a relativistic correction factor for $b$.  
 The bound scattering length for a nuclide is computed via coherent and incoherent components
-(equation \ref{scat_len}).
+as seen in equation \ref{scat_len}.
 \begin{equation}
 \label{scat_len}
 b = \sqrt{\left| b_{\mbox{coh}} \right|^2 + \left| b_{\mbox{inc}} \right|^2}
@@ -536,6 +555,31 @@ Values for the scattering lengths were obtained from \cite{Sears1992}.  For nucl
 that do not appear in this tabulation, a $b$-value for a nuclide of the same element was
 used as a surrogate.  If the entire element was absent from the tabulation, then the 
 scattering length of the next lowest Z-numbered nuclide was substituted instead.
+
+Because neutron transport is not performed here, the double differential cross section
+may be integrated over all solid angles.
+\begin{equation}
+\label{scat_de}
+\frac{d\sigma_s(E\to E^\prime)}{dE^\prime} = \frac{b^2 M_A}{2Em_n} \cdot 
+            \left(1 - \frac{2E}{931.46 \cdot m_n}\right) \cdot \left[Q^-(\alpha, \beta) - Q^+(\alpha, \beta)\right]
+\end{equation}
+where 
+\begin{equation}
+\label{scat_q}
+Q^\pm(\alpha, \beta) = \mbox{Exp}\left(-\frac{\beta \mp |\beta|}{2}\right) 
+                       \left[\mbox{Erf}\left(\frac{|\beta| \pm \alpha_1}{2\sqrt{\alpha_1}}\right) - 
+                             \mbox{Erf}\left(\frac{|\beta| \pm \alpha_{-1}}{2\sqrt{\alpha_{-1}}}\right)\right]
+\end{equation}
+with 
+\begin{equation}
+\label{scat_alpha_pm}
+\alpha_{\pm 1} = \frac{E^\prime + E \mp 2\sqrt{E^\prime E}}{\frac{M_A}{m_n}kT}
+\end{equation}
+Equation \ref{scat_de} treats $d\sigma_s(E\to E^\prime)/dE^\prime$ in the most general way.  
+Significant algebraic simplifications may be made in the cases where $E^\prime = E$, $m_n \approx M_A$, 
+or $m_n << M_A$.  A proof of the integration from equation \ref{scat_ce} to equation \ref{scat_de} is 
+presented in Appendix \ref{}.
+
 
 The group-to-group scattering cross section may thus be calculated as in equation \ref{scat_collapse}.
 \begin{equation}
@@ -975,9 +1019,8 @@ may be seen in Table \ref{benchmark_IHM}.
 \hline
 \textbf{Nuclide} & \textbf{$T_{i0}$} \\
 \hline
-\nuc{U}{234}     & 0.01 \\
-\nuc{U}{235}     & 0.05 \\
-\nuc{U}{238}     & 0.94 \\
+\nuc{U}{235}     & 0.045 \\
+\nuc{U}{238}     & 0.955 \\
 \hline
 \end{tabular}
 \end{center}
