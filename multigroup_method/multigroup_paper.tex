@@ -512,11 +512,11 @@ Furthermore, because scattering reactions are mainly about energy transfer betwe
 nuclide, the material temperature $T$ [K] is also important.
 
 Equation \ref{scat_ce} represents a continuous energy, double differential model of the scattering 
-cross section for a free gas \cite{Yamamoto2006, Mattes2005}.
+cross section \cite{Yamamoto2006, Mattes2005}.
 \begin{equation}
 \label{scat_ce}
 \frac{d^2}{dE^\prime d\Omega} \sigma_s(E\to E^\prime, \Omega\to\Omega^\prime) = \frac{b^2}{kT} \cdot 
-            \left(1 - \frac{2E}{931.46 \cdot m_n}\right) \cdot
+            %\left(1 - \frac{2E}{931.46 \cdot m_n}\right) \cdot
             \sqrt{\frac{E^{\prime}}{E}} e^{-\frac{\beta}{2}} S(\alpha, \beta)
 \end{equation}
 where $b$ [cm] is the bound scattering length of the target nucleus, $E$ [MeV] is the incident
@@ -538,13 +538,13 @@ Many approximations to the scattering kernel exist.  For a free gas, $S(\alpha, 
 as in \ref{scat_kern}.
 \begin{equation}
 \label{scat_kern}
-S(\alpha, \beta) = \frac{1}{\sqrt{4\pi\alpha}} \mbox{Exp}(-\frac{\alpha^2 + \beta^2}{4\alpha})
+S(\alpha, \beta) = \frac{1}{\sqrt{4\pi\alpha}} \mbox{Exp}\left(-\frac{\alpha^2 + \beta^2}{4\alpha}\right)
 \end{equation}
 
 The term $4 \pi b^2$ represents a base estimate of the scattering cross section
 (the so-called bound scattering cross section $\sigma_b$).  
-Moreover, the $\left(1 - \frac{2E}{931.46 \cdot m_n}\right)$ term in equation \ref{scat_ce} is 
-a relativistic correction factor for $b$.  
+%Moreover, the $\left(1 - \frac{2E}{931.46 \cdot m_n}\right)$ term in equation \ref{scat_ce} is 
+%a relativistic correction factor for $b$.  
 The bound scattering length for a nuclide is computed via coherent and incoherent components
 as seen in equation \ref{scat_len}.
 \begin{equation}
@@ -561,7 +561,8 @@ may be integrated over all solid angles.
 \begin{equation}
 \label{scat_de}
 \frac{d\sigma_s(E\to E^\prime)}{dE^\prime} = \frac{b^2 M_A}{2Em_n} \cdot 
-            \left(1 - \frac{2E}{931.46 \cdot m_n}\right) \cdot \left[Q^-(\alpha, \beta) - Q^+(\alpha, \beta)\right]
+            %\left(1 - \frac{2E}{931.46 \cdot m_n}\right) \cdot 
+            \left[Q^-(\alpha, \beta) - Q^+(\alpha, \beta)\right]
 \end{equation}
 where 
 \begin{equation}

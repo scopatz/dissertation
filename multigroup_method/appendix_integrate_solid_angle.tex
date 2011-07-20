@@ -1,0 +1,100 @@
+\chapter{Integration of Double Differential Scattering Cross Section Over Solid Angle}
+\index{Appendix!Integration of Double Differential Scattering Cross Section Over Solid Angle@\emph{Integration of Double Differential Scattering Cross Section Over Solid Angle}}
+\label{appendix_integrate_solid_angle}
+
+Suppose that equation \ref{app_scat_ce} is a continuous energy, double differential model of the scattering
+cross section \cite{Yamamoto2006, Mattes2005}.
+\begin{equation}
+\label{app_scat_ce}
+\frac{d^2}{dE^\prime d\Omega} \sigma_s(E\to E^\prime, \Omega\to\Omega^\prime) = \frac{b^2}{kT} \cdot
+            %\left(1 - \frac{2E}{931.46 \cdot m_n}\right) \cdot
+            \sqrt{\frac{E^{\prime}}{E}} e^{-\frac{\beta}{2}} S(\alpha, \beta)
+\end{equation}
+where $b$ [cm] is the bound scattering length of the target nucleus, $E$ [MeV] is the incident
+neutron energy, $E^\prime$ [MeV] is exiting neutron energy, $\Omega$ [sr] is the incident
+neutron solid angle, $\Omega^\prime$ [sr] is the exiting neutron solid angle,
+$m_n$ is mass of the neutron,
+$M_A$ is the mass of the target nucleus, and $k$ [MeV/K] is Boltzmann's constant.  Note that the term 
+$S(\alpha, \beta)$ is the scattering kernel with the scattering parameters $\alpha$ and $\beta$.
+\begin{equation}
+\label{app_scat_alpha}
+\alpha = \frac{E^\prime + E - 2\sqrt{E^\prime E}\cos(\theta)}{\frac{M_A}{m_n}kT}
+\end{equation}
+\begin{equation}
+\label{app_scat_beta}
+\beta = \frac{E^\prime - E}{kT}
+\end{equation}
+Using the free gas approximation, $S(\alpha, \beta)$ is modeled as seen in equation \ref{app_scat_kern}.
+\begin{equation}
+\label{app_scat_kern}
+S(\alpha, \beta) = \frac{1}{\sqrt{4\pi\alpha}} \mbox{Exp}\left(-\frac{\alpha^2 + \beta^2}{4\alpha}\right)
+\end{equation}
+By integrating the double differential scattering cross section over all solid angles $\Omega$, 
+an energy-only expression may be obtained.
+
+Begin by noting that the only term in equation \ref{app_scat_ce} that is dependent on the 
+scattering angle is the kernel $S(\alpha, \beta)$.  Thus defining $K$ such that, 
+\begin{equation}
+\label{app_big_k}
+K = \frac{b^2}{kT} \sqrt{\frac{E^{\prime}}{E}}
+\end{equation}
+equation \ref{app_scat_ce} becomes equation \ref{app_scat_ke}.
+\begin{equation}
+\label{app_scat_ke}
+\frac{d^2}{dE^\prime d\Omega} \sigma_s(E\to E^\prime, \Omega\to\Omega^\prime) = K \cdot
+                e^{-\frac{\beta}{2}} \cdot
+                \frac{e^{-\frac{\alpha^2 + \beta^2}{4\alpha}}}{\sqrt{4\pi\alpha}}
+\end{equation}
+This expression in turn may be integrated over all scattering angle, on which only $\alpha$ 
+is dependent for a free gas.
+\begin{equation}
+\label{app_int_ke}
+\frac{d\sigma_s(E\to E^\prime)}{dE^\prime} = K \cdot
+                e^{-\frac{\beta}{2}} \cdot
+                \int_\Omega \frac{e^{-\frac{\alpha^2 + \beta^2}{4\alpha}}}{\sqrt{4\pi\alpha}} d\Omega
+\end{equation}
+Expanding the $\Omega$ into its azimuthal and inclination angle components, the integral in 
+equation \ref{app_int_ke} may be reduced as follows.
+\begin{equation}
+\label{app_int_ke_1}
+\int_\Omega \frac{e^{-\frac{\alpha^2 + \beta^2}{4\alpha}}}{\sqrt{4\pi\alpha}} d\Omega = 
+    \int_0^{2\pi} \int_0^\pi \frac{e^{-\frac{\alpha^2 + \beta^2}{4\alpha}}}{\sqrt{4\pi\alpha}} \sin(\theta) d\theta d\phi = 
+    2\pi \int_0^\pi \frac{e^{-\frac{\alpha^2 + \beta^2}{4\alpha}}}{\sqrt{4\pi\alpha}} \sin(\theta) d\theta
+\end{equation}
+Now making a change of variables by setting $\mu=\cos(\theta)$, the integral in equation \ref{app_int_ke_1}
+becomes, 
+\begin{equation}
+\label{app_int_ke_2}
+\sqrt{\pi} \int_1^{-1} \frac{e^{-\frac{\alpha^2 + \beta^2}{4\alpha}}}{\sqrt{\alpha}} \sin(\theta) \frac{-d\mu}{\sin(\theta)} = 
+                \sqrt{\pi} \int_{-1}^1 \frac{e^{-\frac{\alpha^2 + \beta^2}{4\alpha}}}{\sqrt{\alpha}} d\mu
+\end{equation}
+Performing another change of variables from $\mu$ to $\alpha$, the relationship $L$ is found between
+the differentials.
+\begin{equation}
+\label{app_dmu_dalpha}
+\frac{d\mu}{d\alpha} = - \frac{2\sqrt{E^\prime E}}{\frac{M_A}{m_n}kT} = L
+\end{equation}
+The limits on the integrand are thus defined as follows.
+\begin{equation}
+\label{app_alpha_limits}
+\alpha_{\pm 1} = \frac{E^\prime + E \mp 2\sqrt{E^\prime E}\cos(\theta)}{\frac{M_A}{m_n}kT}
+\end{equation}
+Thus the evaluation of the integral becomes dependent on the error function.
+\begin{equation}
+\label{app_int_ke_3}
+\frac{\sqrt{\pi}}{L} \int_{\alpha_{-1}}^{\alpha_1} \frac{e^{-\frac{\alpha^2 + \beta^2}{4\alpha}}}{\sqrt{\alpha}} d\alpha = 
+    \frac{\pi}{L} e^{-\frac{|\beta|}{2}} \left. \left(
+    e^{|\beta|} \mbox{Erf}\left[\frac{|\beta| + \alpha}{2\sqrt{\alpha}}\right] - 
+    \mbox{Erf}\left[\frac{|\beta| - \alpha}{2\sqrt{\alpha}}\right] - 
+    e^{|\beta|} + 1
+    \right) \right|_{\alpha_{-1}}^{\alpha_1}
+\end{equation}
+\begin{equation}
+\label{app_int_ke_3}
+\frac{\sqrt{\pi}}{L} \int_{\alpha_{-1}}^{\alpha_1} \frac{e^{-\frac{\alpha^2 + \beta^2}{4\alpha}}}{\sqrt{\alpha}} d\alpha = 
+    \frac{\pi}{L} e^{-\frac{|\beta|}{2}} \left. \left(
+    e^{|\beta|} \mbox{Erf}\left[\frac{|\beta| + \alpha}{2\sqrt{\alpha}}\right] - 
+    \mbox{Erf}\left[\frac{|\beta| - \alpha}{2\sqrt{\alpha}}\right] - 
+    e^{|\beta|} + 1
+    \right) \right|_{\alpha_{-1}}^{\alpha_1}
+\end{equation}
