@@ -1,6 +1,10 @@
+import tables as tb
+
 from char.envchar import iso_list_conversions, serpent_xs_isos_available
 from char.iso_track import transmute
+
 from isoname import zzLL
+from metasci.nuke import nuc_data
 
 def latex_nuclide(nuc):
     """Takes a nuclide in zzaaam and converts it to the appropriate LaTeX string."""
@@ -35,6 +39,14 @@ def nuclide_latex_table(nuclides, title=""):
         table += " & ".join(nuclides[nrow*ncol:(nrow+1)*ncol])
         table += " \\\\\n"
 
+        # Split up table nicely onto multiple pages
+        if (nrow not in [0, len(nuclides)/ncol - 1]) and (nrow%40 == 0):
+            table += "\\hline\n"
+            table += "\\end{tabular}\n"
+            table += "\n"
+            table += "\\begin{{tabular}}{{|{0}|}}\n".format('c'*ncol)
+            table += "\\hline\n"
+
     table += "\\hline\n"
     table += "\\end{tabular}\n"
     table += "\\end{center}\n"
@@ -53,8 +65,15 @@ def make_tables(nuclides, xsdata):
     nuclides_in_serp = nuclides_zz & serp_nuc_avialable
     nuclides_not_in_serp = nuclides_zz - serp_nuc_avialable
 
+    with tb.openFile(nuc_data, 'r') as nd:
+        decay_nuclides = set(nd.root.decay.cols.from_iso_zz[:])
+        decay_nuclides.update(nd.root.decay.cols.to_iso_zz[:])
+
+    nuclides_not_modeled = decay_nuclides - nuclides_zz
+    
     nuclide_latex_table(nuclides_in_serp, "Nuclides Calculated via Serpent")
     nuclide_latex_table(nuclides_not_in_serp, "Nuclides Calculated via Models")
+    nuclide_latex_table(nuclides_not_modeled, "Nuclides Calculated via Interpolation")
 
 
 if __name__ == '__main__':
