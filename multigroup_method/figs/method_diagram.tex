@@ -16,16 +16,17 @@
         $a_r$\\
 		$t=0$};
 	\node [block, text width=16em, fill=blue!20, below of=given, node distance=2.5cm] (interpolate) {\underline{Interpolate}:
-		find $\left\{p_1^*, p_2^*,\ldots, p_{n_p}^*\right\}$\\
-		$f_a = \sum_a \frac{a_r - a_1^*}{a_2^* - a_1^*}$\\
-		$\sigma_{r_x,itg} = (\sigma_{r_x,ip_2^*g} - \sigma_{r_x,ip_1^*g})f_a + \sigma_{r_x,ip_1^*g}$};
+		Find $p_1^*$ \& $p_2^*$, the two nearest two perturbations,
+        and interpolate between them.\\
+		%$f_a = \sum_a \frac{a_r - a_1^*}{a_2^* - a_1^*}$\\
+		$\sigma_{r_x,itg} = (\sigma_{r_x,ip_2^*g} - \sigma_{r_x,ip_1^*g})x_f + \sigma_{r_x,ip_1^*g}$};
 	\node [block, below of=interpolate, fill=yellow!40, text width=14em, node distance=2.5cm] (eigen) 
 		{\underline{Calculate Criticality}:\\
 		$\left(A_{tgh} - \frac{1}{k}F_{tgh}\right)\phi_{tg}=0$};
 	\node [block, left of=eigen, node distance=5.5cm, fill=purple!20] (store1){\underline{Store}:\\
 		$k_t$\\
 		$\phi_{tg}$};
-	\node [block, text width=14em, fill=blue!20, below of=store1, node distance=2.5cm] (set) {\underline{Set}:\\
+	\node [block, text width=14em, fill=blue!20, below of=store1, node distance=2.5cm] (set) {\underline{Set}: Time \& Fluence\\
 	    $\Delta s=s_{t+1}-s_t$\\
 		$\Phi_{t+1} = \Phi_t + \Delta s \sum_{g=1}^G \phi_{tg}$};
 	\node [block, text width=10em, below of=eigen, fill=yellow!40, node distance=5cm] (transmute){\underline{Transmute}:\\
@@ -37,7 +38,7 @@
 	\node [decision, right of=store2, text width=5.5em, node distance=4.5cm] (morestep) {\underline{More steps?}\\
 		$t\to t+1$};
 	\node [block, below of=morestep, text width=10em, sharp corners] (continue) 
-		{\underline{Continue} with batch averaging methodology.}; 
+		{\underline{Continue} with batch averaging methodology (R1G).}; 
 
 	% Draw edges
 	\path [line] (known) -- (given);

@@ -762,7 +762,8 @@ perturbation from the state of reactor.
 \label{nn_distance}
 d_p = \sqrt{\sum_a \left(\frac{a_r - a_p}{a_{n_p}}\right)^2}
 \end{equation}
-Thus $p^*$ and $a_p^*$ are defined via the sequence $p^* = \left\{p | d_p \le d_{p+1}\right\}$.
+Computing the distance $d_p$ for all perturbations to the state of the reactor, 
+the sorted parameters $p^*$ and $a_p^*$ are defined via the sequence $p^* = \left\{p | d_p \le d_{p+1}\right\}$.
 
 Since $a_1^*$ and $a_2^*$ represent the value of a parameter at the two closest perturbations to the
 current state of the reactor, a unitless multidimensional linear interpolation factor $x_f$ may be defined.
@@ -770,8 +771,8 @@ current state of the reactor, a unitless multidimensional linear interpolation f
 \label{x_factor}
 x_f = \sum_a \left(\frac{a_r - a_1^*}{a_2^* - a_1^*}\right)
 \end{equation}
-This is then used to generate group constants for all reactions from perturbation information
-available in the cross section library. 
+This $x_f$ value is set for the reactor as a whole then used to generate group constants for 
+all reactions from $p_1^*$ \& $p_2^*$ perturbation information available in the cross section library. 
 \begin{equation}
 \label{sig_multi_interp}
 \sigma_{r_x,itg} = (\sigma_{r_x,ip_2^*g} - \sigma_{r_x,ip_1^*g}) \cdot x_f  + \sigma_{r_x,ip_1^*g}
