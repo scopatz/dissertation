@@ -24,6 +24,7 @@ def nuclide_latex_table(nuclides, title=""):
     nuclides = sorted(nuclides)
     nuclides = [latex_nuclide(nuc) for nuc in nuclides]
     label = title.lower().replace(" ", "_")
+    table_count = 0
 
     for ncol in range(10, 0, -1):
         if len(nuclides)%ncol == 0:
@@ -41,17 +42,24 @@ def nuclide_latex_table(nuclides, title=""):
         table += " \\\\\n"
 
         # Split up table nicely onto multiple pages
-        if (nrow not in [0, len(nuclides)/ncol - 1]) and (nrow%40 == 0):
+        if (nrow not in [0, len(nuclides)/ncol - 1]) and (nrow%35 == 0):
+            table_count += 1
             table += "\\hline\n"
             table += "\\end{tabular}\n"
+            table += "\\end{center}\n"
+            table += "\\end{table}\n"
             table += "\n"
+            table += "\\begin{table}[htbp]\n"
+            table += "\\begin{center}\n"
+            table += "\\caption{{{0}}}\n".format(title + " (Cont. {0})".format(table_count))
+            table += "\\label{{{0}}}\n".format(label + "_{0}".format(table_count))
             table += "\\begin{{tabular}}{{|{0}|}}\n".format('c'*ncol)
             table += "\\hline\n"
 
     table += "\\hline\n"
     table += "\\end{tabular}\n"
     table += "\\end{center}\n"
-    table += "\end{table}\n"
+    table += "\\end{table}\n"
 
     with open(label + '.tex', 'w') as f:
         f.write(table)
@@ -72,8 +80,8 @@ mtmap = {
         102: '$\\gamma$',
         103: '$p$',
         104: '$d$',
-        105: '$\\nuc{H}{3}$',
-        106: '$\\nuc{He}{3}$',
+        105: '\\nuc{H}{3}',
+        106: '\\nuc{He}{3}',
         107: '$\\alpha$',
         }
 #mtmap.update({50+i: '$i{0}$'.format(i) for i in range(1, 41)})
@@ -85,6 +93,7 @@ def mt_reaction_table(nuclides, xsdata, temp, title=""):
     temp_flag = temperature_flag(temp)
     label = title.lower().replace(" ", "_")
     mts = serpent_mt_avaliable(xsdata, nuclides, temp_flag)
+    table_count = 0
 
     table = ("\\begin{table}[htbp]\n"
              "\\begin{center}\n")
@@ -102,10 +111,17 @@ def mt_reaction_table(nuclides, xsdata, temp, title=""):
         table += "{0} & {1} \\\\\n".format(nuc_la, rx_la)
 
         # Split up table nicely onto multiple pages
-        if (i not in [0, len(nuclides) - 1]) and (i%40 == 0):
+        if (i not in [0, len(nuclides) - 1]) and (i%35 == 0):
+            table_count += 1
             table += "\\hline\n"
             table += "\\end{tabular}\n"
+            table += "\\end{center}\n"
+            table += "\\end{table}\n"
             table += "\n"
+            table += "\\begin{table}[htbp]\n"
+            table += "\\begin{center}\n"
+            table += "\\caption{{{0}}}\n".format(title + " (Cont. {0})".format(table_count))
+            table += "\\label{{{0}}}\n".format(label + "_{0}".format(table_count))
             table += "\\begin{tabular}{|l|c|}\n"
             table += "\\hline\n"
             table += "\\textbf{nuclides} & \\textbf{reactions} \\\\\n"
@@ -114,7 +130,7 @@ def mt_reaction_table(nuclides, xsdata, temp, title=""):
     table += "\\hline\n"
     table += "\\end{tabular}\n"
     table += "\\end{center}\n"
-    table += "\end{table}\n"
+    table += "\\end{table}\n"
 
     with open(label + '.tex', 'w') as f:
         f.write(table)
