@@ -556,11 +556,11 @@ that do not appear in this tabulation, a $b$-value for a nuclide of the same ele
 used as a surrogate.  If the entire element was absent from the tabulation, then the 
 scattering length of the next lowest Z-numbered nuclide was substituted instead.
 
-Because neutron transport is not performed here, the double differential cross section
-may be integrated over all solid angles.
+Because neutron transport is not performed here, the direction of neutron travel in not
+important to the RMG. Thus the double differential cross section may be integrated over all solid angles.
 \begin{equation}
 \label{scat_de}
-\frac{d\sigma_s(E\to E^\prime)}{dE^\prime} = \frac{b^2 M_A}{2Em_n} \cdot 
+\frac{d\sigma_s(E\to E^\prime)}{dE^\prime} = \frac{\pi b^2 M_A}{2Em_n} \cdot 
             %\left(1 - \frac{2E}{931.46 \cdot m_n}\right) \cdot 
             \left[Q^-(\alpha, \beta) - Q^+(\alpha, \beta)\right]
 \end{equation}
@@ -579,29 +579,18 @@ with
 Equation \ref{scat_de} treats $d\sigma_s(E\to E^\prime)/dE^\prime$ in the most general way.  
 Significant algebraic simplifications may be made in the cases where $E^\prime = E$, $m_n \approx M_A$, 
 or $m_n << M_A$.  A proof of the integration from equation \ref{scat_ce} to equation \ref{scat_de} is 
-presented in Appendix \ref{}.
+presented in Appendix \ref{appendix_integrate_solid_angle}.
 
 
-The group-to-group scattering cross section may thus be calculated as in equation \ref{scat_collapse}.
+Therefore the group-to-group scattering cross section may thus be calculated as in equation \ref{scat_collapse}.
 \begin{equation}
 \label{scat_collapse}
-\sigma_{s,gh} = \frac{\int_{E_g}^{E_{g+1}} \int_{E_h}^{E_{h+1}} \sigma_s(E) P(E \to E^\prime) \phi_g(E) dE^\prime dE}
-                     {\int_{E_g}^{E_{g+1}} \phi_g(E) dE}
+\sigma_{s,gh} = \frac{\int_{E_{g+1}}^{E_g} \int_{E_{h+1}}^{E_h} \frac{d\sigma_s(E\to E^\prime)}{dE^\prime}  \phi_g(E) dE^\prime dE}
+                     {\int_{E_{g+1}}^{E_g} \phi_g(E) dE}
 \end{equation}
-with $E^\prime$ as the exiting neutron energy and $P(E \to E^\prime)$ being the differential probability of 
-scattering from one energy to another.  This probability is computed via equation \ref{P_E_to_E_prime}
-\begin{equation}
-\label{P_E_to_E_prime}
-P(E \to E^\prime) = \frac{1}{E + kT - \left(\frac{M_A - m_n}{M_A + m_n}\right)^2 E}
-\end{equation}
-Note that equation \ref{P_E_to_E_prime} is only valid on the range 
-\begin{equation}
-\label{P_E_to_E_prime_range}
-\left(\frac{M_A - m_n}{M_A + m_n}\right)^2 \cdot E \le E^\prime \le E + kT
-\end{equation}
-For all values of $E^\prime$ outside of this range, $P(E \to E^\prime) = 0$.
-
-Subjecting the numerically computed the double integral in equation \ref{scat_collapse} 
+This equation is most easily solved numerically rather than analytically.
+A double trapezoidal integration was found to be sufficient for the estimates here.
+Subjecting the integral in equation \ref{scat_collapse} 
 to the incident scattering constraint yields the appropriate group constant (equation \ref{scat_constraint}).
 \begin{equation}
 \label{scat_constraint}
