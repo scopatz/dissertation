@@ -89,12 +89,59 @@ Thus the evaluation of the integral becomes dependent on the error function.
     e^{|\beta|} + 1
     \right) \right|_{\alpha_{-1}}^{\alpha_1}
 \end{equation}
+The terms in this evaluation that are not dependent on $\alpha$ disappear when the limits are applied.
 \begin{equation}
-\label{app_int_ke_3}
+\label{app_int_ke_4}
 \frac{\sqrt{\pi}}{L} \int_{\alpha_{-1}}^{\alpha_1} \frac{e^{-\frac{\alpha^2 + \beta^2}{4\alpha}}}{\sqrt{\alpha}} d\alpha = 
-    \frac{\pi}{L} e^{-\frac{|\beta|}{2}} \left. \left(
-    e^{|\beta|} \mbox{Erf}\left[\frac{|\beta| + \alpha}{2\sqrt{\alpha}}\right] - 
-    \mbox{Erf}\left[\frac{|\beta| - \alpha}{2\sqrt{\alpha}}\right] - 
-    e^{|\beta|} + 1
+    \frac{\pi}{L} \left. \left(
+    e^{\frac{|\beta|}{2}}  \mbox{Erf}\left[\frac{|\beta| + \alpha}{2\sqrt{\alpha}}\right] - 
+    e^{-\frac{|\beta|}{2}} \mbox{Erf}\left[\frac{|\beta| - \alpha}{2\sqrt{\alpha}}\right] 
     \right) \right|_{\alpha_{-1}}^{\alpha_1}
+\end{equation}
+Adding in the $e^{-\frac{\beta}{2}}$ term from equation \ref{app_int_ke}, 
+\begin{equation}
+\label{app_int_ke_5}
+e^{-\frac{\beta}{2}} \frac{\sqrt{\pi}}{L} \int_{\alpha_{-1}}^{\alpha_1} \frac{e^{-\frac{\alpha^2 + \beta^2}{4\alpha}}}{\sqrt{\alpha}} d\alpha = 
+    \frac{\pi}{L} \left. \left(
+    e^{-\frac{\beta - |\beta|}{2}} \mbox{Erf}\left[\frac{|\beta| + \alpha}{2\sqrt{\alpha}}\right] - 
+    e^{-\frac{\beta + |\beta|}{2}} \mbox{Erf}\left[\frac{|\beta| - \alpha}{2\sqrt{\alpha}}\right] 
+    \right) \right|_{\alpha_{-1}}^{\alpha_1}
+\end{equation}
+This expression may be further simplified to 
+\begin{equation}
+\label{app_int_ke_6}
+e^{-\frac{\beta}{2}} \frac{\sqrt{\pi}}{L} \int_{\alpha_{-1}}^{\alpha_1} \frac{e^{-\frac{\alpha^2 + \beta^2}{4\alpha}}}{\sqrt{\alpha}} d\alpha = 
+    \frac{\pi}{L} \left(Q^+(\alpha, \beta) - Q^-(\alpha, \beta) \right) 
+\end{equation}
+by defining a $Q$ such that
+\begin{equation}
+\label{app_Q_pm}
+Q^\pm(\alpha, \beta) = e^{-\frac{\beta \mp |\beta|}{2}} \left( 
+    \mbox{Erf}\left[\frac{|\beta| \pm \alpha_1}{2\sqrt{\alpha_1}}\right] -
+    \mbox{Erf}\left[\frac{|\beta| \pm \alpha_{-1}}{2\sqrt{\alpha_{-1}}}\right]  
+    \right) 
+\end{equation}
+Note that the term $e^{-\frac{\beta - |\beta|}{2}}$ in $Q^+(\alpha, \beta)$ has a special meaning 
+for upscattering and downscattering event.  For upscattering it is unity and for downscattering it 
+becomes simply $e^{-\beta}$.  For the $e^{-\frac{\beta + |\beta|}{2}}$ in $Q^-(\alpha, \beta)$, 
+the simplifications are inverted.
+
+Therefore the differential equation for the scattering cross section is seen to be
+\begin{equation}
+\label{app_int_qe_pre}
+\frac{d\sigma_s(E\to E^\prime)}{dE^\prime} = 
+    \frac{\pi K}{L} \left(Q^+(\alpha, \beta) - Q^-(\alpha, \beta) \right) 
+\end{equation}
+where 
+\begin{equation}
+\label{app_pi_K_L}
+\frac{\pi K}{L} = \frac{\pi b^2}{kT} \sqrt{\frac{E^\prime}{E}} \left(\frac{-kT}{2\sqrt{E^\prime E}}\right) \frac{M_A}{m_n}
+                = - \frac{\pi b^2}{2E} \frac{M_A}{m_n}
+\end{equation}
+which yields the final expression for the integral of double differntial scattering cross section.
+\begin{equation}
+\label{app_int_qe_pre}
+\frac{d\sigma_s(E\to E^\prime)}{dE^\prime} = 
+    \frac{\pi b^2}{2E} \frac{M_A}{m_n}
+    \left(Q^-(\alpha, \beta) - Q^+(\alpha, \beta) \right) 
 \end{equation}
