@@ -15,7 +15,7 @@ def latex_nuclide(nuc):
 
     ln = "\\nuc{{{0}}}{{{1}}}".format(elem, anum)
     if meta:
-        ln += "^*"
+        ln += "\\superscript{*}"
 
     return ln
 
