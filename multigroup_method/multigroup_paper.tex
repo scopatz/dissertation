@@ -706,7 +706,11 @@ to less than or equal to the absorption cross section.
 Further conditions could be added to the suite, such as ensuring that the sum of 
 all non-total group constants is less than equal to $\sigma_{t,ipg}$.  However, 
 such summation tests are typically indicative of a more primitive error in the 
-group constants.  These basic errors are sufficiently captured by the tests above, 
+group constants.  
+For a more in depth treatment on missing reaction channel errors, please refer to the 
+benchmark in \S \ref{mg_sec:benchmark}.
+
+Basic errors are sufficiently captured by the tests above, 
 without adding extraneous noise to the failure analysis.  The simple test suite developed
 here has proven invaluable towards the RMG benchmarking efforts.
 
@@ -1229,7 +1233,7 @@ between data sets while removing the complexity of plotting three dimensional in
 \end{center}
 \end{figure}
 
-Lastly, since the one-group cross sections are submitted to Origen to make a transmutation library, 
+Moreover, since the one-group cross sections are submitted to Origen to make a transmutation library, 
 it is important to ensure that no reaction is far off from a benchmark value.  Tables 
 \ref{rank_Actinide_sigma_s_table}-\ref{rank_Actinide_sigma_f_table} display the 
 nuclides with the highest $|\varepsilon|$ (in descending order) at any time step for absorption and scattering
@@ -1243,6 +1247,22 @@ the cross sections meet within acceptable levels of error.
 \input{multigroup_method/figs/benchmark/rank_table_Actinide_sigma_a}
 \input{multigroup_method/figs/benchmark/rank_table_Fission_Product_sigma_a}
 \input{multigroup_method/figs/benchmark/rank_table_Actinide_sigma_f}
+
+Lastly, the multigroup model here ignores many reaction channels that are assumed to be 
+unimportant.  While individual channels have only minor effects, the summation of all 
+unobserved reactions may be non-trivial.  Define the missing channel fraction $m_f$ as the maximum 
+over all time of the total one-group cross section less the sum of all other constituent reaction 
+cross sections.
+\begin{equation}
+\label{mcf}
+m_f = \mbox{max}_t\left[1 - \frac{\sum_{r_x \ne t}\sigma_{r_x,it}}{\sigma_{t,it}}\right]
+\end{equation}
+Table \ref{missing_channel_fraction} displays the sorted (highest to lowest) missing 
+channel fractions for all nuclides tracked.  Since nearly all of the $m_f$ values are
+less than 5\%, the assumption that the untracked channels are individually unimportant
+remains sound.
+
+\input{multigroup_method/figs/benchmark/missing_channel_fraction}
 
 
 \section{Conclusion \& Future Work}
