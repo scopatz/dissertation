@@ -59,7 +59,7 @@ constant irradiation, fluence is a clear surrogate for time.)
 A $G$-energy-group reactor model (RMG) seeks to re-parameterize the one-group formulation 
 in terms of energy.  While the multi-group formulation will remain on a per nuclide basis, 
 the neutron reaction rates do not have have a meaningful per unit energy expression that 
-is independent of the flux.  Paramerteizing based on fluence was successful in R1G because 
+is independent of the flux.  Parameterizing based on fluence was successful in R1G because 
 flux spectrum changes with respect to the buildup of new species were ignored.   However, 
 such changes based on initial composition are precisely what the RMG seeks to capture.
 
@@ -259,7 +259,7 @@ approximately an order of magnitude.
 
 For the remainder of the this study the perturbations presented in Table \ref{char_param_outer_product}
 were sufficient to demonstrate the validity of the multigroup method.  Table \ref{group_boundaries} 
-displays the group structure implemented.  This group structure is designed to capture resonsnce 
+displays the group structure implemented.  This group structure is designed to capture resonance 
 effects more finely than the fast and thermal regions.  
 
 \begin{figure}[htbp]
@@ -270,7 +270,7 @@ effects more finely than the fast and thermal regions.
 \end{center}
 \end{figure}
 \begin{figure}[htbp]
-\caption{Fuel Assemblly Lattice}
+\caption{Fuel Assembly Lattice}
 \label{lattice}
 \begin{center}
 \includegraphics[scale=0.25]{multigroup_method/figs/lattice.eps}
@@ -279,8 +279,8 @@ effects more finely than the fast and thermal regions.
 
 Additionally, though the geometry could be varied, 
 it was fixed for the course of this study.  Figures \ref{fuel_pin_cell} \& \ref{lattice} show the fuel pin cell 
-as well as the 17x17 lattice that were used.  Numeric values for the lattice may be infered from 
-those of the unit cell.  Refelcting boundary conditions are applied to the lattice where required.
+as well as the 17x17 lattice that were used.  Numeric values for the lattice may be inferred from 
+those of the unit cell.  Reflecting boundary conditions are applied to the lattice where required.
 
 \begin{table}[htbp]
 \begin{center}
@@ -335,8 +335,8 @@ Sn          & 0.01450 \\
 Lastly, default materials are specified. Table \ref{mass_frac_fuel} shows the uranium-oxide 
 fuel mass fractions for an initial heavy metal (IHM) with a 4.5\% \nuc{U}{235} enrichment.
 Table \ref{mass_frac_clad} gives the mass fractions for the cladding, where the elemental 
-entries have their natrually occuring isotopic distruption.  Table \ref{mass_frac_cool} 
-diplays the mass weights for borated light water.
+entries have their naturally occurring isotopic distribution.  Table \ref{mass_frac_cool} 
+displays the mass weights for borated light water.
 Note that these mass fractions may perturbed from the values in these tables, however 
 this is most commonly done for the fuel.
 
@@ -349,7 +349,7 @@ approximately 400 major species.  Moreover, not all reactions are tallied
 for these nuclides.  However, where fundamental cross section data exists for a nuclide
 and a reaction, it is preferable to use this high-fidelity information to compute group
 constants over other methods discussed below.  For a complete listing of which method was used for each nuclide, 
-and what reaction channnels were avialable, please refer to Appendix \ref{appendix_rmg_nuclide_lists}.
+and what reaction channels were available, please refer to Appendix \ref{appendix_rmg_nuclide_lists}.
 
 $G$-group cross sections are assembled for each perturbation using the Monte Carlo neutron
 transport code Serpent \cite{Lepp2011}.  Char fills a templated Serpent input deck with the
@@ -357,7 +357,7 @@ perturbation values and then executes the transport code.  The templates use a c
 of detectors in the fuel, cladding, and coolant regions as well as the universe metrics that 
 Serpent outputs to determine the group constants.  Detectors tally volume averaged, energy 
 discretized parameters.  To obtain a group constant, the detector for the reaction rate of 
-a nuclide is divided (interally by Serpent) by the detector for the flux spectrum.
+a nuclide is divided (internally by Serpent) by the detector for the flux spectrum.
 
 In almost every case, the detectors specified with the appropriate MT number suffice.  
 However, some tallies (and some reaction-like parameters) are not given by detectors
@@ -902,11 +902,11 @@ k_t = P_{\mbox{NL}} \cdot \frac{\sum_g^G V_{\mbox{fuel}} \cdot \bar{\nu}\Sigma_{
 \end{equation}
 In equation \ref{k_rescale}, $P_{NL}$ represents the non-leakage probability and must be externally supplied
 to the reactor model.  Note that together the $P_{NL}$ is functionally an adjustment parameter
-which is used to account for fundemental modeling errors in the geometery.  The non-leakeage 
-probability accounts for the fact that the reactor is modeled as an infinitely relefected system, whereas
+which is used to account for fundamental modeling errors in the geometry.  The non-leakage 
+probability accounts for the fact that the reactor is modeled as an infinitely reflected system, whereas
 any real system will have physical limits.  Thus, the RMG may be `tuned'
-by variying $P_{NL}$.  Reasonable limits on which to adjust the non-leakage probability
-vary by reactor type.  The disadvantge factor $\zeta_{tg}$ is calculated from two-region lattice functions
+by varying $P_{NL}$.  Reasonable limits on which to adjust the non-leakage probability
+vary by reactor type.  The disadvantage factor $\zeta_{tg}$ is calculated from two-region lattice functions
 and adjusts the flux spectrum to represent the full-core, rather than regional, values.  Because the 
 disadvantage factor is computed analytically, it does not need to be externally supplied to the RMG.
 
@@ -1090,7 +1090,7 @@ the harder Serpent fuel spectrum is expected than that calculated by the RMG.
 Moreover, to compute the spectra above the disadvantage factor must be known.
 Figure \ref{zeta_BOL_EOL} shows $\zeta_{tg}$ as a function of group for both BOL \& EOL.
 The `total' values $\zeta_t$ show good agreement between the RMG and the traditional one-group
-thermal disadvantage factor.  Depending on geometery, $\zeta_t$ for an LWR lies approximately 
+thermal disadvantage factor.  Depending on geometry, $\zeta_t$ for an LWR lies approximately 
 on the range $[1.1, 1.3]$.
 
 \begin{figure}[htbp]
