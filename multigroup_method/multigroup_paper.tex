@@ -7,14 +7,14 @@
 \label{mg_sec:intro}
 Previous studies have examined the use of quickly executing, essential-physics-capturing codes for within the
 nuclear fuel cycle.  Unlike analytic techniques (such as neutron transport) which seek to completely 
-solve fundamental physical systems, dominant physics codes parameterize the system.   Interpolations
+solve fundamental physical systems, these codes parameterize the system.   Interpolations
 of parameterized results from stricter analytic methods form a quick, run-time solution to the system at hand.
 
-Dominant physics methods may be used for any fuel cycle component: enrichment, reactors, reprocessing, 
+Such methods may be used for any fuel cycle component: enrichment, reactors, reprocessing, 
 repositories, \emph{etc}.  However, their greatest advantage comes for such components whose analytic
 techniques are computationally intensive.  Thus previous work has focused on reactors and repositories.
 
-The dominant physics reactor methodologies to date have been one-energy group, fluence-based parameterizations.
+The quickly executing reactor methodologies to date have been one-energy group, fluence-based parameterizations.
 Neutron production \& destruction rates and transmutation matrices as a function of fluence 
 (time-integrated flux) were recorded for each species initial present in the core.  A linear combination of 
 the initial nuclides was then used to compute the multiplication factor, fuel burnup, and used fuel 
@@ -24,11 +24,11 @@ Unfortunately, because the one-group cross sections used are independent of burn
 the parameterizations in the model above were not sensitive to changes in the flux spectrum over the 
 course of the burn.  The requirement of static cross sections limits the type of reactors that may be 
 studied and is a severe restriction on the fidelity of such models.  In seeking to expand the types of 
-reactors model-able from fast reactors (FR) and light-water reactors (LWR), the flux spectrum and 
+reactors model-able from fast reactors (FR) and light-water reactors (LWR), the flux spectrum evolution and 
 cross section changes must be folded back into the underlying parameterization.
 
 This study proposes a multi-energy group reactor model, which will account for changes in the neutron
-flux spectrum as a function of burn time and other reactor attributes.  Because the flux is not constant, 
+flux spectrum as a function of burn time and other reactor attributes.  Because the neutron flux is not constant, 
 parameterization in terms of fluence is no longer an optimal choice.  Here instead, the reactor library 
 contains cross section data as a function of burn time under a constant power irradiation.  The reactor model 
 uses perturbations of these cross sections to compute the same information as in the one-group 
@@ -129,7 +129,7 @@ the index.  For example, the total cross section would be represented by the sym
 $\sigma_{t,itg}$. Table \ref{reaction_type_table} displays the reactions used in this 
 study, their symbolic abbreviations, and the corresponding MT number coming from ENDF 
 specification \cite{MFMT}.  Entries whose MT number is given as a $\dagger$ indicates 
-that the generation of these tallies was performed in a special way (see below).
+that the generation of these tallies were performed in a special way (see below).
 Additionally, the group-to-group scattering cross section is denoted by the symbol
 $\sigma_{s,itgh}$ where $g$ denotes the incident neutron energy (as before) and $h$
 gives the exiting neutron energy.  Lastly, let $E_g$ [MeV] represent the group 
@@ -145,9 +145,9 @@ mutable parameters of interest.  The second is that the parameter values must sp
 their corresponding range of interest.  
 
 Changes in the initial parameter conditions would then elicit changes in the cross section 
-values. Differences in the group constants would thus be picked up by the RMG.  For example, 
+values. Such differences in the group constants would thus be picked up by the RMG.  For example, 
 take the case of neutron self-shielding in a material with a strong resonance absorption peak.  
-As the number density of the absorber increases, the group constant in the spectrum around 
+As the number density of the absorber increases, the group constant around 
 the peak may plummet because the flux bottoms out.  In a relatively dilute medium, the group 
 constant and the flux would increase because fewer neutrons (in an absolute sense) are destroyed 
 in this regime.  That the  cross section library captures such effects is the primary advantage 
@@ -181,7 +181,7 @@ The code which produces the cross section library is known as CHAR.  Char curren
 has the ability to adjust a reactor template based on many initial parameters.  These fall
 conceptually into three categories: geometric properties, material properties, and time.
 Table \ref{char_perturbable_variables} lists the parameters that define a \emph{perturbation}
-in char.
+in Char.
 
 \begin{table}[htbp]
 \begin{center}
@@ -280,7 +280,7 @@ effects more finely than the fast and thermal regions.
 Additionally, though the geometry could be varied, 
 it was fixed for the course of this study.  Figures \ref{fuel_pin_cell} \& \ref{lattice} show the fuel pin cell 
 as well as the 17x17 lattice that were used.  Numeric values for the lattice may be inferred from 
-those of the unit cell.  Reflecting boundary conditions are applied to the lattice where required.
+those of the unit cell.  Reflecting boundary conditions were applied to the edges of the lattice.
 
 \begin{table}[htbp]
 \begin{center}
@@ -337,8 +337,8 @@ fuel mass fractions for an initial heavy metal (IHM) with a 4.5\% \nuc{U}{235} e
 Table \ref{mass_frac_clad} gives the mass fractions for the cladding, where the elemental 
 entries have their naturally occurring isotopic distribution.  Table \ref{mass_frac_cool} 
 displays the mass weights for borated light water.
-Note that these mass fractions may perturbed from the values in these tables, however 
-this is most commonly done for the fuel.
+Note that these mass fractions may be perturbed from the values in these tables.  Here however 
+this is only done for the fuel region.
 
 
 \subsection{Cross Section Generation: Serpent}
@@ -352,7 +352,7 @@ constants over other methods discussed below.  For a complete listing of which m
 and what reaction channels were available, please refer to Appendix \ref{appendix_rmg_nuclide_lists}.
 
 $G$-group cross sections are assembled for each perturbation using the Monte Carlo neutron
-transport code Serpent \cite{Lepp2011}.  Char fills a templated Serpent input deck with the
+transport code Serpent \cite{Lepp2011} where possible.  Char fills a templated Serpent input deck with the
 perturbation values and then executes the transport code.  The templates use a combination 
 of detectors in the fuel, cladding, and coolant regions as well as the universe metrics that 
 Serpent outputs to determine the group constants.  Detectors tally volume averaged, energy 
@@ -365,8 +365,8 @@ but are still computable via Serpent.
 
 Foremost of the non-standard calculations is the group-to-group scattering cross section
 $\sigma_{s,ipgh}$.  Among the region-based output of Serpent are both a group transfer
-probability matrix $P_{gh}$ as well as the group-to-group scattering cross section
-as calculated via the constraints in equations \ref{gtg_constraint} \& \ref{gtg_calc}.
+probability matrix $P_{gh}$ as well as the group-to-group scattering cross section.
+These are subject to the constraints in equations \ref{gtg_constraint} \& \ref{gtg_calc}.
 \begin{equation}
 \label{gtg_constraint}
 \sum_h^G P_{gh} = 1
@@ -379,19 +379,19 @@ However, the group transfer probability, and thus the group-to-group scattering 
 are functions of the entire region and not individual species within that region.  
 
 Unfortunately, the RMG itself requires that the group-to-group scattering cross sections be provided 
-per nuclide. To this end, the authors modified the source code of Serpent to include an optional 
+per nuclide. To this end, the author modified the source code of Serpent to include an optional 
 additional mode where $P_{gh}$ is calculated for only a specific sub-material in a region.    
 Using this mode with a single nuclide material and the detector calculated
 scattering cross section $\sigma_{s,ipg}$, the group-to-group scattering cross section was computed 
 for a single species via equation \ref{gtg_calc}.
 
-The next supplemental calculation that char performs comes more from a deficiency in the 
+The next supplemental calculation that Char performs comes more from a deficiency in the 
 ENDF specification than from Serpent.  Reactions which leave the final nucleus in an energy
 state above ground do not receive separate MT numbers.  Moreover, some of these excited states
 are metastable and may persist long enough in the core to have a significant interaction 
 probability of their own.  Additionally, certain metastable nuclides, such as \nuc{Am}{242}\superscript{*},
-persist for long enough that they have noticeable impacts on the fuel cycle, specifically with regards to 
-the repository.  That metastable nuclides have their own continuous energy cross section libraries
+live long enough that they have noticeable impacts on the fuel cycle (specifically with regards to 
+the repository).  That metastable nuclides have their own continuous energy cross section libraries
 but can not be generated by the reactions in these libraries is a perennial issue.
 
 Here the metastable issue is circumvented by using the 64-group cross section library from CINDER that is 
@@ -419,7 +419,7 @@ derivable for the (n, 2n*) interaction.
 
 Furthermore, the average number of neutrons produced per fission event $\bar{\nu}$ is also 
 calculated in special way via Serpent.  The pseudo-tally number $-7$ yields $\bar{\nu}\sigma_{f,ipg}$.
-Using the fission group constant calculated from serpent in the usual way, an expression for $\bar{\nu}$
+Using the fission group constant calculated from Serpent in the usual way, an expression for $\bar{\nu}$
 is trivially obtained (equation \ref{mg_nubar}).
 \begin{equation}
 \label{mg_nubar}
@@ -635,8 +635,8 @@ be estimated via equation \ref{low_e_estimate}.
 \label{low_e_estimate}
 \sigma_{r_x,g} = \sqrt{\frac{\mbox{2.53E-08}}{E_g}} \cdot \sigma_{r_x}^t \, \mbox{, where } E_g < \mbox{2.53E-08} \left(\frac{\sigma_{r_x}^t}{\sigma_{r_x}^f}\right)^2
 \end{equation}
-However for energies greater than the thermal-fast intersection point, the cross section may taken as 
-a simply the fast value.
+However for energies greater than the thermal-fast intersection point, the cross section may simply be taken as 
+the fast value.
 \begin{equation}
 \label{low_e_estimate}
 \sigma_{r_x,g} = \sigma_{r_x}^f \, \mbox{, where } \mbox{2.53E-08} \left(\frac{\sigma_{r_x}^t}{\sigma_{r_x}^f}\right)^2 \le E_g
@@ -645,7 +645,7 @@ Since the nuclides for which the interpolation schema is used on are unimportant
 this two energy region model does not add considerable fidelity to the overall model.
 
 In the case where even the interpolation methods above fail (negative cross sections computed or 
-data not available), a zero values is finally assumed for this group constant.  A zero value, rather 
+data not available), a zero value is finally assumed for this group constant.  A zero value, rather 
 than indicating a lack of data, should be interpreted as this nuclide for this reaction having no
 importance to the overall reactor parameterization.
 
@@ -704,13 +704,13 @@ to less than or equal to the absorption cross section.
 \sum_{r_x} \sigma_{r_x,ipg} \le \sigma_{a,ipg}
 \end{equation}
 Further conditions could be added to the suite, such as ensuring that the sum of 
-all non-total group constants is less than equal to $\sigma_{t,ipg}$.  However, 
+all non-total group constants is less than or equal to $\sigma_{t,ipg}$.  However, 
 such summation tests are typically indicative of a more primitive error in the 
 group constants.  
 For a more in depth treatment on missing reaction channel errors, please refer to the 
 benchmark in \S \ref{mg_sec:benchmark}.
 
-Basic errors are sufficiently captured by the tests above, 
+Thus basic errors are sufficiently captured by the tests above, 
 without adding extraneous noise to the failure analysis.  The simple test suite developed
 here has proven invaluable towards the RMG benchmarking efforts.
 
@@ -721,8 +721,8 @@ here has proven invaluable towards the RMG benchmarking efforts.
 \index{Multigroup Reactor Model@\emph{Multigroup Reactor Model}}
 \label{mg_sec:rmg_model}
 The multigroup reactor model uses the group constant library developed in the previous 
-section to compute criticality and burnup metrics for a nuclear power reactor (NPR).
-The RMG is specified by a several parameters, including all those present in Table
+section to compute criticality and burnup metrics for a nuclear power reactor.
+The RMG is specified by several parameters, including all those present in Table
 \ref{char_perturbable_variables}.
 
 However, the advantage of the RMG method here is that the values of the reactor parameters
@@ -870,8 +870,8 @@ discern the `true' values of  $k_t$ and $\phi_{tg}$.
 In general, there are two methods with which to normalize the overall flux spectrum: constant flux
 per unit time and constant power.  The constant flux mechanism is trivial and due to the nature of 
 the burnup calculation here, the constant power condition was used.  Recall that the state of the 
-RMG is partially given by the specific power, $p_s$ [MW/kg].  Denote the one-group fission cross
-section as $\Sigma_{f,\mbox{fuel},t}$ [cm\superscript{-1}].
+RMG is partially given by the specific power, $p_s$ [MW/kg].  Denote the one-group macroscopic 
+fission cross section as $\Sigma_{f,\mbox{fuel},t}$ [cm\superscript{-1}].
 \begin{equation}
 \label{one_group_fission}
 \Sigma_{f,\mbox{fuel},t} = \frac{\sum_g^G \Sigma_{f,\mbox{fuel},tg}\phi_{tg}^m}
@@ -901,7 +901,7 @@ k_t = P_{\mbox{NL}} \cdot \frac{\sum_g^G V_{\mbox{fuel}} \cdot \bar{\nu}\Sigma_{
                                 {\sum_g^G \left(V_{\mbox{fuel}} \cdot \Sigma_{a,\mbox{fuel},tg} + \zeta_{tg} \cdot V_{\mbox{cool}} \cdot \Sigma_{a,\mbox{cool},tg}\right) \cdot  \phi_{tg}}
 \end{equation}
 In equation \ref{k_rescale}, $P_{NL}$ represents the non-leakage probability and must be externally supplied
-to the reactor model.  Note that together the $P_{NL}$ is functionally an adjustment parameter
+to the reactor model.  Note that $P_{NL}$ is functionally an adjustment parameter
 which is used to account for fundamental modeling errors in the geometry.  The non-leakage 
 probability accounts for the fact that the reactor is modeled as an infinitely reflected system, whereas
 any real system will have physical limits.  Thus, the RMG may be `tuned'
