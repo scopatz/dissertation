@@ -632,9 +632,8 @@ the fast value.
 \subsection{Cross Section Validation}
 \index{Cross Section Validation@\emph{Cross Section Validation}}
 \label{mg:xs_validation}
-Due to the quantity of cross section data produced through the three above methods, the 
-impossibility of comprehensively visually inspecting it all for `goodness', and the errors 
-prone to human inspection, an automatic validation procedure known as \emph{unit testing}
+Due to the quantity of cross section data produced through the three above methods, 
+an automatic validation procedure known as \emph{unit testing}
 was employed.  Here, the units are interpreted as the group constants.   A suite of tests 
 executed against these units ensures that the cross sections remain physically valid 
 individually as well as in relation to each other. What follows are the definitions of the 
@@ -647,15 +646,17 @@ The most basic test is to verify that all group constants are real and non-negat
 \label{nn_ut}
 0 \le \sigma_{r_x,ipg} < \infty
 \end{equation}
-While this may seem to be a trivial 
-condition, if such values are allowed to pass through, a single bad group-constant may 
-propagate to all portions of an RMG calculation.
 
-No less important, is the constraint that all group constants are less than or equal to 
-the total cross section.
+No less important are the constraints that all group constants are less than or equal to 
+the total cross section and that the sum of all non-total reactions is less than or equal
+to the total.
 \begin{equation}
 \label{tot_xs_ut}
 \sigma_{r_x,ipg} \le \sigma_{t,ipg}
+\end{equation}
+\begin{equation}
+\label{tot_xs_sum}
+\sum_{r_x \ne t}\sigma_{r_x,ipg} \le \sigma_{t,ipg}
 \end{equation}
 Moreover, if a nuclide is fissionable, the following conditions apply.
 \begin{equation}
@@ -675,7 +676,7 @@ The relation between scattering group constants is defined as follows, to
 within machine precision.
 \begin{equation}
 \label{scat_xs_ut}
-\sigma_{s,ipg} = \sum_h^G \sigma_{s,ipgh}
+\sigma_{s,ipg} = \sum_h^G \sigma_{s,ipg\to h}
 \end{equation}
 Lastly, it is required that the constituent absorption tallies sum 
 to less than or equal to the absorption cross section.
@@ -705,7 +706,7 @@ section to compute criticality and burnup metrics for a nuclear power reactor.
 The RMG is specified by several parameters, including all those present in Table
 \ref{char_perturbable_variables}.
 
-However, the advantage of the RMG method here is that the values of the reactor parameters
+The advantage of the RMG method is that the values of the reactor parameters
 need not exactly match any of the perturbations (Table \ref{char_param_outer_product}) in the 
 cross section library.  Other methods are often invalidated when the conditions under which 
 the group constants were computed are altered.  However, by including a robust set of values
@@ -731,8 +732,8 @@ neighbor calculation as well as a multi-dimensional linear interpolation.
 Call $a$ a perturbable reactor parameter, such as fuel density or burn time (\emph{i.e.} the 
 entries in Table \ref{char_perturbable_variables}).   With $p$ as the perturbation index 
 such that $1 \le p \le n_p$ (\emph{i.e.} the row number of Table \ref{char_param_outer_product}), 
-then $a_p$ denotes the value of this reactor parameter for this perturbation.  Furthermore, call
-$a_r$ the value of this parameter on the reactor model itself.
+then $a_p$ is the value of this parameter for this perturbation in the cross section library.  
+Furthermore, denote $a_r$ the value of this parameter on the RMG at run time.
 
 In order to perform the correct interpolation, the two perturbations that are closest to the current
 state of the reactor, $a_1^*$ \& $a_2^*$, must be found.  Here the $a_p^*$ notation indicates that 
@@ -771,8 +772,7 @@ for all reactions.
 \index{Criticality Calculation@\emph{Criticality Calculation}}
 \label{mg_sec:crit_calc}
 Now that group constants have been built for the reactor specified, the next phase of the reactor 
-calculation is to estimate the neutron flux spectrum and the multiplication factor given the current 
-core material. (Naturally, the initial heavy metal stream must be provided.)
+calculation is to estimate the neutron flux spectrum and the multiplication factor. 
 
 The flux spectrum is computed through an iterative matrix method.  Call $N_{q,it}$ [atoms/cm\superscript{3}] 
 the number density for the $i$\superscript{th} nuclide at time $t$ in the $q$\superscript{th} region 
@@ -791,11 +791,11 @@ homogenized full-core cross sections are given by the reduction in equation \ref
 \end{equation}
 Here, $\zeta_{tg}$ is the disadvantage factor per group.  This is computed via the macroscopic 
 cross sections and the lattice functions found in \cite{Lamarsh2002}.  A more traditional
-total thermal disadvantage factor may be calculated from the product of the per group values 
+total thermal disadvantage factor may be calculated from the group collapse of $\zeta_{tg}$ 
 as seen in equation \ref{total_zeta}.
 \begin{equation}
 \label{total_zeta}
-\zeta_t = \prod_g^G \zeta_{tg}
+\zeta_t = \frac{1}{\phi_t} \sum_g^G \zeta_{tg} \cdot \phi_{tg}
 \end{equation}
 
 
@@ -815,7 +815,7 @@ The multigroup flux spectrum is then calculated via the linear relation in equat
 A_{tgh} \cdot \phi_{tg} = \frac{1}{k} F_{tgh} \cdot \phi_{tg}
 \end{equation}
 To solve this equation in an efficient iterative fashion, note that the expression 
-$\frac{1}{k}A^{-1}F$ is a single matrix which is independent of iteration number.  
+$\frac{1}{k}A^{-1}F$ is a matrix with constant coefficients.
 Using the superscript $m$ to indicate the loop
 index, equations \ref{next_flux} \& \ref{next_k} may be successively applied 
 until convergence.
@@ -847,10 +847,9 @@ $\phi_{tg}^m$ are more properly interpreted as unnormalized eigenvalues and eige
 of the linear equation in \ref{A_eq_F}.  Normalization is, therefore, required to 
 discern the `true' values of  $k_t$ and $\phi_{tg}$.
 
-In general, there are two methods with which to normalize the overall flux spectrum: constant flux
-per unit time and constant power.  The constant flux mechanism is trivial and due to the nature of 
-the burnup calculation here, the constant power condition was used.  Recall that the state of the 
-RMG is partially given by the specific power, $p_s$ [MW/kg].  Denote the one-group macroscopic 
+In general, there are two methods with which to normalize the total flux: by assuming constant flux
+or constant power.  The total flux here was determined by matching the specific power $p_s$ [MW/kg] 
+inout to the model.  Denote the one-group macroscopic 
 fission cross section as $\Sigma_{f,\mbox{fuel},t}$ [cm\superscript{-1}].
 \begin{equation}
 \label{one_group_fission}
@@ -883,12 +882,10 @@ k_t = P_{\mbox{NL}} \cdot \frac{\sum_g^G V_{\mbox{fuel}} \cdot \bar{\nu}\Sigma_{
 In equation \ref{k_rescale}, $P_{NL}$ represents the non-leakage probability and must be externally supplied
 to the reactor model.  Note that $P_{NL}$ is functionally an adjustment parameter
 which is used to account for fundamental modeling errors in the geometry.  The non-leakage 
-probability accounts for the fact that the reactor is modeled as an infinitely reflected system, whereas
-any real system will have physical limits.  Thus, the RMG may be `tuned'
+probability accounts for the fact that the reactor is modeled as an infinitely reflected system.
+Thus, the RMG may be `tuned'
 by varying $P_{NL}$.  Reasonable limits on which to adjust the non-leakage probability
-vary by reactor type.  The disadvantage factor $\zeta_{tg}$ is calculated from two-region lattice functions
-and adjusts the flux spectrum to represent the full-core, rather than regional, values.  Because the 
-disadvantage factor is computed analytically, it does not need to be externally supplied to the RMG.
+vary by reactor type.  
 
 
 \subsection{Transmutation Calculation}
@@ -897,43 +894,7 @@ disadvantage factor is computed analytically, it does not need to be externally 
 The last portion of the coupled multigroup reactor calculation is the transmutation calculation.
 This step takes the fuel vector at time $t$ and burns it to obtain the fuel vector at time $t+1$.
 
-Many approaches to solving this large set of ordinary differential equations may be taken \cite{Isotalo2011}.  
-Call $T_{it}$ a vector of $i$-nuclides at time $t$.  The value of $T_{it}$ may then be expressed as 
-\begin{equation}
-\label{transmute_dt}
-\frac{dT_{it}}{dt} = \left(-\lambda_{it}^{\mbox{eff}} + \sum_{j \ne i}^I  b_{jit}^{\mbox{eff}} \lambda_j^{\mbox{eff}}\right) T_{it}
-\end{equation}
-where $\lambda_i^{\mbox{eff}}$ [Hz] is the effective decay-constant for the $i$\superscript{th} nuclide at time $t$ (equation \ref{effective_decay}), 
-and $b_{ijt}^{\mbox{eff}}$ is the effective branch ratio from nuclide $i$ to nuclide $j$ at time $t$ (equation \ref{effective_branch}). 
-\begin{equation}
-\label{effective_decay}
-\lambda_{it}^{\mbox{eff}} = \lambda_i + \sum_{r_x} \sum_g^G \sigma_{r_x,itg} \cdot \phi_{tg} \cdot 10^{-24}
-\end{equation}
-\begin{equation}
-\label{effective_branch}
-b_{ijt}^{\mbox{eff}} = \frac{b_{ij} + \sum_{r_x} \sum_g^G \gamma_{r_x,ij} \sigma_{r_x,itg} \phi_{tg} \cdot 10^{-24}}
-                            {\lambda_{it}^{\mbox{eff}}}
-\end{equation}
-Here, $\lambda_i$ \& $b_{ij}$ are the standard radioactive decay constant and branch ratio.  Because equations
-\ref{effective_decay} \& \ref{effective_branch} depend on the group constants and the flux spectrum, the 
-effective decay constants and branch ratios are a function of time in the core.  Additionally, the summations
-over $r_x$ include any neutron reactions that cause transmutations.  The unitless parameter $\gamma_{r_x,ij}$
-represents the yield from $i$ to $j$ for a given reaction.  (Most notably, $\gamma_{f,ij}$ takes a non-unity
-value for fission reactions.)
-
-Defining a transmutation matrix $M_{ijt}$ such that
-\begin{equation}
-\label{transmute_M}
-M_{ijt} = -\lambda_{it}^{\mbox{eff}}\delta_{ij} + b_{jit}^{\mbox{eff}} \lambda_j^{\mbox{eff}}
-\end{equation}
-the solution to equation \ref{transmute_dt} may be expressed as a matrix exponential
-\begin{equation}
-\label{transmute_sol}
-T_{it+1} = e^{M_{ijt}\Delta t} T_{it}
-\end{equation}
-where $\Delta t$ [s] is the time between burnup steps $t$ and $t+1$.
-
-Rather than solving this matrix exponential explicitly, ORIGEN 2.2 \cite{Croff2002} was used 
+Origen 2.2 \cite{Croff2002} was used 
 to calculate the nuclide vector $T_{it+1}$.  Origen has the capability to take an input vector 
 $T_{it}$ and one-group cross sections and perform the transmutation calculation above.  The one-group 
 cross sections that Origen requires are for constituent absorption reactions.  Namely, these are 
