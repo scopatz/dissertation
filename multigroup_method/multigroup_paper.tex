@@ -131,9 +131,9 @@ study, their symbolic abbreviations, and the corresponding MT number coming from
 specification \cite{MFMT}.  Entries whose MT number is given as a $\dagger$ indicates 
 that the generation of these tallies were performed in a special way (see below).
 Additionally, the group-to-group scattering cross section is denoted by the symbol
-$\sigma_{s,itgh}$ where $g$ denotes the incident neutron energy (as before) and $h$
+$\sigma_{s,itg\to h}$ where $g$ denotes the incident neutron energy (as before) and $h$
 gives the exiting neutron energy.  Lastly, let $E_g$ [MeV] represent the group 
-energy boundaries.  Note that for $G$ groups, there will be $G+1$ boundaries.
+upper energy boundaries.  Note that for $G$ groups, there will be $G+1$ boundaries.
 
 \subsection{Parameterization of Initial Conditions}
 \index{Parameterization of Initial Conditions@\emph{Parameterization of Initial Conditions}}
@@ -148,14 +148,14 @@ Changes in the initial parameter conditions would then elicit changes in the cro
 values. Such differences in the group constants would thus be picked up by the RMG.  For example, 
 take the case of neutron self-shielding in a material with a strong resonance absorption peak.  
 As the number density of the absorber increases, the group constant around 
-the peak may plummet because the flux bottoms out.  In a relatively dilute medium, the group 
-constant and the flux would increase because fewer neutrons (in an absolute sense) are destroyed 
+the peak may plummet because the flux in the group decreases.  In a relatively dilute medium, the group 
+constant and the flux would increase because fewer neutrons (in an absolute sense) are consumed 
 in this regime.  That the  cross section library captures such effects is the primary advantage 
 of a multigroup model over the traditional one-group method.
 
 \begin{table}[htbp]
 \begin{center}
-\caption{CHAR Parameters that Define a Perturbation}
+\caption{Char Parameters that Define a Perturbation}
 \label{char_perturbable_variables}
 \begin{tabular}{|l|c|c|}
 \hline
@@ -177,7 +177,7 @@ Burn Times                    & $s$                  & days \\
 \end{center}
 \end{table}
 
-The code which produces the cross section library is known as CHAR.  Char currently
+The code which produces the cross section library is known as Char.  Char currently
 has the ability to adjust a reactor template based on many initial parameters.  These fall
 conceptually into three categories: geometric properties, material properties, and time.
 Table \ref{char_perturbable_variables} lists the parameters that define a \emph{perturbation}
@@ -220,19 +220,19 @@ in Char.
 Every parameter is specified with one or more values.  The outer product of all parameter
 values defines the set of perturbations for which the group constants are calculated.
 The total number of perturbations, $n_p$, is therefore given by the product of 
-the lengths of the parameter arrays.  \emph{In concreto}, Table \ref{char_param_outer_product} 
-displays the perturbations when the fuel density has two values, the initial \nuc{U}{235} mass 
+the lengths of the parameter arrays.  Table \ref{char_param_outer_product} 
+displays the perturbations when the fuel density has two refernece values, the initial \nuc{U}{235} mass 
 fraction also takes two values, the group constants are calculated at five burn steps, and all 
-other parameters are single valued.
+other parameters are single valued.  The group constants are caclulated for each perturbation
+case (row) defined in Table \ref{char_param_outer_product}.
 
-While Table \ref{char_param_outer_product} represents a simple set of reactors, this formulation 
-allows for the easy expansion and extension of input parameters, and thus new perturbations. 
+While Table \ref{char_param_outer_product} spans a limited set of initial conditions, this formulation 
+allows for the easy expansion and extension of input parameters and perturbations. 
 Including additional values for any parameter would extend the number of rows in the table.  
 Including other parameters, such as initial \nuc{U}{236} concentration, would expand the number of
 columns in the perturbation table, effectively increasing the dimensionality parameterized.
-A particularly aggressive strategy would be to include the mass fractions of all actinides initially
-present in the core.  In a recycle scenario, this would increase the number of parameters by 
-approximately an order of magnitude.  
+Fuel forms which may contain many initial nuclides in varying concentrations would be parameterized 
+by changing the mass fractions of all actinides initially present in the core.  
 
 \begin{table}[htbp]
 \begin{center}
@@ -258,9 +258,9 @@ approximately an order of magnitude.
 \end{table}
 
 For the remainder of the this study the perturbations presented in Table \ref{char_param_outer_product}
-were sufficient to demonstrate the validity of the multigroup method.  Table \ref{group_boundaries} 
-displays the group structure implemented.  This group structure is designed to capture resonance 
-effects more finely than the fast and thermal regions.  
+demonstrate the validity of the multigroup method.  Table \ref{group_boundaries} 
+displays the group structure implemented.  This group structure is designed to capture the resonance 
+region more finely than the fast and thermal regions.  
 
 \begin{figure}[htbp]
 \caption{Unit Fuel Pin Cell}
@@ -278,9 +278,9 @@ effects more finely than the fast and thermal regions.
 \end{figure}
 
 Additionally, though the geometry could be varied, 
-it was fixed for the course of this study.  Figures \ref{fuel_pin_cell} \& \ref{lattice} show the fuel pin cell 
-as well as the 17x17 lattice that were used.  Numeric values for the lattice may be inferred from 
-those of the unit cell.  Reflecting boundary conditions were applied to the edges of the lattice.
+it was fixed for this study.  Figures \ref{fuel_pin_cell} \& \ref{lattice} show the fuel pin cell 
+as well as the 17x17 lattice that were used to generate the precomputed cross section library 
+(see \S \ref{mg:xs_gen_serpent}).  Reflecting boundary conditions were applied to the edges of the lattice.
 
 \begin{table}[htbp]
 \begin{center}
@@ -333,12 +333,11 @@ Sn          & 0.01450 \\
 \end{table}
 
 Lastly, default materials are specified. Table \ref{mass_frac_fuel} shows the uranium-oxide 
-fuel mass fractions for an initial heavy metal (IHM) with a 4.5\% \nuc{U}{235} enrichment.
+fuel mass fractions for initial heavy metal (IHM) with a 4.5\% \nuc{U}{235} enrichment.
 Table \ref{mass_frac_clad} gives the mass fractions for the cladding, where the elemental 
 entries have their naturally occurring isotopic distribution.  Table \ref{mass_frac_cool} 
 displays the mass weights for borated light water.
-Note that these mass fractions may be perturbed from the values in these tables.  Here however 
-this is only done for the fuel region.
+Note that these mass fractions may be perturbed from the given values.
 
 
 \subsection{Cross Section Generation: Serpent}
