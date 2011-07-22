@@ -5,10 +5,11 @@
 \section{Introduction}
 \index{Introduction@\emph{Introduction}}
 \label{mg_sec:intro}
-Previous studies have examined the use of quickly executing, essential-physics-capturing codes for within the
-nuclear fuel cycle.  Unlike analytic techniques (such as neutron transport) which seek to completely 
-solve fundamental physical systems, these codes parameterize the system.   Interpolations
-of parameterized results from stricter analytic methods form a quick, run-time solution to the system at hand.
+Previous studies have examined the use of quickly executing fuel cycle models focusing on capturing 
+the essential physics.  Unlike analytic techniques which seek to represent  
+fundamental physical systems via direct coupling of models (\emph{e.g.} neutron transport), 
+essential physics codes parameterize the system.   Interpolations
+of parameterized results from precomputed analytic methods form a quick, run-time solution to the system at hand.
 
 Such methods may be used for any fuel cycle component: enrichment, reactors, reprocessing, 
 repositories, \emph{etc}.  However, their greatest advantage comes for such components whose analytic
@@ -20,16 +21,16 @@ Neutron production \& destruction rates and transmutation matrices as a function
 the initial nuclides was then used to compute the multiplication factor, fuel burnup, and used fuel 
 vector at discharge.
 
-Unfortunately, because the one-group cross sections used are independent of burnup,
+Because the one-group cross sections used are independent of burnup,
 the parameterizations in the model above were not sensitive to changes in the flux spectrum over the 
 course of the burn.  The requirement of static cross sections limits the type of reactors that may be 
-studied and is a severe restriction on the fidelity of such models.  In seeking to expand the types of 
-reactors model-able from fast reactors (FR) and light-water reactors (LWR), the flux spectrum evolution and 
+studied and is a severe restriction on the fidelity of such models.  In seeking to enhance
+the fidelity of the parametric approach, the flux spectrum evolution and 
 cross section changes must be folded back into the underlying parameterization.
 
 This study proposes a multi-energy group reactor model, which will account for changes in the neutron
 flux spectrum as a function of burn time and other reactor attributes.  Because the neutron flux is not constant, 
-parameterization in terms of fluence is no longer an optimal choice.  Here instead, the reactor library 
+parameterization in terms of fluence is no longer an optimal choice.  Instead, the reactor library 
 contains cross section data as a function of burn time under a constant power irradiation.  The reactor model 
 uses perturbations of these cross sections to compute the same information as in the one-group 
 formulation.  Namely, the multiplication factor, fuel burnup, and fuel vector at all desired burn times
@@ -53,20 +54,19 @@ design considerations, the fuel characteristics of the reactor must also be acco
 
 In the one-energy-group reactor model (R1G), the initial loading was parameterized based
 on neutron production rates, neutron destruction rates, and transmutation matrices per
-nuclide \cite{Scopatz2009d}.  All of these metrics are a function of fluence.  (Under 
-constant irradiation, fluence is a clear surrogate for time.)
+nuclide \cite{Scopatz2009d}.  All of these metrics are functions of fluence.  (Under 
+constant flux irradiation, fluence is a surrogate for time.)
 
 A $G$-energy-group reactor model (RMG) seeks to re-parameterize the one-group formulation 
 in terms of energy.  While the multi-group formulation will remain on a per nuclide basis, 
-the neutron reaction rates do not have have a meaningful per unit energy expression that 
-is independent of the flux.  Parameterizing based on fluence was successful in R1G because 
-flux spectrum changes with respect to the buildup of new species were ignored.   However, 
-such changes based on initial composition are precisely what the RMG seeks to capture.
+fluence based metrics are no logner sufficient.  Parameterizing based on fluence was successful in R1G because 
+flux spectrum changes with respect to the buildup of new species were ignored, even as changes to the total 
+flux were accounted for to achieve constant power.   However, 
+spectral changes based on initial composition are precisely what the RMG seeks to capture.
 
-Therefore, the RMG, in a level of sophistication above the R1G, must be able to calculate
-the multigroup flux spectrum.  To do so requires multigroup microscopic neutron cross-sections.  
-Using the cross-sections as independent reactor parameters in a multigroup sense is 
-effectively equivalent to removing the flux from the reaction rates in the one-group case.
+To calculate the multigroup spectrum requires multigroup microscopic neutron cross-sections.  
+Performing a spectral calculation follwoed by a group collapse generates burnup dependent 
+group fluxes and cross sections, and thus burnup dependnent reaction rates.
 This is seen in Equation \ref{reaction_rate_calc}
 \begin{equation}
 \label{reaction_rate_calc}
