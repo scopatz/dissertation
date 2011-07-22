@@ -532,12 +532,8 @@ as in \ref{scat_kern}.
 S(\alpha, \beta) = \frac{1}{\sqrt{4\pi\alpha}} \mbox{Exp}\left(-\frac{\alpha^2 + \beta^2}{4\alpha}\right)
 \end{equation}
 
-The term $4 \pi b^2$ represents a base estimate of the scattering cross section
-(the so-called bound scattering cross section $\sigma_b$).  
-%Moreover, the $\left(1 - \frac{2E}{931.46 \cdot m_n}\right)$ term in equation \ref{scat_ce} is 
-%a relativistic correction factor for $b$.  
-The bound scattering length for a nuclide is computed via coherent and incoherent components
-as seen in equation \ref{scat_len}.
+The bound scattering length for a nuclide, which provides a base estimate of the scattering cross section, 
+is computed via coherent and incoherent components as seen in equation \ref{scat_len}.
 \begin{equation}
 \label{scat_len}
 b = \sqrt{\left| b_{\mbox{coh}} \right|^2 + \left| b_{\mbox{inc}} \right|^2}
@@ -588,21 +584,18 @@ to the incident scattering constraint yields the appropriate group constant (equ
 \sigma_{s,g} = \sum_h^G \sigma_{s,gh}
 \end{equation}
 
-Finally, the total cross section may be expressed as the sum between the absorption and scattering
-cross sections, as computed in the models above.
-\begin{equation}
-\label{tot_xs_model}
-\sigma_{t,g} = \sigma_{s,g} + \sigma_{a,g}
-\end{equation}
+
+
+
+
 
 \subsection{Cross Section Generation: Interpolation}
 \index{Cross Section Generation: Interpolation@\emph{Cross Section Generation: Interpolation}}
 \label{mg:xs_gen_interpolation}
 The last class of nuclides are those for which there is no continuous energy cross section data 
-available and which do not have enough of a fuel cycle impact that warrants computing group constants 
-via physical models.  Due to the unimportance of these species, only the roughest of estimates
-of their cross sections are needed.  Moreover, such estimation may be done at RMG run-time rather 
-than during library generation.
+available.  These species are unimportant to the overall NFC material balance. 
+Thus only the roughest of estimates of their cross sections are needed.  Moreover, such estimation 
+may be done at RMG run-time rather than during library generation.
 
 The Korea Atomic Energy Research Institute (KAERI) provides simple cross section information
 for almost 3000 nuclides at a variety of energies \cite{KAER2000}.  Specifically, data for
@@ -631,13 +624,10 @@ the fast value.
 \label{low_e_estimate}
 \sigma_{r_x,g} = \sigma_{r_x}^f \, \mbox{, where } \mbox{2.53E-08} \left(\frac{\sigma_{r_x}^t}{\sigma_{r_x}^f}\right)^2 \le E_g
 \end{equation}
-Since the nuclides for which the interpolation schema is used on are unimportant to the RMG,  
-this two energy region model does not add considerable fidelity to the overall model.
 
-In the case where even the interpolation methods above fail (negative cross sections computed or 
-data not available), a zero value is finally assumed for this group constant.  A zero value, rather 
-than indicating a lack of data, should be interpreted as this nuclide for this reaction having no
-importance to the overall reactor parameterization.
+
+
+
 
 \subsection{Cross Section Validation}
 \index{Cross Section Validation@\emph{Cross Section Validation}}
