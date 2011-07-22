@@ -1000,39 +1000,29 @@ Cladding Cell Radius          & $r_{\mbox{clad}}$    & 0.475 cm \\
 Unit Cell Pitch               & $\ell$               & 1.3127 cm \\
 Number of Burn Regions        & $b_r$                & 10 \\
 Fuel Specific Power           & $p_s$                & 0.04 MW/kgIHM \\
-Initial \nuc{U}{235} Mass Fraction & $T_{\mbox{\nuc{U}{235}}0}$ & 0.05 kg\subscript{i}/kgIHM \\
+Initial \nuc{U}{235} Mass Fraction & $T_{\mbox{\nuc{U}{235}}0}$ & 0.045 kg\subscript{i}/kgIHM \\
+Initial \nuc{U}{238} Mass Fraction & $T_{\mbox{\nuc{U}{238}}0}$ & 0.955 kg\subscript{i}/kgIHM \\
 \hline
 \end{tabular}
 \end{center}
 \end{table}
 The burnup times that were computed for the reactor ranged from 0 to 365 days with a step size of 
 40.556 days.  The initial heavy metal concentrations, which were used for benchmarking purposes only, 
-may be seen in Table \ref{benchmark_IHM}.
-\begin{table}[htbp]
-\begin{center}
-\caption{Benchmark Reactor Initial Heavy Metal}
-\label{benchmark_IHM}
-\begin{tabular}{|l|c|}
-\hline
-\textbf{Nuclide} & \textbf{$T_{i0}$} \\
-\hline
-\nuc{U}{235}     & 0.045 \\
-\nuc{U}{238}     & 0.955 \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
+may also be seen in Table \ref{benchmark_rx_state}.
 
 
 The nearest neighbor vector $p^*$ for all time steps, in terms of indices
 of the perturbation Table \ref{char_param_outer_product}, is given in Table \ref{nn_table}.
-The reason this matrix is expected is because the computation is closest to zero time for all 
-time steps.  Moreover the initial \nuc{U}{235} vector falls exactly on one of the perturbation cases.
+The reason this matrix is expected is because the computation is closest to zero time at the start of the 
+burn and gradually migrates closer 400 days by the end.
+Moreover the initial \nuc{U}{235} vector falls in between two of the perturbation cases, but 4.5\%
+clearly closer to the 5\% perturbations than the 3.5\% cases.
 Lastly, the fuel region density lies exactly between two of the perturbation steps.  Thus, the 
-perturbations with the minimal distance to the reactor will flank the fuel density but otherwise 
-match the core.  Note that, because of the linear interpolation of the group constants, only the 
-two leftmost $p^*$ columns (representing $p_1^*$ and $p_2^*$) influence the RMG calculation.  The 
-remaining columns are shown for demonstrative purposes only.
+perturbations with the minimal distance to the reactor will flank the fuel density, staying closer to 5\%
+\nuc{U}{235}, while otherwise moving through the core in time.  Note that, because of the linear 
+interpolation of the group constants, only the two leftmost $p^*$ columns in Table \ref{nn_table}
+(representing $p_1^*$ and $p_2^*$) 
+influence the RMG calculation.  The remaining columns are shown for demonstrative purposes only.
 
 \input{multigroup_method/figs/benchmark/nearest_neighbor_table}
 
