@@ -923,7 +923,7 @@ Call $T_{it}$ a vector of $i$-nuclides at time $t$.  The value of $T_{it}$ may t
 \label{transmute_dt}
 \frac{dT_{it}}{dt} = \left(-\lambda_{it}^{\mbox{eff}} + \sum_{j \ne i}^I  b_{jit}^{\mbox{eff}} \lambda_j^{\mbox{eff}}\right) T_{it}
 \end{equation}
-where $\lambda_i^{\mbox{eff}}$ [hz] is the effective decay-constant for the $i$\superscript{th} nuclide at time $t$ (equation \ref{effective_decay}), 
+where $\lambda_i^{\mbox{eff}}$ [Hz] is the effective decay-constant for the $i$\superscript{th} nuclide at time $t$ (equation \ref{effective_decay}), 
 and $b_{ijt}^{\mbox{eff}}$ is the effective branch ratio from nuclide $i$ to nuclide $j$ at time $t$ (equation \ref{effective_branch}). 
 \begin{equation}
 \label{effective_decay}
@@ -1014,8 +1014,8 @@ may also be seen in Table \ref{benchmark_rx_state}.
 The nearest neighbor vector $p^*$ for all time steps, in terms of indices
 of the perturbation Table \ref{char_param_outer_product}, is given in Table \ref{nn_table}.
 The reason this matrix is expected is because the computation is closest to zero time at the start of the 
-burn and gradually migrates closer 400 days by the end.
-Moreover the initial \nuc{U}{235} vector falls in between two of the perturbation cases, but 4.5\%
+burn and gradually migrates closer to 400 days by the end.
+Moreover the initial \nuc{U}{235} vector falls in between two of the perturbation cases, but 4.5\% lies
 clearly closer to the 5\% perturbations than the 3.5\% cases.
 Lastly, the fuel region density lies exactly between two of the perturbation steps.  Thus, the 
 perturbations with the minimal distance to the reactor will flank the fuel density, staying closer to 5\%
@@ -1036,7 +1036,7 @@ over-predicts will be positive and under-predictions will be negative.
 \label{r_s_fractional_deviation}
 \varepsilon = \frac{a_r}{a_s} - 1
 \end{equation}
-Figure \ref{k_compare} displays the comparison for $k$.  
+Figure \ref{k_compare} displays the comparison for the multiplication factor $k$.  
 \begin{figure}[htbp]
 \caption{Multiplication Factor Benchmark}
 \label{k_compare}
@@ -1077,9 +1077,9 @@ The RMG curves here represent a homogenized full-core, while the Serpent spectra
 fuel region.  Because of more scattering events in the coolant and more absorption reactions in the fuel, 
 the harder Serpent fuel spectrum is expected than that calculated by the RMG.
 
-Moreover, to compute the spectra above the disadvantage factor must be known.
+To compute the spectra above, the disadvantage factor must be known.
 Figure \ref{zeta_BOL_EOL} shows $\zeta_{tg}$ as a function of group for both BOL \& EOL.
-The `total' values $\zeta_t$ show good agreement between the RMG and the traditional one-group
+The `total' values $\zeta_t$ show good agreement between the RMG and the traditional 
 thermal disadvantage factor.  Depending on geometry, $\zeta_t$ for an LWR lies approximately 
 on the range $[1.1, 1.3]$.
 
@@ -1094,8 +1094,8 @@ on the range $[1.1, 1.3]$.
 
 Lastly in the reactor model flow, the transmutation calculation must be benchmarked.
 Figures \ref{act_benchmark}-\ref{fp_benchmark} display the time evolution of the mass 
-fractions of various important nuclides. This set includes the actinides initially present and 
-bred in as well a various fission products that are tracked in the VISION suite.  
+fractions of various important nuclides. This set includes the major actinides 
+as well a various fission products that are tracked in the VISION suite.  
 In these figures, $\varepsilon$ is defined as before and is again displayed as the error bars on 
 the RMG curve.   Unfortunately, Serpent does not report errors associated with the mass fraction 
 so such curves do not have associated error bars.
