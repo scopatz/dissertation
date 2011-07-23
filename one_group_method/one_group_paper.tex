@@ -964,7 +964,7 @@ the data set generated are given in Table \ref{1g_table4}.
 
 \begin{table}[htbp]
 \begin{center}
-\caption{}
+\caption{Parametric Values for Burnup Model Fit for RU Burning LWRs}
 \label{1g_table4}
 \begin{tabular}{|l|c|}
 \hline
@@ -1071,35 +1071,236 @@ but with mass stream values included.  Moreover, Figure \ref{1g_fig17} is normal
 \subsection{The Fast Reactor Fuel Cycle}
 \index{The Fast Reactor Fuel Cycle@\emph{The Fast Reactor Fuel Cycle}}
 \label{1g_sec:FRFC}
-A walkthrough follows of how to apply the burnup model algorithm to the closed fast reactor system described above.  The first time a fast reactor system comes online, there exists no FR-U and FR-TRU streams from prior cycles so these mass flows and compositions are set to zero.   This leaves only reprocessed LWR-U and LWR-TRU streams to be mixed in order to obtain the burnup value specified for the fast reactor.  Luckily these two parameters in fact reduce to only one variable since LWR-U = 1 – LWR-TRU.  Therefore the system has only one degree of freedom.  
-It should be noted here that the LWR-U and LWR-TRU internal isotopic compositions remain constant over all fuel cycle passes through the fast reactor.  This is because the LWR burnup remains the same  and identical LWR SNF is always used to top up the fast reactor.  
-To obtain the LWR-U/LWR-TRU ratio that achieves the target burnup, an initial guess of the ratio is made.  This resulting fuel is then sent to the burnup model and maximum discharge burnup is calculated.  A root finding method is then used to iterate over the ratio and BUd until a proportion of LWR-U/LWR-TRU is found that generates the target burnup.  The bisection method is once again applied due to its usefulness with regards to pointwise approximations of continuous data.
-More precisely, two initial conditions are first calculated for the bisection method to be used.  Firstly, a BUd is calculated (via the burnup model) for a fuel that is composed of entirely LWR-TRU.  If this is not a valid fuel form (as discussed above) then an incremental amount of LWR-U is added until a valid, burnable form is reached.  The second initial condition is just the inverse.  A BUd is found for a fuel that is primarily or all LWR-U.  These two conditions serve to bound the range of available burnups for the FR fresh fuel.  If the FR target burnup is outside of this range, then the remainder of the calculation is impossible.  Otherwise, the bisection method may be applied with these two starting conditions.  Upon reaching the target burnup, the amount of LWR-U and LWR-TRU that go into the fast reactor on the first pass of the FR fuel cycle is now known.
-The isotopic output of this first fast reactor burn is then sent to the cooling model.   After the FR SNF has been decayed for the appropriate amount of time the reprocessing separation efficiencies are applied.  These separation efficiencies are set initially and are constant for the entire fuel cycle, although they may vary between individual chemical elements.  Fuel cycle parameters are now calculated and recorded.  This concludes the first cycle pass through the fast reactor.  
-The second and further passes proceed similarly to the first.  However unlike in the first pass, the four mass streams (LWR-U, LWR-TRU, FR-U, and FR-TRU) now all exist as the FR-TRU and U discharged from the fast burner will be reloaded in the next cycle.  However, FRs convert 15-20% of their (initial actinide) mass into fission products over the course of their burn and considerable top-up from LWR-U and LWR-TRU will be required.  
-However, the same problem remains as in the first pass case.  This that the LWR-U/LWR-TRU proportion that generates a burnup that equals the target burnup is not known a priori.  Thus the same strategy that was used in the first cycle is employed to find this proportion.  Once again, two guesses are made as to what the stream’s relative fractions are.  These bound the burnups available and the bisection method is applied to calculate the LWR-U/LWR-TRU ratio that hits the target burnup.  
-Now that the target burnup has been reached and the fresh fuel burned, it becomes spent fuel once more.  The FR-SNF is again stored and cooled.  These results are then sent to the reprocessing code (where the separation efficiencies are applied).  Fuel cycle parameters that are specific to this pass are now calculated and stored.
-This process may continue indefinitely as there are an infinite number of cycles possible.  However, fuel cycle parameters (such as isotopic concentrations in the fresh and spent fuels, uranium and transuranic masses) typically come to ‘equilibrium’ given enough passes through the system.  Two approaches to determining equilibrium status were considered: the stabilization of certain tracked isotopes or the convergence of the FR fresh fuel transuranic fraction.   This TRU fraction is tracked until it converges to within error, say a 1% change between the last cycle and the next-to-last cycle at which time equilibrium is declared.    The advantage of this method is that, for all practical applications, it ensures that the four input mass streams have all converged on their own and the gross mass balance is in near-equilibrium.  
-If the fuel cycle study is concerned with the prevalence of isotopes having, for instance, a strong effect on repository performance it is wiser to develop a list of important species whose convergence is to be tracked.  Then at the start of each cycle after the first, the change of these isotopes concentrations in the spent fuel is calculated.  If all isotopes in the list have converged to within some allotted error (perhaps 1%), then the fuel cycle as a whole is said to have converged.   In the FR case considered here, 239Pu, 240Pu, and 242Pu dominate the TRU by mass and converge after only a few cycles.    Moreover, 242Pu is the precursor isotope for production of most of the trans-plutonium elements.    Even though other actinides affect the FR burnup, many either do so to a lesser degree or are present in such small amounts that they do not significantly impact the neutronics of the system.  However depending on the application being studied the convergence criteria may differ.  For instance, the radiologically significant isotope 244Cm still has not converged by the above definition, even after ten cycles.
-Now that the entirety of the fuel cycle over multiple passes has been computed via the prior algorithm, a number of cycle specific parameters may be calculated.  The following example data was all produced using LWR SNF isotopic vectors from VISION [1]. Moreover the following table displays initial parameters input into the computational burnup and fuel cycle models.
-(Scopatz, Schneider, Fig. 18)
-The first set of parameters displayed is the input fractions of the four input mass streams into the fast reactor: LWR-U, LWR-TRU, FR-U, and FR-TRU.  This is shown in Figure 18.  The input mass of fuel into the fast reactor comes in some part from LWR spent fuel (1 kg or less) and partially from recycled FR fuel.  Note that all streams are normalized to 1 kgIHM for each cycle.  The LWR streams here are the parameters that are explicitly iterated over in the fuel cycle model in order to achieve the target FR burnup.  Note that the first cycle is comprised of only LWR spent fuel (as discussed above) and then these curves quickly level off.    Also recall that all FR actinide mass (sans what is decayed away in storage and what is lost in reprocessing) returns to the FR on the next pass.  Since the FR converts roughly 20% of its initial fuel to fission products, this explains why the sum of FR-U and FR-TRU levels off at about 0.8.  
-(Scopatz, Schneider, Fig. 19)
-Unlike the LWRs, the fast reactor output stream is also a function of cycle number.  Figure 19 plots the fraction of the uranium and transuranic relative to the total actinide content of the output stream.   The parameters calculated here are the by-products of applying the burnup model to the fast reactor fresh fuel that was formed above.
-(Scopatz, Schneider, Fig. 20)
-There are various ways to define a reactor’s conversion ratio.  One of these is displayed in Figure 20.  Specifically, this is known as the transuranic conversion ratio (TruCR).  This is defined as the change in the mass of TRU in the fast reactor core divided by the discharge burnup (BUd) of the core divided by the maximum possible burnup.  Symbolically, 
-                        (20)
-TRUIn is defined as the sum of the LWR-TRU and FR-TRU streams as plotted in Figure 16.  TRUOut is simply the mass of TRU in the output stream, or the FR-TRU fraction in Figure 19 multiplied by the actinide mass in output (~80%).  It should be noted that this is one of the possible ways to determine equilibrium.  Waiting for the TruCR to converge is equivalent to waiting for the fast reactor fresh fuel uranium divided by the transuranic content to stabilize.  More importantly, this curve does seem to equilibrate as a function of cycle number.  Furthermore, the data is in the range of 0.5, which was the conversion ratio targeted for the fast reactor point design used by the burnup model. 
-(Scopatz, Schneider, Fig. 21)
-Figure 21 shows the mass in kilograms of LWR SNF that is required to generate the 1 kg of fuel that goes into the fast reactor. The first point will naturally be significantly higher than for subsequent cycle numbers.  This is because the first cycle is made entirely of recycled LWR fuel whereas other cycles use LWR SNF only as top up.  
- (Scopatz, Schneider, Fig. 22)
-(Scopatz, Schneider, Fig. 23)
-(Scopatz, Schneider, Fig. 24)
-(Scopatz, Schneider, Fig. 25)
-(Scopatz, Schneider, Fig. 26)
-Finally, individual graphs may be generated for every isotope that is tracked.  The plots display the total mass of the given isotope in both the fresh (input) and spent (output) fast reactor fuel streams.  Note that the output masses are given after the additional cooling time.  Samples for 238Pu, 239Pu, 240Pu, 244Cm, and 244Cm are shown in Figures 22 through 26 respectively.  The plutonium figures serve to show that the system does appear to settle at an ‘equilibrium’ state within the ten cycles considered here.  However, the difference in the curvature of the 239Pu graph to that of the 238Pu and 240Pu implies that the 239Pu is being burned out while the other two nuclides are being bred in.  Moreover, the 244Cm and 246Cm figures are examples of species that do not come to equilibrium after the given number of cycles.  These nuclides are still being bred in via a long chain of parent species.  
-Lastly, a numerical demonstration of this is shown in Table 5.  This displays the input concentrations [kg/kgIHM] of selected actinides in the fresh fuel.  The output values are after burning and cooling, as with the figures above.  Data is shown here for three fuel cycle pass numbers: 1, 3, and 10.  It is clear that convergence to equilibrium must be explicitly modeled as it will extend over many decades.
-(Scopatz, Schneider, Table 5)
+A walkthrough follows of how to apply the burnup model algorithm to the closed fast reactor 
+system described above.  The first time a fast reactor system comes online, there exists no 
+FR-U and FR-TRU streams from prior cycles so these mass flows and compositions are set to zero.   
+This leaves only reprocessed LWR-U and LWR-TRU streams to be mixed in order to obtain the burnup 
+value specified for the fast reactor.  Luckily these two parameters in fact reduce to only one 
+variable since LWR-U = 1 - LWR-TRU.  Therefore the system has only one degree of freedom.  
+
+It should be noted here that the LWR-U and LWR-TRU internal isotopic compositions remain constant 
+over all fuel cycle passes through the fast reactor.  This is because the LWR burnup remains the 
+same and identical LWR SNF is always used to top up the fast reactor.  
+
+To obtain the LWR-U/LWR-TRU ratio that achieves the target burnup, an initial guess of the ratio 
+is made.  This resulting fuel is then sent to the burnup model and maximum discharge burnup is 
+calculated.  A root finding method is then used to iterate over the ratio and BUd until a 
+proportion of LWR-U/LWR-TRU is found that generates the target burnup.  The bisection method 
+is once again applied due to its usefulness with regards to pointwise approximations of continuous data.
+
+More precisely, two initial conditions are first calculated for the bisection method to be used.  
+Firstly, a BUd is calculated (via the burnup model) for a fuel that is composed of entirely LWR-TRU.  
+If this is not a valid fuel form (as discussed above) then an incremental amount of LWR-U is added 
+until a valid, burnable form is reached.  The second initial condition is just the inverse.  A BUd 
+is found for a fuel that is primarily or all LWR-U.  These two conditions serve to bound the range 
+of available burnups for the FR fresh fuel.  If the FR target burnup is outside of this range, then 
+the remainder of the calculation is impossible.  Otherwise, the bisection method may be applied with 
+these two starting conditions.  Upon reaching the target burnup, the amount of LWR-U and LWR-TRU that 
+go into the fast reactor on the first pass of the FR fuel cycle is now known.
+
+The isotopic output of this first fast reactor burn is then sent to the cooling model.   After the FR 
+SNF has been decayed for the appropriate amount of time the reprocessing separation efficiencies are 
+applied.  These separation efficiencies are set initially and are constant for the entire fuel cycle, 
+although they may vary between individual chemical elements.  Fuel cycle parameters are now calculated 
+and recorded.  This concludes the first cycle pass through the fast reactor.  
+
+The second and further passes proceed similarly to the first.  However unlike in the first pass, the 
+four mass streams (LWR-U, LWR-TRU, FR-U, and FR-TRU) now all exist as the FR-TRU and U discharged from 
+the fast burner will be reloaded in the next cycle.  However, FRs convert 15-20\% of their (initial 
+actinide) mass into fission products over the course of their burn and considerable top-up from LWR-U 
+and LWR-TRU will be required.  
+
+However, the same problem remains as in the first pass case.  This that the LWR-U/LWR-TRU proportion 
+that generates a burnup that equals the target burnup is not known a priori.  Thus the same strategy 
+that was used in the first cycle is employed to find this proportion.  Once again, two guesses are 
+made as to what the stream’s relative fractions are.  These bound the burnups available and the 
+bisection method is applied to calculate the LWR-U/LWR-TRU ratio that hits the target burnup.  
+
+Now that the target burnup has been reached and the fresh fuel burned, it becomes spent fuel once 
+more.  The FR-SNF is again stored and cooled.  These results are then sent to the reprocessing code 
+(where the separation efficiencies are applied).  Fuel cycle parameters that are specific to this 
+pass are now calculated and stored.
+
+This process may continue indefinitely as there are an infinite number of cycles possible.  However, 
+fuel cycle parameters (such as isotopic concentrations in the fresh and spent fuels, uranium and 
+transuranic masses) typically come to ``equilibrium'' given enough passes through the system.  
+Two approaches to determining equilibrium status were considered: the stabilization of certain 
+tracked isotopes or the convergence of the FR fresh fuel transuranic fraction.   This TRU fraction 
+is tracked until it converges to within error, say a 1\% change between the last cycle and the 
+next-to-last cycle at which time equilibrium is declared.    The advantage of this method is that, 
+for all practical applications, it ensures that the four input mass streams have all converged on 
+their own and the gross mass balance is in near-equilibrium.  
+
+If the fuel cycle study is concerned with the prevalence of isotopes having, for instance, a strong 
+effect on repository performance it is wiser to develop a list of important species whose convergence 
+is to be tracked.  Then at the start of each cycle after the first, the change of these isotopes 
+concentrations in the spent fuel is calculated.  If all isotopes in the list have converged to 
+within some allotted error (perhaps 1\%), then the fuel cycle as a whole is said to have converged.   
+In the FR case considered here, \nuc{Pu}{239}, \nuc{Pu}{240}, and \nuc{Pu}{242} dominate the TRU by 
+mass and converge after only a few cycles.    Moreover, \nuc{Pu}{242} is the precursor isotope for 
+production of most of the trans-plutonium elements.    Even though other actinides affect the FR 
+burnup, many either do so to a lesser degree or are present in such small amounts that they do 
+not significantly impact the neutronics of the system.  However depending on the application 
+being studied the convergence criteria may differ.  For instance, the radiologically significant 
+isotope \nuc{Cm}{244} still has not converged by the above definition, even after ten cycles.
+
+Now that the entirety of the fuel cycle over multiple passes has been computed via the prior 
+algorithm, a number of cycle specific parameters may be calculated.  The following example data 
+was all produced using LWR SNF isotopic vectors from VISION [1]. Moreover the following table 
+displays initial parameters input into the computational burnup and fuel cycle models.
+
+\begin{figure}[htbp]
+\caption{FR Input Mass Stream Fractions of 1 kgIHM}
+\label{1g_fig18}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig18.eps}
+\end{center}
+\end{figure}
+
+The first set of parameters displayed is the input fractions of the four input mass streams 
+into the fast reactor: LWR-U, LWR-TRU, FR-U, and FR-TRU.  This is shown in Figure \ref{1g_fig18}.  
+The input mass of fuel into the fast reactor comes in some part from LWR spent fuel (1 kg or less) 
+and partially from recycled FR fuel.  Note that all streams are normalized to 1 kgIHM for each cycle.  
+The LWR streams here are the parameters that are explicitly iterated over in the fuel cycle model 
+in order to achieve the target FR burnup.  Note that the first cycle is comprised of only LWR 
+spent fuel (as discussed above) and then these curves quickly level off.    Also recall that 
+all FR actinide mass (sans what is decayed away in storage and what is lost in reprocessing) 
+returns to the FR on the next pass.  Since the FR converts roughly 20\% of its initial fuel to 
+fission products, this explains why the sum of FR-U and FR-TRU levels off at about 0.8.  
+
+\begin{figure}[htbp]
+\caption{FR-U and FR-TRU Output Fractions}
+\label{1g_fig19}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig19.eps}
+\end{center}
+\end{figure}
+
+Unlike the LWRs, the fast reactor output stream is also a function of cycle number.  
+Figure \ref{1g_fig19} plots the fraction of the uranium and transuranic relative to 
+the total actinide content of the output stream.   The parameters calculated here are 
+the by-products of applying the burnup model to the fast reactor fresh fuel that was formed above.
+
+\begin{figure}[htbp]
+\caption{TRU Conversion Ratio}
+\label{1g_fig20}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig20.eps}
+\end{center}
+\end{figure}
+
+There are various ways to define a reactor's conversion ratio.  One of these is displayed in Figure 
+\ref{1g_fig20}.  Specifically, this is known as the transuranic conversion ratio (TruCR).  
+This is defined as the change in the mass of TRU in the fast reactor core divided by the 
+discharge burnup (BUd) of the core divided by the maximum possible burnup.  Symbolically, 
+\begin{equation}
+\label{1g_tru_cr}
+\mbox{TruCR} = 1 - \frac{\mbox{TRU}_{\mbox{in}} - \mbox{TRU}_{\mbox{out}}}{\frac{\mbox{BUd}}{\mbox{BU}_{\mbox{max}}}}
+             = 1 - \frac{\mbox{TRU}_{\mbox{in}} - \mbox{TRU}_{\mbox{out}}}{\frac{\mbox{BUd}}{931.46 \mbox{MWd/kg}}}
+\end{equation}
+TRU\subscript{in} is defined as the sum of the LWR-TRU and FR-TRU streams as plotted in 
+Figure \ref{1g_fig16}.  TRU\subscript{out} is simply the mass of TRU in the output stream, 
+or the FR-TRU fraction in Figure \ref{1g_fig19} multiplied by the actinide mass in output (~80\%).  
+It should be noted that this is one of the possible ways to determine equilibrium.  
+Waiting for the TruCR to converge is equivalent to waiting for the fast reactor fresh fuel 
+uranium divided by the transuranic content to stabilize.  More importantly, this curve does 
+seem to equilibrate as a function of cycle number.  Furthermore, the data is in the range of 0.5, 
+which was the conversion ratio targeted for the fast reactor point design used by the burnup model. 
+
+\begin{figure}[htbp]
+\caption{Mass of LWR SNF Required for FR Fresh Fuel Top-Up}
+\label{1g_fig21}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig21.eps}
+\end{center}
+\end{figure}
+
+Figure \ref{1g_fig21} shows the mass in kilograms of LWR SNF that is required to generate 
+the 1 kg of fuel that goes into the fast reactor. The first point will naturally be 
+significantly higher than for subsequent cycle numbers.  This is because the first cycle 
+is made entirely of recycled LWR fuel whereas other cycles use LWR SNF only as top up.  
+
+\begin{figure}[htbp]
+\caption{Fast Reactor Input and Output Mass Figure for \nuc{Pu}{238}}
+\label{1g_fig22}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig22.eps}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Fast Reactor Input and Output Mass Figure for \nuc{Pu}{239}}
+\label{1g_fig23}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig23.eps}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Reactor Input and Output Mass Figure for \nuc{Pu}{240}}
+\label{1g_fig24}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig24.eps}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Reactor Input and Output Mass Figure for \nuc{Cm}{244}}
+\label{1g_fig25}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig25.eps}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Reactor Input and Output Mass Figure for \nuc{Cm}{246}}
+\label{1g_fig26}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig26.eps}
+\end{center}
+\end{figure}
+
+Finally, individual graphs may be generated for every isotope that is tracked.  
+The plots display the total mass of the given isotope in both the fresh (input) and spent (output) 
+fast reactor fuel streams.  Note that the output masses are given after the additional cooling time.  
+Samples for \nuc{Pu}{238}, \nuc{Pu}{239}, \nuc{Pu}{240}, \nuc{Cm}{244}, and \nuc{Cm}{244} are shown 
+in Figures \ref{1g_fig22}-\ref{1g_fig226} respectively.  The plutonium figures serve to show that the 
+system does appear to settle at an ``equilibrium'' state within the ten cycles considered here.  
+However, the difference in the curvature of the \nuc{Pu}{239} graph to that of the \nuc{Pu}{238} and 
+\nuc{Pu}{240} implies that the \nuc{Pu}{239} is being burned out while the other two nuclides are 
+being bred in.  Moreover, the \nuc{Cm}{244} and \nuc{Cm}{246} figures are examples of species that 
+do not come to equilibrium after the given number of cycles.  These nuclides are still being bred in 
+via a long chain of parent species.  
+
+Lastly, a numerical demonstration of this is shown in Table \ref{1g_table5}.  This displays the 
+input concentrations [kg/kgIHM] of selected actinides in the fresh fuel.  The output values are 
+after burning and cooling, as with the figures above.  Data is shown here for three fuel cycle 
+pass numbers: 1, 3, and 10.  It is clear that convergence to equilibrium must be explicitly 
+modeled as it will extend over many decades.
+
+\begin{table}[htbp]
+\begin{center}
+\caption{Input and Output Concentrations into a Fast Reactor for Some Nuclides}
+\label{1g_table5}
+\begin{tabular}{|l|c|c|c|c|c|c|c|}
+\hline
+\textbf{Nuclides} & \textbf{1 In} & \textbf{1 Out} & \textbf{3 In} & \textbf{3 Out} & \textbf{10 In} & \textbf{10 Out} \\
+\hline
+\nuc{Np}{237} & 1.48E-02 & 8.24E-03 & 1.30E-02 & 7.50E-03 & 1.16E-02 & 6.90E-03 \\
+\nuc{Pu}{238} & 7.07E-03 & 8.52E-03 & 1.40E-02 & 1.29E-02 & 1.63E-02 & 1.41E-02 \\
+\nuc{Pu}{239} & 1.47E-01 & 9.89E-02 & 1.51E-01 & 9.90E-02 & 1.41E-01 & 9.42E-02 \\
+\nuc{Pu}{240} & 7.05E-02 & 6.32E-02 & 1.01E-01 & 8.45E-02 & 1.17E-01 & 9.59E-02 \\
+\nuc{Pu}{241} & 4.26E-02 & 9.15E-03 & 2.27E-02 & 8.12E-03 & 2.26E-02 & 8.87E-03 \\
+\nuc{Pu}{242} & 2.10E-02 & 1.92E-02 & 3.04E-02 & 2.57E-02 & 3.75E-02 & 3.13E-02 \\
+\nuc{Am}{241} & 1.56E-03 & 1.23E-02 & 1.52E-02 & 1.58E-02 & 1.79E-02 & 1.77E-02 \\
+\nuc{Am}{243} & 4.81E-03 & 5.03E-03 & 8.31E-03 & 7.84E-03 & 1.19E-02 & 1.05E-02 \\
+\nuc{Cm}{244} & 2.08E-03 & 1.73E-03 & 2.96E-03 & 2.67E-03 & 4.34E-03 & 3.75E-03 \\
+\nuc{Cm}{245} & 1.39E-04 & 4.28E-04 & 6.88E-04 & 8.05E-04 & 1.25E-03 & 1.24E-03 \\
+\nuc{Cm}{246} & 1.77E-05 & 4.20E-05 & 9.48E-05 & 1.42E-04 & 4.12E-04 & 4.39E-04 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
 
 
@@ -1107,10 +1308,60 @@ Lastly, a numerical demonstration of this is shown in Table 5.  This displays th
 \section{Conclusions}
 \index{Conclusions@\emph{Conclusions}}
 \label{1g_sec:conclusions}
-5 Conclusions:
-The burnup model that was developed in the previous methodology has shown itself to be a versatile tool.  Given the proper the input libraries, it may be applied to nearly any reactor in any fuel cycle system that one wishes to study.  Moreover, the computational requirements are very light for even today’s standard personal computers, with complete non-equilibrium fuel cycle material balances being generated in a few seconds.   
-The quickness of these burnup calculations allows for larger fuel cycle problems to be more accurately studied.  Many of the parameters set as static in this model, in fact, serve as future knobs to turn.  Iterating these may yield optimum values for various fuel cycle metrics.  For example, the separation efficiencies and partitioning strategies may be changed in the FR case.  This would have a significant impact on the FR-TRU stream if different reprocessing efficiencies were not the same for all elements.  This would not only alter the fresh fuel that the FR received, but repository performance and proliferation resistance would be affected as well [13].  
-In fact it is the very speed of the burnup model that allows the for the closed form equation that was derived for LWR performance.  Calculating the hundreds of data points that went into solving for Equation 19 would require a prohibitive amount of time using a full core transport or Monte Carlo method.  Furthermore, fuel cycle studies associated with the uranium recycle strategy could not be carried out in any meaningful sense in the absence of this kind of parameterization.
-Still, this study only displayed the applicability of the burnup model to two fuel cycles.  While this is important since it demonstrates that it is a useful tool for both open and closed cycles, many reactor types are available other than nominal LWRs and FRs.  Furthermore, the number of fuel cycles associated with combinations of these reactors is very large.  As discussed in Section 2.4, pre-computation via transport calculations of a representative set of cross section libraries will be necessary for each new coolant and fuel type that is to be studied.  The representative set would span the spectral conditions to be expected in the reactor and would be interpolated on initial isotopics and discharge burnup as is already being done for the UOX fueled PWRs.
-Moreover, this method is best applied to systems where spectra do not shift significantly during irradiation.  For reactors and fuels that have neutron energy distributions that change more significantly with burnup than a standard UOX fueled LWR, or for cases where the energy spectrum depends strongly on initial isotopics but the model needs to handle a wide variety of initial isotopic permutations, this new method will lose effectiveness.  Mixed Oxide (MOX) and very high burnup Inert Matrix Fuel (IMF), for example, would not be suitable for both of these reasons.  Both evince strongly burnup dependent per-atom reaction rates for some species, e.g. 240Pu, because of evolving energy and spatial self-shielding effects.  Combined with the many degrees of freedom in the initial compositions of these fuels (i.e., plutonium and minor actinide isotopics in the fresh fuels) that may be of interest in fuel cycle studies, an impractically large number of pre-computed cross section libraries would need to be prepared for use with the method presented here.  Hence, future work will extend this algorithm to a multi-group format so as to be able to treat these spectral effects at a higher level of fidelity using a reasonable number of pre-computed libraries.
-In summary, there remain a great number of reactors and fuel cycles to study.  Importantly, the burnup model developed here will serve as a baseline component when parameterizing these fuel cycles to find optimum values for real world problems.  Furthermore, future work will also revolve around implementing the model to solve these problems.  Additionally, generalizing the blending algorithms will increase the burnup model’s scope.  This will even allow for the quick comparison of distinct fuel blending strategies, for instance Pu-LEU blending in MOX fuels and TRU-MA blending in FRs.  Lastly and most importantly, the burnup model will be extended in such a way as utilize a more general parameter set.  This will allow for one set of multigroup fast reactor libraries to be used irrespective of conversion ratio, or indeed for the parameter sets to become more generally applicable.
+The burnup model that was developed in the previous methodology has shown itself to be a 
+versatile tool.  Given the proper the input libraries, it may be applied to nearly any 
+reactor in any fuel cycle system that one wishes to study.  Moreover, the computational 
+requirements are very light for even today's standard personal computers, with complete 
+non-equilibrium fuel cycle material balances being generated in a few seconds.   
+
+The quickness of these burnup calculations allows for larger fuel cycle problems to be 
+more accurately studied.  Many of the parameters set as static in this model, in fact, 
+serve as future knobs to turn.  Iterating these may yield optimum values for various fuel 
+cycle metrics.  For example, the separation efficiencies and partitioning strategies may be 
+changed in the FR case.  This would have a significant impact on the FR-TRU stream if 
+different reprocessing efficiencies were not the same for all elements.  This would not 
+only alter the fresh fuel that the FR received, but repository performance and proliferation 
+resistance would be affected as well [13].  
+
+In fact it is the very speed of the burnup model that allows the for the closed form equation 
+that was derived for LWR performance.  Calculating the hundreds of data points that went into 
+solving for equation \ref{1g_BUd_fit} would require a prohibitive amount of time using a full 
+core transport or Monte Carlo method.  Furthermore, fuel cycle studies associated with the 
+uranium recycle strategy could not be carried out in any meaningful sense in the absence of 
+this kind of parameterization.
+
+Still, this study only displayed the applicability of the burnup model to two fuel cycles.  
+While this is important since it demonstrates that it is a useful tool for both open and 
+closed cycles, many reactor types are available other than nominal LWRs and FRs.  Furthermore, 
+the number of fuel cycles associated with combinations of these reactors is very large.  
+As discussed in \S \ref{1g_sec:gen_BU_param}, pre-computation via transport calculations of a 
+representative set of cross section libraries will be necessary for each new coolant and fuel 
+type that is to be studied.  The representative set would span the spectral conditions to be 
+expected in the reactor and would be interpolated on initial isotopics and discharge burnup 
+as is already being done for the UOX fueled PWRs.
+
+Moreover, this method is best applied to systems where spectra do not shift significantly during 
+irradiation.  For reactors and fuels that have neutron energy distributions that change more 
+significantly with burnup than a standard UOX fueled LWR, or for cases where the energy spectrum 
+depends strongly on initial isotopics but the model needs to handle a wide variety of initial 
+isotopic permutations, this new method will lose effectiveness.  Mixed Oxide (MOX) and very 
+high burnup Inert Matrix Fuel (IMF), for example, would not be suitable for both of these reasons.  
+Both evince strongly burnup dependent per-atom reaction rates for some species, 
+\emph{e.g.} \nuc{Pu}{240}, because of evolving energy and spatial self-shielding effects.  
+Combined with the many degrees of freedom in the initial compositions of these fuels 
+(\emph{i.e.} plutonium and minor actinide isotopics in the fresh fuels) that may be of interest 
+in fuel cycle studies, an impractically large number of pre-computed cross section libraries 
+would need to be prepared for use with the method presented here.  Hence, future work will extend 
+this algorithm to a multi-group format so as to be able to treat these spectral effects at a higher 
+level of fidelity using a reasonable number of pre-computed libraries.
+
+In summary, there remain a great number of reactors and fuel cycles to study.  Importantly, the 
+burnup model developed here will serve as a baseline component when parameterizing these fuel 
+cycles to find optimum values for real world problems.  Furthermore, future work will also 
+revolve around implementing the model to solve these problems.  Additionally, generalizing 
+the blending algorithms will increase the burnup model's scope.  This will even allow for 
+the quick comparison of distinct fuel blending strategies, for instance Pu-LEU blending in 
+MOX fuels and TRU-MA blending in FRs.  Lastly and most importantly, the burnup model will 
+be extended in such a way as utilize a more general parameter set.  This will allow for one 
+set of multigroup fast reactor libraries to be used irrespective of conversion ratio, or 
+indeed for the parameter sets to become more generally applicable.
