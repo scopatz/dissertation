@@ -107,7 +107,6 @@ the isotope initially present in the core, where as the subscript $j$ labels tho
 The $T_{ij}(F)$ hence track the transmutation under fluence of the ith isotope into its daughters 
 given a nominal reactor spectrum embodied by one-group cross sections.  The daughters tracked 
 include both fission products (FP) as well and transuranics (TRU).
-
 \begin{figure}[htbp]
 \caption{\nuc{Pu}{239} Transformation as a Function of Fluence for a Sample Fast Reactor}
 \label{1g_fig01}
@@ -115,7 +114,6 @@ include both fission products (FP) as well and transuranics (TRU).
 \includegraphics[scale=0.5]{one_group_method/figs/Fig01.eps}
 \end{center}
 \end{figure}
-
 Figure \ref{1g_fig01} displays an example of this transformation data: the concentration in 
 kilograms of tracked isotopes that are present in a sodium-cooled FR core as a function of 1 kg 
 of the initial isotope (\nuc{Pu}{239} in this illustration).  In the figure, only one isotope 
@@ -123,25 +121,54 @@ of the initial isotope (\nuc{Pu}{239} in this illustration).  In the figure, onl
 distinct reactor and general fuel type, similar data are required for all other transmuting 
 nuclides initially present.   Note that not all species that \nuc{Pu}{239} transforms into are displayed. 
 
-Since this example is for fast reactors, a constant flux of 2×1015 [n/cm2/s] was used when generating the transformation matrices.  For PWRs a constant flux of was 4×1014 [n/cm2/s] assumed.  The units of fluence (F) here are [neutrons/kilobarn], abbreviated [n/kb], while the flux (φ) is again [n/cm2/s], and time (t) is given in [days].
+Since this example is for fast reactors, a constant flux of $2\times10^{15}$ [n/cm2/s] was used 
+when generating the transformation matrices.  For PWRs a constant flux of was $4\times10^{14}$ [n/cm2/s] 
+assumed.  The units of fluence ($F$) here are [neutrons/kilobarn], abbreviated [n/kb], while the 
+flux ($\phi$) is again [n/cm2/s], and time ($t$) is given in [days].
+\begin{equation}
+\label{fluence}
+F = \int_0^t \phi dt^\prime = \phi \int_0^t dt^\prime = \phi \times t \cdot \frac{24 \cdot 3600 \cdot 10^3}{10^{24}}
+\end{equation}
+In practice, the $T_{ij}$ data need only exist for the actinides because coolant and structural 
+material transmutation does not significantly impact core neutronic performance.
 
-                (1) 
+From here it is simple to apply initial isotopic weight fractions and superposition to Figure \ref{1g_fig01}
+and its analogies for all isotopes initially present in the core.  This superimposed result then describes 
+how 1 kg of fresh fuel transforms as a function of fluence within the core. Once the burnup model is applied, 
+the output fluence will also be known, as described below.  Plugging this fluence into the combined data 
+yields the isotopic composition of the fuel at removal. 
 
-In practice, the Tij data need only exist for the actinides because coolant and structural material transmutation does not significantly impact core neutronic performance  
-
-From here it is simple to apply initial isotopic weight fractions and superposition to Figure 1 and its analogies for all isotopes initially present in the core.  This superimposed result then describes how 1 kg of fresh fuel transforms as a function of fluence within the core. Once the burnup model is applied, the output fluence will also be known, as described below.  Plugging this fluence into the combined data yields the isotopic composition of the fuel at removal. 
 
 
-
-\subsection{Neutron Production & Destruction Rates and Burnup}
-\index{Neutron Production & Destruction Rates and Burnup@\emph{Neutron Production & Destruction Rates and Burnup}}
+\subsection{Neutron Production \& Destruction Rates and Burnup}
+\index{Neutron Production \& Destruction Rates and Burnup@\emph{Neutron Production \& Destruction Rates and Burnup}}
 \label{1g_sec:pdbu}
-Other assumed fuel cycle parameters that are required to perform burnup calculations are the neutron production and destruction rates, pi(F) and di(F) [n/s/flux/kgi].  These are given as functions of fluence for each isotope initially present in the core, just as with the isotopic transformation data.   An example of these parameters is shown in Figure 2.  
-(Scopatz, Schneider, Fig. 2)
-This figure displays the production and destruction rates for one initial kilogram of 239Pu in the sodium-cooled FR.   
-Lastly, the specific burnup for each isotope initially present, BUi(F) [MWd/kgi], is assumed known by the burnup model.  The burnup is defined in the same way as the neutron production and destruction rates.  It is given as a function of fluence for each nuclide initially present in the core.  Figure 3 displays BUi(F) for a few actinides that may be present in the fresh fuel.
-(Scopatz, Schneider, Fig. 3)
-Now that all quantities assumed to be known have been outlined and defined, a description of the algorithm that calculates the discharge burnup and the input and output fuel isotopics follows.   
+Other assumed fuel cycle parameters that are required to perform burnup calculations are the neutron 
+production and destruction rates, $p_i(F)$ and $d_i(F)$ [n/s/flux/kg\superscript{i}].  These are given 
+as functions of fluence for each isotope initially present in the core, just as with the isotopic 
+transformation data.  An example of these parameters is shown in Figure \ref{1g_fig02}.
+\begin{figure}[htbp]
+\caption{Sample Neutron Production and Destruction Rate Figure as a Function of Fluence for an Initial Unit Mass of \nuc{Pu}{239} in a Sample Fast Reactor}
+\label{1g_fig02}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig02.eps}
+\end{center}
+\end{figure}
+This figure displays the production and destruction rates for one initial kilogram of \nuc{Pu}{239} 
+in the sodium-cooled FR.  Lastly, the specific burnup for each isotope initially present, $\mbox{BU}_i(F)$ 
+[MWd/kgi], is assumed known by the burnup model.  The burnup is defined in the same way as the neutron 
+production and destruction rates.  It is given as a function of fluence for each nuclide initially 
+present in the core.  Figure \ref{1g_fig03} displays $\mbox{BU}_i(F)$ for a few actinides that may 
+be present in the fresh fuel.
+\begin{figure}[htbp]
+\caption{Burnup as a Function of Fluence for an Initial Unit Mass of Specific Nuclides in a Sample Fast Reactor}
+\label{1g_fig03}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig03.eps}
+\end{center}
+\end{figure}
+Now that all quantities assumed to be known have been outlined and defined, a description of the 
+algorithm that calculates the discharge burnup and the input and output fuel isotopics follows.   
 
 
 
@@ -150,7 +177,7 @@ Now that all quantities assumed to be known have been outlined and defined, a de
 \index{Solving for BUd and Isotopics@\emph{Solving for BUd and Isotopics}}
 \label{1g_sec:solve_BUd_iso}
 First, knowing only the BUi(F), pi(F), di(F), and Ti(F) from the prior section, the maximum achievable discharge burnup, BUd [MWd/kgIHM], must be found.  The burnup of the fresh fuel as a function of fluence is then computed as a mass-weighted linear combination of the burnups from the initial constituent isotopes.  Similarly, the neutron production and destruction rates as a function of fluence for an arbitrary fresh fuel may also be found.  In the development below, it is assumed that the core consists of a lattice in which each cell contains two spatial regions, fuel “F” and coolant “C”, but the formulation can generalize to additional regions.  Denote the mass of the ith isotope initially present in the fuel region “F” per unit mass of initial heavy metal (IHM) in the cell by miF [kgi/kgIHM] and the mass of the ith isotope initially present in the coolant region “C” per unit mass of initial heavy metal (IHM) by miC [kgi/kgIHM].  
-The volumes of the fuel and coolant regions, VF and VC [cm3], are needed to compute these IHM-normalized masses and the infinite lattice of unit cell model mentioned above is used in modified form for this purpose.  This two region method ignores the small effect of the cladding material on neutron capture.  Call r [cm] the radius of the fuel pin and l [cm] the pitch of the unit fuel cell.  It is important to correct for the fact that not all fuel pin slots in a fuel assembly are filled with fuel.  Denote ST as the total number of pin slots in a fuel assembly and SO as the open, non-fuel containing slots.  The effective volumes are then given in Equations 2 & 3.
+The volumes of the fuel and coolant regions, VF and VC [cm3], are needed to compute these IHM-normalized masses and the infinite lattice of unit cell model mentioned above is used in modified form for this purpose.  This two region method ignores the small effect of the cladding material on neutron capture.  Call r [cm] the radius of the fuel pin and l [cm] the pitch of the unit fuel cell.  It is important to correct for the fact that not all fuel pin slots in a fuel assembly are filled with fuel.  Denote ST as the total number of pin slots in a fuel assembly and SO as the open, non-fuel containing slots.  The effective volumes are then given in Equations 2 \& 3.
                                          (2)
                          (3)
 Hence the burnup of the core as a function of fluence, BU(F) [MWd/kgIHM], is given by the following sum.
@@ -292,8 +319,8 @@ Finally, these results are sent to the reprocessing model (where separation effi
 
 
 
-\section{The Fuel Cycle Model: Benchmarking & Results}
-\index{The Fuel Cycle Model: Benchmarking & Results@\emph{The Fuel Cycle Model: Benchmarking & Results}}
+\section{The Fuel Cycle Model: Benchmarking \& Results}
+\index{The Fuel Cycle Model: Benchmarking \& Results@\emph{The Fuel Cycle Model: Benchmarking \& Results}}
 \label{1g_sec:fcmodel_benchmark}
 The fuel cycle model is the computational wrapper that executes much of the calculation and analysis.  The fuel cycles that are studied are specified by a large set of inputs extending to the various intrinsic parameters of the reactors that comprise it.  For example, the PNL of the different reactors are specific to that reactor’s design and neutron transport characteristics.  Other parameters include the reactor’s target burnup, the amount of time that SNF spends in storage cooling, and the fuel cell specifications that are used.  Values for these parameters that were used in this study are presented in Table 1.  Knowing this information, the fuel cycle model wraps around the reactor burnup model and invokes it when input streams need to be mixed or spent fuel compositions must be found.  The fuel cycle model then sends the results of the burnup model to the next fuel cycle component (as seen in Figures 8 and 9).  Thus the fuel cycle model coupled with the burnup model developed here to produce unique, physics-based values for the material balances and isotopics for one or many recycle passes.  This represents an advantage over recipe based simulations which are not able to alter any of the input parameters at will whereas here all of them are allowed to change. 
 (Scopatz, Schneider, Table 1)
