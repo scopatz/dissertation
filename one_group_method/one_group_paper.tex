@@ -53,10 +53,9 @@ From here it is simple to apply initial isotopic weight fractions and superposit
 
 
 
-\subsection{}
-\index{@\emph{}}
-\label{1g_sec:}
-2.2 Neutron Production & Destruction Rates and Burnup:
+\subsection{Neutron Production & Destruction Rates and Burnup}
+\index{Neutron Production & Destruction Rates and Burnup@\emph{Neutron Production & Destruction Rates and Burnup}}
+\label{1g_sec:pdbu}
 Other assumed fuel cycle parameters that are required to perform burnup calculations are the neutron production and destruction rates, pi(F) and di(F) [n/s/flux/kgi].  These are given as functions of fluence for each isotope initially present in the core, just as with the isotopic transformation data.   An example of these parameters is shown in Figure 2.  
 (Scopatz, Schneider, Fig. 2)
 This figure displays the production and destruction rates for one initial kilogram of 239Pu in the sodium-cooled FR.   
@@ -64,10 +63,12 @@ Lastly, the specific burnup for each isotope initially present, BUi(F) [MWd/kgi]
 (Scopatz, Schneider, Fig. 3)
 Now that all quantities assumed to be known have been outlined and defined, a description of the algorithm that calculates the discharge burnup and the input and output fuel isotopics follows.   
 
-\subsection{}
-\index{@\emph{}}
-\label{1g_sec:}
-2.3 Solving for BUd and Isotopics:
+
+
+
+\subsection{Solving for BUd and Isotopics}
+\index{Solving for BUd and Isotopics@\emph{Solving for BUd and Isotopics}}
+\label{1g_sec:solve_BUd_iso}
 First, knowing only the BUi(F), pi(F), di(F), and Ti(F) from the prior section, the maximum achievable discharge burnup, BUd [MWd/kgIHM], must be found.  The burnup of the fresh fuel as a function of fluence is then computed as a mass-weighted linear combination of the burnups from the initial constituent isotopes.  Similarly, the neutron production and destruction rates as a function of fluence for an arbitrary fresh fuel may also be found.  In the development below, it is assumed that the core consists of a lattice in which each cell contains two spatial regions, fuel “F” and coolant “C”, but the formulation can generalize to additional regions.  Denote the mass of the ith isotope initially present in the fuel region “F” per unit mass of initial heavy metal (IHM) in the cell by miF [kgi/kgIHM] and the mass of the ith isotope initially present in the coolant region “C” per unit mass of initial heavy metal (IHM) by miC [kgi/kgIHM].  
 The volumes of the fuel and coolant regions, VF and VC [cm3], are needed to compute these IHM-normalized masses and the infinite lattice of unit cell model mentioned above is used in modified form for this purpose.  This two region method ignores the small effect of the cladding material on neutron capture.  Call r [cm] the radius of the fuel pin and l [cm] the pitch of the unit fuel cell.  It is important to correct for the fact that not all fuel pin slots in a fuel assembly are filled with fuel.  Denote ST as the total number of pin slots in a fuel assembly and SO as the open, non-fuel containing slots.  The effective volumes are then given in Equations 2 & 3.
                                          (2)
@@ -80,10 +81,11 @@ k(F) may thus also be calculated, like BU(F), as a mass-weighted convolution of 
 Note that Equation 5 can hold for a multi-batch fuel management scheme as well as a one batch core system.  Extending this equation to a multi-batch system follows after a discussion of the calculation of P(F) and D(F).
 Additional factors complicate the calculation of the core-average neutron production and destruction rates.  A complete depiction of the neutron balance requires that pi(F) and di(F) for non-fuel components of the core must also be known.  These non-fuel components include the coolant outside of fuel regions and the non-actinide species in the fuel region (e.g. oxygen in UOX).  Both of these classes of parasitic species serve to increase the full core destruction rate.  Disadvantage factors also affect the flux suppression in fuel regions which needs to be accounted for as well for PWR cases.  Furthermore, to account for spatial variation in the neutron flux when computing neutron interaction rates in non-fuel components, a general fuel assembly model is needed (as described above).  For example, to reflect a standard PWR fuel assembly geometry values from the OECD Burnup Credit Criticality Benchmark [3] were used for LWRs and nominal values for fast reactors were taken from [4].  A walkthrough of how to calculate the core-average production and destruction rates, P(F) and D(F), from the known set of pi(F) and di(F) for a given collection of mi now follows.  
 
-\subsubsection{}
-\index{@\emph{}}
-\label{1g_sec:}
-2.3.1 The Neutron Production Rate:
+
+
+\subsubsection{The Neutron Production Rate}
+\index{The Neutron Production Rate@\emph{The Neutron Production Rate}}
+\label{1g_sec:p_rate}
  The pi(F) and di(F) are superimposed to build the full-core loading.  These rates reflect the evolution of the neutron balance for an initial unit mass of the species i when exposed to the neutron flux spectrum extant in the reactor being studied.  Therefore they are computed using cross sections prepared for a specific reactor and fresh fuel composition.
 However as mentioned above, flux spectra and magnitudes are spatially dependent.  The most basic geometric model and the one again used is that of an infinite lattice of unit cells consisting of a central fuel region surrounded by a coolant-filled region.  These two regions have neutron production and destruction rates that are distinct since the set of mi that are used in each region is different.  Once again, use the superscript “F” to denote a parameter relating to the fuel region and the superscript “C” for the coolant region. 
 The production rates for the fuel and coolant regions, pF(F) and pC(F) [n/s/flux/kgIHM], can be calculated in direct analogy to Equation 4 for the burnup.  The neutron production rate in the fuel region is 
@@ -96,10 +98,9 @@ Note that P(F) here is normalized to a unit mass of IHM.  Thus P(F) has units of
 
 
 
-\subsubsection{}
-\index{@\emph{}}
-\label{1g_sec:}
-2.3.2 The Destruction Rate:
+\subsubsection{The Destruction Rate}
+\index{The Destruction Rate@\emph{The Destruction Rate}}
+\label{1g_sec:d_rate}
 The full-core destruction rate, D(F), is calculated in the same manner as the fuel region production rate.  However, the other nuclides in the reactor, while not contributing to fission, do contribute to neutron destruction in the core. Similarly, the burnup BUi(F) for these nuclides will also be zero since fission does not occur. In fuel cell model used above, two other isotopes are present in a PWR core (16O and 1H) and one other main species in a FR core (23Na).
 The following example walks through the calculation of D(F).  First, start with the fuel region destruction rate dF(F) in analogy to the fuel region production rate Equation 6.  Note that the units of dF(F) are [n/s/flux/kgIHM].  
                                 (8)
@@ -113,10 +114,9 @@ Now that P(F) and D(F) are known, k(F) may be calculated as per Equation 5.  Onc
 
 
 
-\subsubsection{}
-\index{@\emph{}}
-\label{1g_sec:}
-2.3.3 Multiple Batch Cores:
+\subsubsection{Multiple Batch Cores}
+\index{Multiple Batch Cores@\emph{Multiple Batch Cores}}
+\label{1g_sec:batch_ave}
 What has just been shown is how to find the discharge burnup with a given fuel composition for a one batch system.  However, for multiple batches of fuel the process is less straightforward as the production and destruction rates are averaged over their end of cycle values for each batch.  The general idea is to perform these operations in reverse and then iterate over them.  In other words, one picks a burnup and then solves for the multiplication factor.  Then one picks another burnup that will yield a k closer to one and solves again for k.  This process continues until a k is found that is acceptably close to one.  
 The bisection method is preferred to pick successively closer values of k.  It is not prone to the erratic behavior that arises when Newton’s method is used with pointwise data.   Furthermore, the bisection method ensures that the fuel is burnable.  To use the bisection method here there must be both some fluence where k < 1 and some fluence where 1 < k.  Since the multiplication factor is in reality continuous and more or less monotonic, these conditions imply that at some fluence k = 1.  However, if these conditions fail then the fuel has too little fissile material to sustain a chain reaction. 
 (Scopatz, Schneider, Fig. 5) 
@@ -143,10 +143,9 @@ In conclusion, the above is an algorithm for finding the maximum discharge burnu
 
 
 
-\subsection{}
-\index{@\emph{}}
-\label{1g_sec:}
-2.4 Generating Burnup Parameters:
+\subsection{Generating Burnup Parameters}
+\index{Generating Burnup Parameters@\emph{Generating Burnup Parameters}}
+\label{1g_sec:gen_BU_param}
 The burnup parameters pi(F), di(F), BUi(F), and Tij(F) are typically calculated for a specific reactor design.  However, if the reactor type is perceived as being representative of all reactors of that type then the burnup parameters may be applied generally to all reactors of this type without having to recalculate new pi(F), di(F), BUi(F), and Tij(F).  Qualitatively, what it means to be representative of a reactor type and fuel composition is that the neutron energy spectrum inherent in the few-group cross sections used to generate the burnup parameters is similar to that of other reactors of this type and other fuel compositions that will be studied.   
 In this study, the burnup parameters are calculated and tabulated based on the reactor-specific data libraries created from ORIGEN 2.2 [7] isotope-by-isotope burnup analyses.  As mentioned, the ORIGEN input libraries contain cross sections that are thought of as generic to a reactor type and range of fuel compositions.  For example, the libraries used here for fast reactors were prepared for a sodium cooled burner reactor with a target conversion ratio of 0.5.  This reactor is described in more detail in [4].  The burnup model therefore utilizes pre-computed libraries of the pi(F), di(F), BUi(F), and Tij(F) that were built up from ORIGEN runs.  These libraries contain point wise data as a function of fluence.  Recall that all data in these libraries track the evolution of the parameter on a per unit mass basis.
 To be more explicit, ORIGEN 2.2 is run for a kilogram mass of a given nuclide with the characteristic ORIGEN libraries.  Therefore, the isotopic mass balances and reaction rates obtained from this run reflect the evolution of one kilogram of this isotope within the core.  The ORIGEN output is then parsed and placed in the appropriate libraries for usage by the burnup model.  These ORIGEN runs are performed for all nuclides in the core.  Naturally, if one were to use initial ORIGEN libraries for a different reactor type, then the tables and matrices generated here would be representative of this other reactor.  These libraries only need to be generated once ever for a given reactor type, geometry and representative fuel composition.
@@ -155,15 +154,15 @@ Even systems whose spectra are less sensitive to initial composition and burnup 
 
 
 
-\subsubsection{}
-\index{@\emph{}}
-\label{1g_sec:}
-2.4.1 Hydrogen Cross Section Rescaling:
+\subsubsection{Hydrogen Cross Section Rescaling}
+\index{Hydrogen Cross Section Rescaling@\emph{Hydrogen Cross Section Rescaling}}
+\label{1g_sec:H_rescale}
 The one group cross sections are functions of fuel burnup and therefore fluence, in some cases quite strongly so.  The model supports the adjustment of cross sections – and therefore production and destruction rates as well as transmutation rates – with fluence.  For instance, the effective one group radiative capture cross section of 1H in typical PWR coolant changes significantly with fluence as the flux spectrum in the core evolves to maintain constant power density.  Just as with the interpolation of the ORIGEN input libraries, the hydrogen cross section may be parameterized around the burnup that the core has experienced.  Moreover, hydrogen contributes about 10% to the total destruction rate in the core.  Thus a significant change in the hydrogen cross section could yield an appreciable error in the model as formulated above.  What follows is more of an adjustment to the hydrogen one-group cross section than a true mutli-group theory response.  However, this provides an easy to calculate and integrate model to reduce the error induced into the neutron destruction rates.
 To account for these spectral variations an f-factor is introduced that is a function of the burnup BU(F).    f(F) is a unitless factor by which all hydrogen destruction rates dH(F) are multiplied by in Equations 8-10. Two hydrogen cross sections are known for two burnups.  These were taken from the ORIGEN cross section libraries prepared for 33 and 50 MWd/kgIHM burnups in PWRs.
 f(F) is the computed by drawing the line between these two points and dividing it by the cross section that was used for the ORIGEN runs.  Since ORIGEN was run using the 33 MWd/kgIHM library, the line is simply divided by 0.03474 barns.  The equation for f(F) is therefore, 
                         (17)
 As is seen in this extrapolation, the per atom hydrogen neutron destruction rate can vary considerably.  Multiplying f(F) by dH(F) results in an increase of the accuracy of all destruction rate and multiplication factor data that is computed.  The inclusion of the hydrogen rescaling factor and subsequent effects on BUd and initial compositions will be discussed in a later section with regards to the example of standard PWRs.  
+
 
 
 \section{}
@@ -173,10 +172,9 @@ As is seen in this extrapolation, the per atom hydrogen neutron destruction rate
 The Global Nuclear Energy Partnership (GNEP) plan for domestic fuel cycles offers many possible pathways.  With most of these options GNEP hopes to reduce the stockpile of United States transuranics (TRU) and obviate the technical need for a second repository during this century.  Separated transuranics are moreover seen as dangerous to nuclear non-proliferation goals.  Furthermore, most TRU species negatively impact repository performance as compared to an equivalent mass of NU.  Two fuel cycles involving recycle – uranium recycle in PWRs and full TRU recycle in FRs – are examined here as case studies to which the method presented above is applied. 
 
 
-\subsection{}
-\index{@\emph{}}
-\label{1g_sec:}
-3.1 Uranium Recycle Fuel Cycle:
+\subsection{Uranium Recycle Fuel Cycle}
+\index{Uranium Recycle Fuel Cycle@\emph{Uranium Recycle Fuel Cycle}}
+\label{1g_sec:UFC}
 The first of the fuel cycles that are analyzed here explores blending of RU with enriched NU to achieve sustained uranium recycle in light water reactors (LWR).  Since RU is a product of reprocessing of light water reactor spent nuclear fuel (LWR SNF), the front end for the RU creation process includes the back end of the reprocessing based LWR-NU fuel cycle.  The application of the burnup model to the RU burning reactor will be demonstrated through the study of this fuel cycle.
 Figure 8 depicts the RU blending option studied here.  Red arrows in Figure 8 connote RU flow stemming from the UREX+ reprocessing component or the enrichment component.  Black arrows that lead out of components indicate flows that do not comprise the mass input streams to the RU burning reactor.  
 (Scopatz, Schneider, Fig. 8)
@@ -188,10 +186,9 @@ It should be noted that higher LEU enrichment levels mean that more RU can be bl
 
 
 
-\subsection{}
-\index{@\emph{}}
+\subsection{Fast Burner Reactor Fuel Cycle}
+\index{Fast Burner Reactor Fuel Cycle@\emph{Fast Burner Reactor Fuel Cycle}}
 \label{1g_sec:}
-3.2 Fast Burner Reactor Fuel Cycle:
 A fuel cycle that features full, sustained TRU recycle is the second one being examined.  The basis of the model used here is a fast reactor (FR) with LWR SNF top up.  The purpose of this fuel cycle option is to reduce the global actinide inventory per unit energy as compared to the standard once-through fuel cycle, with the specific aim of reducing transuranics.   To this end, the FR conversion ratio (CR) is less than unity.  The nominal value for the conversion ratio in this study is taken to be 0.5, consistent with the baseline sodium-cooled fast transmuting reactor point design used in GNEP scoping studies [2].  
 (Scopatz, Schneider, Fig. 9)
 Figure 9 depicts the FR fuel cycle that is being studied.  Once again, mass flows represented in red are the four mass streams that form the FR fresh fuel blend stock.  The mass of each stream relative to the others may be varied by the burnup model to achieve a target burnup.  The mass flows in black are the flows that are considered static to the burnup model and are not changed, though they may vary with fuel cycle pass number.  
@@ -203,10 +200,9 @@ The implication of a closed or partially closed fuel cycle is that mass may be s
 
 
 
-\subsection{}
-\index{@\emph{}}
-\label{1g_sec:}
-3.3 Cooling Model:
+\subsection{Cooling Model}
+\index{Cooling Model@\emph{Cooling Model}}
+\label{1g_sec:cool_model}
 Before reprocessing occurs, light water reactor spent nuclear fuel (LWR SNF) and fast reactor spent nuclear fuel (FR SNF) are typically stored and cooled.  This process represents the “Storage” boxes in fuel cycle Figures 8 and 9.  The cooling model computes the analytical solutions to the Bateman equations [12]: 
         (18)
 Here, tC [years] is the time that the SNF spends in storage cooling,  Ni(tC) [kg] is the mass of the ith daughter of the parent species with mass N1 [kg]. The λs [1/years] are the decay constants for the respective nuclides in the decay chain.   The γs are the branch ratios that correspond to each decay constant for this decay chain.  
@@ -215,10 +211,10 @@ Finally, these results are sent to the reprocessing model (where separation effi
 
 
 
-\section{}
-\index{@\emph{}}
-\label{1g_sec:}
-4 The Fuel Cycle Model: Benchmarking & Results:
+
+\section{The Fuel Cycle Model: Benchmarking & Results}
+\index{The Fuel Cycle Model: Benchmarking & Results@\emph{The Fuel Cycle Model: Benchmarking & Results}}
+\label{1g_sec:fcmodel_benchmark}
 The fuel cycle model is the computational wrapper that executes much of the calculation and analysis.  The fuel cycles that are studied are specified by a large set of inputs extending to the various intrinsic parameters of the reactors that comprise it.  For example, the PNL of the different reactors are specific to that reactor’s design and neutron transport characteristics.  Other parameters include the reactor’s target burnup, the amount of time that SNF spends in storage cooling, and the fuel cell specifications that are used.  Values for these parameters that were used in this study are presented in Table 1.  Knowing this information, the fuel cycle model wraps around the reactor burnup model and invokes it when input streams need to be mixed or spent fuel compositions must be found.  The fuel cycle model then sends the results of the burnup model to the next fuel cycle component (as seen in Figures 8 and 9).  Thus the fuel cycle model coupled with the burnup model developed here to produce unique, physics-based values for the material balances and isotopics for one or many recycle passes.  This represents an advantage over recipe based simulations which are not able to alter any of the input parameters at will whereas here all of them are allowed to change. 
 (Scopatz, Schneider, Table 1)
 It is important to point out that the burnup model is sensitive to the input parameters specified in Table 1.  To select the non-leakage probability PNL and calibrate the model, enrichment and burnup combinations were taken from VISION [1] libraries for LEU for a 3 batch core.  By thinly varying PNL and the coolant density ρC [g/cm3] and toggling the f-factor correlating cycle-average hydrogen cross sections with discharge burnup a wide range of values for enrichment for given burnups was generated.  These are presented in Table 2 along with benchmark enrichment/burnup values taken from two other sources.  The parameter set H was the one that was chosen for the actual model as it most closely represents reality and the VISION targets.  Note that the enrichment is in weight percent 235U and BUd is in units of [MWd/kgIHM].  This calibration must be carried out for each reactor system to be analyzed.
@@ -231,10 +227,11 @@ It is also necessary to benchmark the feed stream blending and discharge burnup 
 
 
 
-\subsection{}
-\index{@\emph{}}
-\label{1g_sec:}
-4.1 The Recyclable Uranium Fuel Cycle:
+
+
+\subsection{The Recyclable Uranium Fuel Cycle}
+\index{The Recyclable Uranium Fuel Cycle@\emph{The Recyclable Uranium Fuel Cycle}}
+\label{1g_sec:RUFC}
 The RU fuel cycle described here does not preclude multi-recycle of transuranics; instead it focuses only upon the uranium component of an integrated recycle strategy.  Moreover, for purposes of illustration only the first uranium recycle pass is considered.  A second example applying the burnup model to a dynamic case will be covered in the FR fuel cycle section.
 To further characterize what is happening in the burnup model, it is of interest to characterize the isotopic breakdown of the neutron production and destruction rates in the core.  To do so, one simple case is considered.
 For this illustrative case the 235U enrichment is chosen at 4.0%, while the 236U enrichment is set to 1.5%.  Three batch fuel management is assumed and a graph of BU(F) is made in analogy to Figure 5.  The discharge burnup BUd of this fuel is not known a priori but it is instead calculated via the burnup model that was described above.  BUd here turns out to be approximately 37 MWd/kgIHM.  Figures 10, 11, 12, and 13 show the computed core-average neutron production and destruction rates for burnups of 0, 1/3 BUd, 2/3 BUd, and BUd.  Zero burnup here indicates the neutron production and destruction rates for fresh fuel that has just been loaded into the reactor.  
@@ -261,10 +258,9 @@ Lastly, fuel cycle material balances may be expediently generated.   As an examp
 
 
 
-\subsection{}
-\index{@\emph{}}
-\label{1g_sec:}
-4.2 The Fast Reactor Fuel Cycle:
+\subsection{The Fast Reactor Fuel Cycle}
+\index{The Fast Reactor Fuel Cycle@\emph{The Fast Reactor Fuel Cycle}}
+\label{1g_sec:FRFC}
 A walkthrough follows of how to apply the burnup model algorithm to the closed fast reactor system described above.  The first time a fast reactor system comes online, there exists no FR-U and FR-TRU streams from prior cycles so these mass flows and compositions are set to zero.   This leaves only reprocessed LWR-U and LWR-TRU streams to be mixed in order to obtain the burnup value specified for the fast reactor.  Luckily these two parameters in fact reduce to only one variable since LWR-U = 1 – LWR-TRU.  Therefore the system has only one degree of freedom.  
 It should be noted here that the LWR-U and LWR-TRU internal isotopic compositions remain constant over all fuel cycle passes through the fast reactor.  This is because the LWR burnup remains the same  and identical LWR SNF is always used to top up the fast reactor.  
 To obtain the LWR-U/LWR-TRU ratio that achieves the target burnup, an initial guess of the ratio is made.  This resulting fuel is then sent to the burnup model and maximum discharge burnup is calculated.  A root finding method is then used to iterate over the ratio and BUd until a proportion of LWR-U/LWR-TRU is found that generates the target burnup.  The bisection method is once again applied due to its usefulness with regards to pointwise approximations of continuous data.
@@ -298,9 +294,9 @@ Lastly, a numerical demonstration of this is shown in Table 5.  This displays th
 
 
 
-\section{}
-\index{@\emph{}}
-\label{1g_sec:}
+\section{Conclusions}
+\index{Conclusions@\emph{Conclusions}}
+\label{1g_sec:conclusions}
 5 Conclusions:
 The burnup model that was developed in the previous methodology has shown itself to be a versatile tool.  Given the proper the input libraries, it may be applied to nearly any reactor in any fuel cycle system that one wishes to study.  Moreover, the computational requirements are very light for even today’s standard personal computers, with complete non-equilibrium fuel cycle material balances being generated in a few seconds.   
 The quickness of these burnup calculations allows for larger fuel cycle problems to be more accurately studied.  Many of the parameters set as static in this model, in fact, serve as future knobs to turn.  Iterating these may yield optimum values for various fuel cycle metrics.  For example, the separation efficiencies and partitioning strategies may be changed in the FR case.  This would have a significant impact on the FR-TRU stream if different reprocessing efficiencies were not the same for all elements.  This would not only alter the fresh fuel that the FR received, but repository performance and proliferation resistance would be affected as well [13].  
