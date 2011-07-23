@@ -524,7 +524,7 @@ libraries are interpolated to create customized libraries at any burnup in this 
 capture the dependence of the cycle-average cross sections on discharge fluence and, implicitly, 
 initial isotopics.  This is of more significance to PWRs as fast reactor spectra are relatively more 
 stable; moreover, to investigate high-burnup PWR fuels additional libraries for BUd of 70 and 100 MWd/kgIHM 
-have been prepared using assumed initial \frac{U}{235} enrichments of 5.5 and 8 w/o, respectively.
+have been prepared using assumed initial \nuc{U}{235} enrichments of 5.5 and 8 w/o, respectively.
 
 Even systems whose spectra are less sensitive to initial composition and burnup must be treated using a 
 number of cross section libraries prepared from detailed transport calculations.  For the sodium-cooled 
@@ -541,32 +541,102 @@ this study, reflects the TRU content with no MOX burn.
 \subsubsection{Hydrogen Cross Section Rescaling}
 \index{Hydrogen Cross Section Rescaling@\emph{Hydrogen Cross Section Rescaling}}
 \label{1g_sec:H_rescale}
-The one group cross sections are functions of fuel burnup and therefore fluence, in some cases quite strongly so.  The model supports the adjustment of cross sections – and therefore production and destruction rates as well as transmutation rates – with fluence.  For instance, the effective one group radiative capture cross section of 1H in typical PWR coolant changes significantly with fluence as the flux spectrum in the core evolves to maintain constant power density.  Just as with the interpolation of the ORIGEN input libraries, the hydrogen cross section may be parameterized around the burnup that the core has experienced.  Moreover, hydrogen contributes about 10% to the total destruction rate in the core.  Thus a significant change in the hydrogen cross section could yield an appreciable error in the model as formulated above.  What follows is more of an adjustment to the hydrogen one-group cross section than a true mutli-group theory response.  However, this provides an easy to calculate and integrate model to reduce the error induced into the neutron destruction rates.
-To account for these spectral variations an f-factor is introduced that is a function of the burnup BU(F).    f(F) is a unitless factor by which all hydrogen destruction rates dH(F) are multiplied by in Equations 8-10. Two hydrogen cross sections are known for two burnups.  These were taken from the ORIGEN cross section libraries prepared for 33 and 50 MWd/kgIHM burnups in PWRs.
-f(F) is the computed by drawing the line between these two points and dividing it by the cross section that was used for the ORIGEN runs.  Since ORIGEN was run using the 33 MWd/kgIHM library, the line is simply divided by 0.03474 barns.  The equation for f(F) is therefore, 
-                        (17)
-As is seen in this extrapolation, the per atom hydrogen neutron destruction rate can vary considerably.  Multiplying f(F) by dH(F) results in an increase of the accuracy of all destruction rate and multiplication factor data that is computed.  The inclusion of the hydrogen rescaling factor and subsequent effects on BUd and initial compositions will be discussed in a later section with regards to the example of standard PWRs.  
+The one group cross sections are functions of fuel burnup and therefore fluence, in some cases quite 
+strongly so.  The model supports the adjustment of cross sections \nuc{H}{1} and therefore production 
+and destruction rates as well as transmutation rates \nuc{H}{1} with fluence.  For instance, the effective 
+one group radiative capture cross section of 1H in typical PWR coolant changes significantly with fluence 
+as the flux spectrum in the core evolves to maintain constant power density.  Just as with the interpolation 
+of the ORIGEN input libraries, the hydrogen cross section may be parameterized around the burnup that the core 
+has experienced.  Moreover, hydrogen contributes about 10\% to the total destruction rate in the core.  
+Thus a significant change in the hydrogen cross section could yield an appreciable error in the model as 
+formulated above.  What follows is more of an adjustment to the hydrogen one-group cross section than a 
+true mutli-group theory response.  However, this provides an easy to calculate and integrate model to 
+reduce the error induced into the neutron destruction rates.
+
+To account for these spectral variations an f-factor is introduced that is a function of the burnup 
+$\mbox{BU}(F)$.    $f(F)$ is a unitless factor by which all hydrogen destruction rates $d_H(F)$ are 
+multiplied by in equations \ref{1g_dF_F}-\ref{1g_D_F}. Two hydrogen cross sections are known for two 
+burnups.  These were taken from the ORIGEN cross section libraries prepared for 33 and 50 MWd/kgIHM 
+burnups in PWRs.
+
+Thus $f(F)$ is the computed by drawing the line between these two points and dividing it by the cross 
+section that was used for the ORIGEN runs.  Since ORIGEN was run using the 33 MWd/kgIHM library, the 
+line is simply divided by 0.03474 barns.  The equation for $f(F)$ is therefore, 
+\begin{equation}
+\label{1g_f_F}
+f(F) = 1.36927 - 0.01119 \cdot \mbox{BU}(F)
+\end{equation}
+As is seen in this extrapolation, the per atom hydrogen neutron destruction rate can vary considerably.  
+Multiplying $f(F)$ by $d_H(F)$ results in an increase of the accuracy of all destruction rate and 
+multiplication factor data that is computed.  The inclusion of the hydrogen rescaling factor and 
+subsequent effects on BUd and initial compositions will be discussed in a later section with regards 
+to the example of standard PWRs.  
 
 
 
-\section{}
-\index{@\emph{}}
-\label{1g_sec:}
-3 Fuel Cycles:
-The Global Nuclear Energy Partnership (GNEP) plan for domestic fuel cycles offers many possible pathways.  With most of these options GNEP hopes to reduce the stockpile of United States transuranics (TRU) and obviate the technical need for a second repository during this century.  Separated transuranics are moreover seen as dangerous to nuclear non-proliferation goals.  Furthermore, most TRU species negatively impact repository performance as compared to an equivalent mass of NU.  Two fuel cycles involving recycle – uranium recycle in PWRs and full TRU recycle in FRs – are examined here as case studies to which the method presented above is applied. 
+\section{Fuel Cycles}
+\index{Fuel Cycles@\emph{Fuel Cycles}}
+\label{1g_sec:fc}
+The Global Nuclear Energy Partnership (GNEP) plan for domestic fuel cycles offers many possible 
+pathways.  With most of these options GNEP hopes to reduce the stockpile of United States 
+transuranics (TRU) and obviate the technical need for a second repository during this century.  
+Separated transuranics are moreover seen as dangerous to nuclear non-proliferation goals.  
+Furthermore, most TRU species negatively impact repository performance as compared to an equivalent 
+mass of NU.  Two fuel cycles involving recycle - uranium recycle in PWRs and full TRU recycle in 
+FRs - are examined here as case studies to which the method presented above is applied. 
 
 
 \subsection{Uranium Recycle Fuel Cycle}
 \index{Uranium Recycle Fuel Cycle@\emph{Uranium Recycle Fuel Cycle}}
 \label{1g_sec:UFC}
-The first of the fuel cycles that are analyzed here explores blending of RU with enriched NU to achieve sustained uranium recycle in light water reactors (LWR).  Since RU is a product of reprocessing of light water reactor spent nuclear fuel (LWR SNF), the front end for the RU creation process includes the back end of the reprocessing based LWR-NU fuel cycle.  The application of the burnup model to the RU burning reactor will be demonstrated through the study of this fuel cycle.
-Figure 8 depicts the RU blending option studied here.  Red arrows in Figure 8 connote RU flow stemming from the UREX+ reprocessing component or the enrichment component.  Black arrows that lead out of components indicate flows that do not comprise the mass input streams to the RU burning reactor.  
-(Scopatz, Schneider, Fig. 8)
-Blending RU with enriched natural uranium is a method of increasing the fissile content of the RU while also impeding the buildup of 236U, a neutron poison.  From the standpoint of the fuel cycle material balance alone, if the utilization of RU is to be maximized the best material to serve as a blend stock with RU is highly enriched uranium (HEU).  HEU is in limited supply as a blend stock [8] and its use for civilian applications is undesirable; therefore, if this strategy is to be sustained, the blend stock would be low enriched uranium (LEU).  
-LWR SNF contains a higher enrichment of 235U than NU; therefore RU blending may be economically advantageous over the once-through fuel cycle given that reprocessing is already taking place to recover TRU. The weight percent of 235U in the legacy spent fuel of the United States is between 0.8-0.9% [6].  However, LWR SNF also has had 236U bred into it in non-negligible amounts of around 0.3-0.5%.  As 236U is a neutron poison, the advantage of the extra 235U in RU is not immediately quantitatively obvious.  Therefore, to increase the fissile content of an RU fuel form, it is blended with LEU. This LEU blend stock serves to dilute the 236U and thereby decrease its negative impact on the neutron balance in the core. 
-Fuel that goes into the RU reactor must be assigned a target burnup; for reasons of simplicity and practicality, it will be assumed that it is desirable to achieve parity between the traditional LEU- and RU-bearing fuel burnups.  Since the RU isotopic composition is set by the burnup in the initial reactor, the free parameters that are used to match the burnup of RU fuel to that of virgin LEU fuel in the reactor are the LEU enrichment and its mass fraction in the blended LEU-RU stream.    
-The first blending option is that the mass of LEU blend stock per unit mass of RU is held constant.  Thus the fissile content of the RU-bearing fuel is controlled by the enrichment of the LEU.  On the other hand, the LEU enrichment can be held constant and the mass that is mixed with the RU may be varied.  In this second case the LEU enrichment may be up to 19.9%.  
-It should be noted that higher LEU enrichment levels mean that more RU can be blended for a given mass of LEU.  But generally, near-future enrichment plants will not be licensed to produce LEU at greater than 8% 235U enrichment. However, the LEU/HEU limit is 19.9% so it is conceivable that if RU recycle came to fruition civilian enrichment facilities would be allowed to produce 19.9% enriched product.  
+The first of the fuel cycles that are analyzed here explores blending of RU with enriched NU to 
+achieve sustained uranium recycle in light water reactors (LWR).  Since RU is a product of 
+reprocessing of light water reactor spent nuclear fuel (LWR SNF), the front end for the RU creation 
+process includes the back end of the reprocessing based LWR-NU fuel cycle.  The application of the 
+burnup model to the RU burning reactor will be demonstrated through the study of this fuel cycle.
+
+Figure \ref{1g_fig08} depicts the RU blending option studied here.  Red arrows in Figure \ref{1g_fig08} 
+connote RU flow stemming from the UREX+ reprocessing component or the enrichment component.  Black arrows 
+that lead out of components indicate flows that do not comprise the mass input streams to the RU burning reactor.  
+\begin{figure}[htbp]
+\caption{RU Fuel Cycle}
+\label{1g_fig08}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig08.eps}
+\end{center}
+\end{figure}
+Blending RU with enriched natural uranium is a method of increasing the fissile content of the RU while 
+also impeding the buildup of \nuc{U}{236}, a neutron poison.  From the standpoint of the fuel cycle material 
+balance alone, if the utilization of RU is to be maximized the best material to serve as a blend stock with 
+RU is highly enriched uranium (HEU).  HEU is in limited supply as a blend stock [8] and its use for civilian 
+applications is undesirable; therefore, if this strategy is to be sustained, the blend stock would be low 
+enriched uranium (LEU).  
+
+LWR SNF contains a higher enrichment of \nuc{U}{235} than NU; therefore RU blending may be economically 
+advantageous over the once-through fuel cycle given that reprocessing is already taking place to recover 
+TRU. The weight percent of \nuc{U}{235} in the legacy spent fuel of the United States is between 0.8-0.9\% [6].  
+However, LWR SNF also has had \nuc{U}{236} bred into it in non-negligible amounts of around 0.3-0.5\%.  
+As \nuc{U}{236} is a neutron poison, the advantage of the extra \nuc{U}{235} in RU is not immediately 
+quantitatively obvious.  Therefore, to increase the fissile content of an RU fuel form, it is blended 
+with LEU. This LEU blend stock serves to dilute the \nuc{U}{236} and thereby decrease its negative 
+impact on the neutron balance in the core. 
+
+Fuel that goes into the RU reactor must be assigned a target burnup; for reasons of simplicity and 
+practicality, it will be assumed that it is desirable to achieve parity between the traditional LEU- and 
+RU-bearing fuel burnups.  Since the RU isotopic composition is set by the burnup in the initial reactor, 
+the free parameters that are used to match the burnup of RU fuel to that of virgin LEU fuel in the reactor 
+are the LEU enrichment and its mass fraction in the blended LEU-RU stream.    
+
+The first blending option is that the mass of LEU blend stock per unit mass of RU is held constant.  
+Thus the fissile content of the RU-bearing fuel is controlled by the enrichment of the LEU.  On the 
+other hand, the LEU enrichment can be held constant and the mass that is mixed with the RU may be 
+varied.  In this second case the LEU enrichment may be up to 19.9\%.  
+
+It should be noted that higher LEU enrichment levels mean that more RU can be blended for a given 
+mass of LEU.  But generally, near-future enrichment plants will not be licensed to produce LEU at 
+greater than 8\% \nuc{U}{235} enrichment. However, the LEU/HEU limit is 19.9\% so it is conceivable 
+that if RU recycle came to fruition civilian enrichment facilities would be allowed to produce 19.9\% 
+enriched product.  
 
 
 
