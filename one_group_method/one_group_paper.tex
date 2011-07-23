@@ -7,41 +7,121 @@
 \section{Introduction}
 \index{Introduction@\emph{Introduction}}
 \label{1g_sec:intro}
-High fidelity coupled neutron transport and fuel burnup calculations require large execution time and intensive computational resources.  This constraint renders such calculations impractical when it is desired to address high level fuel cycle engineering problems on a reasonable time scale.  The approaches taken in the past to circumvent these time constraints have typically sacrificed fidelity by fully decoupling the fuel cycle simulation from physics-based reactor burnup calculations [1].  
+High fidelity coupled neutron transport and fuel burnup calculations require large execution times
+and intensive computational resources.  This constraint renders such calculations impractical when 
+it is desired to address high level fuel cycle engineering problems on a reasonable time scale.  
+The approaches taken in the past to circumvent these time constraints have typically sacrificed 
+fidelity by fully decoupling the fuel cycle simulation from physics-based reactor burnup calculations [1].  
 
-Fuel cycle problems revolve around finding the optimum value for a parameter in order to achieve a certain global result.  For instance, initial fresh fuel compositions in a reactor may be varied to attain a specific burnup. Or repository impact may be of more concern so cooling time before emplacement may be varied.  Even the simplest once-through fuel cycle on an isotopic level has a large number of degrees of freedom, each featuring a continuum of acceptable values.  Lengthy calculation times for input and output fuel vectors in the fuel cycle’s reactor or reactors make a real parameterization of these degrees of freedom a near impossibility.  
+Fuel cycle problems revolve around finding the optimum value for a parameter in order to achieve a certain 
+global result.  For instance, initial fresh fuel compositions in a reactor may be varied to attain a specific 
+burnup. Or repository impact may be of more concern so cooling time before emplacement may be varied.  Even 
+the simplest once-through fuel cycle on an isotopic level has a large number of degrees of freedom, each 
+featuring a continuum of acceptable values.  Lengthy calculation times for input and output fuel vectors 
+in the fuel cycles reactor or reactors make a real parameterization of these degrees of freedom a near 
+impossibility.  
 
-Rather than relying on predetermined recipes that limit study to specific cores with precise burnups, there is a need for a medium fidelity mechanism that allows for quick, dynamic calculation of burnup parameters.  The methodology that is described within details a tool for use in fuel cycle analyses that calculates these burnup-related parameters for any arbitrary reactor or interacting fleet of reactors.
+Rather than relying on predetermined recipes that limit study to specific cores with precise burnups, 
+there is a need for a medium fidelity mechanism that allows for quick, dynamic calculation of burnup 
+parameters.  The methodology that is described within details a tool for use in fuel cycle analyses 
+that calculates these burnup-related parameters for any arbitrary reactor or interacting fleet of reactors.
 
-The burnup-related parameters include at least the input and output isotopic vectors for the reactor as well as the burnup itself, which in turn depends on criticality, allowable fluence, safety issues such as reactivity coefficient values, and other constraints.  Other parameters may be of interest for specific fuel cycles and will be discussed as they arise.  The burnup tool uses pre-tabulated values for the neutron production and destruction rates and the burnup as a function of initial isotope present and fluence.  The algorithm then eliminates fluence, giving the burnup only in terms of the initial isotopics of the reactor.  The initial isotopics of the core may be iterated using this process until the composition that reaches some target burnup is found.  This process assumes that there are multiple actinide streams to be blended, and the blending ratios are unknowns to be computed.  The output isotopics of the reactor are dependent on initial core composition and the burnup, and thus are calculated after other parameters.   This tool may then be embedded within a full fuel cycle model.  To demonstrate how such a coupled framework functions, it is applied to two fuel cycle concepts.  
+The burnup-related parameters include at least the input and output isotopic vectors for the reactor 
+as well as the burnup itself, which in turn depends on criticality, allowable fluence, safety issues 
+such as reactivity coefficient values, and other constraints.  Other parameters may be of interest 
+for specific fuel cycles and will be discussed as they arise.  The burnup tool uses pre-tabulated 
+values for the neutron production and destruction rates and the burnup as a function of initial 
+isotope present and fluence.  The algorithm then eliminates fluence, giving the burnup only in 
+terms of the initial isotopics of the reactor.  The initial isotopics of the core may be iterated 
+using this process until the composition that reaches some target burnup is found.  This process 
+assumes that there are multiple actinide streams to be blended, and the blending ratios are unknowns 
+to be computed.  The output isotopics of the reactor are dependent on initial core composition and 
+the burnup, and thus are calculated after other parameters.   This tool may then be embedded within 
+a full fuel cycle model.  To demonstrate how such a coupled framework functions, it is applied to 
+two fuel cycle concepts.  
 
-The first of the two fuel cycles incorporates a limited uranium recycle strategy.   Uranium from a standard pressurized water reactor (PWR) is reprocessed and blended with enriched natural uranium (NU) before going into the second core to be burned again.  After this burn, it is noteworthy that further recycling via blending is still possible.  In other words, this fuel cycle could be fully closed with respect to the uranium stream, avoiding the need to dispose of the reprocessed uranium that comprises over 90% of the mass of spent PWR fuel on an initial heavy metal (IHM) basis.  This is known as a recyclable uranium (RU) blend and burn fuel cycle since the uranium is reused in PWRs, independently of other actinides.  RU blend and burn is an attractive option since it has the potential to eventually do a near complete burn of all uranium in LWR spent fuel if used in a fully closed cycle.
+The first of the two fuel cycles incorporates a limited uranium recycle strategy.   Uranium from a 
+standard pressurized water reactor (PWR) is reprocessed and blended with enriched natural uranium 
+(NU) before going into the second core to be burned again.  After this burn, it is noteworthy that 
+further recycling via blending is still possible.  In other words, this fuel cycle could be fully 
+closed with respect to the uranium stream, avoiding the need to dispose of the reprocessed uranium 
+that comprises over 90\% of the mass of spent PWR fuel on an initial heavy metal (IHM) basis.  
+This is known as a recyclable uranium (RU) blend and burn fuel cycle since the uranium is reused 
+in PWRs, independently of other actinides.  RU blend and burn is an attractive option since it has 
+the potential to eventually do a near complete burn of all uranium in LWR spent fuel if used in a 
+fully closed cycle.
 
-The second fuel cycle that utilizes the burnup tool developed here demonstrates how the tool may be used to improve the fidelity of the fuel cycle material balance calculations associated with one of the Global Nuclear Energy Partnership (GNEP) base-case proposals [2].  This case is a closed fuel cycle that uses a fast burner reactor (FR) with a conversion ratio of 0.5.  Actinides are continually recycled in the FR while fission products (FP) are removed and disposed.  The reprocessing facility that is built for fast reactor spent fuel has a separation efficiency of 0.99 for all actinides.  This is a meaningful option to explore since fast reactors are considered to be a key component of long term nuclear energy strategies that close the fuel cycle.
+The second fuel cycle that utilizes the burnup tool developed here demonstrates how the tool may 
+be used to improve the fidelity of the fuel cycle material balance calculations associated with 
+one of the Global Nuclear Energy Partnership (GNEP) base-case proposals [2].  This case is a 
+closed fuel cycle that uses a fast burner reactor (FR) with a conversion ratio of 0.5.  
+Actinides are continually recycled in the FR while fission products (FP) are removed and 
+disposed.  The reprocessing facility that is built for fast reactor spent fuel has a separation 
+efficiency of 0.99 for all actinides.  This is a meaningful option to explore since fast reactors 
+are considered to be a key component of long term nuclear energy strategies that close the fuel cycle.
 
-In these two instances the same basic algorithm is used to very quickly solve the blending problem to obtain the fresh fuel composition that achieves the desired discharge burnup (BUd); the isotopic content of the output is also calculated.   A fuel cycle wrapper governs the mass streams through the reactors and other fuel cycle components.  
+In these two instances the same basic algorithm is used to very quickly solve the blending problem 
+to obtain the fresh fuel composition that achieves the desired discharge burnup (BUd); the isotopic 
+content of the output is also calculated.   A fuel cycle wrapper governs the mass streams through 
+the reactors and other fuel cycle components.  
 
-As will be seen, many fuel cycle parameters may be calculated from the resulting data.  Moreover due to the dynamic nature of this method, these parameters will be more accurate and meaningful than if a static recipe or simple linearization had been used.  A static recipe would not be able to mix recyclable and low enriched uranium (LEU) streams in a way that respects the dependence of neutronic characteristics on feed composition, an issue that is inherent to the RU fuel cycle.  Moreover, models that use static recipes may fail to accurately capture the evolution of material balances with each successive pass through a fast reactor.   
+As will be seen, many fuel cycle parameters may be calculated from the resulting data.  Moreover 
+due to the dynamic nature of this method, these parameters will be more accurate and meaningful 
+than if a static recipe or simple linearization had been used.  A static recipe would not be able 
+to mix recyclable and low enriched uranium (LEU) streams in a way that respects the dependence of 
+neutronic characteristics on feed composition, an issue that is inherent to the RU fuel cycle.  
+Moreover, models that use static recipes may fail to accurately capture the evolution of material 
+balances with each successive pass through a fast reactor.   
 
-The remainder of this paper proceeds via the following layout. The next and second section is a full illustration of the burnup model.  The third section is discusses the in depth the recyclable uranium and fast reactor fuel cycles to which the burnup model is applied.  The fourth section presents the results obtained for these cycles.  The fifth and final section is concludes this paper and discusses opportunities for future work. 
+The remainder of this paper proceeds via the following layout. The next and second section is a 
+full illustration of the burnup model.  The third section is discusses the in depth the recyclable 
+uranium and fast reactor fuel cycles to which the burnup model is applied.  The fourth section 
+presents the results obtained for these cycles.  The fifth and final section is concludes this 
+study and discusses opportunities for future work. 
+
+
 
 
 \section{Burnup Model}
 \index{Burnup Model@\emph{Burnup Model}}
 \label{1g_sec:bu_model}
-The burnup model takes a given input isotopic composition and returns the maximum discharge burnup of the fuel as well as its post-irradiation isotopic composition.  Thus, if given a target burnup, the model can mix multiple material streams to solve for the fresh fuel composition that achieves this burnup.
+The burnup model takes a given input isotopic composition and returns the maximum discharge 
+burnup of the fuel as well as its post-irradiation isotopic composition.  Thus, if given a 
+target burnup, the model can mix multiple material streams to solve for the fresh fuel composition 
+that achieves this burnup.
 
-To form the basis for the burnup model algorithm, certain quantities are assumed to be known.  The neutron production and destruction rates, the burnup, and the compositional evolution of every isotope initially present, namely the actinides and the coolant, are given.  Furthermore, they are all specified as functions of fluence (F), the time integral of the total spatially-averaged flux in the reactor. A discussion of how to compute and compile these presupposed parameters follows later in the burnup model section. 
+To form the basis for the burnup model algorithm, certain quantities are assumed to be known.  
+The neutron production and destruction rates, the burnup, and the compositional evolution of 
+every isotope initially present, namely the actinides and the coolant, are given.  Furthermore, 
+they are all specified as functions of fluence (F), the time integral of the total spatially-averaged 
+flux in the reactor. A discussion of how to compute and compile these presupposed parameters follows 
+later in the burnup model section. 
 
 
 \subsection{Isotopic Transformation}
 \index{Isotopic Transformation@\emph{Isotopic Transformation}}
 \label{1g_sec:iso_transform}
-The first of the known burnup model parameters is nuclide-specific isotopic transformation as a function of fluence, Tij(F) [kgj/kgi].  The subscript “i” denotes the isotope initially present in the core, where as the subscript “j” labels those nuclides bred in.  The Tij(F) hence track the transmutation under fluence of the ith isotope into its daughters given a nominal reactor spectrum embodied by one-group cross sections.  The daughters tracked include both fission products (FP) as well and transuranics (TRU).
+The first of the known burnup model parameters is nuclide-specific isotopic transformation as a 
+function of fluence, $T_{ij}(F)$ [kg\subscript{j}/kg\subscript{i}].  The subscript $i$ denotes 
+the isotope initially present in the core, where as the subscript $j$ labels those nuclides bred in.  
+The $T_{ij}(F)$ hence track the transmutation under fluence of the ith isotope into its daughters 
+given a nominal reactor spectrum embodied by one-group cross sections.  The daughters tracked 
+include both fission products (FP) as well and transuranics (TRU).
 
-(Scopatz, Schneider, Fig. 1)
+\begin{figure}[htbp]
+\caption{\nuc{Pu}{239} Transformation as a Function of Fluence for a Sample Fast Reactor}
+\label{1g_fig01}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig01.eps}
+\end{center}
+\end{figure}
 
-Figure 1 displays an example of this transformation data: the concentration in kilograms of tracked isotopes that are present in a sodium-cooled FR core as a function of 1 kg of the initial isotope (239Pu in this illustration).  In the figure, only one isotope (239Pu here) is non-zero at zero fluence (ie zero time in the reactor).  For each distinct reactor and general fuel type, similar data are required for all other transmuting nuclides initially present.   Note that not all species that 239Pu transforms into are displayed. 
+Figure \ref{1g_fig01} displays an example of this transformation data: the concentration in 
+kilograms of tracked isotopes that are present in a sodium-cooled FR core as a function of 1 kg 
+of the initial isotope (\nuc{Pu}{239} in this illustration).  In the figure, only one isotope 
+(\nuc{Pu}{239} here) is non-zero at zero fluence (ie zero time in the reactor).  For each 
+distinct reactor and general fuel type, similar data are required for all other transmuting 
+nuclides initially present.   Note that not all species that \nuc{Pu}{239} transforms into are displayed. 
 
 Since this example is for fast reactors, a constant flux of 2×1015 [n/cm2/s] was used when generating the transformation matrices.  For PWRs a constant flux of was 4×1014 [n/cm2/s] assumed.  The units of fluence (F) here are [neutrons/kilobarn], abbreviated [n/kb], while the flux (φ) is again [n/cm2/s], and time (t) is given in [days].
 
