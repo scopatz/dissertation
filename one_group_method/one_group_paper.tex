@@ -642,15 +642,65 @@ enriched product.
 
 \subsection{Fast Burner Reactor Fuel Cycle}
 \index{Fast Burner Reactor Fuel Cycle@\emph{Fast Burner Reactor Fuel Cycle}}
-\label{1g_sec:}
-A fuel cycle that features full, sustained TRU recycle is the second one being examined.  The basis of the model used here is a fast reactor (FR) with LWR SNF top up.  The purpose of this fuel cycle option is to reduce the global actinide inventory per unit energy as compared to the standard once-through fuel cycle, with the specific aim of reducing transuranics.   To this end, the FR conversion ratio (CR) is less than unity.  The nominal value for the conversion ratio in this study is taken to be 0.5, consistent with the baseline sodium-cooled fast transmuting reactor point design used in GNEP scoping studies [2].  
-(Scopatz, Schneider, Fig. 9)
-Figure 9 depicts the FR fuel cycle that is being studied.  Once again, mass flows represented in red are the four mass streams that form the FR fresh fuel blend stock.  The mass of each stream relative to the others may be varied by the burnup model to achieve a target burnup.  The mass flows in black are the flows that are considered static to the burnup model and are not changed, though they may vary with fuel cycle pass number.  
-Moreover because of the dynamic nature of the burnup model, the discharge burnup is not fixed but rather a target BUd is set as a parameter within the model.  Alteration of the BUd will change the balance of the FR input mass streams as well as all dependent isotopics.  However, burnup values of 51 MWd/kg for the LWR and 170 MWd/kg for the FR are used unless otherwise stated.  Both of these values were taken from the VISION [1] specifications for nominal LWR and FR cases.  Similarly, spent fuel from both the LWRs and FRs is allowed to cool for a time before being reprocessed.  The time that spent fuel of any sort is allowed to cool also affects the isotopics and mass stream material balances.  But once again, the cooling time is a parameter that may be specified within the fuel cycle model for which nominal values were taken here.
-The input mass to the fast reactor is made up of four independent streams: the uranium coming from light water reactors (LWR-U), the transuranics coming from light water reactors (LWR-TRU), the uranium coming from fast reactors (FR-U), the transuranics coming from fast reactors (FR-TRU).  These streams are separated in the reprocessing facilities and then combined to form the input stream to the fast reactor.  The fission products from these streams are also removed from the fuel at this point and sent off to a disposal facility.  
-It should be noted here that the reprocessing facility that deals with the light water reactor spent nuclear fuel (LWR SNF) and the reprocessing facility that handles the fast reactor spent nuclear fuel (FR SNF) are not the same.  They are displayed as one box in fuel cycle Figure 8 for ease of reading, although it is likely that these two fuel cycle components would be collocated.
-Lastly, Figure 9 represents a closed fuel cycle which implies that actinides may be recycled indefinitely or until they are eventually burned as long as there exist enough FRs to handle the mass throughput.  Of course this is not strictly true since no separation process is perfect.  Some small actinide mass will be mixed with the fission products after reprocessing and be sent to the repository.  It is known that the reprocessing separation efficiencies ultimately affect repository performance [11].  However, because the isotopics change with every pass of TRU through the fuel cycle, there arises a mass stream feedback between the reactor burnup, the cooling time, and the reprocessing efficiencies that the burnup model handles with ease. 
-The implication of a closed or partially closed fuel cycle is that mass may be sent through many recycles.  For a specific target FR burnup and other fuel cycle parameters, the relative masses and the isotopics of the four mass streams (LWR-U, LWR-TRU, FR-U, FR-TRU) may change significantly as a function of pass number.  However, one would eventually expect that equilibrium values for the mass balances and isotopics will be reached and indeed they typically are.  For some species, though, so-called equilibrium is not reached even after many recycles; indeed, in practice many decades, even centuries, would elapse before an ‘equilibrium’ scenario result would reflect reality.  Therefore, equilibrium fuel cycle simulation results must be interpreted with caution.  When equilibrium is achieved and how it is defined is discussed further in a later section.  
+\label{1g_sec:FRFC}
+A fuel cycle that features full, sustained TRU recycle is the second one being examined.  The basis 
+of the model used here is a fast reactor (FR) with LWR SNF top up.  The purpose of this fuel cycle 
+option is to reduce the global actinide inventory per unit energy as compared to the standard 
+once-through fuel cycle, with the specific aim of reducing transuranics.   To this end, the FR 
+conversion ratio (CR) is less than unity.  The nominal value for the conversion ratio in this 
+study is taken to be 0.5, consistent with the baseline sodium-cooled fast transmuting reactor 
+point design used in GNEP scoping studies [2].  
+\begin{figure}[htbp]
+\caption{FR Fuel Cycle}
+\label{1g_fig09}
+\begin{center}
+\includegraphics[scale=1.0]{one_group_method/figs/Fig09.eps}
+\end{center}
+\end{figure}
+Figure \ref{1g_fig09} depicts the FR fuel cycle that is being studied.  Once again, mass flows 
+represented in red are the four mass streams that form the FR fresh fuel blend stock.  The mass 
+of each stream relative to the others may be varied by the burnup model to achieve a target burnup.  
+The mass flows in black are the flows that are considered static to the burnup model and are not changed, 
+though they may vary with fuel cycle pass number.  
+
+Moreover because of the dynamic nature of the burnup model, the discharge burnup is not fixed but rather a 
+target BUd is set as a parameter within the model.  Alteration of the BUd will change the balance of the FR 
+input mass streams as well as all dependent isotopics.  However, burnup values of 51 MWd/kg for the LWR and 
+170 MWd/kg for the FR are used unless otherwise stated.  Both of these values were taken from the VISION [1] 
+specifications for nominal LWR and FR cases.  Similarly, spent fuel from both the LWRs and FRs is allowed to 
+cool for a time before being reprocessed.  The time that spent fuel of any sort is allowed to cool also 
+affects the isotopics and mass stream material balances.  But once again, the cooling time is a parameter 
+that may be specified within the fuel cycle model for which nominal values were taken here.
+
+The input mass to the fast reactor is made up of four independent streams: the uranium coming from light 
+water reactors (LWR-U), the transuranics coming from light water reactors (LWR-TRU), the uranium coming 
+from fast reactors (FR-U), the transuranics coming from fast reactors (FR-TRU).  These streams are separated 
+in the reprocessing facilities and then combined to form the input stream to the fast reactor.  The fission 
+products from these streams are also removed from the fuel at this point and sent off to a disposal facility.  
+
+It should be noted here that the reprocessing facility that deals with the light water reactor spent nuclear 
+fuel (LWR SNF) and the reprocessing facility that handles the fast reactor spent nuclear fuel (FR SNF) are not 
+the same.  They are displayed as one box in fuel cycle Figure 8 for ease of reading, although it is likely that 
+these two fuel cycle components would be collocated.
+
+Lastly, Figure \ref{1g_fig09} represents a closed fuel cycle which implies that actinides may be recycled 
+indefinitely or until they are eventually burned as long as there exist enough FRs to handle the mass 
+throughput.  Of course this is not strictly true since no separation process is perfect.  Some small 
+actinide mass will be mixed with the fission products after reprocessing and be sent to the repository.  
+It is known that the reprocessing separation efficiencies ultimately affect repository performance [11].  
+However, because the isotopics change with every pass of TRU through the fuel cycle, there arises a mass 
+stream feedback between the reactor burnup, the cooling time, and the reprocessing efficiencies that the 
+burnup model handles with ease. 
+
+The implication of a closed or partially closed fuel cycle is that mass may be sent through many recycles.  
+For a specific target FR burnup and other fuel cycle parameters, the relative masses and the isotopics of 
+the four mass streams (LWR-U, LWR-TRU, FR-U, FR-TRU) may change significantly as a function of pass number.  
+However, one would eventually expect that equilibrium values for the mass balances and isotopics will be 
+reached and indeed they typically are.  For some species, though, so-called equilibrium is not reached 
+even after many recycles; indeed, in practice many decades, even centuries, would elapse before an 
+`equilibrium' scenario result would reflect reality.  Therefore, equilibrium fuel cycle simulation 
+results must be interpreted with caution.  When equilibrium is achieved and how it is defined is discussed 
+further in a later section.  
 
 
 
