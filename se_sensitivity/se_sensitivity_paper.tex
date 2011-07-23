@@ -7,3 +7,1524 @@
 \section{Introduction}
 \index{Introduction@\emph{Introduction}}
 \label{ses_sec:intro}
+
+The Sensitivity of Fuel Cycle Performance to Separation Efficiency
+
+Dr. Jun Lia,*
+
+Anthony Scopatzb
+
+Dr. Man-Sung Yima
+
+Dr. Erich Schneiderb
+
+aNorth Carolina State University, Raleigh, NC 27695
+
+bThe University of Texas at Austin, Austin, TX 78712
+
+*Corresponding Author:
+
+<Department of Nuclear Engineering
+
+NC State University
+
+Campus Box 7909
+
+Raleigh, NC, USA  27695-7909>
+
+e-mail:   HYPERLINK "mailto:jli7@ncsu.edu"  jli7@ncsu.edu 
+
+Fax:919-515-5115
+
+Pages: 	 	(body)
+
+(tables + figures)
+
+(figure captions)
+
+(references)
+
+(total)
+
+Tables:
+
+Figures:
+
+Abstract
+
+	Reprocessing separation efficiency is a major design variable in the
+implementation of advanced fuel cycles as it affects waste disposal
+requirements, fuel fabrication, system economics, and other fuel cycle
+system characteristics.  Using a newly-developed, physics-based
+integrated fuel cycle systems analysis model, this study investigated
+the impact of varying reprocessing separation efficiencies on fuel cycle
+cost (FCC), proliferation resistance and repository impact. Repository
+impact was captured by the disposal facility capacity governed by
+thermal output, the projected dose rate, mass inventory, and waste
+toxicity index.  The coupled systems analysis model included fast
+reactor simulation tool to analyze the depletion in the fast reactor and
+the requirements for the fresh fuel in transient and equilibrium states.
+In this calculation, the feedback between separation efficiencies and
+fresh and discharged fuel compositions was dynamically accounted for.
+The new systems model was benchmarked against published results and used
+to investigate a single-tier nuclear fuel cycle scenario in which light
+water reactors (LWRs) and 0.5 transuranic (TRU) conversion ratio (CR)
+sodium-cooled fast reactors are deployed in an equilibrium that results
+in zero net TRU production.  The results indicated that fuel cycle
+system performance is significantly affected by the changes in
+partitioning strategies and elemental separation efficiency in
+reprocessing plants.  Moreover, the effect of varying separation
+efficiencies on reactor performance, fuel cycle mass balances and
+economic performance are discussed. 
+
+Introduction
+
+As of 2008, the United States power reactor fleet has generated over
+50,000 tonnes initial heavy metal (tIHM) of spent nuclear fuel (SNF). 
+The quandary posed by this growing stockpile of SNF, combined with the
+prospect of much larger inventories in the future, poses a considerable
+obstacle to the development of nuclear energy.  While the technical
+difficulty of storing and disposing of the SNF is considerable, it is
+public trepidation that may have the strongest effect upon the future of
+the industry.  A 2007 survey by the Massachusetts Institute of
+Technology showed that while public support for the expansion of nuclear
+power is on the rise, only 28\% of the American public agreed with the
+statement, ``nuclear waste c$[$an$]$ be stored safely for long periods
+of time.'' ()
+
+ Partitioning and transmutation will significantly reduce the nuclear
+waste disposal burden by recycling actinides from SNF in advanced
+reactors and separating the most hazardous fission products for storage
+in dedicated facilities or target irradiation.  Reprocessing technology
+is one of the key components shared by all advanced fuel cycle concepts.
+ Notably, the efficiency of the reprocessing facilities will have a
+great impact on the performance of any advanced fuel cycle. 
+
+This paper investigates how the properties of the reprocessing facility,
+in particular its separation efficiency for each of the partitioned
+elements, affect the system characteristics of the fuel cycle. The
+element-specific separation efficiency is defined as the mass ratio of
+the recovered product to its input mass to the reprocessing facility. 
+The fuel cycle system performance is characterized via three metrics:
+fuel cycle cost, proliferation resistance and repository impact.  To
+depict repository impact, the repository capacity is modeled as being
+limited by thermal output; projected dose rate, mass inventory and waste
+toxicity index are also quantified.  The study considers a single-tier
+nuclear fuel cycle scenario in which light water reactors (LWRs) and 0.5
+transuranic (TRU) conversion ratio (CR) sodium-cooled fast reactors are
+deployed in an equilibrium that results in zero net TRU production. 
+Actinide management schemes ranging from recycle of plutonium to full
+TRU recycle are considered.
+
+The objective of the work is to use physics based models at all stages
+to establish a technical basis for comparing the trade off between
+repository footprint, system economics and proliferation resistance and
+the performance characteristics of the reprocessing facilities.  This
+work is significant because target separation efficiencies must be
+identified at the earliest stages of reprocessing facility design.  The
+models incorporate feedback between the separation efficiencies, reactor
+performance and fuel cycle mass balances.  In that sense, this effort
+expands upon work conducted under the auspices of the Global Nuclear
+Energy Partnership () that addresses the correlation between heat load
+and repository capacity.  Although there is not yet enough information
+in the literature to correlate reprocessing costs to separation
+efficiency, once such data is developed it can be coupled to this
+framework, and the resulting tool would be an ideal platform for
+selecting optimal separation efficiencies.
+
+Section 2 of the paper describes the simulation and metric evaluation
+methods used to study the selected fuel cycle scenarios.  In Section 3
+the simulation approach is benchmarked against published results. 
+Finally, Section 4 presents and discusses the results of the analyses.
+
+System Modeling Approach
+
+	The closed fuel cycle selected for study includes uranium-fueled LWRs
+as well as FR burners.  The major mass flow pathways associated with the
+fuel cycle are shown in Fig. 1.  After uranium oxide (UOX) fuel is
+discharged from the LWRs, it undergoes aqueous reprocessing to retrieve
+transuranics and fission products (FP).  A variety of UREX+-inspired
+partitioning schemes are considered for this step; some or all of the
+retrieved TRU elements are recycled into the FR TRU burner.  In
+particular, Pu, Pu/Np, and full TRU recycle are studied.  FR spent fuel
+is itself reprocessed and actinide species identified above are
+recycled. Reprocessed burned uranium and depleted uranium are treated as
+low level waste. Cs and Sr, as two strong heat contributors, are
+reprocessed from SNF at an interim site before they decay to very low
+level radioactive materials. The other FP will be sent to repository
+with the residual TRU from reprocessing facility as high level waste
+(HLW).  This scenario is equivalent to a case being considered by the
+Global Nuclear Energy Partnership (GNEP) systems analysis group (). 
+Quantitative depiction of the scenario may be found in Sections 3 and 4;
+the remainder of this section discusses methodologies developed to
+assess material balances and performance metrics.
+
+Fig.   SEQ Figure $\backslash$* ARABIC  1 . Fuel Cycle Material
+Flowchart
+
+2.1 Overview of Methods
+
+	The fuel cycle is specified by reactor material balances and material
+flows between reactors and fuel cycle facilities.  Parameters related to
+the LWR, for instance burnup and spent fuel isotopic composition, are
+the reference values adopted in a recent OECD Nuclear Energy Agency
+systems study ().  The fuel cycle material balance strategy for FR
+multirecycle is identical to that used in both the OECD and the GNEP
+studies: to reach the designated burnup level, the first core of the FR
+is loaded with only the retrieved TRU and U from LWR SNF. The second and
+subsequent cycle are loaded with TRU and U from FR SNF plus retrieved
+top-up TRU from LWR SNF and depleted uranium (DU).  Cycles are continued
+until the equilibrium state is reached.  It is important to dynamically
+simulate the FR fuel composition at each pass, since critical system
+variables such as partitioning strategy, cooling time and separation
+efficiency exert a strong effect on the reactor physical characteristics
+of subsequent recycle passes. 
+
+	Therefore, a dynamic fast reactor simulation tool is developed to
+simulate this process and calculate the isotopic composition of the FR
+fuel at each pass.  This model is composed of three components: burnup,
+reactivity and decay.  The reactivity module returns the fresh fuel
+composition for a specified discharge burnup given the number of batches
+in the fuel management scheme, while the burnup module calculates the
+isotopic composition of the burned fuel for a specified fresh fuel
+composition and discharge burnup target.  The decay model applies the
+Bateman equations to a mass of fuel and returns the isotopic output
+after a given decay time.  The fast reactor simulation tool is described
+further in Section 2.2.
+
+	After the fuel isotopic compositions at each pass are determined, the
+inventory at each stage can be calculated and the system performance of
+the fuel cycle evaluated.  System performance is characterized through
+fuel cycle cost, proliferation resistance and repository impact. 
+Repository impact is represented by both repository capacity limited by
+thermal constraints and the projected dose rate from a fully loaded
+repository.  The methodologies for assessing system performance are
+presented in Section 2.3.
+
+Fast Reactor Material Balance
+
+	This model takes a given input isotopic composition and returns the
+maximum discharge burnup as well as the isotopic composition of the fuel
+output stream.  Originally developed to assess in-core performance of
+LWR fuel fabricated from uranium-236 bearing recycled uranium, the
+reactor physical methods employed by the model are documented elsewhere
+().  Therefore, this paper presents only a brief conceptual overview and
+a description of the steps taken to extend the model to FRs.
+
+	The burnup-dependent composition and reactivity of nuclear fuel and
+non-actinide reactor components are calculated via superposition of
+isotope-by-isotope burnup calculations performed using ORIGEN2.2 (). 
+The ORIGEN2.2 one group cross section libraries are themselves prepared
+from neutron transport calculations performed on a representative unit
+of the core.  For this study, libraries developed for a fast reactor
+with a TRU conversion ratio of 0.5 were used.  For a given reactor type,
+the burnup model constructs four data structures: isotopic
+transformation matrices and neutron production, destruction and burnup
+tables.  All of these contain point wise data as a function of fluence F
+$[$n/kilobarn$]$ per unit mass of each isotope present in the fresh
+fuel.  More explicitly, a fixed-flux (2?1015 $[$n/cm2/s$]$ in this case,
+chosen as typical of core-average flux values in the reactor) ORIGEN2.2
+burnup calculation is run for a unit mass of each actinide with ORIGEN
+libraries characteristic of the FR, providing a depiction of the
+evolution of this unit mass with fluence.   These libraries only need to
+be generated once for a given rector type.  
+
+	The specific burnup Bi $[$MWd/kg$]$, neutron production rate pi, and
+neutron destruction rate di $[$n/s/kg per unit flux$]$ vectors describe
+the contribution of the ith isotope to the neutron balance and
+cumulative energy production.  The isotopic composition mij $[$kg of
+daughter isotope j/ kg of parent isotope i$]$ matrix is more
+complicated; at each tabulated fluence, it lists the mass of hundreds of
+daughter isotopes per unit mass of the parent isotope.  The composition
+of the fuel at a specified fluence can therefore be determined simply by
+summing the initial mass weighted compositions of each parent isotope at
+that fluence.  For example, if the initial mass fraction of the ith
+isotope (of I total isotopes in the initial fuel) is wi, the fuel
+composition vector mj(F) at fluence F may be found from
+
+                           (1)
+
+	B(F) is found in a similar manner.  Then the first step toward
+acquiring the maximum possible discharge burnup for a given initial fuel
+composition is to find both the burnup and the multiplication factor k
+as a function of fluence.  To find k(F) the neutron production and
+destruction rates for each initially present isotope, actinide and
+otherwise, are required.  Then the infinite medium multiplication factor
+k?(F) may simply be calculated from the ratio of the
+initial-mass-weighted neutron production to destruction:
+
+                      (2)
+
+A non-leakage probability PNL is applied, so that k(F) = k?(F)PNL.  The
+non-leakage probability is obtained by calibrating the discharge burnup
+against known values from more detailed transport-burnup calculations;
+for the case of the 0.5 CR FR, PNL was chosen to be 0.65.  Given
+relevant values for B(F) and k(F), then, it only remains to find the
+fluence F at which the reactor becomes sub-critical and from that to
+obtain the discharge burnup.  In practice, multi-batch fuel management
+schemes are used to extend fuel lifetimes; such schemes can be addressed
+by assuming equal inter-batch power sharing as is discussed in Ref. ( 
+NOTEREF \_Ref202809997 $\backslash$h  $\backslash$* MERGEFORMAT  5 ). 
+Note that k(F) and B(F) are known in detail; therefore inter-batch
+reactivity averaging does not suffer from the shortcomings of simpler
+approaches, such as linear reactivity models, that assume a simple
+functional form for k(B).  Figs. 2 and 3 illustrate k(F) and B(F) for
+the FR modeled here with initial fuel composition taken from the
+benchmark described in Section 3.  In the figures the symbol BUd
+represents the discharge burnup.  The process of determining F at
+discharge from k(F), and subsequently BUd from F, is depicted for a
+three-batch fuel management scheme.  Given this information, the initial
+fuel composition can be iterated, affecting k(F) and B(F), until the
+desired BUd is achieved.
+
+Fig.   SEQ Figure $\backslash$* ARABIC  2 .  k(F) for Sample FR Fuel
+
+Fig.   SEQ Figure $\backslash$* ARABIC  3 .  B(F) for Sample FR Fuel
+
+	
+
+	Given that the BUd associated with an actinide isotopic vector is
+calculated, it remains to implement the FR multirecycle strategy to
+obtain fuel charge and discharge compositions for each pass.  When a
+fast reactor comes online, DU and LWR-TRU streams are mixed in order to
+obtain the burnup value specified for the fast reactor.  This mixing
+process has only one degree of freedom.  Hence the relative mass of
+these streams is adjusted so that BUd is achieved.  It should be noted
+here that the DU and LWR-TRU isotopic compositions remain constant over
+all fuel cycle passes through the fast reactor.  
+
+	The FR SNF is decayed for the appropriate amount of time and the
+elemental reprocessing separation efficiencies are applied.  The second
+and further passes are governed by a logic distinct from that applied to
+the first cycle.  Four mass streams, DU, LWR-TRU, FR-U, and FR-TRU now
+exist and are available for blending.  Putting the FR-U and FR-TRU
+straight back into the next recycle, the 15-20\% mass shortfall (at the
+140 -- 200 MWd/kg burnups of interest) for the next FR fuel batch is
+made up from the DU and LWR-TRU streams.  Once again, the method
+described above is applied to calculate the DU/LWR-TRU ratio that
+enables the next batch of FR fuel to achieve the target burnup.  
+
+	Fuel cycle parameters such as isotopic concentrations in the fresh and
+spent fuels typically come to equilibrium given enough passes through
+the FR system.  However, depending on the quantity of interest to the
+fuel cycle analyst it may be necessary to carry out the calculation for
+many cycles before equilibrium is declared.  For example, if spontaneous
+fission neutron production rates are of interest, it will be necessary
+to compute a large number of cycles to fully capture the buildup of
+trans-curium isotopes.  These species, having an extended chain of
+precursors, reach equilibrium only slowly.  If simple mass balance
+parameters such as the ratio of the FR fresh fuel total transuranic mass
+to its uranium mass are all that is needed, a small handful of passes
+will suffice since the major TRU isotopes by mass -- primarily
+plutoniums -- dominate the neutronic performance of the fuel.  In this
+study, the discharge mass fractions of three species, Pu-239, Pu-240 and
+Pu-242, were compared.  Equilibrium was declared when it was found that
+these mass fractions did not change by more than 1\% from one pass to
+the next.
+
+	The procedure outlined in this subsection allows a complete material
+balance at the isotopic level to be constructed for an LWR-FR fuel cycle
+featuring an arbitrary number of non-equilibrium FR passes.  It is
+important to note that the material balance depends on the separation
+efficiencies.  Therefore, each of the cases studied in this work is
+associated with a unique material balance.
+
+2.3 System Performance Assessment
+
+A number of metrics are applied to the material balances to translate
+them into decision-relevant information.  These metrics include the fuel
+cycle cost, proliferation resistance, repository capacity via thermal
+limits, dose release and toxicity.
+
+	The fuel cycle cost is the cost to buy the fresh fuel to be loaded into
+the reactors and the cost for recycling and waste disposal.  Its
+components include U ore purchase, U conversion, U enrichment, LWR fuel
+fabrication, FR fuel fabrication, SNF storage, SNF reprocessing, LLW
+(Low Level Waste) disposal, LLW-GTCC (Greater than Class C) disposal,
+HLW (High Level Waste) disposal. The unit costs for these components are
+collected from published literature as described in Section 3. 
+
+	Procedures for calculating the FCC are well-known (e.g., ()) and the
+method used in this study will be summarized only briefly.  The FCC
+total charge is the sum of charges for all components of the fuel cycle
+cost.  It is calculated using the formulation
+
+FCC total charge $[$\$/yr$]$ = 
+
+ unit charge $[$\$/KgHM or \$/SWU$]$ * service $[$KgHM/yr or SWU/yr$]$  
+    (3)
+
+The FCC $[$\$/MWh$]$ may then be obtained by dividing the FCC total
+charge $[$\$/yr$]$ by the annual electricity production $[$MWh/yr$]$.
+
+	A fuzzy logic based barrier method is used to evaluate the
+proliferation resistance of the fuel cycle system (). The proliferation
+resistance is defined here as the ability of the system to intrinsically
+protect itself against proliferators seeking to construct a nuclear
+explosive device. The method relies upon a group of system-dependent,
+measurable or quantifiable variables to define proliferation barrier
+effectiveness of a system as fuzzy numbers. Fig. 4 shows the information
+flow within this method. The values of system-dependent variables are
+converted into fuzzy numbers to describe the strength of all barriers.
+The defined fuzzy numbers are combined into one fuzzy number for the
+whole system by weighting. The quantification of proliferation
+resistance for the system can be obtained by defuzzification of the
+system fuzzy number. Table 1 lists the important variables required for
+the evaluation. Information at each stage of the fuel cycle system are
+collected and processed for the proliferation resistance evaluation.
+Table 2 shows the stages involved in the fuel cycle system, type and
+inventory of materials handled in the stage.
+
+Fig.   SEQ Figure $\backslash$* ARABIC  4 .  Information Process of the
+Fuzzy Logic Based Barrier Method
+
+Table   SEQ Table $\backslash$* ARABIC  1 . Required Inputs for PR
+Evaluation
+
+Item&Name&Unit&Comments\\
+
+1&StageWeight&~&Concentration of sensitive materials\\
+
+2&CriticalMass&Kg&Bare sphere Critical Mass(CM)\\
+
+3&Enrichment&\%&Equivalent Enrichment (233U, 235U, 239Pu)\\
+
+4&SFN&n/Sec/Kg&Spontaneous neutron generation rate\\
+
+5&HeatRate&W/Kg&Heat generation rate\\
+
+6&Radiation&MeV/Sec/Kg&Gamma Radiation\\
+
+7&SeparationCost&\$/Kg&Cost to extract the fissile materials\\
+
+8&DoseRate&mrem/Hr/Kg&Dose rate at 1-meter distance\\
+
+9&Concentration&\# of CM/Kg&Concentration of fissile material\\
+
+10&Detectability&~&Detectability levels (Five levels)\\
+
+11&FacilityModificationTime&Weeks&Modification time needed to produce 1
+CM in a year\\
+
+12&FrequencyofAccess&Days/Yr&Frequency of possible access to facility\\
+
+13&AvailableMass&\# of CM&Available fissile materials\\
+
+14&UncertaintyofMeasurement&\# of CM/Yr&Uncertainty of measurement\\
+
+15&Knowledge&Yr&Time needed to modify skills and apply them to weapons
+programs\\
+
+16&Time&Yr&Time of residence of the materials of interest\\
+
+
+
+Table   SEQ Table $\backslash$* ARABIC  2 . System Material
+Characteristics 
+
+Stage
+
+\#&Description&Material Form\\
+
+1&U Ore&U3O8\\
+
+2&U Conversion&UF6\\
+
+3&U Enrichment&UF6 (Enriched)\\
+
+4&LWR Fuel Fabrication&UOX\\
+
+5&FR Fuel Fabrication&IMF\\
+
+6&LWR reactor&UOX\\
+
+7&FR reactor&IMF\\
+
+8&Reprocessing&TRU\\
+
+9&SNF Storage&SNF (UOX \& IMF)\\
+
+10&LLW Disposal&BU DU\\
+
+11&LLW GTCC Disposal&CS/SR\\
+
+12&HLW/TRU Disposal&FP, Residual TRU\\
+
+
+
+The repository impact is quantified through capacity limitations imposed
+by thermal constraints as well as the dose release from a fully loaded
+repository. The Yucca Mountain repository with footprint 1165.8 acres is
+used for this study ().	
+
+	The repository capacity is constrained by the thermal limits placed on
+the rocks to ensure the successful performance of the engineering
+barrier system employed in the repository. The thermal restraints
+considered in this study are 200${}^\circle$C on drift walls and 96
+${}^\circle$C midway between drifts (). The repository capacity is
+estimated using both a simplified repository thermal analysis SRTA tool
+and mass based prediction model.  The SRTA is a code based on analytical
+solution of models of the Yucca Mountain repository (). The code
+calculates the temperature of give location in the repository and this
+function is used to determine the repository capacity. 
+
+	To evaluate the dose release rate for a loaded repository, a simplified
+performance assessment tool is used in this study (). This model has
+four main parts: source term model, unsaturated zone transport model,
+saturated zone transport model, and dose analysis model. The transport
+in the saturated zone was modeled based on a 2D analytic solution to the
+advection dispersion equation for contaminants. Human exposure to
+radionuclides was assumed to occur only through the drinking of
+contaminated groundwater from a well in a single location.
+
+Benchmarking
+
+The OECD Nuclear Energy Agency has gathered participants from several
+countries to perform system evaluation of several advanced fuel cycle
+designs (  NOTEREF \_Ref202815094 $\backslash$h  $\backslash$*
+MERGEFORMAT  4 ). In this study, the advanced fuel cycles are compared
+with the reference once-through thermal reactor system.
+
+3.1 Benchmark Cases
+
+The system simulation tool developed in this study is applied to the two
+scenarios defined in the NEA study for benchmark. The scenarios are
+notated ``scheme 1a'' and ``scheme 3a''.  Scheme 1a is a once-through
+PWR system.  Enriched uranium (4.9\% U235) is burned in a PWR to 60
+GWd/MTHM.  The SNF is sent to a storage facility for 7 year decay.
+Another 50 years cooling is assumed before the SNF is disposed in the
+repository.  The key fuel cycle parameters describing this case are
+presented in Table 3.
+
+Table 3. Scheme 1a system and reactor design
+
+Mass flows for scheme 1a (KgHM/Twhe)\\
+
+Natural U&20723\\
+
+Depleted U&18673\\
+
+UOX&2050\\
+
+Element in SNF after 7 yrs decay\\
+
+&U&1890\\
+
+Pu&26\\
+
+Np&1.9\\
+
+Am&1.6\\
+
+Cm&0.28\\
+
+F.P.&130\\
+
+0.71\% natural U is enriched to 4.90\% for UOX with tail enrichment
+0.25\%; Designed capacity of the PWR is 1450 MWe. The load factor is
+90\%. The burnup is 60 GWd/.\\
+
+
+
+	Scheme 3a is a closed fuel cycle design using a fast reactor burner to
+consume recycled TRU from the PWR SNF.  The precise isotopic composition
+of this fuel was not provided in the study; therefore ORIGEN was used to
+calculate it.  The results, which act as an input to the FR burnup
+calculations, are given in Table 4.  For this calculation, as stipulated
+in the OECD study, the uranium was enriched to 4.2\% U-235 and burned in
+the PWR to 50 GWd/tIHM (tonne initial heavy metal). 
+
+Table 4.  Isotopic Composition $[$Weight Percent$]$ of LWR TRU feed to
+FR
+
+Isotope&PWR Fresh&PWR SNF 
+
+(6 yrs cooling)\\
+
+Am241\\
+
+4.74E-04\\
+
+Am243\\
+
+2.13E-04\\
+
+Cm242\\
+
+3.80E-09\\
+
+Cm243\\
+
+6.97E-07\\
+
+Cm244\\
+
+7.21E-05\\
+
+Cm245\\
+
+4.38E-06\\
+
+Cm246\\
+
+6.91E-07\\
+
+Cm247\\
+
+9.03E-09\\
+
+Cm248\\
+
+6.36E-10\\
+
+Np237\\
+
+7.62E-04\\
+
+Pu238\\
+
+2.95E-04\\
+
+Pu239\\
+
+5.89E-03\\
+
+Pu240\\
+
+2.73E-03\\
+
+Pu241\\
+
+1.31E-03\\
+
+Pu242\\
+
+8.59E-04\\
+
+U234\\
+
+1.64E-05\\
+
+U235\\
+
+6.83E-03\\
+
+U236&4.20E-02&5.65E-03\\
+
+U238&9.58E-01&9.23E-01\\
+
+
+
+The retrieved Pu and other MA are used for fast reactor fresh fuel. The
+TRU in the 3 years decayed fast reactor spent fuel is fully reprocessed
+and recycled into the fast reactor. The fission products and actinides
+lost in reprocessing are sent to repository as high level waste after 50
+years cooling.  The load factor is 90\% for PWRs and 85\% for FRs.  In
+this benchmark scenario, the separation efficiency for all species is
+99.9\%.  The top-level system parameters for Scheme 3a are presented in
+Table 5.
+
+Table 5.  Scheme 3a System and Reactor Design
+
+Mass flows for scheme 3a (kgIHM/TWhe)\\
+
+Natural U&12991\\
+
+UOX&1513\\
+
+FR FF&289\\
+
+Element in HLW after Separation\\
+
+&U&1.588\\
+
+Pu&0.084\\
+
+Np&0.0027\\
+
+Am&0.006\\
+
+Cm&0.0026\\
+
+F.P.&117.5\\
+
+0.71\% natural U is enriched to 4.20\% for UOX with tail enrichment
+0.25\%; capacity of the PWR is 1450 MWe. The load factor is 90\%. The
+burnup is 50 GWd/tIHM for PWR and the spent fuel is decayed for 6 yrs
+before it is reprocessed. The retrieved TRU is mixed with depleted U for
+FR fresh fuel. The burnup for FR is 140 GWd/tIHM and the FR spent fuel
+is reprocessed after 3 yrs decay. Capacity of the FR is 600 MWe and the
+load factor is 85\%. 36.8\% of fleet electricity comes from FR.\\
+
+
+
+	The unit costs used are summarized in Table 6. The disposal costs for
+HLW and SNF are calculated from the information available in an earlier
+OECD NEA report ().  This report recommends 210,000 \$/m3 and 400,000
+\$/m3 for the disposal charges of SNF and HLW respectively. After
+conditioning, 1 tIHM SNF will result in 2 m3 waste, i.e., 420 \$/kgIHM.
+For vitrified HLW, a canister of volume 0.18 m3 is taken to contain 47.6
+kg fission products and 3.55 kg actinides.  Therefore the disposal
+charge for HLW becomes 1408 \$/kgIHM.
+
+Table 6.  Unit Costs used in Benchmark Study
+
+Item&Unit&Value\\
+
+U Ore (yellow cake)&\$/KgHM&50. \\
+
+U Conversion&\$/KgHM&5. \\
+
+U Enrichment&\$/SWU&100. \\
+
+LWR Fuel Fabrication&\$/KgHM&250. \\
+
+FR Fuel Fabrication&\$/KgHM&2,600. \\
+
+Reprocessing for LWR Spent Fuel&\$/KgHM&800. \\
+
+Reprocessing for FR Spent Fuel&\$/KgHM&2,500. \\
+
+SNF Storage&\$/KgHM&90. \\
+
+LLW Near Surface Disposal&\$/KgHM&3.60 \\
+
+LLW GTCC Disposal&\$/KgHM&381. \\
+
+SF Disposal&\$/KgHM&420. \\
+
+HLW Disposal&\$/KgHM&1408. \\
+
+
+
+3.2 Benchmark Results
+
+	The composition of FR fuel at equilibrium is calculated with the
+dynamic FR simulation tool described in Section 2.2 and compared to
+results published in the OECD study.  The fuel cycle cost is also
+benchmarked using the unit costs shown in Table 6 and methodology
+depicted in Section 2.3.  The inventory and FCC comparisons are shown in
+Table 7 for both schemes.  As mentioned above, ORIGEN was used to
+compute the PWR material balance.
+
+	The inventories of major actinides in the HLW in scheme 1a from both
+studies are in close agreement with relative errors of less than 10\%,
+except Cm which has a smaller absolute inventory in the system. The mean
+value of FCC from OECD study is approximately 4.7 \$/MWh for scheme 1a
+from the sensitivity result in the OECD report. The value of 4.27 \$/MWh
+in this study results less than 10\% error.  This variation stems from
+minor differences in the cost assessment methodology and back-end unit
+costs. 
+
+	Scheme 1a does not benchmark the dynamic FR simulation tool; however it
+does provide the TRU isotopics that serve as the starting point for the
+calculations carried out by the tool.  The procedure described in
+Section 2.2 was used to perform cycle iterations until the FR fuel
+composition converged to equilibrium.  Good agreement on the PWR to FR
+power split, charge and discharge inventories and the FCC for scheme 3a
+can be observed.  Whether the difference observed for scheme 3a can be
+ascribed to the FR simulation tool, or to inconsistencies in the LWR
+feed arising from the absence of isotopic data in the OECD study, cannot
+be established.  However in view of the great complexity of the fuel
+cycle system the agreement is strong.  For instance, the design
+parameters of the FR were not given in sufficient detail to perform
+transport-burnup calculations, so a case-specific cross section library
+could not be prepared and available data for a FR that shares many
+properties of the OECD study reactor (e.g., sodium-cooled, metallic
+fuel, similar pitch and fuel pin radius) were used instead.
+
+Table 7.  Benchmark Results
+
+?&?&?&?\\
+
+FCC $[$\$/MWh$]$&5.5&5.13&-6.73\%\\
+
+
+
+	The OECD group has also conducted repository performance studies for
+their schemes 1a and 3c, where 3c is a FR only closed fuel cycle.
+Because the HLW from both scheme 3c and 3a is mainly composed of FP, the
+repository performance assessments for schemes 3a and 3c can be expected
+to yield nearly equivalent results. 
+
+	The energy that has been produced by disposed waste in a fully loaded
+salt-based repository is given as 6615 TWh for scheme 1a and 26930 TWh
+for scheme 3c.  In other words, the waste from closed fuel cycle 3c
+would have generate 4.0 times as much electricity as scheme 1a waste
+placed in the same repository.  Using the repository capacity assessment
+methodology described in Section 2.3, the energy that has been produced
+by disposed waste in a tuff-based repository in this study is 28286 TWh
+for scheme 1a and 186365.3 TWh for scheme 3a. Therefore, the current
+work predicts that scheme 3a can, when compared to scheme 1a, generate
+6.6 times as much electricity given a repository of specified thermal
+capacity. This is higher than the 4.0 ratio calculated in the OECD
+study, but the difference in the geologic medium -- salt versus tuff --
+complicates the comparison.
+
+	Fig. 5 shows the normalized dose rate results from this study for a
+tuff repository. A fully loaded repository is assumed in scheme 1a and
+the dose rate is projected. The dose rate for scheme 3a is projected
+based on the waste from which the same amount of electricity can be
+produced.  A similar calculation for a tuff repository was carried out
+in the OECD study.  Both the current study and the OECD predicted that
+the dose rate peak for scheme 3c or 3a arrives at an earlier date than
+the dose rate peak for scheme 1a.  This is expected since the FP, as
+main dose contributors in the HLW of scheme 3c or 3a, transport faster
+than actinides in the waste.   Significantly, both this study and the
+OECD work indicate that peak dose rate in scheme 1a is close to 100
+times the peak dose rate in scheme 3c or 3a.
+
+Fig.   SEQ Figure $\backslash$* ARABIC  5 .  Normalized Dose Rate for
+Scheme 1a and 3a in this Study: Tuff Repository
+
+Case Study and Results
+
+	For the study of system sensitivity to separation efficiency and
+partitioning strategy, we consider a fleet in which PWRs and CR 0.5 FRs
+are in equilibrium.  This is the same concept as was put into practice
+in scheme 3a of the OECD study.
+
+4.1 Definition of the Cases
+
+	The present-day industrial scale reprocessing technology, PUREX,
+retrieves U and Pu from SNF. Fuel cycle strategies developed under the
+DOE Advanced Fuel Cycle Initiative called for extraction of Np with Pu
+to ease proliferation concerns, material accountability and tracking
+procedures for the product stream. It has been convincingly established
+(see for instance (  NOTEREF \_Ref202845421 $\backslash$h  $\backslash$*
+MERGEFORMAT  2 )) that separation of Am and Cm as well is necessary to
+maximize the benefit of increasing the capacity of a repository that is
+constrained by thermal limits.  The repository capacity can be further
+expanded by removing Cs and Sr for interim storage. Therefore, in this
+study, four partitioning strategies are compared:
+
+Stra1: Separation of U and Pu to be reused in FR
+
+Stra2: Separation of U, Np and Pu to be reused in FR
+
+Stra3: Separation of U, Np, Pu, Am and Cm to be reused in FR
+
+Stra4: Separation of U, Np, Pu, Am and Cm to be reused in FR, and
+separation of Cs and Sr for interim storage
+
+	In a scenario involving multi-recycle of spent fuel, the cumulative
+effect of reprocessing losses at each recycle can become quite
+significant, so that only with high separation efficiencies can the full
+benefit of the multi-recycle strategy be realized.  For example, the NEA
+study indicated that for their cases 3a and 3c less than 0.01\% loss is
+needed to reach a factor of 100 reduction in the high level waste heat
+burden to the repository.  Therefore, to develop an understanding of the
+sensitivity of the system performance metrics to separation efficiency,
+four levels are studied:
+
+Level1: 90\%
+
+Level2: 99\% 
+
+Level3: 99.9\%
+
+Level4: 99.99\%
+
+	The separation efficiencies of all elements are assumed to be the same.
+ There is no a priori reason to make this assumption as no aspect of
+reprocessing facility design or operation imposes such a constraint. 
+Instead, this assumption was made to simplify the analysis and prevent
+an egregious proliferation of cases to be studied.  In addition, and for
+similar reasons of clarity, the aqueous PWR fuel reprocessing and the
+electrochemical FR metallic fuel separations share the same
+efficiencies. Four partitioning strategies and four separation
+efficiency levels generate the 16 cases defined in Table 8.  Table 9
+shows the elemental separation efficiencies for the cases; an entry of
+zero indicates that the element remains with the repository-bound waste
+stream.
+
+Table 8: 16 Cases Defined
+
+&Stra1&Stra2&Stra3&Stra4\\
+
+Level1&Case01&Case02&Case03&Case04\\
+
+Level2&Case1&Case2&Case3&Case4\\
+
+Level3&Case11&Case12&Case13&Case14\\
+
+Level4&Case21&Case22&Case23&Case24\\
+
+
+
+Table 9. Separation Efficiencies for Each Case
+
+Cases&Separation Efficiency\\
+
+&U&NP&PU&AM&CM&CS&SR\\
+
+case01&0.9&0&0.9&0&0&0&0\\
+
+case02&0.9&0.9&0.9&0&0&0&0\\
+
+case03&0.9&0.9&0.9&0.9&0.9&0&0\\
+
+case04&0.9&0.9&0.9&0.9&0.9&0.9&0.9\\
+
+case1&0.99&0&0.99&0&0&0&0\\
+
+case2&0.99&0.99&0.99&0&0&0&0\\
+
+case3&0.99&0.99&0.99&0.99&0.99&0&0\\
+
+case4&0.99&0.99&0.99&0.99&0.99&0.99&0.99\\
+
+case11&0.999&0&0.999&0&0&0&0\\
+
+case12&0.999&0.999&0.999&0&0&0&0\\
+
+case13&0.999&0.999&0.999&0.999&0.999&0&0\\
+
+case14&0.999&0.999&0.999&0.999&0.999&0.999&0.999\\
+
+case21&0.9999&0&0.9999&0&0&0&0\\
+
+case22&0.9999&0.9999&0.9999&0&0&0&0\\
+
+case23&0.9999&0.9999&0.9999&0.9999&0.9999&0&0\\
+
+case24&0.9999&0.9999&0.9999&0.9999&0.9999&0.9999&0.9999\\
+
+
+
+4.1 Results and Discussion
+
+	The 16 cases defined in previous chapter have each been modeled through
+the transient phase to equilibrium with the FR material balance tool
+described in Section 2.2.  In addition, the performance metrics defined
+in Section 2.3 have been calculated.  Table 10 lists the fraction of
+equilibrium reactor fleet electrical power generated by the FRs.  Note
+that for neutronic purposes Stra3 is the same as Stra4 in which Cs and
+Sr are partitioned.  For each strategy, higher separation efficiency
+leads to higher FR share because more TRU are reused from LWR SNF and FR
+SNF.  
+
+Table 10. FR Share of Fleet Electricity Generation
+
+?&Stra1&Stra2&Stra3&Stra4\\
+
+Level1&26.0\%&26.0\%&25.6\%&25.6\%\\
+
+Level2&33.0\%&33.0\%&33.0\%&33.0\%\\
+
+Level3&33.8\%&33.8\%&33.9\%&33.9\%\\
+
+Level4&33.9\%&33.9\%&34.0\%&34.0\%\\
+
+
+
+	The system performance of the fuel cycle for the 16 cases will be
+discussed separately for material balance and isotopics, FCC,
+proliferation resistance and repository performance.
+
+4.1.1 Material Balance and Isotopics
+
+	Table 11 displays the parameters input to the FR material balance tool.
+ Note that the partitioning strategies and separation efficiencies are
+also vital inputs to the model.  FR operations are simulated until
+equilibrium is attained.
+
+Table 11. Input Parameters to FR Material Balance Model
+
+Fast Reactor Discharge Burnup (BUd)&140 MWd/kg\\
+
+Number of FR Fuel Batches	&3\\
+
+Fast Reactor Non-Leakage Probability (PNL)&0.65\\
+
+Cross Section Library &Metal fueled, sodium cooled CR 0.5 pancake core
+FR (after design presented in ())\\
+
+Isotopes to Converge for Equilibrium &Pu-239, Pu-240, Pu-242\\
+
+Post-discharge Cooling Time&3 years\\
+
+
+
+	Figure 6 shows the mass fraction $[$kg/kgIHM$]$ of each of the four
+input streams, DU, LWR-TRU, FR-U and FR-TRU, to FR fuel fabrication as a
+function of FR recycle number.  Self recycle of FR SNF begins on pass 2.
+ It can be seen that the top-up drawn from the recycled LWR fuel is
+predominantly LWR-TRU, but the gross mass fraction of each of the four
+streams converges quickly toward an apparent equilibrium after only a
+few cycles.  The criterion described in Table 11 leads to equilibrium
+being reached at cycle 10.
+
+Fig.   SEQ Figure $\backslash$* ARABIC  6 . Input Streams to FR Fuel
+Fabrication $[$kg/kgIHM$]$
+
+	The fast reactor output stream is a function of cycle number. 
+Individual isotopes contained in the FR fuel do not necessarily converge
+after only a handful of cycles.  Fig. 7 shows the mass fractions at
+discharge of Np-237, Pu-239, Am-241 and Cm-244.  It can be seen that the
+higher A number actinides have not yet converged even after 10 cycles. 
+Also noteworthy is the dependence of the isotopic composition of the FR
+fuel upon separation efficiency.  The higher A number species are
+especially strongly affected by the efficiency, with the Cm-244
+inventory, for example, differing by 20\% at equilibrium for the 90\%
+efficiency case versus the 99.99\% case.  Fig. 8 plots the fraction of
+uranium and transuranics relative to the total actinide content of the
+output stream.
+
+Fig.   SEQ Figure $\backslash$* ARABIC  7 .  Input and Output Mass,
+$[$kg/kgIHM$]$, for Selected Actinide Isotopes at Two Separation
+Efficiencies
+
+Fig.   SEQ Figure $\backslash$* ARABIC  8 . FR-U and FR-TRU Output Mass
+Fractions $[$kg/kg discharged heavy metal$]$
+
+	There are various ways to define the conversion ratio.  In this study,
+the TRU CR is defined as
+
+                     (4)
+
+TRUIn is defined as the sum of the LWR-TRU and FR-TRU stream mass
+fractions as plotted in Fig. 7.  TRUOut is the TRU mass fraction in the
+FR SNF stream.  Fig. 9 shows that the TRU CR equilibrates at around
+0.53.  Note that the CR is not an input to the model, but rather a
+derived quantity that is a consequence of the reactor configuration and
+discharge burnup.  The FR power fraction is likewise a derived quantity.
+ Fig. 10 shows as a function of cycle number for the 99.9\% separation
+efficiency case, the mass of LWR SNF needed to fabricate 1 kg of FR
+fresh fuel.  For cycle numbers greater than 2, actinides from LWR fuel
+serve as top-up only.  
+
+Fig.   SEQ Figure $\backslash$* ARABIC  9 . TRU Conversion Ratio
+
+ Fig.   SEQ Figure $\backslash$* ARABIC  10 . LWR SNF Required to Top Up
+FR Fresh Fuel $[$kg LWR SNF/kg FR IHM$]$
+
+4.1.2 Fuel Cycle Cost
+
+	Table 12 shows the FCC computed according to the methods of Section 2.3
+using the unit costs described in Section 3. For all strategies, higher
+separation efficiencies (SE) lead to lower FCC while there is no
+advantage for 99.99\% SE compared to 99.9\% SE.  Note that the
+reprocessing cost is of necessity assumed to be independent of the
+separation efficiency.  It is recognized that higher efficiencies will
+require more separation stages and operation time, almost inevitably
+leading to more costly plant operations.  However a review of literature
+shows that the difficult task of correlating process costs to separation
+efficiency has not yet been undertaken.
+
+	The FCC components are listed in detail in Table 13. At Level1, lower
+separation efficiency results in more mass is reprocessed in the
+reprocessing facility; hence the difference from the reprocessing charge
+component dominates the small difference in FCC as one progresses to
+more complex actinide partitioning strategies (Stra1 to Stra4).  When
+the separation efficiency increases from 90\% to 99\% or 99.9\% the
+annual charge for reprocessing service drops by around 10\%,
+commensurate with the process mass reduction.  It is expected that the
+unaccounted-for cost premium associated with achieving the higher
+efficiencies would counteract this effect.  
+
+Table 12. FCC with Fixed Disposal Charge (\$/MWh)
+
+?&Stra1&Stra2&Stra3&Stra4\\
+
+Level1&5.51 &5.51 &5.50 &5.50 \\
+
+Level2&5.18 &5.18 &5.16 &5.16 \\
+
+Level3&5.15 &5.14 &5.13 &5.12 \\
+
+Level4&5.14 &5.14 &5.13 &5.12 \\
+
+
+
+Table 13. Cost Components
+
+?&case21&case22&case23&case24\\
+
+U Ore (yellow cake)&0.68&0.68&0.68&0.68\\
+
+U Conversion&0.07&0.07&0.07&0.07\\
+
+U Enrichment&0.99&0.99&0.99&0.99\\
+
+LWR Fuel Fabrication&0.40&0.40&0.40&0.40\\
+
+FR Fuel Fabrication&0.69&0.69&0.69&0.69\\
+
+Reprocessing&1.93&1.93&1.93&1.93\\
+
+SNF Storage&0.16&0.16&0.16&0.16\\
+
+LLW Disposal&0.05&0.05&0.05&0.05\\
+
+LLW GTCC Disposal&0.00&0.00&0.00&<0.01\\
+
+HLW/TRU Disposal&0.19&0.18&0.17&0.16\\
+
+
+
+4.1.3 Proliferation Resistance
+
+	The intrinsic proliferation resistance varies weakly between the cases
+due to the separation efficiency and more strongly as a consequence of
+partitioning strategy.  Table 14 lists the system proliferation
+resistance value for all cases.  Recall that higher numbers imply a
+greater intrinsic proliferation resistance for the system.  Recall that
+higher numbers imply a greater intrinsic proliferation resistance for
+the system.  As an example, when applied to the OECD benchmark case
+``scheme 1a'' (PWR-OT) this model generates a proliferation resistance
+value of 0.2416.
+
+	The differences between cases arise from the reprocessing and HLW
+disposal stages.  SNF storage and HLW disposal handle similar materials
+and both represent pure storage sites.  Hence they share same level of
+proliferation resistance. The large difference in inventory at HLW
+disposal site as the partitioning strategy is varied generates
+relatively large proliferation resistance differences at this stage.  FR
+fuel fabrication, LWR reactor, FR reactor and reprocessing facility have
+lower proliferation resistance value in the fuel cycle system due to the
+large inventory of actinides Pu, Np, Am and Cm. Especially in the
+reprocessing stage, the pure Pu in case01, case1 and case11 negatively
+impact the proliferation resistance value.  The benefit of co-extraction
+of Np, Am and Cm with Pu is shown to lead to the best proliferation
+resistance value.
+
+Table 14. System Proliferation Resistance Value
+
+?&Stra1&Stra2&Stra3&Stra4\\
+
+Level1&0.1850&0.1874&0.2421&0.2422\\
+
+Level2&0.1853&0.1870&0.2418&0.2418\\
+
+Level3&0.1852&0.1865&0.2414&0.2414\\
+
+Level4&0.1852&0.1865&0.2413&0.2410\\
+
+
+
+4.1.4 Repository Performance
+
+	The heat load based repository capacity is shown in Table 15.  The
+benefit accrued by separating Am, Cm, Cs and Sr from the spent fuel is
+considerable. At all three levels, by separating Am and Cm only, the
+repository capacity doubles and further separation of Cs and Sr make the
+repository capacity 3.7 times (level 1), 25.8 times (level 2), 228.5
+times (level 3) and 1221.2 times (level 4) greater compared to strategy
+1. 
+
+Table 15. Repository Capacity (tIHM/Repository)
+
+?&Stra1&Stra2&Stra3&Stra4\\
+
+Level1&9342&9383&28766&34609\\
+
+Level2&4849&4755&23341&124877\\
+
+Level3&4388&4291&22555&1002783\\
+
+Level4&4342&4244&22478&5302541\\
+
+
+
+	The benefit of higher separation efficiency can be clearly appreciated
+from the result in Table 16 where the repository capacity is represented
+as the total electricity generated from the HLW that may be placed in a
+fully loaded repository. Higher separation efficiency leads to greater
+economy of repository usage in all cases, but it is especially
+noteworthy that only for Stra4, where Cs/Sr partitioning is pursued,
+does it become worthwhile to achieve 99.99\% efficiency for all species.
+ This result is simply a consequence of the capacity-limiting species
+for each strategy.  In strategies 1 through 3, once 99.9\% efficiency is
+reached, Cs and Sr become limiting, so that there is no further benefit
+to reaching 99.99\% actinide separation efficiency unless Cs and Sr are
+partitioned as well.  
+
+	Note that the dramatic increase in the heat-based capacity of the
+repository is not matched by commensurate decreases in HLW volume or
+dose.  Table 17 shows the mass of HLW generated by each unit of
+electricity produced and Fig. 11 shows the dose density, cumulative over
+100,000 years for the fully loaded repository.  Therefore, the capacity
+enhancement shown in Table 15 may not be accompanied by a proportionate
+decrease in disposal cost; likewise, the potential dose of materials
+placed in a fully loaded repository is many times higher for Stra4 than
+for the other cases.  The correlation between repository capacity and
+potential dose is addressed below.  Toxicity is defined as the volume of
+water required to dilute the hazard material to recommended
+concentration guidelines for human consumption. Elemental chemical
+toxicity information for tracked elements is retrieved from ORIGEN2.2.
+The toxicity for the lumped fission product is assumed to 1 g/m3.  Fig.
+12 shows the toxicity density for the 16 cases.
+
+Table 16.  Repository Capacity (GWh/Repository)
+
+?&Stra1&Stra2&Stra3&Stra4\\
+
+Level1&2.96E+07&3.00E+07&9.39E+07&1.15E+08\\
+
+Level2&3.26E+07&3.26E+07&1.71E+08&9.63E+08\\
+
+Level3&3.30E+07&3.30E+07&1.86E+08&8.81E+09\\
+
+Level4&3.30E+07&3.30E+07&1.88E+08&4.72E+10\\
+
+
+
+Table 17. HLW Mass Per Unit Energy Produced (gHM/GWh)
+
+?&Stra1&Stra2&Stra3&Stra4\\
+
+Level1&315.5 &312.9 &306.4 &300.0 \\
+
+Level2&148.8 &145.8 &136.9 &129.7 \\
+
+Level3&133.2 &130.2 &121.0 &113.8 \\
+
+Level4&131.6 &128.7 &119.5 &112.2 \\
+
+
+
+Fig.   SEQ Figure $\backslash$* ARABIC  11 .  Accumulated Dose $[$rem in
+Fully Loaded Repository$]$
+
+Fig.   SEQ Figure $\backslash$* ARABIC  12 .  Toxicity Density $[$m3 in
+Fully Loaded Repository$]$
+
+	Fig. 13 shows the projected dose rate for a location 20 km from the
+repository from a full loaded repository 100,000 years post disposal.
+Case14 and case24 have very high dose rate due to their much higher dose
+inventory, particularly of fission products.  In Fig. 13. Case24, Case14
+and Case4 exhibit higher and earlier dose rate peaks due to the large
+fission product inventory being buried. The dose rate from case01,
+case02, case03 and case04 are similar at the end of the time period. The
+projected dose rates of case1, case11, case21, case02, case2, case12 and
+case22 similar to case01 while case03, case3, case13 and case23 similar
+to case04; these are not shown in this figure.
+
+	Table 18 lists the top 8 dose contributors and their peak dose time; it
+suggests that the earlier peak of the dose rate comes from fission
+products while the later dose rate peak shown at the end of investigated
+period arises from Np237. 
+
+Fig.   SEQ Figure $\backslash$* ARABIC  13 . Projected Dose Rate
+
+Table 18. Peak Dose Time
+
+Nuclide&Peak Dose Time (yr)\\
+
+Np237&1.000E+05\\
+
+I129&8.110E+04\\
+
+Tc99&8.290E+04\\
+
+U234&8.650E+04\\
+
+Se79&8.560E+04\\
+
+U238&8.650E+04\\
+
+C14&8.020E+04\\
+
+Cl36&8.650E+04\\
+
+
+
+Conclusions
+
+	This paper has documented the development and benchmarking of a new
+modeling framework that couples simple, physics-based models for fuel
+cycle and reactor material balance generation, repository capacity, dose
+and toxicity assessment, economics and proliferation resistance.  The
+coupled model suite was created to investigate the sensitivity of these
+important fuel cycle outcomes to changes in partitioning strategies and
+elemental separation efficiency in reprocessing plants.
+
+	The modeling framework is unique because it links burnup and reactivity
+calculations in which reactor performance and fuel cycle mass balance
+are coupled with a fuzzy logic based barrier method for assessing
+proliferation resistance, a repository thermal analysis tool and
+multi-zonal transport model to treat repository performance and an
+economic module.  The linkage is significant because perturbations to
+system input variables such as separation efficiencies are propagated
+through all the submodels: for instance, the material balance tool
+recalculates the transient and equilibrium FR cycle material balances.
+
+''@
+
+\asciicircum{}''@
+
+)
+
+8
+
+B
+
+G
+
+f
+
+g
+
+$\mu$
+
+?
+
+?
+
+?
+
+?
+
+6
+
+A
+
+B
+
+R
+
+d
+
+e
+
+$}$
+
+?
+
+?
+
+?
+
+?
+
+?
+
+kd?
+
+kdt
+
+??<
+
+??<
+
+??<
+
+??<
+
+??<
+
+??<
+
+??<
+
+??<
+
+??<
+
+??<
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???
+
+???????????
+
+m& 
+
+m& 
+
+m& 
+
+m& 
+
+ h?
+
+	rademark
+
+	rademark
+
+	rademark
+
+	rademark
+
+	rademark
+
+!	N
+
+!	N
+
+!	N
+
+!	N
+
+!	N
+
+---
+
+?
+
+---
+
+?
+
+---
+
+?
+
+---
+
+?
+
+---
+
+?
+
+---
+
+?
+
+---
+
+?
+
+---
+
+?
+
+d Cs/Sr are partitioned.  If Cs/Sr are not partitioned, it was not seen
+to be worthwhile to exceed 99.9\% efficiency.  On the other hand,
+drastic increases in the low heat release fission product loading of the
+repository may limit the potential repository benefit of the
+transmutation scheme by increasing the dose, toxicity and mass to be
+interred.
+
+	In the short term, it is of interest to consider the separation
+efficiency for individual elements.  Perhaps capacity enhancement goals
+can still be met even if 99.9\% or 99.99\% efficiency is not met at each
+step -- for example, if Cs/Sr efficiency is limited to 99.9\%, it
+appears that achieving an equivalent TRU separation efficiency may not
+be necessary; 99\% could suffice with the same repository benefit.  
+
+	In future, as understanding of the variation of disposal cost with
+these parameters as well as the response of the reprocessing cost to
+efficiency improves, system optimization will emerge as an important
+area of study.  This self-contained, physics-based tool executes and
+incorporates feedbacks between is components.  As such, a stochastic
+system optimization wrapper that invokes the new tool could efficiently
+search the parameter space.
+
+	Finally, only a single LWR/FR strategy has been considered thus far. 
+Other fuel cycle strategies, for instance multi-tier approaches that
+include partial transmutation in thermal systems, will also be
+addressed.  Due to the presence of additional reprocessing steps, it is
+expected that such strategies will respond even more sensitively to
+variations in process efficiency.
+
+References:
+
+  PAGE  61 /  NUMPAGES  64 
+
+ ``MIT Survey: Americans Warming to Nuclear Power,'' MIT TechTalk, 52,
+1, September 12 (2007).
+
+ R. WIEGLAND, ``Criteria Derived for Geologic Disposal Concepts,'' Proc.
+OECD/NEA 9th Information Exchange Meeting on Actinide and Fission
+Production Partitioning and Transmutation (IEMPT-9), Nimes, France,
+September (2006).
+
+ S. J. PIET et al., ``Fuel Cycle Scenario Definition, Evolution and
+Trade-offs,'' INL/EXT-06-11683, Idaho National Laboratory (2007).
+
+ OECD Nuclear Energy Agency, ``Advanced Nuclear Fuel Cycles and
+Radioactive Waste Management,'' NEA-5990, OECD Paris, 2006.
+
+ SCHNEIDER, E. A. and A. M. SCOPATZ, ``A Parameterization of the
+Neutronic Characteristics of Recyclable Uranium,'' Proc. Intl. Conf. on
+the Physics of Reactors, PHYSOR 2008, Interlaken, Switzerland, September
+(2008).
+
+ A. G. CROFF, ``A User's Manual for the ORIGEN2 Computer Code,''
+Technical Report ORNL-TM/7175, Oak Ridge National Laboratory (1980).
+
+ MILLER, K. and K. WILLIAMS, ``User's Manual for G4 ECONS Version 2.0,''
+Generation-IV Program Economic Modeling Working Group Technical Report,
+(2008).
+
+ LI, J., YIM, M.S. and D. McNELIS, ``Assessing Proliferation Resistance
+of Nuclear Fuel Cycle Systems Using Fuzzy Logic-Based Barrier Method'',
+Nuclear Technology, 162, 293-307, June (2008).
+
+ Mohanty, S., T. J. McCartin, and D. W. Esh, ``Total-System Performance
+Assessment (TPA) Version 4.0 Code: Module Descriptions and User's
+Guide'', Center for Nuclear Waste Regulatory Analyses, San Antonio,
+Texas, Jan. 2002.
+
+ TRW Environmental Safety Systems Inc., "Civilian Radioactive Waste
+Management System Management \& Operating Contractor: License
+Application Design Selection Report", B00000000-01717-4600-00123 REV 01
+ICN 01, August (1999).
+
+ LI. J, NICHOLSON, M., PROCTOR, W. C., YIM, M.-S. and D. N. McNELIS,
+``Examining Repository Loading Options to Expand Yucca Mountain
+Repository Capacity,'' Proc. Advanced Nuclear Fuel Cycles and Systems,
+GLOBAL 2007, Boise, ID, September (2007). 
+
+ LI, J., YIM, M.-S. and D. McNELIS, ``Risk-Based Performance Index for
+Nuclear Waste Transmutation System Optimization,'' Trans. Am. Nuc. Soc.,
+90, 239-240, (2004).
+
+ OECD Nuclear Energy Agency, ``Accelerator Driven Systems (ADS) and Fast
+Reactors (FR) in Advanced Nuclear Fuel Cycles,'' Technical Report
+NEA-3109/ADS, OECD Paris, (2002).
+
+ FERRER, R., ASGARI, M., BAYS, S. and B. FORGET, ``Computational
+Neutronics Methods and Transmutation Analyses for Fast Reactors,''
+Technical Report INL/EXT-07-12466, Idaho National Laboratory (2007).
+
