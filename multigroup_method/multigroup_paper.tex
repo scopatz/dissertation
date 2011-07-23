@@ -790,13 +790,7 @@ homogenized full-core cross sections are given by the reduction in equation \ref
                        {V_{\mbox{fuel}} + \zeta_{tg}V_{\mbox{cool}}}
 \end{equation}
 Here, $\zeta_{tg}$ is the disadvantage factor per group.  This is computed via the macroscopic 
-cross sections and the lattice functions found in \cite{Lamarsh2002}.  A more traditional
-total thermal disadvantage factor may be calculated from the group collapse of $\zeta_{tg}$ 
-as seen in equation \ref{total_zeta}.
-\begin{equation}
-\label{total_zeta}
-\zeta_t = \frac{1}{\phi_t} \sum_g^G \zeta_{tg} \cdot \phi_{tg}
-\end{equation}
+cross sections and the lattice functions found in \cite{Lamarsh2002}.  
 
 
 The absorption or $A$-matrix is defined as 
@@ -1020,9 +1014,9 @@ the harder Serpent fuel spectrum is expected than that calculated by the RMG.
 
 To compute the spectra above, the disadvantage factor must be known.
 Figure \ref{zeta_BOL_EOL} shows $\zeta_{tg}$ as a function of group for both BOL \& EOL.
-The `total' values $\zeta_t$ show good agreement between the RMG and the traditional 
-thermal disadvantage factor.  Depending on geometry, $\zeta_t$ for an LWR lies approximately 
-on the range $[1.1, 1.3]$.
+Because the absorption cross section of the fuel is larger than that of the coolant, 
+$\zeta_{tg}$ will always be greater than unity.  Moreover, the disadvantage factor generally
+increases with decreasing energy due to the `one-over-v' dependence on the cross sections. 
 
 \begin{figure}[htbp]
 \caption{Disadvantage Factor $\zeta_{tg}$ at BOL \& EOL}
