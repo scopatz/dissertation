@@ -707,10 +707,23 @@ further in a later section.
 \subsection{Cooling Model}
 \index{Cooling Model@\emph{Cooling Model}}
 \label{1g_sec:cool_model}
-Before reprocessing occurs, light water reactor spent nuclear fuel (LWR SNF) and fast reactor spent nuclear fuel (FR SNF) are typically stored and cooled.  This process represents the “Storage” boxes in fuel cycle Figures 8 and 9.  The cooling model computes the analytical solutions to the Bateman equations [12]: 
-        (18)
-Here, tC [years] is the time that the SNF spends in storage cooling,  Ni(tC) [kg] is the mass of the ith daughter of the parent species with mass N1 [kg]. The λs [1/years] are the decay constants for the respective nuclides in the decay chain.   The γs are the branch ratios that correspond to each decay constant for this decay chain.  
-Finally, these results are sent to the reprocessing model (where separation efficiencies are applied), output parameters are recorded, graphs are generated, and (for the FR case) the next cycle starts.   It is therefore time for the dynamic fuel cycle results to be computed using the burnup model.
+Before reprocessing occurs, light water reactor spent nuclear fuel (LWR SNF) and fast reactor spent 
+nuclear fuel (FR SNF) are typically stored and cooled.  This process represents the ``Storage'' boxes in 
+fuel cycle Figures \ref{1g_fig08} \& \ref{1g_fig09}.  The cooling model computes the analytical solutions 
+to the Bateman equations [12]: 
+\begin{equation}
+\label{1g_bateman}
+N_i(t_C) = \left( N_i\gamma_1\lambda_1\gamma_2\lambda_2\cdots\gamma_{i-1}\lambda_{i-1} \right)
+            \sum_{j=h}^i \left[\frac{e^{-\lambda_j t_C}}{\prod_{k=h, k\ne j}^i} (\lambda_k - \lambda_j) \right] \, \mbox{ for } 1 < i
+\end{equation}
+Here, $t_C$ [years] is the time that the SNF spends in storage cooling,  $N_i(t_C)$ [kg] is the 
+mass of the $i$\superscript{th} daughter of the parent species with mass $N_1$ [kg]. The $\lambda$s [1/years] 
+are the decay constants for the respective nuclides in the decay chain.   The $\gamma$s are the branch ratios 
+that correspond to each decay constant for this decay chain.  
+
+Finally, these results are sent to the reprocessing model (where separation efficiencies are applied), output 
+parameters are recorded, graphs are generated, and (for the FR case) the next cycle starts.   It is therefore 
+time for the dynamic fuel cycle results to be computed using the burnup model.
 
 
 
@@ -719,15 +732,149 @@ Finally, these results are sent to the reprocessing model (where separation effi
 \section{The Fuel Cycle Model: Benchmarking \& Results}
 \index{The Fuel Cycle Model: Benchmarking \& Results@\emph{The Fuel Cycle Model: Benchmarking \& Results}}
 \label{1g_sec:fcmodel_benchmark}
-The fuel cycle model is the computational wrapper that executes much of the calculation and analysis.  The fuel cycles that are studied are specified by a large set of inputs extending to the various intrinsic parameters of the reactors that comprise it.  For example, the PNL of the different reactors are specific to that reactor’s design and neutron transport characteristics.  Other parameters include the reactor’s target burnup, the amount of time that SNF spends in storage cooling, and the fuel cell specifications that are used.  Values for these parameters that were used in this study are presented in Table 1.  Knowing this information, the fuel cycle model wraps around the reactor burnup model and invokes it when input streams need to be mixed or spent fuel compositions must be found.  The fuel cycle model then sends the results of the burnup model to the next fuel cycle component (as seen in Figures 8 and 9).  Thus the fuel cycle model coupled with the burnup model developed here to produce unique, physics-based values for the material balances and isotopics for one or many recycle passes.  This represents an advantage over recipe based simulations which are not able to alter any of the input parameters at will whereas here all of them are allowed to change. 
-(Scopatz, Schneider, Table 1)
-It is important to point out that the burnup model is sensitive to the input parameters specified in Table 1.  To select the non-leakage probability PNL and calibrate the model, enrichment and burnup combinations were taken from VISION [1] libraries for LEU for a 3 batch core.  By thinly varying PNL and the coolant density ρC [g/cm3] and toggling the f-factor correlating cycle-average hydrogen cross sections with discharge burnup a wide range of values for enrichment for given burnups was generated.  These are presented in Table 2 along with benchmark enrichment/burnup values taken from two other sources.  The parameter set H was the one that was chosen for the actual model as it most closely represents reality and the VISION targets.  Note that the enrichment is in weight percent 235U and BUd is in units of [MWd/kgIHM].  This calibration must be carried out for each reactor system to be analyzed.
-(Scopatz, Schneider, Table 2)
-A series of benchmarks were carried out to verify both the fresh fuel composition and fuel burnup calculations.  The OECD Burnup Credit Criticality Benchmark [3] series is a composite of many international studies using independent, high fidelity neutronics codes acting on the same specifications.  The study selected for benchmarking, Phase I for PWRs, uses an initial fuel vector (3.6 w/o 235U with trace amounts of 234U and 236U) that is burned to 40 MWd/kg.  The study lists output isotopics at various stages during the burn and post-removal cooling.  
-To benchmark the burnup algorithm developed here, the initial fuel vector and burn parameters are taken from the study but “generic” PWR cross section sets were used.  In other words, the cross sections developed for a reference 17x17 PWR lattice were used with the burnup model and detailed transport calculations to create customized cross section sets for the benchmark case were not carried out.  This situation reflects the procedure that might actually be carried in a fuel cycle scoping calculation, where it is desirable to treat all reactors of a single general type as represented by a generic archetype.  Table 3 compares the computed isotopics to the isotopic vector reported in the OECD study for a 40 MWd/kgIHM burn with no cooling.  The table also shows the standard deviation of the collected results for the 21 participants in the Phase-IB study.  
-(Scopatz, Schneider, Table 3)
-All values are given in terms of weight percent of initial heavy metal.    These results show that the present method matches the Burnup Credit within two standard deviations for most actinides.  The only species showing a much larger relative departure is 241Am.  241Am is formed almost exclusively thorugh 241Pu decay and there are two reasons for this departure.  First, the fluence-dependent isotopic transformation matrices were assembled using a constant flux 4x1014 [n/cm2/s] that is representative of most PWRs.  If the average flux and power density are somewhat lower, and hence the irradiation time is somewhat longer as is the case here, the model will under predict the 241Am buildup in the core.   Second, the model does not explicitly treat refueling downtimes when transmutation ceases but decay continues. Note that the deviation in long-term 241Am content is smaller because the concentration of the much more abundant parent, 241Pu, is reasonably accurate. 
-It is also necessary to benchmark the feed stream blending and discharge burnup calculations.  This is best achieved in the context of a comparison of a fuel cycle material balance.  Material balances of this type generated using the high-fidelity material balance simulation package COSI [14] are available in a number of OECD systems studies, e.g. [15].  A benchmark of the equilibrium material balance for a PWR/FR fleet has been carried out.  In this benchmark, the methodology described here is used to find the enrichment of PWR fuel to achieve a specified burnup as well as to derive the equilibrium FR fresh and spent fuel compositions through the cycle iteration procedure described in this paper.  Specific results benchmarked included the PWR/FR thermal power split, the isotopic composition of the burned fuel, and the fuel cycle cost derived from the material balance flowsheets.  A detailed description of the benchmark results may be found in section 3.2 of the companion paper [13] appearing in this issue.  Since the benchmark fuel cycle scenario served as a point of departure for the system study presented in that paper, and also because items outside the scope of this paper such as cost calculations were being benchmarked, it was felt more appropriate that this benchmark be presented there.
+The fuel cycle model is the computational wrapper that executes much of the calculation and analysis.  The fuel 
+cycles that are studied are specified by a large set of inputs extending to the various intrinsic parameters of 
+the reactors that comprise it.  For example, the PNL of the different reactors are specific to that reactor's 
+design and neutron transport characteristics.  Other parameters include the reactor's target burnup, the 
+amount of time that SNF spends in storage cooling, and the fuel cell specifications that are used.  Values 
+for these parameters that were used in this study are presented in Table \ref{1g_table1}.  Knowing this information, the 
+fuel cycle model wraps around the reactor burnup model and invokes it when input streams need to be mixed 
+or spent fuel compositions must be found.  The fuel cycle model then sends the results of the burnup model 
+to the next fuel cycle component (as seen in Figures \ref{1g_fig08} \& \ref{1g_fig09}).  Thus the fuel cycle 
+model coupled with the burnup model developed here to produce unique, physics-based values for the material 
+balances and isotopics for one or many recycle passes.  This represents an advantage over recipe based 
+simulations which are not able to alter any of the input parameters at will whereas here all of them are 
+allowed to change. 
+
+\begin{table}[htbp]
+\begin{center}
+\caption{Neutron Reaction Types}
+\label{1g_table1}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Parameter}                           & \textbf{LWR} & \textbf{FR} \\
+\hline
+Target BUd [MWd/kgIHM]                       & 51           & 170    \\
+Non-Leakage Probability, $P_{NL}$            & 0.98         & 0.65   \\
+Number of Fuel Batches, $B$                  & 3            & 3      \\
+Fuel Density, $\rho^F$ [g/cm3]               & 10.7         & 18.0   \\
+Coolant Density, $\rho^C$ [g/cm3]            & 0.73         & 0.927  \\
+Fuel Cell Side Length, $\ell$ [cm]           & 1.3127       & 0.956  \\
+Fuel Radius, $r$ [cm]                        & 0.410        & 0.3115 \\
+Cladding Outer Radius, $r_o$ [cm]            & 0.475        & -      \\
+Total Fuel Pin Slots per Assembly, $S_T$     & 289          & 163    \\
+Open Fuel Pin Slots per Assembly, $S_O$      & 25           & 19     \\
+Cooling Time, $t_C$ [years]                  & 10           & 10     \\
+Fraction of LWR SNF that is TRU, LWRtruF     & 0.01288      & -      \\
+Convergent Isotopes for Equilibrium, Iso2Cvg & -            & \nuc{Pu}{239}, \nuc{Pu}{240}, \nuc{Pu}{242} \\
+Uranium Separation Efficiency                & 0.99         & 0.99   \\
+Neptunium Separation Efficiency              & 0.99         & 0.99   \\
+Plutonium Separation Efficiency              & 0.99         & 0.99   \\
+Americium Separation Efficiency              & 0.99         & 0.99   \\
+Curium Separation Efficiency                 & 0.99         & 0.99   \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+It is important to point out that the burnup model is sensitive to the input parameters specified in 
+Table \ref{1g_table1}.  To select the non-leakage probability $P_{NL}$ and calibrate the model, 
+enrichment and burnup combinations were taken from VISION [1] libraries for LEU for a 3 batch core.  
+By thinly varying PNL and the coolant density $\rho^C$ [g/cm3] and toggling the f-factor correlating 
+cycle-average hydrogen cross sections with discharge burnup a wide range of values for enrichment for 
+given burnups was generated.  These are presented in Table \ref{1g_table2} along with benchmark enrichment/burnup 
+values taken from two other sources.  The parameter set H was the one that was chosen for the actual 
+model as it most closely represents reality and the VISION targets.  Note that the enrichment is in 
+weight percent \nuc{U}{235} and BUd is in units of [MWd/kgIHM].  This calibration must be carried out for 
+each reactor system to be analyzed.
+\begin{table}[htbp]
+\begin{center}
+\caption{Burnup Model Input Parameters for LWRs}
+\label{1g_table2}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Label} & $P_{NL}$ & $\rho^C$ & \textbf{f used?} & \textbf{\%\nuc{U}{235} at BUd=33} & \textbf{\%\nuc{U}{235} at BUd=51} \\ 
+\hline
+VISION [1]     &          &          &                  & 3.2                               & 4.3 \\
+ORNL [9]       &          &          &                  &                                   & 4.26 @ BUd=50 \\
+OECD [3]       &          &          &                  & 3.6 @ BUd=40                      & \\
+A              & 0.98     & 1.00     & yes              & 3.38                              & 4.85 \\
+B              & 0.98     & 1.00     & no               & 3.29                              & 4.89 \\
+C              & 1.00     & 1.00     & yes              & 3.22                              & 4.54 \\
+D              & 1.00     & 1.00     & no               & 3.07                              & 4.50 \\
+E              & 1.00     & 0.73     & yes              & 2.88                              & 4.21 \\
+F              & 1.00     & 0.73     & no               & 2.77                              & 4.23 \\
+G              & 0.95     & 0.73     & yes              & 3.48                              & 5.00 \\
+H (used)       & 0.98     & 0.73     & yes              & 3.12                              & 4.49 \\
+I              & 0.98     & 0.73     & no               & 3.05                              & 4.51 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+A series of benchmarks were carried out to verify both the fresh fuel composition and fuel burnup calculations.  
+The OECD Burnup Credit Criticality Benchmark [3] series is a composite of many international studies using 
+independent, high fidelity neutronics codes acting on the same specifications.  The study selected for 
+benchmarking, Phase I for PWRs, uses an initial fuel vector (3.6 w/o \nuc{U}{235} with trace amounts of 
+\nuc{U}{234} and \nuc{U}{236}) that is burned to 40 MWd/kg.  The study lists output isotopics at various 
+stages during the burn and post-removal cooling.  
+
+To benchmark the burnup algorithm developed here, the initial fuel vector and burn parameters are taken 
+from the study but ``generic'' PWR cross section sets were used.  In other words, the cross sections 
+developed for a reference 17x17 PWR lattice were used with the burnup model and detailed transport 
+calculations to create customized cross section sets for the benchmark case were not carried out.  
+This situation reflects the procedure that might actually be carried in a fuel cycle scoping calculation, 
+where it is desirable to treat all reactors of a single general type as represented by a generic archetype.  
+Table \ref{1g_table3} compares the computed isotopics to the isotopic vector reported in the OECD study for 
+a 40 MWd/kgIHM burn with no cooling.  The table also shows the standard deviation of the collected results 
+for the 21 participants in the Phase-IB study.  
+\begin{table}[htbp]
+\begin{center}
+\caption{Isotopic Benchmark of the OECD Burnup Credit [3] to This Method}
+\label{1g_table3}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Isotope} & \textbf{OECD[3] [w/o]} & \textbf{$\sigma$ of OECD [\%]} & \textbf{Results [w/o]} & \textbf{\% Difference} \\
+\hline
+\nuc{U}{234}     & 0.0178  & 9.0  & 0.0184  & +3.6  \\
+\nuc{U}{235}     & 0.8001  & 8.1  & 0.7079  & -11.5 \\
+\nuc{U}{236}     & 0.4840  & 2.6  & 0.4781  & -1.2  \\
+\nuc{U}{238}     & 93.3333 & 0.2  & 93.6109 & +0.3  \\
+\nuc{Np}{237}    & 0.0614  & 9.4  & 0.0584  & -5.0  \\
+\nuc{Pu}{238}    & 0.0226  & 13.9 & 0.0185  & -18.1 \\
+\nuc{Pu}{239}    & 0.5991  & 7.1  & 0.5104  & +14.8 \\
+\nuc{Pu}{240}    & 0.2389  & 5.3  & 0.2591  & +8.5  \\
+\nuc{Pu}{241}    & 0.1636  & 6.9  & 0.1445  & -11.7 \\
+\nuc{Pu}{242}    & 0.0602  & 8.4  & 0.0563  & -6.5  \\
+\nuc{Am}{241}    & 0.0047  & 5.3  & 0.0032  & -30.8 \\
+\nuc{Am}{243}    & 0.0148  & 10.4 & 0.0116  & -21.3 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+All values are given in terms of weight percent of initial heavy metal.    These results show that 
+the present method matches the Burnup Credit within two standard deviations for most actinides.  
+The only species showing a much larger relative departure is \nuc{Am}{241}.  \nuc{Am}{241} is formed 
+almost exclusively thorugh 241Pu decay and there are two reasons for this departure.  First, the 
+fluence-dependent isotopic transformation matrices were assembled using a constant flux $4\time10^{14}$ 
+[n/cm2/s] that is representative of most PWRs.  If the average flux and power density are somewhat lower, 
+and hence the irradiation time is somewhat longer as is the case here, the model will under predict the 
+\nuc{Am}{241} buildup in the core.   Second, the model does not explicitly treat refueling downtimes 
+when transmutation ceases but decay continues. Note that the deviation in long-term \nuc{Am}{241} content 
+is smaller because the concentration of the much more abundant parent, \nuc{Pu}{241}, is reasonably accurate. 
+
+It is also necessary to benchmark the feed stream blending and discharge burnup calculations.  This is best 
+achieved in the context of a comparison of a fuel cycle material balance.  Material balances of this type 
+generated using the high-fidelity material balance simulation package COSI [14] are available in a number 
+of OECD systems studies, e.g. [15].  A benchmark of the equilibrium material balance for a PWR/FR fleet 
+has been carried out.  In this benchmark, the methodology described here is used to find the enrichment 
+of PWR fuel to achieve a specified burnup as well as to derive the equilibrium FR fresh and spent fuel 
+compositions through the cycle iteration procedure described in this paper.  Specific results benchmarked 
+included the PWR/FR thermal power split, the isotopic composition of the burned fuel, and the fuel cycle 
+cost derived from the material balance flowsheets.  A detailed description of the benchmark results may be 
+found in section 3.2 of the companion paper [13] appearing in this issue.  Since the benchmark fuel cycle 
+scenario served as a point of departure for the system study presented in that paper, and also because 
+items outside the scope of this paper such as cost calculations were being benchmarked, it was felt 
+more appropriate that this benchmark be presented there.
 
 
 
