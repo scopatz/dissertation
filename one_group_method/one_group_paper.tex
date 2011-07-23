@@ -272,7 +272,7 @@ can be calculated in direct analogy to equation \ref{1g_BU_F} for the burnup.  T
 rate in the fuel region is 
 \begin{equation}
 \label{1g_pF_F}
-p^F(F) = \sum_i m_i \cdot p_i(F)
+p^F(F) = \sum_i m_i^F \cdot p_i(F)
 \end{equation}
 and $p^C(F) = 0$ since the coolant contains no neutron producing isotopes.  
 
@@ -303,44 +303,156 @@ and the neutron destruction rate will be normalized in the same way.
 \subsubsection{The Destruction Rate}
 \index{The Destruction Rate@\emph{The Destruction Rate}}
 \label{1g_sec:d_rate}
-The full-core destruction rate, D(F), is calculated in the same manner as the fuel region production rate.  However, the other nuclides in the reactor, while not contributing to fission, do contribute to neutron destruction in the core. Similarly, the burnup BUi(F) for these nuclides will also be zero since fission does not occur. In fuel cell model used above, two other isotopes are present in a PWR core (16O and 1H) and one other main species in a FR core (23Na).
-The following example walks through the calculation of D(F).  First, start with the fuel region destruction rate dF(F) in analogy to the fuel region production rate Equation 6.  Note that the units of dF(F) are [n/s/flux/kgIHM].  
-                                (8)
-Moreover, the coolant can strongly contribute to the destruction rate.  However, it is important to take into account that for some fuel/coolant combinations the flux is not spatially uniform; for instance in PWRs the thermal flux is generally higher in the coolant than in the fuel. To account for this, a disadvantage factor is introduced.  For other reactor types, for example FRs, the flux profile is much flatter over the unit cell and a disadvantage factor is not necessary. The disadvantage factor ζ is qualitatively the average flux in the moderator divided by the average flux in the fuel. The fuel suppresses the thermal flux levels so ζ will always be greater than one and the flux in the moderator will always be greater than the flux in the fuel. Since it is dependent on the composition of the fuel, ζ is therefore also a function of the fluence because the fuel isotopic makeup is altered as a function of fluence. A fuller look at how to calculate ζ(F) can be found in [5].  Figure 4 shows how ζ(F) changes with fluence for two LEU fuels with 3.2% and 4.3% 235U. 
-(Scopatz, Schneider, Fig. 4)
+The full-core destruction rate, $D(F)$, is calculated in the same manner as the fuel 
+region production rate.  However, the other nuclides in the reactor, while not contributing 
+to fission, do contribute to neutron destruction in the core. Similarly, the burnup $\mbox{BU}_i(F)$ 
+for these nuclides will also be zero since fission does not occur. In fuel cell model used above, 
+two other isotopes are present in a PWR core (\nuc{O}{16} and \nuc{H}{1}) and one other main species 
+in a FR core (\nuc{Na}{23}).
+
+The following example walks through the calculation of $D(F)$.  First, start with the fuel region 
+destruction rate $d^F(F)$ in analogy to the fuel region production rate equation \ref{1g_pF_F}.  Note that the 
+units of $d^F(F)$ are [n/s/flux/kgIHM].  
+\begin{equation}
+\label{1g_dF_F}
+d^F(F) = \sum_i m_i^F \cdot d_i(F)
+\end{equation}
+Moreover, the coolant can strongly contribute to the destruction rate.  However, it is 
+important to take into account that for some fuel/coolant combinations the flux is not 
+spatially uniform; for instance in PWRs the thermal flux is generally higher in the coolant 
+than in the fuel. To account for this, a disadvantage factor is introduced.  For other reactor 
+types, for example FRs, the flux profile is much flatter over the unit cell and a disadvantage 
+factor is not necessary. The disadvantage factor $\zeta$ is qualitatively the average flux in 
+the moderator divided by the average flux in the fuel. The fuel suppresses the thermal flux 
+levels so $\zeta$ will always be greater than one and the flux in the moderator will always 
+be greater than the flux in the fuel. Since it is dependent on the composition of the fuel, $\zeta$ 
+is therefore also a function of the fluence because the fuel isotopic makeup is altered as a function 
+of fluence. A fuller look at how to calculate $\zeta(F)$ can be found in [5].  Figure \ref{1g_fig04} 
+shows how $\zeta(F)$ changes with fluence for two LEU fuels with 3.2\% and 4.3\% \nuc{U}{235}. 
+\begin{figure}[htbp]
+\caption{Disadvantage Factor as a Function of Fluence for LEU with a Three Batch Core}
+\label{1g_fig04}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig04.eps}
+\end{center}
+\end{figure}
 Thus the coolant destruction rate is then given as
-                        (9)
-Note that the volumetric weight in miC for the coolant region already includes both empty and filled fuel pin slots.  Therefore the full-core destruction rate D(F) is given by the sum of the destruction rate in the fuel and the destruction rate in the coolant.  Namely, 
-                                (10)
-Now that P(F) and D(F) are known, k(F) may be calculated as per Equation 5.  Once again, Fd is defined such that k(Fd) = 1 which yields the maximum discharge burnup BU(Fd) = BUd.
+\begin{equation}
+\label{1g_dC_F}
+d^C(F) = \zeta(F) \cdot \sum_i m_i^C \cdot d_i(F)
+\end{equation}
+Note that the volumetric weight in $m_i^C$ for the coolant region already includes both 
+empty and filled fuel pin slots.  Therefore the full-core destruction rate $D(F)$ is given by 
+the sum of the destruction rate in the fuel and the destruction rate in the coolant.  Namely, 
+\begin{equation}
+\label{1g_D_F}
+D(F) = d^F(F) + d^C(F)
+\end{equation}
+Now that $P(F)$ and $D(F)$ are known, $k(F)$ may be calculated as per equation \ref{1g_k_F}.  
+Once again, $F\mbox{d}$ is defined such that $k(F\mbox{d}) = 1$ which yields the maximum discharge 
+burnup $\mbox{BU}(F\mbox{d}) = \mbox{BUd}$.
+
 
 
 
 \subsubsection{Multiple Batch Cores}
 \index{Multiple Batch Cores@\emph{Multiple Batch Cores}}
 \label{1g_sec:batch_ave}
-What has just been shown is how to find the discharge burnup with a given fuel composition for a one batch system.  However, for multiple batches of fuel the process is less straightforward as the production and destruction rates are averaged over their end of cycle values for each batch.  The general idea is to perform these operations in reverse and then iterate over them.  In other words, one picks a burnup and then solves for the multiplication factor.  Then one picks another burnup that will yield a k closer to one and solves again for k.  This process continues until a k is found that is acceptably close to one.  
-The bisection method is preferred to pick successively closer values of k.  It is not prone to the erratic behavior that arises when Newton’s method is used with pointwise data.   Furthermore, the bisection method ensures that the fuel is burnable.  To use the bisection method here there must be both some fluence where k < 1 and some fluence where 1 < k.  Since the multiplication factor is in reality continuous and more or less monotonic, these conditions imply that at some fluence k = 1.  However, if these conditions fail then the fuel has too little fissile material to sustain a chain reaction. 
-(Scopatz, Schneider, Fig. 5) 
-(Scopatz, Schneider, Fig. 6)
-A walkthrough of the details of this process for multiple batches follows.  First, a maximum discharge burnup BUd is guessed.  Say without loss of generality that the system at hand is concerned with a three batch refueling cycle.  Then, assuming equal interbatch power sharing, the fluence must be found for three burnups, namely BUd, 2/3 BUd, and 1/3 BUd.   Lines drawn on Figure 5 from the burnup axis to the curve and then down from the curve to the fluence axis will give the fluence at the three points required.  Note that the highest fluence (F3 here) is the fluence at discharge Fd.  After the fluence for each of the burnups has been calculated, the multiplication factor of the system needs to be known. 
-To achieve this for a multibatch core, a flux-weighted batch averaging procedure is followed.  The multiplication factor at each fluence is determined by the P(F)/D(F) ratio.  Denote the batch number that a parameter is associated with by the index subscript “b”.  In Figure 6, the three kbs correspond to the three fluences chosen and here kb(Fb) = Pb(Fb)/Db(Fb).  These are interpreted as the multiplication factors if the full core was in fact composed entirely of fuel that had been exposed to this fluence. Thus the true multiplication factor of the core is the weighted average of the production divided by destruction rates with the flux as a weight for “B” number of batches.
-                                                (11)
-However, the flux φbin Equation 11, the average flux within batch b, is not known.  Thus because the batch power remains constant φb does not.  Yet the flux is by definition the time derivative of the fluence. Thus a good approximation of the flux is given in Equation 11.
-                                                (12)
-Here, ∆F can be measured at a given fluence by perturbing BU(F) by a small amount and finding the ∆BU.  This is easily done as ∆BU / ∆F is identically the slope of the BU(F) graph at fluence F as seen in Figure 5.  Given the assumption of constant power density, a change in burnup yields a corresponding change in time such that
-                                        (13)
-Where BUd is the discharge burnup guess and Tres [days] is the residence time that the fuel took to achieve this discharge burnup. Combining Equations 12 and 13, φb is found to be
+What has just been shown is how to find the discharge burnup with a given fuel composition for a one
+batch system.  However, for multiple batches of fuel the process is less straightforward as the 
+production and destruction rates are averaged over their end of cycle values for each batch.  
+The general idea is to perform these operations in reverse and then iterate over them.  
+In other words, one picks a burnup and then solves for the multiplication factor.  Then one picks 
+another burnup that will yield a $k$ closer to one and solves again for $k$.  This process continues 
+until a $k$ is found that is acceptably close to one.  
+
+The bisection method is preferred to pick successively closer values of $k$.  It is not prone to the 
+erratic behavior that arises when Newton's method is used with pointwise data.   Furthermore, the 
+bisection method ensures that the fuel is burnable.  To use the bisection method here there must 
+be both some fluence where $k < 1$ and some fluence where $1 < k$.  Since the multiplication factor 
+is in reality continuous and more or less monotonic, these conditions imply that at some fluence $k = 1$.  
+However, if these conditions fail then the fuel has too little fissile material to sustain a chain reaction. 
+
+\begin{figure}[htbp]
+\caption{Burnup as a Function of Fluence for Sample FR Fuel}
+\label{1g_fig05}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig05.eps}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{The Multiplication Factor as a Function of Fluence for Sample FR Fuel}
+\label{1g_fig06}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig06.eps}
+\end{center}
+\end{figure}
+
+A walkthrough of the details of this process for multiple batches follows.  First, a maximum 
+discharge burnup BUd is guessed.  Say without loss of generality that the system at hand is 
+concerned with a three batch refueling cycle.  Then, assuming equal interbatch power sharing, 
+the fluence must be found for three burnups, namely BUd, 2/3 BUd, and 1/3 BUd.   Lines drawn on 
+Figure \ref{1g_fig05} from the burnup axis to the curve and then down from the curve to the fluence 
+axis will give the fluence at the three points required.  Note that the highest fluence ($F3$ here) 
+is the fluence at discharge $F\mbox{d}$.  After the fluence for each of the burnups has been calculated, 
+the multiplication factor of the system needs to be known. 
+
+To achieve this for a multibatch core, a flux-weighted batch averaging procedure is followed.  
+The multiplication factor at each fluence is determined by the $P(F)/D(F)$ ratio.  Denote the batch 
+number that a parameter is associated with by the index subscript ``b''.  In Figure \ref{1g_fig06}, 
+the three $k_b$s correspond to the three fluences chosen and here $k_b(F_b) = P_b(F_b)/D_b(F_b)$.  
+These are interpreted as the multiplication factors if the full core was in fact composed entirely 
+of fuel that had been exposed to this fluence. Thus the true multiplication factor of the core is 
+the weighted average of the production divided by destruction rates with the flux as a weight for 
+``B'' number of batches.
+\begin{equation}
+\label{1g_k_batch_ave}
+k = \frac{\sum_b^B \frac{P_b(F_b)}{D_b(F_b)} \phi_b}{\sum_b^B \phi_b}
+\end{equation}
+However, the flux $\phi_b$ in equation \ref{1g_k_batch_ave}, the average flux within batch $b$, is not known.  
+Thus because the batch power remains constant $\phi_b$ does not.  Yet the flux is by definition the time 
+derivative of the fluence. Thus a good approximation of the flux is given in equation \ref{1g_k_batch_ave}.
+\begin{equation}
+\label{1g_phi_b}
+\phi_b \approx \frac{\Delta F}{\Delta t}
+\end{equation}
+Here, $\Delta F$ can be measured at a given fluence by perturbing $\mbox{BU}(F)$ by a small amount 
+and finding the $\Delta\mbox{BU}$.  This is easily done as $\Delta\mbox{BU}/\Delta F$ is identically 
+the slope of the $\mbox{BU}(F)$ graph at fluence $F$ as seen in Figure \ref{1g_fig05}.  Given the 
+assumption of constant power density, a change in burnup yields a corresponding change in time such that
+\begin{equation}
+\label{1g_delta_t}
+\Delta t = \Delta\mbox{BU} \cdot \frac{T_{\mbox{res}}}{\mbox{BUd}}
+\end{equation}
+Where BUd is the discharge burnup guess and $T_{\mbox{res}}$ [days] is the residence time that the 
+fuel took to achieve this discharge burnup. Combining equations \ref{1g_phi_b} \& \ref{1g_delta_t}, 
+$\phi_b$ is found to be
+\begin{equation}
+\label{1g_phi_b_1}
+\phi_b \approx \frac{\Delta F}{\Delta \mbox{BU}} \cdot \frac{T_{\mbox{res}}}{\mbox{BUd}}
+\end{equation}
+Inserting equation \ref{1g_phi_b_1} into equation \ref{1g_k_batch_ave} an expression for the effective 
+multiplication factor for a multiple batch system at the time that a batch is discharged is obtained.
+\begin{equation}
+\label{1g_k_batch_ave_1}
+k \approx \frac{\sum_b^B \frac{P_b(F_b)}{D_b(F_b)} \cdot \left. \frac{\Delta F}{\Delta \mbox{BU}} \right|_b \cdot \frac{T_{\mbox{res}}}{\mbox{BUd}}}
+                {\sum_b^B \left. \frac{\Delta F}{\Delta \mbox{BU}} \right|_b \cdot \frac{T_{\mbox{res}}}{\mbox{BUd}}}
+ =  \frac{\sum_b^B \frac{P_b(F_b)}{D_b(F_b)} \cdot \left. \frac{\Delta F}{\Delta \mbox{BU}} \right|_b }
+                {\sum_b^B \left. \frac{\Delta F}{\Delta \mbox{BU}} \right|_b}
+\end{equation}
                                         (14)
-Inserting Equation 14 into Equation 11 an expression for the effective multiplication factor for a multiple batch system at the time that a batch is discharged is obtained.
                         (15)
-Now that a k has been found, its value is converged to unity via the bisection iterations.  Another value of the maximum discharge burnup is then chosen and this process is repeated until a BUd is found that yields a k = 1.  Figures 5 and 6 represent the process of finding a multiplication factor for a sample three batch system for a fast reactor core.  
+Now that a $k$ has been found, its value is converged to unity via the bisection iterations.  Another value of the maximum discharge burnup is then chosen and this process is repeated until a BUd is found that yields a k = 1.  Figures 5 and 6 represent the process of finding a multiplication factor for a sample three batch system for a fast reactor core.  
+
 In the process of determining the maximum discharge burnup Fd is also found.  It is also easy to perform a mass-weighted linear combination of the isotopic transformation matrices. From here how each isotope initially present is transmuted at any fluence is known.  The mass of the jth nuclide at fluence F is called Mj(F) [kgj/kgIHM] and is given by
 
                                  (16)
 Here “i” represents isotopes initially present in the fuel.  Plugging in the fluence at discharge Fd into Equation 16 will yield the mass of isotope “j” in the spent fuel per kilogram of IHM.  Performing this operation for all “j” isotopes of interest will yield the isotopic output vector for the core.  Since fission product masses were included in the transformation matrices, the fission products at discharge are also known.  
 (Scopatz, Schneider, Fig. 7)
+
 Figure 7 shows a graphical representation of the Mj(F) for various isotopes present in a fast reactor.  Each curve for each nuclide is the superposition of all of the transformation matrices with their weight, as described above.  Some species, such as 238U and 239Pu, are burned out of the core faster than they are bred back in and are therefore represented by lines of negative slope.  Other isotopes, namely fission products, were not initially present and get bred into the core by any fissioning species.  These are shown as the curves growing towards some asymptote.  Still other nuclides, higher order species like 243Am and 244Cm, have a more dynamic effect.  They grow into the core and then peak and start to burn out.  
+
 In conclusion, the above is an algorithm for finding the maximum discharge burnup and its discharge composition given only a fuel form represented by mi, the pre-generated burnup parameters (pi(F), di(F), BUi(F), and Tij(F)), the number of batches in the core B, and the non-leakage probability PNL.  However, methods for generating these burnup parameters have not been discussed.  This follows in the next section. 
 
 
