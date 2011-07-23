@@ -883,29 +883,188 @@ more appropriate that this benchmark be presented there.
 \subsection{The Recyclable Uranium Fuel Cycle}
 \index{The Recyclable Uranium Fuel Cycle@\emph{The Recyclable Uranium Fuel Cycle}}
 \label{1g_sec:RUFC}
-The RU fuel cycle described here does not preclude multi-recycle of transuranics; instead it focuses only upon the uranium component of an integrated recycle strategy.  Moreover, for purposes of illustration only the first uranium recycle pass is considered.  A second example applying the burnup model to a dynamic case will be covered in the FR fuel cycle section.
-To further characterize what is happening in the burnup model, it is of interest to characterize the isotopic breakdown of the neutron production and destruction rates in the core.  To do so, one simple case is considered.
-For this illustrative case the 235U enrichment is chosen at 4.0%, while the 236U enrichment is set to 1.5%.  Three batch fuel management is assumed and a graph of BU(F) is made in analogy to Figure 5.  The discharge burnup BUd of this fuel is not known a priori but it is instead calculated via the burnup model that was described above.  BUd here turns out to be approximately 37 MWd/kgIHM.  Figures 10, 11, 12, and 13 show the computed core-average neutron production and destruction rates for burnups of 0, 1/3 BUd, 2/3 BUd, and BUd.  Zero burnup here indicates the neutron production and destruction rates for fresh fuel that has just been loaded into the reactor.  
-It is crucial to note that the species-specific production and destruction rates shown in these figures reflect the isotope and all of its daughters.  For example, by the end of life, most of the neutrons are coming from 238U and its daughters.  In fact very few neutrons are spawned from 238U itself, but rather from its daughter 239Pu.  Similarly, by the time the fuel has reached BUd much of the 235U has already burned off.  These figures show that the neutron balance is well represented by a mass-weighted linear combination of initial isotopics; therefore the fluence dependent balance depends strongly on initial composition of the fuel.  To scope the merit of RU blending strategies, It has been found to be useful to parameterize discharge burnups of RU-bearing fuels around this dependence.
-(Scopatz, Schneider, Fig. 10)
-(Scopatz, Schneider, Fig. 11)
-(Scopatz, Schneider, Fig. 12)
-(Scopatz, Schneider, Fig. 13)
-To accomplish this the achievable burnup is parameterized as a function of the fresh fuel initial 235U content, initial 236U content, and the number of batches in the fuel management scheme.    Note that given this small number of degrees of freedom, the whole parameter space may be comprehensively mapped.  Therefore the discharge burnup can be found as a function of these three variables (235U%, 236U%, B).  With the FRs, finding such a parameterization would be bulky and unwieldy if even computable.  Moreover, it would be prohibitive to try to do so for FRs since the parameter space of initial isotopes is larger by at least an order of magnitude.  
-The functional form of the equation that gives BUd is shown in Equation 19.  In this equation, BUd is the discharge burnup achievable [MWd/kgIHM], x is the weight percent of 235U in the fresh fuel [(w/o)IHM], y is the weight percent of 236U in the fresh fuel [(w/o)IHM], and B is the number of batches.  All other letters appearing in Equation 19 are parameters of the fit and have units appropriate to their placement.  The values of these parameters that were obtained for the data set generated are given in Table 4.
-        (19)
-(Scopatz, Schneider, Table 4)
-In Equation 19, fit parameters and the dependent variables are based on various physical meanings.  First, the 2B/(B+1) dependence of BUd comes directly from the results of a linear reactivity model with the core burnup being an independent variable when calculating the reactivity.  The proof of this dependence and its physicality are given in [10]. Moreover, the j(x-h)m term comes from the fact that the major trend for burnup follows a power law. One expects that the burnup would, as a function of fluence, asymptotically approach the maximum possible burnup (~935 MWd/kgIHM).  However, the power law, with “m”<1, seen here is a good approximation for the relatively low burnups achieved in PWRs. “j” scales this term up to the valid burnup range and “h” slides the burnup over to the 235U enrichment under which burning is not feasible.
-Furthermore, at a given 235U enrichment, BUd is seen to have a near-linear dependence upon 236U content.  Because the 236U is a poison and is present in relatively small amounts, incremental changes in its enrichment yield matching changes in the burnup.  More explicitly, “s” determines how much a given 236U content affects the burnup.  Additionally, “s” is negative because 236U only destroys neutrons and does not directly increase the energy gained from the fuel per atom IHM.  However, BUd also decreases linearly with the 235U content.  The “tx” term is a correction factor to the power law term.  It slightly weights lower 235U enrichments preferentially to higher burnups.  This term exists because there is 236U present.  This term captures the poisoning effect of 236U: with increased 236U more 235U is needed to achieve a given burnup.  Lastly, the constant “k” term scales up the burnup to the appropriate base value.
-Thus Equation 19 satisfies the requirements of fitting the maximum discharge burnup data to 235U content, 236U content, and the total number of batches while having a physical interpretation.  
-Figures 14 and 15 show how the closed form equation with the given parameters fits to the actual data that was generated for three and six batch cores respectively.  These figures show that the fit with the data is quite good for 235U enrichments between 2 - 6% and 236U content from 0 - 4.5%.   Having such a fit equation is useful as it allows for the near instant calculation of the burnup for a PWR bearing RU fuel.  
-There is a large advantage to this with respect to the RU fuel cycle.  Recall that the fuel cycle model mixes an RU stream from LWR SNF and an enriched NU stream.  Thus using Equation 19, the maximum achievable burnup of the mixed fuel can be found with ease and without resorting to a lengthy calculation or resubmitting the relevant data to the burnup model.  Moreover, given the 236U enrichment, the number of batches, and a target burnup, the fit equation can then be easily iterated to find the 235U enrichment required.  
-(Scopatz, Schneider, Fig. 14)
-(Scopatz, Schneider, Fig. 15)
-In Figure 16 the 236U is held at a constant 1% while the number of batches is allowed to vary.  Note that in all three of these figures the low burnups do not fit as well to Equation 19. However, this region of discharge burnups of less than 20 MWd/kgIHM is of low concern for PWRs.   Moreover, as a function of batch number Equation 19 fits very well to all cases save the unlikely single batch case.  
-(Scopatz, Schneider, Fig. 16)
-Lastly, fuel cycle material balances may be expediently generated.   As an example case, set the target burnups of the RU- and NU-burning reactors to 51 MWd/kgIHM.  As discussed above, either the relative mass of RU/LEU or the LEU enrichment may be the free variable.  Allowing the LEU enrichment to be free and the mass of RU and LEU to be blended is the same,  Figure 17 shows the mass balance of the fuel cycle just defined and it can be seen that the LEU enrichment needed to obtain the target burnup for the blended fuel is 8.5%.  Note that this figure is in analogy to Figure 8, but with mass stream values included.  Moreover, Figure 17 is normalized to 1 kgIHM in the RU reactor.
-(Scopatz, Schneider, Fig. 17)
+The RU fuel cycle described here does not preclude multi-recycle of transuranics; instead it 
+focuses only upon the uranium component of an integrated recycle strategy.  Moreover, for 
+purposes of illustration only the first uranium recycle pass is considered.  A second example 
+applying the burnup model to a dynamic case will be covered in the FR fuel cycle section.
+
+To further characterize what is happening in the burnup model, it is of interest to characterize 
+the isotopic breakdown of the neutron production and destruction rates in the core.  To do so, one 
+simple case is considered.
+
+For this illustrative case the \nuc{U}{235} enrichment is chosen at 4.0\%, while the \nuc{U}{236} 
+enrichment is set to 1.5\%.  Three batch fuel management is assumed and a graph of $\mbox{BU}(F)$ 
+is made in analogy to Figure \ref{1g_fig05}.  The discharge burnup BUd of this fuel is not known 
+\emph{a priori} but it is instead calculated via the burnup model that was described above.  
+BUd here turns out to be approximately 37 MWd/kgIHM.  Figures \ref{1g_fig10}-\ref{1g_fig13} show the 
+computed core-average neutron production and destruction rates for burnups of 0, 1/3 BUd, 2/3 BUd, and BUd.  
+Zero burnup here indicates the neutron production and destruction rates for fresh fuel that has just been 
+loaded into the reactor.  
+
+It is crucial to note that the species-specific production and destruction rates shown in these 
+figures reflect the isotope and all of its daughters.  For example, by the end of life, most of 
+the neutrons are coming from \nuc{U}{238} and its daughters.  In fact very few neutrons are spawned from 
+\nuc{U}{238} itself, but rather from its daughter \nuc{Pu}{239}.  Similarly, by the time the fuel has 
+reached BUd much of the \nuc{U}{235} has already burned off.  These figures show that the neutron 
+balance is well represented by a mass-weighted linear combination of initial isotopics; therefore 
+the fluence dependent balance depends strongly on initial composition of the fuel.  To scope the 
+merit of RU blending strategies, It has been found to be useful to parameterize discharge burnups 
+of RU-bearing fuels around this dependence.
+
+\begin{figure}[htbp]
+\caption{Neutron Production and Destruction Rates for a Sample RU Fuel with Isotopic Breakdown at Near Zero Burnup for PWRs}
+\label{1g_fig10}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig10.eps}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Neutron Production and Destruction Rates for a Sample RU Fuel with Isotopic Breakdown at 1/3 BUd for PWRs}
+\label{1g_fig11}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig11.eps}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Neutron Production and Destruction Rates for a Sample RU Fuel with Isotopic Breakdown at 2/3 BUd for PWRs}
+\label{1g_fig12}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig12.eps}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Neutron Production and Destruction Rates for a Sample RU Fuel with Isotopic Breakdown at BUd for PWRs}
+\label{1g_fig13}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig13.eps}
+\end{center}
+\end{figure}
+
+To accomplish this the achievable burnup is parameterized as a function of the fresh fuel initial \nuc{U}{235} 
+content, initial \nuc{U}{236} content, and the number of batches in the fuel management scheme.    Note that 
+given this small number of degrees of freedom, the whole parameter space may be comprehensively mapped.  
+Therefore the discharge burnup can be found as a function of these three variables 
+(\nuc{U}{235}\%, \nuc{U}{236}\%, $B$).  With the FRs, finding such a parameterization would be bulky and 
+unwieldy if even computable.  Moreover, it would be prohibitive to try to do so for FRs since the parameter 
+space of initial isotopes is larger by at least an order of magnitude.  
+
+The functional form of the equation that gives BUd is shown in equation \ref{1g_BUd_fit}.  In this equation, 
+BUd is the discharge burnup achievable [MWd/kgIHM], $x$ is the weight percent of \nuc{U}{235} in the fresh 
+fuel [(w/o)IHM], $y$ is the weight percent of \nuc{U}{236} in the fresh fuel [(w/o)IHM], and $B$ is the 
+number of batches.  All other letters appearing in equation \ref{1g_BUd_fit} are parameters of the fit 
+and have units appropriate to their placement.  The values of these parameters that were obtained for 
+the data set generated are given in Table \ref{1g_table4}.
+\begin{equation}
+\label{1g_BUd_fit}
+\mbox{BUd}(x, y, B) = \frac{2B}{B+1}\cdot \left(j(x-h)^m + s\cdot y + t \cdot x + k\right)
+\end{equation}
+
+\begin{table}[htbp]
+\begin{center}
+\caption{}
+\label{1g_table4}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Parameter} & \textbf{Value} \\
+\hline
+$j$ & 17.5 \\
+$h$ & 2.0 \\
+$m$ & 0.7 \\
+$s$ & -2.5 \\
+$t$ & -1.75 \\
+$k$ & 8.2 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+In equation \ref{1g_BUd_fit}, fit parameters and the dependent variables are based on various 
+physical meanings.  First, the $2B/(B+1)$ dependence of BUd comes directly from the results of a 
+linear reactivity model with the core burnup being an independent variable when calculating the 
+reactivity.  The proof of this dependence and its physicality are given in [10]. Moreover, the 
+$j(x-h)m$ term comes from the fact that the major trend for burnup follows a power law. One 
+expects that the burnup would, as a function of fluence, asymptotically approach the maximum 
+possible burnup (~935 MWd/kgIHM).  However, the power law, with $m<1$, seen here is a good 
+approximation for the relatively low burnups achieved in PWRs.  $j$ scales this term up to 
+the valid burnup range and $h$ slides the burnup over to the \nuc{U}{235} enrichment under 
+which burning is not feasible.
+
+Furthermore, at a given \nuc{U}{235} enrichment, BUd is seen to have a near-linear dependence upon 
+\nuc{U}{236} content.  Because the \nuc{U}{236} is a poison and is present in relatively small amounts, 
+incremental changes in its enrichment yield matching changes in the burnup.  More explicitly, 
+$s$ determines how much a given \nuc{U}{236} content affects the burnup.  Additionally, $s$ is negative 
+because \nuc{U}{236} only destroys neutrons and does not directly increase the energy gained from the 
+fuel per atom IHM.  However, BUd also decreases linearly with the \nuc{U}{235} content.  The $tx$ term 
+is a correction factor to the power law term.  It slightly weights lower \nuc{U}{235} enrichments 
+preferentially to higher burnups.  This term exists because there is \nuc{U}{236} present.  This term 
+captures the poisoning effect of \nuc{U}{236}: with increased \nuc{U}{236} more \nuc{U}{235} is needed 
+to achieve a given burnup.  Lastly, the constant $k$ term scales up the burnup to the appropriate base value.
+
+Thus equation \ref{1g_BUd_fit} satisfies the requirements of fitting the maximum discharge burnup data to 
+\nuc{U}{235} content, \nuc{U}{236} content, and the total number of batches while having a physical 
+interpretation.  
+
+Figures \ref{1g_fig14} \& \ref{1g_fig15} show how the closed form equation with the given parameters 
+fits to the actual data that was generated for three and six batch cores respectively.  These figures 
+show that the fit with the data is quite good for \nuc{U}{235} enrichments between 2 - 6\% and 
+\nuc{U}{236} content from 0 - 4.5\%.   Having such a fit equation is useful as it allows for the near 
+instant calculation of the burnup for a PWR bearing RU fuel.  
+
+There is a large advantage to this with respect to the RU fuel cycle.  Recall that the fuel cycle model 
+mixes an RU stream from LWR SNF and an enriched NU stream.  Thus using Equation 19, the maximum achievable 
+burnup of the mixed fuel can be found with ease and without resorting to a lengthy calculation or 
+resubmitting the relevant data to the burnup model.  Moreover, given the \nuc{U}{236} enrichment, the number 
+of batches, and a target burnup, the fit equation can then be easily iterated to find the \nuc{U}{235} enrichment 
+required.  
+
+\begin{figure}[htbp]
+\caption{Burnup Model Fit with Data for 3 Batch Core for LWRs}
+\label{1g_fig14}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig14.eps}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Burnup Model Fit with Data for 6 Batch Core for LWRs}
+\label{1g_fig15}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig15.eps}
+\end{center}
+\end{figure}
+
+In Figure \ref{1g_fig16} the \nuc{U}{236} is held at a constant 1\% while the number of batches is 
+allowed to vary.  Note that in all three of these figures the low burnups do not fit as well to 
+equation \ref{1g_BUd_fit}. However, this region of discharge burnups of less than 20 MWd/kgIHM is 
+of low concern for PWRs.   Moreover, as a function of batch number Equation 19 fits very well to 
+all cases save the unlikely single batch case.  
+
+\begin{figure}[htbp]
+\caption{Burnup Model Fit with Data for 1\% \nuc{U}{236} for LWRs}
+\label{1g_fig16}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig16.eps}
+\end{center}
+\end{figure}
+
+Lastly, fuel cycle material balances may be expediently generated.   As an example case, set the 
+target burnups of the RU- and NU-burning reactors to 51 MWd/kgIHM.  As discussed above, either the 
+relative mass of RU/LEU or the LEU enrichment may be the free variable.  Allowing the LEU enrichment 
+to be free and the mass of RU and LEU to be blended is the same,  Figure \ref{1g_fig17} shows the mass balance of 
+the fuel cycle just defined and it can be seen that the LEU enrichment needed to obtain the 
+target burnup for the blended fuel is 8.5\%.  Note that this figure is in analogy to Figure \ref{1g_fig8}, 
+but with mass stream values included.  Moreover, Figure \ref{1g_fig17} is normalized to 1 kgIHM in the RU reactor.
+
+\begin{figure}[htbp]
+\caption{Sample RU Fuel Cycle Mass Balance}
+\label{1g_fig17}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig17.eps}
+\end{center}
+\end{figure}
 
 
 
