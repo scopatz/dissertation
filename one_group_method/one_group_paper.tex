@@ -374,7 +374,7 @@ is in reality continuous and more or less monotonic, these conditions imply that
 However, if these conditions fail then the fuel has too little fissile material to sustain a chain reaction. 
 
 \begin{figure}[htbp]
-\caption{Burnup as a Function of Fluence for Sample FR Fuel}
+\caption{Burnup as a Function of Fluence for Sample LWR Fuel}
 \label{1g_fig05}
 \begin{center}
 \includegraphics[scale=0.5]{one_group_method/figs/Fig05.eps}
@@ -382,7 +382,7 @@ However, if these conditions fail then the fuel has too little fissile material 
 \end{figure}
 
 \begin{figure}[htbp]
-\caption{The Multiplication Factor as a Function of Fluence for Sample FR Fuel}
+\caption{The Multiplication Factor as a Function of Fluence for Sample LWR Fuel}
 \label{1g_fig06}
 \begin{center}
 \includegraphics[scale=0.5]{one_group_method/figs/Fig06.eps}
@@ -441,30 +441,100 @@ k \approx \frac{\sum_b^B \frac{P_b(F_b)}{D_b(F_b)} \cdot \left. \frac{\Delta F}{
  =  \frac{\sum_b^B \frac{P_b(F_b)}{D_b(F_b)} \cdot \left. \frac{\Delta F}{\Delta \mbox{BU}} \right|_b }
                 {\sum_b^B \left. \frac{\Delta F}{\Delta \mbox{BU}} \right|_b}
 \end{equation}
-                                        (14)
-                        (15)
-Now that a $k$ has been found, its value is converged to unity via the bisection iterations.  Another value of the maximum discharge burnup is then chosen and this process is repeated until a BUd is found that yields a k = 1.  Figures 5 and 6 represent the process of finding a multiplication factor for a sample three batch system for a fast reactor core.  
+Now that a $k$ has been found, its value is converged to unity via the bisection iterations.  Another 
+value of the maximum discharge burnup is then chosen and this process is repeated until a BUd is found 
+that yields a $k = 1$.  Figures \ref{1g_fig05} \& \ref{1g_fig06} represent the process of finding a 
+multiplication factor for a sample three batch system for a light-water reactor core.  
 
-In the process of determining the maximum discharge burnup Fd is also found.  It is also easy to perform a mass-weighted linear combination of the isotopic transformation matrices. From here how each isotope initially present is transmuted at any fluence is known.  The mass of the jth nuclide at fluence F is called Mj(F) [kgj/kgIHM] and is given by
+In the process of determining the maximum discharge burnup $F\mbox{d}$ is also found.  It is also 
+easy to perform a mass-weighted linear combination of the isotopic transformation matrices. From here 
+how each isotope initially present is transmuted at any fluence is known.  The mass of the j\superscript{th} 
+nuclide at fluence $F$ is called $M_j(F)$ [kg\subscript{j}/kgIHM] and is given by
+\begin{equation}
+\label{1g_trans_Mj}
+M_j(F) = \sum_i m_i^F \cdot T_{ij}(F)
+\end{equation}
+Here ``i'' represents isotopes initially present in the fuel.  Plugging in the fluence at discharge 
+$F\mbox{d}$ into equation \ref{1g_trans_Mj} will yield the mass of isotope ``j'' in the spent fuel per 
+kilogram of IHM.  Performing this operation for all ``j'' isotopes of interest will yield the isotopic 
+output vector for the core.  Since fission product masses were included in the transformation matrices, 
+the fission products at discharge are also known.  
 
-                                 (16)
-Here “i” represents isotopes initially present in the fuel.  Plugging in the fluence at discharge Fd into Equation 16 will yield the mass of isotope “j” in the spent fuel per kilogram of IHM.  Performing this operation for all “j” isotopes of interest will yield the isotopic output vector for the core.  Since fission product masses were included in the transformation matrices, the fission products at discharge are also known.  
-(Scopatz, Schneider, Fig. 7)
+\begin{figure}[htbp]
+\caption{$M_j(F)$ for a Sample Fast Reactor for a Variety of Species}
+\label{1g_fig07}
+\begin{center}
+\includegraphics[scale=0.5]{one_group_method/figs/Fig07.eps}
+\end{center}
+\end{figure}
 
-Figure 7 shows a graphical representation of the Mj(F) for various isotopes present in a fast reactor.  Each curve for each nuclide is the superposition of all of the transformation matrices with their weight, as described above.  Some species, such as 238U and 239Pu, are burned out of the core faster than they are bred back in and are therefore represented by lines of negative slope.  Other isotopes, namely fission products, were not initially present and get bred into the core by any fissioning species.  These are shown as the curves growing towards some asymptote.  Still other nuclides, higher order species like 243Am and 244Cm, have a more dynamic effect.  They grow into the core and then peak and start to burn out.  
+Figure \ref{1g_fig07} shows a graphical representation of the $M_j(F)$ for various isotopes present 
+in a fast reactor.  Each curve for each nuclide is the superposition of all of the transformation 
+matrices with their weight, as described above.  Some species, such as \nuc{U}{238} and \nuc{Pu}{239}, 
+are burned out of the core faster than they are bred back in and are therefore represented by lines of 
+negative slope.  Other isotopes, namely fission products, were not initially present and get bred into 
+the core by any fissioning species.  These are shown as the curves growing towards some asymptote.  
+Still other nuclides, higher order species like \nuc{Am}{243} and \nuc{Cm}{244}, have a more dynamic effect.  
+They grow into the core and then peak and start to burn out.  
 
-In conclusion, the above is an algorithm for finding the maximum discharge burnup and its discharge composition given only a fuel form represented by mi, the pre-generated burnup parameters (pi(F), di(F), BUi(F), and Tij(F)), the number of batches in the core B, and the non-leakage probability PNL.  However, methods for generating these burnup parameters have not been discussed.  This follows in the next section. 
+In conclusion, the above is an algorithm for finding the maximum discharge burnup and its discharge 
+composition given only a fuel form represented by mi, the pre-generated burnup parameters ($p_i(F)$, 
+$d_i(F)$, $\mbox{BU}_i(F)$, and $T_{ij}(F)$), the number of batches in the core $B$, and the non-leakage 
+probability $P_{NL}$.  However, methods for generating these burnup parameters have not been discussed.  
+This follows in the next section. 
 
 
 
 \subsection{Generating Burnup Parameters}
 \index{Generating Burnup Parameters@\emph{Generating Burnup Parameters}}
 \label{1g_sec:gen_BU_param}
-The burnup parameters pi(F), di(F), BUi(F), and Tij(F) are typically calculated for a specific reactor design.  However, if the reactor type is perceived as being representative of all reactors of that type then the burnup parameters may be applied generally to all reactors of this type without having to recalculate new pi(F), di(F), BUi(F), and Tij(F).  Qualitatively, what it means to be representative of a reactor type and fuel composition is that the neutron energy spectrum inherent in the few-group cross sections used to generate the burnup parameters is similar to that of other reactors of this type and other fuel compositions that will be studied.   
-In this study, the burnup parameters are calculated and tabulated based on the reactor-specific data libraries created from ORIGEN 2.2 [7] isotope-by-isotope burnup analyses.  As mentioned, the ORIGEN input libraries contain cross sections that are thought of as generic to a reactor type and range of fuel compositions.  For example, the libraries used here for fast reactors were prepared for a sodium cooled burner reactor with a target conversion ratio of 0.5.  This reactor is described in more detail in [4].  The burnup model therefore utilizes pre-computed libraries of the pi(F), di(F), BUi(F), and Tij(F) that were built up from ORIGEN runs.  These libraries contain point wise data as a function of fluence.  Recall that all data in these libraries track the evolution of the parameter on a per unit mass basis.
-To be more explicit, ORIGEN 2.2 is run for a kilogram mass of a given nuclide with the characteristic ORIGEN libraries.  Therefore, the isotopic mass balances and reaction rates obtained from this run reflect the evolution of one kilogram of this isotope within the core.  The ORIGEN output is then parsed and placed in the appropriate libraries for usage by the burnup model.  These ORIGEN runs are performed for all nuclides in the core.  Naturally, if one were to use initial ORIGEN libraries for a different reactor type, then the tables and matrices generated here would be representative of this other reactor.  These libraries only need to be generated once ever for a given reactor type, geometry and representative fuel composition.
-In addition, the representative cycle-average neutron energy spectrum changes with BUd.  This is because more fissile fuel is needed to achieve increased burnups and even for an identical fuel to coolant volume ratio the spectral dependence on burnup is often too large to neglect.  Thus for thermal-spectrum systems ORIGEN input libraries are prepared for a number of differing BUds: for PWRs, for instance, libraries representative of 20, 33 and 50 MWd/kgIHM discharge burnups have been used in these studies.  Thes libraries are interpolated to create customized libraries at any burnup in this range.  They thus capture the dependence of the cycle-average cross sections on discharge fluence and, implicitly, initial isotopics.  This is of more significance to PWRs as fast reactor spectra are relatively more stable; moreover, to investigate high-burnup PWR fuels additional libraries for BUd of 70 and 100 MWd/kgIHM have been prepared using assumed initial 235U enrichments of 5.5 and 8 w/o, respectively..
-Even systems whose spectra are less sensitive to initial composition and burnup must be treated using a number of cross section libraries prepared from detailed transport calculations.  For the sodium-cooled FR design studied here, for example, a number of libraries are available.  The core aspect ratio for the design varies to ensure acceptable coolant void reactivity properties as the conversion ratio and uranium content decrease, so distinct sets of libraries were prepared for 0.5 (used in this study) and 0.25 target conversion ratio designs.  Additionally, separate libraries were prepared at each conversion ratio for fuels with higher and lower minor actinide (MA) content.   The higher MA case is representative of the feed to a FR if Pu from spent UOX is first burned in MOX, while the lower MA library, the one used in this study, reflects the TRU content with no MOX burn.
+The burnup parameters $p_i(F)$, $d_i(F)$, $\mbox{BU}_i(F)$, and $T_{ij}(F)$ are typically calculated 
+for a specific reactor design.  However, if the reactor type is perceived as being representative of 
+all reactors of that type then the burnup parameters may be applied generally to all reactors of this 
+type without having to recalculate new $p_i(F)$, $d_i(F)$, $\mbox{BU}_i(F)$, and $T_{ij}(F)$.  
+Qualitatively, what it means to be representative of a reactor type and fuel composition is that the 
+neutron energy spectrum inherent in the few-group cross sections used to generate the burnup parameters 
+is similar to that of other reactors of this type and other fuel compositions that will be studied.   
+
+In this study, the burnup parameters are calculated and tabulated based on the reactor-specific data 
+libraries created from ORIGEN 2.2 [7] isotope-by-isotope burnup analyses.  As mentioned, the ORIGEN 
+input libraries contain cross sections that are thought of as generic to a reactor type and range of 
+fuel compositions.  For example, the libraries used here for fast reactors were prepared for a sodium 
+cooled burner reactor with a target conversion ratio of 0.5.  This reactor is described in more detail 
+in [4].  The burnup model therefore utilizes pre-computed libraries of the $p_i(F)$, $d_i(F)$, 
+$\mbox{BU}_i(F)$, and $T_{ij}(F)$ that were built up from ORIGEN runs.  These libraries contain point 
+wise data as a function of fluence.  Recall that all data in these libraries track the evolution of the 
+parameter on a per unit mass basis.
+
+To be more explicit, ORIGEN 2.2 is run for a kilogram mass of a given nuclide with the characteristic 
+ORIGEN libraries.  Therefore, the isotopic mass balances and reaction rates obtained from this run 
+reflect the evolution of one kilogram of this isotope within the core.  The ORIGEN output is then 
+parsed and placed in the appropriate libraries for usage by the burnup model.  These ORIGEN runs are 
+performed for all nuclides in the core.  Naturally, if one were to use initial ORIGEN libraries for a 
+different reactor type, then the tables and matrices generated here would be representative of this 
+other reactor.  These libraries only need to be generated once ever for a given reactor type, geometry 
+and representative fuel composition.
+
+In addition, the representative cycle-average neutron energy spectrum changes with BUd.  This is because 
+more fissile fuel is needed to achieve increased burnups and even for an identical fuel to coolant volume 
+ratio the spectral dependence on burnup is often too large to neglect.  Thus for thermal-spectrum systems 
+ORIGEN input libraries are prepared for a number of differing BUds: for PWRs, for instance, libraries 
+representative of 20, 33 and 50 MWd/kgIHM discharge burnups have been used in these studies.  Thes 
+libraries are interpolated to create customized libraries at any burnup in this range.  They thus 
+capture the dependence of the cycle-average cross sections on discharge fluence and, implicitly, 
+initial isotopics.  This is of more significance to PWRs as fast reactor spectra are relatively more 
+stable; moreover, to investigate high-burnup PWR fuels additional libraries for BUd of 70 and 100 MWd/kgIHM 
+have been prepared using assumed initial \frac{U}{235} enrichments of 5.5 and 8 w/o, respectively.
+
+Even systems whose spectra are less sensitive to initial composition and burnup must be treated using a 
+number of cross section libraries prepared from detailed transport calculations.  For the sodium-cooled 
+FR design studied here, for example, a number of libraries are available.  The core aspect ratio for the 
+design varies to ensure acceptable coolant void reactivity properties as the conversion ratio and uranium 
+content decrease, so distinct sets of libraries were prepared for 0.5 (used in this study) and 0.25 target 
+conversion ratio designs.  Additionally, separate libraries were prepared at each conversion ratio for 
+fuels with higher and lower minor actinide (MA) content.   The higher MA case is representative of the 
+feed to a FR if Pu from spent UOX is first burned in MOX, while the lower MA library, the one used in 
+this study, reflects the TRU content with no MOX burn.
 
 
 
