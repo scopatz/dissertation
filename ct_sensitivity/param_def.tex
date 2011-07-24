@@ -1,0 +1,88 @@
+%Input Variable Definition
+\begin{table}
+\caption{Fuel Cycle Parameter Definition}
+\begin{center}
+\scriptsize
+\begin{tabular}{|l|l||c|c|c|c|}
+\hline
+\textbf{Input Parameter $x$} & \textbf{Abbreviation} & \textbf{Min} & \textbf{Max} & \textbf{Units} & \textbf{Scale}\\
+\hline
+LWR Burnup Level & \texttt{LWR\_BUd} & 30.0 & 80.0 & MWd/kgIHM & linear \\
+\hline
+LWR Fuel to Moderator Ratio & \texttt{LWR\_Fuel2Mod} & 0.28 & 0.36 & & linear \\
+\hline
+LWR UF Storage Time & \texttt{LWR\_UF\_Storage\_Time} & 3 & 30 & years & linear \\
+\hline
+SE of U from LWR UF & \texttt{LWR\_SE\_U} & 0.99 & 0.9999 & & nines \\
+\hline
+SE of NP from LWR UF & \texttt{LWR\_SE\_NP} & 0.9 & 0.9999 & & nines \\
+\hline
+SE of PU from LWR UF & \texttt{LWR\_SE\_PU} & 0.9 & 0.9999 & & nines \\
+\hline
+SE of AM from LWR UF & \texttt{LWR\_SE\_AM} & 0.9 & 0.9999 & & nines \\
+\hline
+SE of CM from LWR UF & \texttt{LWR\_SE\_CM} & 0.9 & 0.9999 & & nines \\
+\hline
+SE of CS from LWR UF & \texttt{LWR\_SE\_CS} & 0.9 & 0.9999 & & nines \\
+\hline
+SE of SR from LWR UF & \texttt{LWR\_SE\_SR} & 0.9 & 0.9999 & & nines \\
+\hline
+FR Burnup Level & \texttt{FR\_BUd} & 100.0 & 200.0 & MWd/kgIHM & linear\\
+\hline
+FR TRU Conversion Ratio & \texttt{FR\_TRU\_CR} & 0.25 & 0.95 & & linear \\
+\hline
+Lanthanide Fraction in FR Fresh Fuel & \texttt{FR\_LAN\_FF\_Cap} & 0.0001 & 0.005 & Atoms/TRU Atom & linear \\
+\hline
+FR UF Storage Time & \texttt{FR\_UF\_Storage\_Time} & 3 & 30 & years & linear \\
+\hline
+HLW Storage Time & \texttt{HLW\_Storage\_Time} & 1 & 300 & years & log \\
+\hline
+SE of U from FR UF & \texttt{FR\_SE\_U} & 0.99 & 0.9999 & & nines \\
+\hline
+SE of NP from FR UF & \texttt{FR\_SE\_NP} & 0.9 & 0.9999 & & nines \\
+\hline
+SE of PU from FR UF & \texttt{FR\_SE\_PU} & 0.9 & 0.9999 & & nines \\
+\hline
+SE of AM from FR UF & \texttt{FR\_SE\_AM} & 0.9 & 0.9999 & & nines \\
+\hline
+SE of CM from FR UF & \texttt{FR\_SE\_CM} & 0.9 & 0.9999 & & nines \\
+\hline
+SE of CS from FR UF & \texttt{FR\_SE\_CS} & 0.9 & 0.9999 & & nines \\
+\hline
+SE of SR from FR UF & \texttt{FR\_SE\_SR} & 0.9 & 0.9999 & & nines \\
+\hline
+Density of Host Rock & 2317 & \texttt{Rock\_Density} & 2869 & kg/m\superscript{3} & linear \\
+\hline
+Specific Heat of Host Rock & \texttt{Rock\_Specific\_Heat} & 590 & 1270 & J/kg-K & linear \\
+\hline
+Thermal Conductivity of Host Rock & \texttt{Rock\_Thermal\_Conductivity} & 1.9204 & 3.2856 & W/m-K & linear \\
+\hline
+Heat Loss Factor During Ventilation & \texttt{Heat\_Loss\_Factor} & 0.806 & 0.914 & & linear \\
+\hline
+Drift Diameter & \texttt{Drift\_Diameter} & 4.5 & 6.5 & m & linear \\
+\hline
+Ventilation System On Time & \texttt{Vent\_Stystem\_On\_Time} & 10 & 300 & years & log \\
+\hline
+Ambient Environment Temperature & \texttt{Ambient\_Temp} & 12.82 & 32.82 & C & linear \\
+\hline
+Distance Between Drifts & \texttt{Drift\_Space} & 56 & 106 & m & linear \\
+\hline
+\textbf{Response Parameter $R$} &  &  &  & & \\
+\hline
+Repository Capacity & \texttt{Capacity} & $10^4$ & $10^8$ & MTHM/Repository    & log \\
+\hline
+Fuel Cycle Cost  & \texttt{Cost} & 4.0    & 8.0    & \$/MWh             & linear \\
+\hline
+LWR-FR HLW Ratio  & \texttt{HLW\_Ratio} & 4.0    & 44.0   & gHM/GWh            & linear \\
+\hline
+LWR-FR Support Ratio  & \texttt{Support\_Ratio} & 0.0    & 3.0    & LWR cores/FR cores & linear \\
+\hline
+Total Electricity per Repository & \texttt{Total\_Electricity} & $5\times 10^8$ & $5\times 10^{12}$ & GWh/Repository & log \\
+\hline
+Toxicity Index & \texttt{Toxicity\_Index} & $10^6$ & $10^8$ & m\superscript{3}/MTHM & log \\
+\hline
+\end{tabular}
+\end{center}
+\label{param_def}
+\end{table}
+
