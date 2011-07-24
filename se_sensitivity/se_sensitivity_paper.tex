@@ -289,7 +289,7 @@ is 1450 MWe. The load factor is 90\%. The burnup is 60 MWd/kgIHM.}
 \hline
 \textbf{Stage \#} & \textbf{Description} & \textbf{Material Form} \\
 \hline
-\multicolumn{2}{|c|}{Mass Flows for Scheme 1a (KgHM/TWh\subscript{e})}\\
+\multicolumn{2}{|c|}{Mass Flows for Scheme 1a (kgIHM/TWh\subscript{e})}\\
 Natural U  & 20723\\
 Depleted U & 18673\\
 UOX        & 2050\\
@@ -322,6 +322,7 @@ the PWR to 50 MWd/kgIHM (megawatt-days per kilogram initial heavy metal).
 \begin{tabular}{|l|c|c|}
 \hline
 \textbf{Nuclide} & \textbf{PWR Fresh} & \textbf{PWR SNF} \\
+\hline
 \nuc{Am}{241}    &                    & 4.74E-04\\
 \nuc{Am}{243}    &                    & 2.13E-04\\
 \nuc{Cm}{242}    &                    & 3.80E-09\\
@@ -347,7 +348,6 @@ the PWR to 50 MWd/kgIHM (megawatt-days per kilogram initial heavy metal).
 \end{table}
 
 
-
 The retrieved Pu and other MA are used for fast reactor fresh fuel. The
 TRU in the 3 years decayed fast reactor spent fuel is fully reprocessed
 and recycled into the fast reactor. The fission products and actinides
@@ -355,95 +355,88 @@ lost in reprocessing are sent to repository as high level waste after 50
 years cooling.  The load factor is 90\% for PWRs and 85\% for FRs.  In
 this benchmark scenario, the separation efficiency for all species is
 99.9\%.  The top-level system parameters for Scheme 3a are presented in
-Table 5.
+Table \ref{ses_table5}.
 
-Table 5.  Scheme 3a System and Reactor Design
-
-Mass flows for scheme 3a (kgIHM/TWhe)\\
-
-Natural U&12991\\
-
-UOX&1513\\
-
-FR FF&289\\
-
-Element in HLW after Separation\\
-
-&U&1.588\\
-
-Pu&0.084\\
-
-Np&0.0027\\
-
-Am&0.006\\
-
-Cm&0.0026\\
-
-F.P.&117.5\\
-
+\begin{table}[htbp]
+\begin{center}
+\caption{Scheme 3a System and Reactor Design:
 0.71\% natural U is enriched to 4.20\% for UOX with tail enrichment
 0.25\%; capacity of the PWR is 1450 MWe. The load factor is 90\%. The
 burnup is 50 GWd/tIHM for PWR and the spent fuel is decayed for 6 yrs
 before it is reprocessed. The retrieved TRU is mixed with depleted U for
 FR fresh fuel. The burnup for FR is 140 GWd/tIHM and the FR spent fuel
 is reprocessed after 3 yrs decay. Capacity of the FR is 600 MWe and the
-load factor is 85\%. 36.8\% of fleet electricity comes from FR.\\
+load factor is 85\%. 36.8\% of fleet electricity comes from FR.}
+\label{ses_table5}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Stage \#} & \textbf{Description} & \textbf{Material Form} \\
+\hline
+\multicolumn{2}{|c|}{Mass Flows for Scheme 3a (kgIHM/TWh\subscript{e})}\\
+Natural U & 12991\\
+UOX       & 1513\\
+FR FF     & 289\\
+\multicolumn{2}{|c|}{Element in HLW after Separation} \\
+U  & 1.588\\
+Pu & 0.084\\
+Np & 0.0027\\
+Am & 0.006\\
+Cm & 0.0026\\
+FP & 117.5\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
 
-
-	The unit costs used are summarized in Table 6. The disposal costs for
+The unit costs used are summarized in Table 6. The disposal costs for
 HLW and SNF are calculated from the information available in an earlier
 OECD NEA report ().  This report recommends 210,000 \$/m3 and 400,000
 \$/m3 for the disposal charges of SNF and HLW respectively. After
-conditioning, 1 tIHM SNF will result in 2 m3 waste, i.e., 420 \$/kgIHM.
+conditioning, 1 tIHM SNF will result in 2 m\superscript{3} waste, i.e., 420 \$/kgIHM.
 For vitrified HLW, a canister of volume 0.18 m3 is taken to contain 47.6
 kg fission products and 3.55 kg actinides.  Therefore the disposal
 charge for HLW becomes 1408 \$/kgIHM.
 
-Table 6.  Unit Costs used in Benchmark Study
-
-Item&Unit&Value\\
-
-U Ore (yellow cake)&\$/KgHM&50. \\
-
-U Conversion&\$/KgHM&5. \\
-
-U Enrichment&\$/SWU&100. \\
-
-LWR Fuel Fabrication&\$/KgHM&250. \\
-
-FR Fuel Fabrication&\$/KgHM&2,600. \\
-
-Reprocessing for LWR Spent Fuel&\$/KgHM&800. \\
-
-Reprocessing for FR Spent Fuel&\$/KgHM&2,500. \\
-
-SNF Storage&\$/KgHM&90. \\
-
-LLW Near Surface Disposal&\$/KgHM&3.60 \\
-
-LLW GTCC Disposal&\$/KgHM&381. \\
-
-SF Disposal&\$/KgHM&420. \\
-
-HLW Disposal&\$/KgHM&1408. \\
+\begin{table}[htbp]
+\begin{center}
+\caption{Unit Costs used in Benchmark Study}
+\label{ses_table6}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Item}                   & \textbf{Unit} & \textbf{Value} \\
+\hline
+U Ore (yellow cake)             & \$/kgHM       & 50.0 \\
+U Conversion                    & \$/kgHM       & 5.0 \\
+U Enrichment                    & \$/SWU        & 100.0 \\
+LWR Fuel Fabrication            & \$/kgHM       & 250.0 \\
+FR Fuel Fabrication             & \$/kgHM       & 2600.0 \\
+Reprocessing for LWR Spent Fuel & \$/kgHM       & 800.0 \\
+Reprocessing for FR Spent Fuel  & \$/kgHM       & 2500.0 \\
+SNF Storage                     & \$/kgHM       & 90.0 \\
+LLW Near Surface Disposal       & \$/kgHM       & 3.60 \\
+LLW GTCC Disposal               & \$/kgHM       & 381.0 \\
+SF Disposal                     & \$/kgHM       & 420.0 \\
+HLW Disposal                    & \$/kgHM       & 1408.0 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
 
 
-\subsection{}
-\index{@\emph{}}
-\label{ses_sec:}
-3.2 Benchmark Results
-
-	The composition of FR fuel at equilibrium is calculated with the
-dynamic FR simulation tool described in Section 2.2 and compared to
+\subsection{Benchmark Results}
+\index{Benchmark Results@\emph{Benchmark Results}}
+\label{ses_sec:benchmark_results}
+The composition of FR fuel at equilibrium is calculated with the
+dynamic FR simulation tool described in Section 2.2\ref{} and compared to
 results published in the OECD study.  The fuel cycle cost is also
 benchmarked using the unit costs shown in Table 6 and methodology
 depicted in Section 2.3.  The inventory and FCC comparisons are shown in
-Table 7 for both schemes.  As mentioned above, ORIGEN was used to
+Table \ref{ses_table7} for both schemes.  As mentioned above, ORIGEN was used to
 compute the PWR material balance.
 
-	The inventories of major actinides in the HLW in scheme 1a from both
+The inventories of major actinides in the HLW in scheme 1a from both
 studies are in close agreement with relative errors of less than 10\%,
 except Cm which has a smaller absolute inventory in the system. The mean
 value of FCC from OECD study is approximately 4.7 \$/MWh for scheme 1a
@@ -452,7 +445,7 @@ in this study results less than 10\% error.  This variation stems from
 minor differences in the cost assessment methodology and back-end unit
 costs. 
 
-	Scheme 1a does not benchmark the dynamic FR simulation tool; however it
+Scheme 1a does not benchmark the dynamic FR simulation tool; however it
 does provide the TRU isotopics that serve as the starting point for the
 calculations carried out by the tool.  The procedure described in
 Section 2.2 was used to perform cycle iterations until the FR fuel
@@ -469,12 +462,53 @@ could not be prepared and available data for a FR that shares many
 properties of the OECD study reactor (e.g., sodium-cooled, metallic
 fuel, similar pitch and fuel pin radius) were used instead.
 
-Table 7.  Benchmark Results
+\begin{table}[htbp]
+\begin{center}
+\caption{Scheme 1a Benchmark Results}
+\label{ses_table7}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Parameter} & \textbf{OECD 2006} & \textbf{Results} & \textbf{\% Differnec} \\
+\hline
+UOX FF [kg/TWh\subscript{e}]    & 2050  & 2050    & 0.0 \\
+U Natural [kg/TWh\subscript{e}] & 20723 & 20722.8 & 0.0 \\
+U in HLW [kg/TWh\subscript{e}]  & 1890  & 1896    & 0.3 \\
+Pu in HLW [kg/TWh\subscript{e}] & 26    & 24      & -8.86 \\
+Np in HLW [kg/TWh\subscript{e}] & 1.9   & 2.0     & 4.29 \\
+Am in HLW [kg/TWh\subscript{e}] & 1.6   & 1.7     & 8.55 \\
+Cm in HLW [kg/TWh\subscript{e}] & 0.28  & 0.24    & -15.17 \\
+FP in HLW [kg/TWh\subscript{e}] & 130   & 127     & -2.61 \\
+FCC [\$/MWh]                    & 4.7   & 4.27    & -9.15 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
-?&?&?&?\\
 
-FCC [\$/MWh]&5.5&5.13&-6.73\%\\
-
+\begin{table}[htbp]
+\begin{center}
+\caption{Scheme 3a Benchmark Results}
+\label{ses_table7_3a}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Parameter} & \textbf{OECD 2006} & \textbf{Results} & \textbf{\% Differnec} \\
+\hline
+Electricity Share: PWR [\%]     & 63.2   & 66.1    & 4.59 \\
+Electricity Share: FR [\% ]     & 36.8   & 33.9    & -7.88 \\
+UOX FF [kg/TWh\subscript{e}]    & 1513   & 1583    & 4.63 \\
+U Natural [kg/TWh\subscript{e}] & 12991  & 13593.2 & 4.64 \\
+UOX FF [kg/TWh\subscript{e}]    & 289    & 266.2   & -7.88 \\
+U in HLW [kg/TWh\subscript{e}]  & 1.588  & 1.6361  & 3.03 \\
+Pu in HLW [kg/TWh\subscript{e}] & 0.084  & 0.0814  & -3.10 \\
+Np in HLW [kg/TWh\subscript{e}] & 0.0027 & 0.0030  & 10.52 \\
+Am in HLW [kg/TWh\subscript{e}] & 0.006  & 0.0073  & 21.62 \\
+Cm in HLW [kg/TWh\subscript{e}] & 0.0026 & 0.0020  & -21.8 \\
+FP in HLW [kg/TWh\subscript{e}] & 117.5  & 119.3   & 1.59 \\
+FCC [\$/MWh]                    & 5.5    & 5.13    & -6.73 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
 
 	The OECD group has also conducted repository performance studies for
