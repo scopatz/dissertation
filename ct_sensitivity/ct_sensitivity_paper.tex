@@ -1,40 +1,12 @@
-%General LaTeX Document Template
-%Build Using...
-%     NAME="sensitivity_paper" && latex ${NAME}.tex && dvipdf ${NAME}.dvi
-%   with BibTeX
-%     NAME="sensitivity_paper" && latex ${NAME}.tex && bibtex ${NAME}.aux && latex ${NAME}.tex && latex ${NAME}.tex && dvipdf ${NAME}.dvi
-\documentclass[a4paper, 12pt]{article}
-\usepackage{a4wide}
-\usepackage{epsfig}
-\usepackage{color}
-\usepackage{verbatim}
-\usepackage{cite}
+\chapter{Information Theoretic Fuel Cycle Analysis}
+\index{Information Theoretic Fuel Cycle Analysis@\emph{Information Theoretic Fuel Cycle Analysis}}
+\label{cts_paper}
 
-%General Short-Cut Commands
-\newcommand{\superscript}[1]{\ensuremath{^{\textrm{#1}}}}
-\newcommand{\subscript}[1]{\ensuremath{_{\textrm{#1}}}}
-\newcommand{\nuc}[2]{\superscript{#2}{#1}}
 
-%Commands for this document...
-\begin{document}
-\begin{center}
-Quantifying Sensitivities and Covariances in Nuclear Fuel Cycle Outcomes\\
-\vspace{10mm}
-Anthony Michael Scopatz, Erich A. Schneider\\
-The University of Texas at Austin\\
-\vspace{2mm}
-Jun Li\\
-University of North Carolina\\
-\vspace{2mm}
-Man-Sung Yim\\
-North Carolina State University\\
-\vspace{2mm}
-September 21\textsuperscript{th}, 2010
-\end{center}
-\vspace{5mm}
 
 \section{Introduction}
-\label{sec:intro}
+\index{Introduction@\emph{Introduction}}
+\label{cts_sec:intro}
 
 Technology development and deployment (TD\&D) decisions will play a key role in
 establishing the array of diverse, interconnected technologies that might comprise
@@ -92,13 +64,16 @@ parent technologies) that can, if also altered, augment or reduce the effect of 
 being considered.
 
 The remainder of this paper is organized as follows.  Section 2 begins with a summary of the
-methodology employed to carry out the study.  Section 3 describes the fuel cycle simulations and method for sampling the input parameters to be varied, while section 4 presents the theoretical background underpinning the entropy-based
+methodology employed to carry out the study.  Section 3 describes the fuel cycle simulations and 
+method for sampling the input parameters to be varied, while section 4 presents the theoretical 
+background underpinning the entropy-based
 statistical measures.  Section 5 provides results for the statistical measures applied to the scenario
 space outlined in Section 3 and offers several case studies that illustrate the interpretation
 of the statistical outcomes.
 
 \section{Methodology}
-\label{sec:methodology}
+\index{Methodology@\emph{Methodology}}
+\label{cts_sec:methodology}
 
 Statistical performance measures are applicable to a nuclear fuel cycle simulation model that
 is amenable to stochastic execution under variation of several independent parameters.  Values
@@ -111,7 +86,7 @@ graphically in Figure \ref{mcmethod}.
 
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[scale=0.70]{figs/MonteCarloMethodology.eps}
+\includegraphics[scale=0.70]{ct_sensitivity/figs/MonteCarloMethodology.eps}
 \caption{Monte Carlo Methodology \& Analysis Diagram}
 \label{mcmethod}
 \end{center}
@@ -138,7 +113,8 @@ transformations that constituent NFC technologies apply to the material flow.
 
 
 \section{Nuclear Fuel Cycle Simulation}
-\label{sec:nfcsim}
+\index{Nuclear Fuel Cycle Simulation@\emph{Nuclear Fuel Cycle Simulation}}
+\label{cts_sec:nfcsim}
 
 A fuel cycle simulation package that incorporates physics-based submodels of reactor burnup \cite{Scopatz2009} and
 repository performance \cite{Li2009} served as the platform for this analysis. The approach taken in each
@@ -172,8 +148,10 @@ capacity was determined according to the appropriate thermal design
 constraints.
 
 
+
 \subsection{Fuel Cycle Schema}
-\label{sec:fcschema}
+\index{@\emph{}}
+\label{cts_sec:fcschema}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -229,7 +207,8 @@ Yucca Mountain.
 
 
 \subsection{Implementation}
-\label{sec:implementation}
+\index{Implementation@\emph{Implementation}}
+\label{cts_sec:implementation}
 
 The fuel cycle model has been benchmarked against OECD and Idaho National Laboratory
 (VISION) scenario analyses. When compared against the LWR-FR symbiotic cycle defined in Scheme
@@ -244,7 +223,8 @@ The physics-based methodology allows reactor performance and fuel cycle mass
 balances to be rapidly recalculated under perturbations to design and operating parameters, where feedbacks to the operation of the cycle may have global reach.
 
 \subsection{Parameter Specification}
-\label{sec:paramspec}
+\index{Parameter Specification@\emph{Parameter Specification}}
+\label{cts_sec:paramspec}
 
 Stochastic parameters are sampled either in a linearly uniform, log uniform, or one-minus-log uniform fashion.
 The one-minus-log uniform distribution is useful for choosing separation efficiencies and is known as sampling
@@ -269,7 +249,8 @@ determines the relative importance of that input.
 
 
 \section{Contingency Tables}
-\label{sec:ct}
+\index{Contingency Tables@\emph{Contingency Tables}}
+\label{cts_sec:ct}
 
 After the stochastic generation of set of input parameters, the analysis loop of Figure \ref{mcmethod} is entered.
 Since all inputs are varied simultaneously, the response from single input parameter is implicitly
@@ -352,14 +333,16 @@ Since there are thirty inputs, of which two are examined, there are $_{30}C_2 = 
 
 
 \subsection{Statistical Metrics}
-\label{sec:statistical_metrics}
+\index{Statistical Metrics@\emph{Statistical Metrics}}
+\label{cts_sec:statistical_metrics}
 
 This section describes the statistical measures used to quantify the strength of association between input parameters and responses in contingency tables.
 This allows the system designer to determine the most `important' input parameters to this response.  For example, one
 could quantitatively state the degree of importance of FR plutonium SE relative to the repository drift diameter in the sense of how each affects the repository capacity.
 
 \subsubsection{Entropy}
-\label{sec:entropy}
+\index{Entropy@\emph{Entropy}}
+\label{cts_sec:entropy}
 
 The \emph{entropy} $H$ of a parameter or CT is a measure of how evenly spread out the data is over all bins.  This metric can be thought of
 in analogy to the thermodynamic property of the same name.  For contingency tables,
@@ -387,6 +370,7 @@ Rather the maximum value for the entropy is given as the natural logarithm of th
 the entropy is defined on the range $[0, \ln(K)]$.
 
 \subsubsection{Mutual Information}
+\index{Mutual Information@\emph{Mutual Information}}
 \label{sec:mutual_information}
 
 The next metric is the \emph{mutual information} $I$.
@@ -435,7 +419,8 @@ The minimum value of $I$ is zero, indicating that $x$ and $R$ share nothing in c
 On the other hand, the maximum value of the mutual information depends on the structure of the contingency table and may not be easily expressed in general.
 
 \subsubsection{Uncertainty}
-\label{sec:uncertainty}
+\index{Uncertainty@\emph{Uncertainty}}
+\label{cts_sec:uncertainty}
 
 The uncertainty $U$ is the first metric to be used to rank the relative value of input parameters to a response.  Informally, the uncertainty is defined
 as the mutual information divided by the entropy.
@@ -471,7 +456,8 @@ together are more important to the repository capacity than the repository drift
 
 
 \subsubsection{Sensitivity of Sensitivity Metrics}
-\label{sec:sensitivity_of_sensitivity_metrics}
+\index{Sensitivity of Sensitivity Metrics@\emph{Sensitivity of Sensitivity Metrics}}
+\label{cts_sec:sensitivity_of_sensitivity_metrics}
 
 In so far as the uncertainty coefficient is a surrogate for sensitivity, a suitable replacement for covariance should be found.
 This sort of association is called a \emph{sensitivity of sensitivity} because it seeks
@@ -514,7 +500,8 @@ Therefore, both metrics are needed to have a complete description of the three d
 
 
 \section{Results \& Case Studies}
-\label{sec:results}
+\index{Results \& Case Studies@\emph{Results \& Case Studies}}
+\label{cts_sec:results}
 
 The goal of this study, similar to other sensitivity studies \cite{Scopatz2010b} or uncertainty 
 analyses \cite{Barratt2004}, is to quantitatively rank fuel cycle inputs against their effect on 
@@ -533,7 +520,8 @@ about particular parameters and pairs of interest.
 
 
 \subsection{Binning Structure}
-\label{sec:binning}
+\index{Binning Structure@\emph{Binning Structure}}
+\label{cts_sec:binning}
 
 Inevitably when performing Monte Carlo calculations the question of `good statistics' arises.  At the root of this question is the concern that enough runs
 have been performed to ensure that the subsequent analysis can be made with confidence. 
@@ -609,7 +597,8 @@ that the induced uncertainty is approximately 2.2\%.  Seven bins per axis are us
 
 
 \subsection{Rankings: One Input to One Response}
-\label{sec:rank2D}
+\index{Rankings: One Input to One Response@\emph{Rankings: One Input to One Response}}
+\label{cts_sec:rank2D}
 
 Determining the impact of a single input parameter on a nuclear fuel cycle outcome is the first step in a screening study.  Using the contingency table methodology above,
 the uncertainty coefficient $U(x|R)$ measures the importance of $x$.  Table \ref{U_x_R_for_Capacity_with_IJK7} displays the input parameters, ranked by
@@ -643,13 +632,15 @@ because by the point of 0.9 separations for these species,
 the lower bound of the SE range, has been achieved, most of their repository impact has been mitigated.
 
 \subsection{Rankings: Two Inputs to One Response}
-\label{sec:rank3D}
+\index{Rankings: Two Inputs to One Response@\emph{Rankings: Two Inputs to One Response}}
+\label{cts_sec:rank3D}
 
 The analysis of three dimensional contingency tables follows in two parts.  The first is a ranking of associations of input parameter pairs, analogous to
 the 2D case.  Second, covariance effects between the two inputs are measured.
 
 \subsubsection{3D Sensitivity}
-\label{sec:3D_sensitivity}
+\index{3D Sensitivity@\emph{3D Sensitivity}}
+\label{cts_sec:3D_sensitivity}
 
 %\input{figs/U_xy_R_for_Capacity_with_IJK7}
 The three dimensional expression of the uncertainty coefficient, $U(x,y|R)$, is used to capture the strength of association from a parameter pair to the response.
@@ -664,7 +655,8 @@ Thus if an input is important by its own merits, any pair that this input is a m
 Since little additional information is added here over the 2D study, the specific 3D sensitivity tables are not displayed.
 
 \subsubsection{3D Sensitivity of Sensitivity}
-\label{sec:3D_sensitivity_of_sensitivity}
+\index{3D Sensitivity of Sensitivity@\emph{3D Sensitivity of Sensitivity}}
+\label{cts_sec:3D_sensitivity_of_sensitivity}
 
 As was seen in section \ref{sec:3D_sensitivity}, the three dimensional uncertainty coefficient did not reveal fundamentally different information
 about the system than the two dimensional rankings.  $U(x,y|R)$ coupled important inputs together, but which inputs were important remained the same.  This was
@@ -690,10 +682,12 @@ Thus the fact that such parameters pairs exhibit strong covariances is not surpr
 
 
 \subsection{Case Studies}
-\label{sec:case_studies}
+\index{Case Studies@\emph{Case Studies}}
+\label{cts_sec:case_studies}
 
 \subsubsection{Covariance of Plutonium \& Americium Separations}
-\label{sec:pu_am_se}
+\index{Covariance of Plutonium \& Americium Separations@\emph{Covariance of Plutonium \& Americium Separations}}
+\label{cts_sec:pu_am_se}
 
 Plutonium and americium separation efficiencies provide an intuitive example of the covariance measure.  There is already known
 to be a strong coupling between these two parameters with respect to the repository capacity \cite{Scopatz2009c}.  From the
@@ -718,7 +712,8 @@ The switch between Am/Pu and the two order of magnitude range in the decay heat 
 
 
 \subsubsection{Covariance of Americium Separations and FR TRU Conversion Ratio}
-\label{sec:am_se_fr_tru_cr}
+\index{Covariance of Americium Separations and FR TRU Conversion Ratio@\emph{Covariance of Americium Separations and FR TRU Conversion Ratio}}
+\label{cts_sec:am_se_fr_tru_cr}
 
 The interplay between the FR americium SE and the FR transuranic conversion ratio exhibits a covariance
 to the repository capacity.  As seen in Table \ref{cv_x_y_R_for_Capacity_with_IJK7}, these two inputs display a relatively high sensitivity of sensitivity.  The covariance effect here is confirmed by examining Table \ref{FR_SE_AM_and_FR_TRU_CR_to_Capacity_with_IJK433_prop}.
@@ -741,7 +736,8 @@ fixed-size repository decreases.
 
 
 \subsubsection{Covariance of HLW Storage Time \& Fast Reactor Plutonium Separations}
-\label{sec:hlw_pu_covariance}
+\index{Covariance of HLW Storage Time \& Fast Reactor Plutonium Separations@\emph{Covariance of HLW Storage Time \& Fast Reactor Plutonium Separations}}
+\label{cts_sec:hlw_pu_covariance}
 
 The top two inputs from the sensitivity study, \texttt{FR\_SE\_PU} and \texttt{HLW\_Storage\_Time}, appear to exert a strong joint effect on the outcome.  According to Table \ref{cv_x_y_R_for_Capacity_with_IJK7}, this input pair is ranked fifth with respect to $c_v(x|y|R)$.
 Through an examination of the the 3D contingency table, high respository capacities are only allowed when both \texttt{FR\_SE\_PU} and
@@ -767,7 +763,8 @@ roughly the same value as the 300 year HLW storage time curves, only 300 years f
 three hundred years to the left, the two curves would nearly overlap.  The statistical analysis confirms the strong importance to repository capacity of a strategy of `waiting out' the decay of Pu-238 if Pu separation efficiencies are low, and its much weaker importance if efficiencies are high.
 
 \section{Concluding Remarks \& Future Work}
-\label{sec:conclusion}
+\index{Concluding Remarks \& Future Work@\emph{Concluding Remarks \& Future Work}}
+\label{cts_sec:conclusion}
 
 The statistical techniques of contingency table and entropy analysis presented in this paper are widely-used tools for capturing the behavior of complex systems, particularly biological ones.  Here they have been applied to a simulator of the nuclear fuel cycle.  NFC outcomes, like those of any complex system, are shaped by intricate and highly nonlinear interactions between many inputs.
 
@@ -776,8 +773,3 @@ The strength of association between the inputs and the outcome studied here, the
 This tool can aid system designers by helping them perceive which design variables matter.  The contingency tables represent a (coarsely-gridded) importance map for the inverse problem.  Conditioned on a specific system response, like repository capacity, the measure of the strength of response provided by the uncertainty coefficients can provide guidance to technologists optimizing design parameters in the face of uncertainty regarding the shape of the larger system.  Illuminating joint dependencies, coefficients of variation can guide iterative technology development by showing which design features must be considered together.
 
 The approach described here can be generalized to include boolean as well as continuous inputs.  For example, if the technology ultimately chosen for the permanent repository is unknown, a boolean flag can allow each stochastic realization to follow one of several options.  The outcome, still repository capacity, would now be conditioned on this boolean input as well.  It would illuminate system design parameters that will be important regardless of technology ultimately chosen, those that have strongly technology-dependent effects, and those that are unimportant to determining capacity regardless of technology.  In view of the uncertainties in the direction taken by nuclear energy in the future, coupled with the need to develop technologies now that can support or even enable these outcomes, this capability, if developed, could provide invaluable guidance.
-
-\bibliography{library.bib}{}
-\bibliographystyle{plain}
-
-\end{document}
