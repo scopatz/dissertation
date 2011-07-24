@@ -929,14 +929,12 @@ HLW/TRU Disposal             & 0.19            & 0.18            & 0.17         
 
 
 
-\subsubsection{}
-\index{@\emph{}}
-\label{ses_sec:}
-4.1.3 Proliferation Resistance
-
-	The intrinsic proliferation resistance varies weakly between the cases
+\subsubsection{Proliferation Resistance}
+\index{Proliferation Resistance@\emph{Proliferation Resistance}}
+\label{ses_sec:prilif_res}
+The intrinsic proliferation resistance varies weakly between the cases
 due to the separation efficiency and more strongly as a consequence of
-partitioning strategy.  Table 14 lists the system proliferation
+partitioning strategy.  Table \ref{ses_table14} lists the system proliferation
 resistance value for all cases.  Recall that higher numbers imply a
 greater intrinsic proliferation resistance for the system.  Recall that
 higher numbers imply a greater intrinsic proliferation resistance for
@@ -944,7 +942,7 @@ the system.  As an example, when applied to the OECD benchmark case
 ``scheme 1a'' (PWR-OT) this model generates a proliferation resistance
 value of 0.2416.
 
-	The differences between cases arise from the reprocessing and HLW
+The differences between cases arise from the reprocessing and HLW
 disposal stages.  SNF storage and HLW disposal handle similar materials
 and both represent pure storage sites.  Hence they share same level of
 proliferation resistance. The large difference in inventory at HLW
@@ -958,26 +956,29 @@ impact the proliferation resistance value.  The benefit of co-extraction
 of Np, Am and Cm with Pu is shown to lead to the best proliferation
 resistance value.
 
-Table 14. System Proliferation Resistance Value
+\begin{table}[htbp]
+\begin{center}
+\caption{System Proliferation Resistance Value}
+\label{ses_table14}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+                & \textbf{Stra1} & \textbf{Stra2} & \textbf{Stra3} & \textbf{Stra4} \\
+\hline
+\textbf{Level1} & 0.1850         & 0.1874         & 0.2421         & 0.2422 \\
+\textbf{Level2} & 0.1853         & 0.1870         & 0.2418         & 0.2418 \\
+\textbf{Level3} & 0.1852         & 0.1865         & 0.2414         & 0.2414 \\
+\textbf{Level4} & 0.1852         & 0.1865         & 0.2413         & 0.2410 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
-?&Stra1&Stra2&Stra3&Stra4\\
-
-Level1&0.1850&0.1874&0.2421&0.2422\\
-
-Level2&0.1853&0.1870&0.2418&0.2418\\
-
-Level3&0.1852&0.1865&0.2414&0.2414\\
-
-Level4&0.1852&0.1865&0.2413&0.2410\\
 
 
-
-\subsubsection{}
-\index{@\emph{}}
-\label{ses_sec:}
-4.1.4 Repository Performance
-
-	The heat load based repository capacity is shown in Table 15.  The
+\subsubsection{Repository Performance}
+\index{Repository Performance@\emph{Repository Performance}}
+\label{ses_sec:rep_perform}
+The heat load based repository capacity is shown in Table \ref{ses_table15}.  The
 benefit accrued by separating Am, Cm, Cs and Sr from the spent fuel is
 considerable. At all three levels, by separating Am and Cm only, the
 repository capacity doubles and further separation of Cs and Sr make the
@@ -985,22 +986,27 @@ repository capacity 3.7 times (level 1), 25.8 times (level 2), 228.5
 times (level 3) and 1221.2 times (level 4) greater compared to strategy
 1. 
 
-Table 15. Repository Capacity (tIHM/Repository)
+\begin{table}[htbp]
+\begin{center}
+\caption{Repository Capacity [tIHM/Repository]}
+\label{ses_table15}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+                & \textbf{Stra1} & \textbf{Stra2} & \textbf{Stra3} & \textbf{Stra4} \\
+\hline
+\textbf{Level1} & 9342           & 9383           & 28766          & 34609 \\
+\textbf{Level2} & 4849           & 4755           & 23341          & 124877 \\
+\textbf{Level3} & 4388           & 4291           & 22555          & 1002783 \\
+\textbf{Level4} & 4342           & 4244           & 22478          & 5302541 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
-?&Stra1&Stra2&Stra3&Stra4\\
-
-Level1&9342&9383&28766&34609\\
-
-Level2&4849&4755&23341&124877\\
-
-Level3&4388&4291&22555&1002783\\
-
-Level4&4342&4244&22478&5302541\\
 
 
-
-	The benefit of higher separation efficiency can be clearly appreciated
-from the result in Table 16 where the repository capacity is represented
+The benefit of higher separation efficiency can be clearly appreciated
+from the result in Table \ref{ses_table16} where the repository capacity is represented
 as the total electricity generated from the HLW that may be placed in a
 fully loaded repository. Higher separation efficiency leads to greater
 economy of repository usage in all cases, but it is especially
@@ -1012,102 +1018,59 @@ reached, Cs and Sr become limiting, so that there is no further benefit
 to reaching 99.99\% actinide separation efficiency unless Cs and Sr are
 partitioned as well.  
 
-	Note that the dramatic increase in the heat-based capacity of the
+\begin{table}[htbp]
+\begin{center}
+\caption{Repository Capacity [GWh/Repository]}
+\label{ses_table16}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+                & \textbf{Stra1} & \textbf{Stra2} & \textbf{Stra3} & \textbf{Stra4} \\
+\hline
+\textbf{Level1} & 2.96E+07       & 3.00E+07       & 9.39E+07       & 1.15E+08 \\
+\textbf{Level2} & 3.26E+07       & 3.26E+07       & 1.71E+08       & 9.63E+08 \\
+\textbf{Level3} & 3.30E+07       & 3.30E+07       & 1.86E+08       & 8.81E+09 \\
+\textbf{Level4} & 3.30E+07       & 3.30E+07       & 1.88E+08       & 4.72E+10 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+
+
+Note that the dramatic increase in the heat-based capacity of the
 repository is not matched by commensurate decreases in HLW volume or
-dose.  Table 17 shows the mass of HLW generated by each unit of
-electricity produced and Fig. 11 shows the dose density, cumulative over
-100,000 years for the fully loaded repository.  Therefore, the capacity
-enhancement shown in Table 15 may not be accompanied by a proportionate
+dose.  Table \ref{ses_table17} shows the mass of HLW generated by each unit of
+electricity produced. Therefore, the capacity
+enhancement shown in Table \ref{ses_table15} may not be accompanied by a proportionate
 decrease in disposal cost; likewise, the potential dose of materials
 placed in a fully loaded repository is many times higher for Stra4 than
-for the other cases.  The correlation between repository capacity and
-potential dose is addressed below.  Toxicity is defined as the volume of
-water required to dilute the hazard material to recommended
-concentration guidelines for human consumption. Elemental chemical
-toxicity information for tracked elements is retrieved from ORIGEN2.2.
-The toxicity for the lumped fission product is assumed to 1 g/m3.  Fig.
-12 shows the toxicity density for the 16 cases.
+for the other cases.  
 
-Table 16.  Repository Capacity (GWh/Repository)
-
-?&Stra1&Stra2&Stra3&Stra4\\
-
-Level1&2.96E+07&3.00E+07&9.39E+07&1.15E+08\\
-
-Level2&3.26E+07&3.26E+07&1.71E+08&9.63E+08\\
-
-Level3&3.30E+07&3.30E+07&1.86E+08&8.81E+09\\
-
-Level4&3.30E+07&3.30E+07&1.88E+08&4.72E+10\\
-
-
-
-Table 17. HLW Mass Per Unit Energy Produced (gHM/GWh)
-
-?&Stra1&Stra2&Stra3&Stra4\\
-
-Level1&315.5 &312.9 &306.4 &300.0 \\
-
-Level2&148.8 &145.8 &136.9 &129.7 \\
-
-Level3&133.2 &130.2 &121.0 &113.8 \\
-
-Level4&131.6 &128.7 &119.5 &112.2 \\
+\begin{table}[htbp]
+\begin{center}
+\caption{HLW Mass Per Unit Energy Produced [gHM/GWh]}
+\label{ses_table17}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+                & \textbf{Stra1} & \textbf{Stra2} & \textbf{Stra3} & \textbf{Stra4} \\
+\hline
+\textbf{Level1} & 315.5          & 312.9          & 306.4          & 300.0 \\
+\textbf{Level2} & 148.8          & 145.8          & 136.9          & 129.7 \\
+\textbf{Level3} & 133.2          & 130.2          & 121.0          & 113.8 \\
+\textbf{Level4} & 131.6          & 128.7          & 119.5          & 112.2 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
 
 
-Fig.   SEQ Figure $\backslash$* ARABIC  11 .  Accumulated Dose [rem in
-Fully Loaded Repository]
 
-Fig.   SEQ Figure $\backslash$* ARABIC  12 .  Toxicity Density [m3 in
-Fully Loaded Repository]
-
-	Fig. 13 shows the projected dose rate for a location 20 km from the
-repository from a full loaded repository 100,000 years post disposal.
-Case14 and case24 have very high dose rate due to their much higher dose
-inventory, particularly of fission products.  In Fig. 13. Case24, Case14
-and Case4 exhibit higher and earlier dose rate peaks due to the large
-fission product inventory being buried. The dose rate from case01,
-case02, case03 and case04 are similar at the end of the time period. The
-projected dose rates of case1, case11, case21, case02, case2, case12 and
-case22 similar to case01 while case03, case3, case13 and case23 similar
-to case04; these are not shown in this figure.
-
-	Table 18 lists the top 8 dose contributors and their peak dose time; it
-suggests that the earlier peak of the dose rate comes from fission
-products while the later dose rate peak shown at the end of investigated
-period arises from Np237. 
-
-Fig.   SEQ Figure $\backslash$* ARABIC  13 . Projected Dose Rate
-
-Table 18. Peak Dose Time
-
-Nuclide&Peak Dose Time (yr)\\
-
-Np237&1.000E+05\\
-
-I129&8.110E+04\\
-
-Tc99&8.290E+04\\
-
-U234&8.650E+04\\
-
-Se79&8.560E+04\\
-
-U238&8.650E+04\\
-
-C14&8.020E+04\\
-
-Cl36&8.650E+04\\
-
-
-
-\section{}
-\index{@\emph{}}
-\label{ses_sec:}
-Conclusions
-
-	This paper has documented the development and benchmarking of a new
+\section{Conclusions}
+\index{Conclusions@\emph{Conclusions}}
+\label{ses_sec:conclusions}
+This paper has documented the development and benchmarking of a new
 modeling framework that couples simple, physics-based models for fuel
 cycle and reactor material balance generation, repository capacity, dose
 and toxicity assessment, economics and proliferation resistance.  The
@@ -1115,7 +1078,7 @@ coupled model suite was created to investigate the sensitivity of these
 important fuel cycle outcomes to changes in partitioning strategies and
 elemental separation efficiency in reprocessing plants.
 
-	The modeling framework is unique because it links burnup and reactivity
+The modeling framework is unique because it links burnup and reactivity
 calculations in which reactor performance and fuel cycle mass balance
 are coupled with a fuzzy logic based barrier method for assessing
 proliferation resistance, a repository thermal analysis tool and
@@ -1125,209 +1088,30 @@ system input variables such as separation efficiencies are propagated
 through all the submodels: for instance, the material balance tool
 recalculates the transient and equilibrium FR cycle material balances.
 
-''@
-
-\asciicircum{}''@
-
-)
-
-8
-
-B
-
-G
-
-f
-
-g
-
-$\mu$
-
-?
-
-?
-
-?
-
-?
-
-6
-
-A
-
-B
-
-R
-
-d
-
-e
-
-$}$
-
-?
-
-?
-
-?
-
-?
-
-?
-
-kd?
-
-kdt
-
-??<
-
-??<
-
-??<
-
-??<
-
-??<
-
-??<
-
-??<
-
-??<
-
-??<
-
-??<
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???
-
-???????????
-
-m& 
-
-m& 
-
-m& 
-
-m& 
-
- h?
-
-	rademark
-
-	rademark
-
-	rademark
-
-	rademark
-
-	rademark
-
-!	N
-
-!	N
-
-!	N
-
-!	N
-
-!	N
-
----
-
-?
-
----
-
-?
-
----
-
-?
-
----
-
-?
-
----
-
-?
-
----
-
-?
-
----
-
-?
-
----
-
-?
-
-d Cs/Sr are partitioned.  If Cs/Sr are not partitioned, it was not seen
+This new framework was applied to a GNEP-inspired LWR and transmuter 
+FR fuel cycle architechture.  Partitioning strategies were varied with 
+Np, Am/Cm, and Cs/Sr alternatively being partitioned for recycle or storage 
+or sent to the repository with the low heat emitting fission products.
+Elemental separation efficinecies were also varied with values of
+90\% to 99.99\% being considered.  It was shown that the efficiency 
+of repository space usage, meausred by the energy produced by the fuel from
+which the HLW placed in the repository was derived, can ve imporved by 
+more than two orders of magnitude if 99.99\% separation efficiency is 
+achieved and Cs/Sr are partitioned.  If Cs/Sr are not partitioned, it was not seen
 to be worthwhile to exceed 99.9\% efficiency.  On the other hand,
 drastic increases in the low heat release fission product loading of the
 repository may limit the potential repository benefit of the
 transmutation scheme by increasing the dose, toxicity and mass to be
 interred.
 
-	In the short term, it is of interest to consider the separation
+In the short term, it is of interest to consider the separation
 efficiency for individual elements.  Perhaps capacity enhancement goals
 can still be met even if 99.9\% or 99.99\% efficiency is not met at each
-step -- for example, if Cs/Sr efficiency is limited to 99.9\%, it
+step - for example, if Cs/Sr efficiency is limited to 99.9\%, it
 appears that achieving an equivalent TRU separation efficiency may not
 be necessary; 99\% could suffice with the same repository benefit.  
 
-	In future, as understanding of the variation of disposal cost with
+In future, as understanding of the variation of disposal cost with
 these parameters as well as the response of the reprocessing cost to
 efficiency improves, system optimization will emerge as an important
 area of study.  This self-contained, physics-based tool executes and
@@ -1335,71 +1119,10 @@ incorporates feedbacks between is components.  As such, a stochastic
 system optimization wrapper that invokes the new tool could efficiently
 search the parameter space.
 
-	Finally, only a single LWR/FR strategy has been considered thus far. 
+Finally, only a single LWR/FR strategy has been considered thus far. 
 Other fuel cycle strategies, for instance multi-tier approaches that
 include partial transmutation in thermal systems, will also be
 addressed.  Due to the presence of additional reprocessing steps, it is
 expected that such strategies will respond even more sensitively to
 variations in process efficiency.
-
-References:
-
-  PAGE  61 /  NUMPAGES  64 
-
- ``MIT Survey: Americans Warming to Nuclear Power,'' MIT TechTalk, 52,
-1, September 12 (2007).
-
- R. WIEGLAND, ``Criteria Derived for Geologic Disposal Concepts,'' Proc.
-OECD/NEA 9th Information Exchange Meeting on Actinide and Fission
-Production Partitioning and Transmutation (IEMPT-9), Nimes, France,
-September (2006).
-
- S. J. PIET et al., ``Fuel Cycle Scenario Definition, Evolution and
-Trade-offs,'' INL/EXT-06-11683, Idaho National Laboratory (2007).
-
- OECD Nuclear Energy Agency, ``Advanced Nuclear Fuel Cycles and
-Radioactive Waste Management,'' NEA-5990, OECD Paris, 2006.
-
- SCHNEIDER, E. A. and A. M. SCOPATZ, ``A Parameterization of the
-Neutronic Characteristics of Recyclable Uranium,'' Proc. Intl. Conf. on
-the Physics of Reactors, PHYSOR 2008, Interlaken, Switzerland, September
-(2008).
-
- A. G. CROFF, ``A User's Manual for the ORIGEN2 Computer Code,''
-Technical Report ORNL-TM/7175, Oak Ridge National Laboratory (1980).
-
- MILLER, K. and K. WILLIAMS, ``User's Manual for G4 ECONS Version 2.0,''
-Generation-IV Program Economic Modeling Working Group Technical Report,
-(2008).
-
- LI, J., YIM, M.S. and D. McNELIS, ``Assessing Proliferation Resistance
-of Nuclear Fuel Cycle Systems Using Fuzzy Logic-Based Barrier Method'',
-Nuclear Technology, 162, 293-307, June (2008).
-
- Mohanty, S., T. J. McCartin, and D. W. Esh, ``Total-System Performance
-Assessment (TPA) Version 4.0 Code: Module Descriptions and User's
-Guide'', Center for Nuclear Waste Regulatory Analyses, San Antonio,
-Texas, Jan. 2002.
-
- TRW Environmental Safety Systems Inc., "Civilian Radioactive Waste
-Management System Management \& Operating Contractor: License
-Application Design Selection Report", B00000000-01717-4600-00123 REV 01
-ICN 01, August (1999).
-
- LI. J, NICHOLSON, M., PROCTOR, W. C., YIM, M.-S. and D. N. McNELIS,
-``Examining Repository Loading Options to Expand Yucca Mountain
-Repository Capacity,'' Proc. Advanced Nuclear Fuel Cycles and Systems,
-GLOBAL 2007, Boise, ID, September (2007). 
-
- LI, J., YIM, M.-S. and D. McNELIS, ``Risk-Based Performance Index for
-Nuclear Waste Transmutation System Optimization,'' Trans. Am. Nuc. Soc.,
-90, 239-240, (2004).
-
- OECD Nuclear Energy Agency, ``Accelerator Driven Systems (ADS) and Fast
-Reactors (FR) in Advanced Nuclear Fuel Cycles,'' Technical Report
-NEA-3109/ADS, OECD Paris, (2002).
-
- FERRER, R., ASGARI, M., BAYS, S. and B. FORGET, ``Computational
-Neutronics Methods and Transmutation Analyses for Fast Reactors,''
-Technical Report INL/EXT-07-12466, Idaho National Laboratory (2007).
 
