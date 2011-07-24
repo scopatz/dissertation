@@ -511,18 +511,18 @@ FCC [\$/MWh]                    & 5.5    & 5.13    & -6.73 \\
 \end{table}
 
 
-	The OECD group has also conducted repository performance studies for
+The OECD group has also conducted repository performance studies for
 their schemes 1a and 3c, where 3c is a FR only closed fuel cycle.
 Because the HLW from both scheme 3c and 3a is mainly composed of FP, the
 repository performance assessments for schemes 3a and 3c can be expected
 to yield nearly equivalent results. 
 
-	The energy that has been produced by disposed waste in a fully loaded
+The energy that has been produced by disposed waste in a fully loaded
 salt-based repository is given as 6615 TWh for scheme 1a and 26930 TWh
 for scheme 3c.  In other words, the waste from closed fuel cycle 3c
 would have generate 4.0 times as much electricity as scheme 1a waste
 placed in the same repository.  Using the repository capacity assessment
-methodology described in Section 2.3, the energy that has been produced
+methodology described in Section 2.3 \ref{}, the energy that has been produced
 by disposed waste in a tuff-based repository in this study is 28286 TWh
 for scheme 1a and 186365.3 TWh for scheme 3a. Therefore, the current
 work predicts that scheme 3a can, when compared to scheme 1a, generate
@@ -531,62 +531,41 @@ capacity. This is higher than the 4.0 ratio calculated in the OECD
 study, but the difference in the geologic medium -- salt versus tuff --
 complicates the comparison.
 
-	Fig. 5 shows the normalized dose rate results from this study for a
-tuff repository. A fully loaded repository is assumed in scheme 1a and
-the dose rate is projected. The dose rate for scheme 3a is projected
-based on the waste from which the same amount of electricity can be
-produced.  A similar calculation for a tuff repository was carried out
-in the OECD study.  Both the current study and the OECD predicted that
-the dose rate peak for scheme 3c or 3a arrives at an earlier date than
-the dose rate peak for scheme 1a.  This is expected since the FP, as
-main dose contributors in the HLW of scheme 3c or 3a, transport faster
-than actinides in the waste.   Significantly, both this study and the
-OECD work indicate that peak dose rate in scheme 1a is close to 100
-times the peak dose rate in scheme 3c or 3a.
-
-Fig.   SEQ Figure $\backslash$* ARABIC  5 .  Normalized Dose Rate for
-Scheme 1a and 3a in this Study: Tuff Repository
 
 
-
-\section{}
-\index{@\emph{}}
-\label{ses_sec:}
-Case Study and Results
-
-	For the study of system sensitivity to separation efficiency and
+\section{Case Study and Results}
+\index{Case Study and Results@\emph{Case Study and Results}}
+\label{ses_sec:case_study}
+For the study of system sensitivity to separation efficiency and
 partitioning strategy, we consider a fleet in which PWRs and CR 0.5 FRs
 are in equilibrium.  This is the same concept as was put into practice
 in scheme 3a of the OECD study.
 
 
-\subsection{}
-\index{@\emph{}}
-\label{ses_sec:}
-4.1 Definition of the Cases
-
-	The present-day industrial scale reprocessing technology, PUREX,
+\subsection{Definition of the Cases}
+\index{Definition of the Cases@\emph{Definition of the Cases}}
+\label{ses_sec:case_def}
+The present-day industrial scale reprocessing technology, PUREX,
 retrieves U and Pu from SNF. Fuel cycle strategies developed under the
 DOE Advanced Fuel Cycle Initiative called for extraction of Np with Pu
 to ease proliferation concerns, material accountability and tracking
 procedures for the product stream. It has been convincingly established
-(see for instance (  NOTEREF \_Ref202845421 $\backslash$h  $\backslash$*
+(see for instance (  NOTEREF 
 MERGEFORMAT  2 )) that separation of Am and Cm as well is necessary to
 maximize the benefit of increasing the capacity of a repository that is
 constrained by thermal limits.  The repository capacity can be further
 expanded by removing Cs and Sr for interim storage. Therefore, in this
 study, four partitioning strategies are compared:
 
-Stra1: Separation of U and Pu to be reused in FR
+\begin{itemize}
+    \item Stra1: Separation of U and Pu to be reused in FR
+    \item Stra2: Separation of U, Np and Pu to be reused in FR
+    \item Stra3: Separation of U, Np, Pu, Am and Cm to be reused in FR
+    \tiem Stra4: Separation of U, Np, Pu, Am and Cm to be reused in FR, and
+          separation of Cs and Sr for interim storage
+\end{itemize}
 
-Stra2: Separation of U, Np and Pu to be reused in FR
-
-Stra3: Separation of U, Np, Pu, Am and Cm to be reused in FR
-
-Stra4: Separation of U, Np, Pu, Am and Cm to be reused in FR, and
-separation of Cs and Sr for interim storage
-
-	In a scenario involving multi-recycle of spent fuel, the cumulative
+In a scenario involving multi-recycle of spent fuel, the cumulative
 effect of reprocessing losses at each recycle can become quite
 significant, so that only with high separation efficiencies can the full
 benefit of the multi-recycle strategy be realized.  For example, the NEA
@@ -596,78 +575,70 @@ burden to the repository.  Therefore, to develop an understanding of the
 sensitivity of the system performance metrics to separation efficiency,
 four levels are studied:
 
-Level1: 90\%
+\begin{itemize}
+    \item Level1: 90\%
+    \item Level2: 99\% 
+    \item Level3: 99.9\%
+    \itme Level4: 99.99\%
+\end{itemize}
 
-Level2: 99\% 
-
-Level3: 99.9\%
-
-Level4: 99.99\%
-
-	The separation efficiencies of all elements are assumed to be the same.
- There is no a priori reason to make this assumption as no aspect of
+The separation efficiencies of all elements are assumed to be the same.
+There is no \emph{a priori} reason to make this assumption as no aspect of
 reprocessing facility design or operation imposes such a constraint. 
 Instead, this assumption was made to simplify the analysis and prevent
 an egregious proliferation of cases to be studied.  In addition, and for
 similar reasons of clarity, the aqueous PWR fuel reprocessing and the
 electrochemical FR metallic fuel separations share the same
 efficiencies. Four partitioning strategies and four separation
-efficiency levels generate the 16 cases defined in Table 8.  Table 9
-shows the elemental separation efficiencies for the cases; an entry of
+efficiency levels generate the 16 cases defined in Table \ref{ses_table8}.  
+Table \ref{ses_table9} shows the elemental separation efficiencies for the cases; an entry of
 zero indicates that the element remains with the repository-bound waste
 stream.
 
-Table 8: 16 Cases Defined
+\begin{table}[htbp]
+\begin{center}
+\caption{16 Case Definitions}
+\label{ses_table8}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+                & \textbf{Stra1} & \textbf{Stra2} & \textbf{Stra3} & \textbf{Stra4} \\
+\hline
+\textbf{Level1} & Case01         & Case02         & Case03         & Case04 \\
+\textbf{Level2} & Case1          & Case2          & Case3          & Case4 \\
+\textbf{Level3} & Case11         & Case12         & Case13         & Case14 \\
+\textbf{Level4} & Case21         & Case22         & Case23         & Case24 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
-&Stra1&Stra2&Stra3&Stra4\\
-
-Level1&Case01&Case02&Case03&Case04\\
-
-Level2&Case1&Case2&Case3&Case4\\
-
-Level3&Case11&Case12&Case13&Case14\\
-
-Level4&Case21&Case22&Case23&Case24\\
-
-
-
-Table 9. Separation Efficiencies for Each Case
-
-Cases&Separation Efficiency\\
-
-&U&NP&PU&AM&CM&CS&SR\\
-
-case01&0.9&0&0.9&0&0&0&0\\
-
-case02&0.9&0.9&0.9&0&0&0&0\\
-
-case03&0.9&0.9&0.9&0.9&0.9&0&0\\
-
-case04&0.9&0.9&0.9&0.9&0.9&0.9&0.9\\
-
-case1&0.99&0&0.99&0&0&0&0\\
-
-case2&0.99&0.99&0.99&0&0&0&0\\
-
-case3&0.99&0.99&0.99&0.99&0.99&0&0\\
-
-case4&0.99&0.99&0.99&0.99&0.99&0.99&0.99\\
-
-case11&0.999&0&0.999&0&0&0&0\\
-
-case12&0.999&0.999&0.999&0&0&0&0\\
-
-case13&0.999&0.999&0.999&0.999&0.999&0&0\\
-
-case14&0.999&0.999&0.999&0.999&0.999&0.999&0.999\\
-
-case21&0.9999&0&0.9999&0&0&0&0\\
-
-case22&0.9999&0.9999&0.9999&0&0&0&0\\
-
-case23&0.9999&0.9999&0.9999&0.9999&0.9999&0&0\\
-
-case24&0.9999&0.9999&0.9999&0.9999&0.9999&0.9999&0.9999\\
+\begin{table}[htbp]
+\begin{center}
+\caption{Separation Efficiencies by Case and Element}
+\label{ses_table8}
+\begin{tabular}{|l|c|c|c|c|c|c|c|}
+\hline
+\textbf{Case} & \textbf{U} & \textbf{Np} & \textbf{Pu} & \textbf{Am} & \textbf{Cm} & \textbf{Cs} & \textbf{Sr} \\
+case01 & 0.9    & 0      & 0.9    & 0      & 0      & 0      & 0      \\
+case02 & 0.9    & 0.9    & 0.9    & 0      & 0      & 0      & 0      \\
+case03 & 0.9    & 0.9    & 0.9    & 0.9    & 0.9    & 0      & 0      \\
+case04 & 0.9    & 0.9    & 0.9    & 0.9    & 0.9    & 0.9    & 0.9    \\
+case1  & 0.99   & 0      & 0.99   & 0      & 0      & 0      & 0      \\
+case2  & 0.99   & 0.99   & 0.99   & 0      & 0      & 0      & 0      \\
+case3  & 0.99   & 0.99   & 0.99   & 0.99   & 0.99   & 0      & 0      \\
+case4  & 0.99   & 0.99   & 0.99   & 0.99   & 0.99   &0.99    & 0.99   \\
+case11 & 0.999  & 0      & 0.999  & 0      & 0      & 0      & 0      \\
+case12 & 0.999  & 0.999  & 0.999  & 0      & 0      & 0      & 0      \\
+case13 & 0.999  & 0.999  & 0.999  & 0.999  & 0.999  & 0      & 0      \\
+case14 & 0.999  & 0.999  & 0.999  & 0.999  & 0.999  & 0.999  & 0.999  \\
+case21 & 0.9999 & 0      & 0.9999 & 0      & 0      & 0      & 0      \\
+case22 & 0.9999 & 0.9999 & 0.9999 & 0      & 0      & 0      & 0      \\
+case23 & 0.9999 & 0.9999 & 0.9999 & 0.9999 & 0.9999 & 0      & 0      \\
+case24 & 0.9999 & 0.9999 & 0.9999 & 0.9999 & 0.9999 & 0.9999 & 0.9999 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
 
 
