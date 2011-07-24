@@ -706,26 +706,33 @@ Post-discharge Cooling Time           & 3 years\\
 
 
 
-	Figure 6 shows the mass fraction [kg/kgIHM] of each of the four
+Figure \ref{ses_fig06} shows the mass fraction [kg/kgIHM] of each of the four
 input streams, DU, LWR-TRU, FR-U and FR-TRU, to FR fuel fabrication as a
 function of FR recycle number.  Self recycle of FR SNF begins on pass 2.
- It can be seen that the top-up drawn from the recycled LWR fuel is
+
+It can be seen that the top-up drawn from the recycled LWR fuel is
 predominantly LWR-TRU, but the gross mass fraction of each of the four
 streams converges quickly toward an apparent equilibrium after only a
-few cycles.  The criterion described in Table 11 leads to equilibrium
+few cycles.  The criterion described in Table \ref{ses_table11} leads to equilibrium
 being reached at cycle 10.
 
-Fig.   SEQ Figure $\backslash$* ARABIC  6 . Input Streams to FR Fuel
-Fabrication [kg/kgIHM]
+\begin{figure}[htbp]
+\caption{Input Streams to FR Fuel Fabrication [kg/kgIHM]}
+\label{ses_fig06}
+\begin{center}
+\includegraphics[scale=0.5]{se_sensitivity/figs/MassStreams.eps}
+\end{center}
+\end{figure}
 
-	The fast reactor output stream is a function of cycle number. 
+
+The fast reactor output stream is a function of cycle number. 
 Individual isotopes contained in the FR fuel do not necessarily converge
-after only a handful of cycles.  Fig. 7 shows the mass fractions at
-discharge of Np-237, Pu-239, Am-241 and Cm-244.  It can be seen that the
-higher A number actinides have not yet converged even after 10 cycles. 
+after only a handful of cycles.  Figure \ref{ses_fig07} shows the mass fractions at
+discharge of \nuc{Np}{237}, \nuc{Pu}{239}, \nuc{Am}{241} and \nuc{Cm}{244}.  
+It can be seen that the higher A number actinides have not yet converged even after 10 cycles. 
 Also noteworthy is the dependence of the isotopic composition of the FR
 fuel upon separation efficiency.  The higher A number species are
-especially strongly affected by the efficiency, with the Cm-244
+especially strongly affected by the efficiency, with the \nuc{Cm}{244}
 inventory, for example, differing by 20\% at equilibrium for the 90\%
 efficiency case versus the 99.99\% case.  Fig. 8 plots the fraction of
 uranium and transuranics relative to the total actinide content of the
