@@ -150,7 +150,7 @@ constraints.
 
 
 \subsection{Fuel Cycle Schema}
-\index{@\emph{}}
+\index{Fuel Cycle Schema@\emph{Fuel Cycle Schema}}
 \label{cts_sec:fcschema}
 
 \begin{figure}[htbp]
@@ -199,7 +199,8 @@ Again, the Cs and Sr are separated from the remaining FP.
 The actinides are sent back to the fast reactor, the Cs/Sr
 stream is disposed of in its own storage facility, and the
 non-Cs/Sr fission products and losses from other streams
-are sent to the deep geologic repository.  After reprocessing but prior to emplacement in the repository, the high level waste
+are sent to the deep geologic repository.  After reprocessing but prior to emplacement in 
+the repository, the high level waste
 stream is cooled for between one and three hundred years.
 The deep geologic repository itself is modeled after
 Yucca Mountain.
@@ -220,7 +221,8 @@ symbiotic cycle refer to \cite{Shropshire2009}. The LWR and FR input parameters 
 statistical analyses.
 
 The physics-based methodology allows reactor performance and fuel cycle mass
-balances to be rapidly recalculated under perturbations to design and operating parameters, where feedbacks to the operation of the cycle may have global reach.
+balances to be rapidly recalculated under perturbations to design and operating 
+parameters, where feedbacks to the operation of the cycle may have global reach.
 
 \subsection{Parameter Specification}
 \index{Parameter Specification@\emph{Parameter Specification}}
@@ -296,77 +298,100 @@ Of note for Table \ref{biotable} is that both sex and hair color can be interpre
 underlying human biological mechanisms.  Since the body is being treated as a black box, contingency 
 tables do not distinguish between input and output parameters.
 
-Additionally, Table \ref{biotable} uses categorical, discrete variables.  However, CTs may also be implemented using
-data that is a function of a continuous real variable, equally partitioned on the scale of
+Additionally, Table \ref{biotable} uses categorical, discrete variables.  However, CTs may also be 
+implemented using data that is a function of a continuous real variable, equally partitioned on the scale of
 interest. For instance, exponential data could have one bin per decade.
 
 For the NFC and input parameter family considered here, all parameters are functions of a real 
 (stochastic) continuous variable.  This approach can support discrete variables too (e.g., a 
 boolean flag indicating the availability of mixed-oxide fuel), but that avenue is not developed 
 in this study. For the continuous variables, more than two bins are required to
-be able to demonstrate a meaningful association.  It will be shown that 7 bins per axis on the contingency tables give rise to acceptable
+be able to demonstrate a meaningful association.  It will be shown that 7 bins per axis on the 
+contingency tables give rise to acceptable
 statistical fidelity.  However, even seven bins becomes unwieldy for visualization.
 Table \ref{ct2d_example} displays a $4\times 3$ fuel cycle CT from the data set computed in
-the Monte Carlo loop.   This example compares the FR plutonium separation efficiency (SE) to the repository capacity,
-irrespective of what the values the other 29 system inputs take on.
+the Monte Carlo loop.   This example compares the FR plutonium separation efficiency (SE) to the 
+repository capacity, irrespective of what the values the other 29 system inputs take on.
 
-\input{figs/ct2d_example}
+\input{ct_sensitivity/figs/ct2d_example}
 
-The zero entry in Table \ref{ct2d_example} implies that for low plutonium separation efficiencies a high repository capacity is impossible.
+The zero entry in Table \ref{ct2d_example} implies that for low plutonium separation efficiencies 
+a high repository capacity is impossible.
 Additionally, some regions arise rarely, assumedly only for extreme values of one or more other inputs.
 High plutonium SE and low repository capacities occur with a vanishingly
-small probability.  The combination of these two restricted regimes leads to a table that is largely banded down the diagonal.
+small probability.  The combination of these two restricted regimes leads to a table that is 
+largely banded down the diagonal.
 The statistical measures chosen for examination should capture these effects.
 
-As mentioned previously, contingency tables are not restricted to a two-way formulation.  Three dimensional tables may also be constructed from the same
-fuel cycle realizations.  In an effort to capture co-variant system effects, this paper examines two independent parameters ($x$ and $y$) and one response ($R$).  For instance, if the SE of plutonium coming from the FR changes, it is expected that the relative benefit from the HLW storage period will also change.
+As mentioned previously, contingency tables are not restricted to a two-way formulation.  
+Three dimensional tables may also be constructed from the same
+fuel cycle realizations.  In an effort to capture co-variant system effects, this paper 
+examines two independent parameters ($x$ and $y$) and one response ($R$).  For instance, 
+if the SE of plutonium coming from the FR changes, it is expected that the relative benefit 
+from the HLW storage period will also change.
 Thus the repository capacity must be expressed as a combination of these two parameters together.
 
-\input{figs/ct3d_example}
+\input{ct_sensitivity/figs/ct3d_example}
 
-Table \ref{ct3d_example} has a $4\times 3\times 3$ bin structure relating the $R$ response to $x$ \& $y$ inputs.  Here, it is essential to note that every $y$ bin
+Table \ref{ct3d_example} has a $4\times 3\times 3$ bin structure relating the $R$ response 
+to $x$ \& $y$ inputs.  Here, it is essential to note that every $y$ bin
 is itself a 2D contingency table for $x$ to $R$.
-Additionally, the bottom slice in Table \ref{ct3d_example} represents the marginal sums over the $y$ axis.  Because $x$ here was chosen the same as in the
-2D case (\texttt{FR\_SE\_PU}), the last slice in Table \ref{ct3d_example} \emph{is} Table \ref{ct2d_example}.  Therefore the 2D CT for \texttt{HLW\_Storage\_Time}
+Additionally, the bottom slice in Table \ref{ct3d_example} represents the marginal sums over 
+the $y$ axis.  Because $x$ here was chosen the same as in the
+2D case (\texttt{FR\_SE\_PU}), the last slice in Table \ref{ct3d_example} \emph{is} Table 
+\ref{ct2d_example}.  Therefore the 2D CT for \texttt{HLW\_Storage\_Time}
 to \texttt{Capacity} is represented by the right-hand column of Table \ref{ct3d_example}.
-Since there are thirty inputs, of which two are examined, there are $_{30}C_2 = 435$ three dimensional contingency tables that may be constructed for every response.
+Since there are thirty inputs, of which two are examined, there are $_{30}C_2 = 435$ three 
+dimensional contingency tables that may be constructed for every response.
 
 
 \subsection{Statistical Metrics}
 \index{Statistical Metrics@\emph{Statistical Metrics}}
 \label{cts_sec:statistical_metrics}
 
-This section describes the statistical measures used to quantify the strength of association between input parameters and responses in contingency tables.
-This allows the system designer to determine the most `important' input parameters to this response.  For example, one
-could quantitatively state the degree of importance of FR plutonium SE relative to the repository drift diameter in the sense of how each affects the repository capacity.
+This section describes the statistical measures used to quantify the strength of association 
+between input parameters and responses in contingency tables.
+This allows the system designer to determine the most `important' input parameters to this response.  
+For example, one
+could quantitatively state the degree of importance of FR plutonium SE relative to the repository drift 
+diameter in the sense of how each affects the repository capacity.
 
 \subsubsection{Entropy}
 \index{Entropy@\emph{Entropy}}
 \label{cts_sec:entropy}
 
-The \emph{entropy} $H$ of a parameter or CT is a measure of how evenly spread out the data is over all bins.  This metric can be thought of
+The \emph{entropy} $H$ of a parameter or CT is a measure of how evenly spread out the data is over all 
+bins.  This metric can be thought of
 in analogy to the thermodynamic property of the same name.  For contingency tables,
 maximum entropy implies that all entries in the table have exactly the same value.
-Conversely, zero entropy implies a fully ordered system.  In contingency tables, zero entropy implies that every row and every column have exactly one
-non-zero entry.  All independent input parameters $x$ should have maximum entropy since they are randomly sampled.
+Conversely, zero entropy implies a fully ordered system.  In contingency tables, zero entropy implies 
+that every row and every column have exactly one
+non-zero entry.  All independent input parameters $x$ should have maximum entropy since they are 
+randomly sampled.
 
-To calculate the entropy, the probability table corresponding to the CT is needed.  If there are $N$ total Monte Carlo runs, then any bin in
-the contingency table may be represented by the matrix element $N_{ab}$.  Here $a$ indexes the number of response bins $A$, while $b$
-indexes the number of $x$ input parameter bins $B$.  For the three dimensional table, $N_{abc}$ represents a matrix element where $c$ indexes the number of $y$
+To calculate the entropy, the probability table corresponding to the CT is needed.  If there are $N$ 
+total Monte Carlo runs, then any bin in
+the contingency table may be represented by the matrix element $N_{ab}$.  Here $a$ indexes the number 
+of response bins $A$, while $b$
+indexes the number of $x$ input parameter bins $B$.  For the three dimensional table, $N_{abc}$ 
+represents a matrix element where $c$ indexes the number of $y$
 input parameter bins $C$.  Thus the probability table may be defined such that:
 \begin{equation} p_{ab} = \frac{N_{ab}}{N} \, \forall a, b\in A\times B\end{equation}
-Additionally, marginal sums are represented by a subscript dot notation.  The `dotted' index or indices are the rows or columns that are summed over.  For example,
+Additionally, marginal sums are represented by a subscript dot notation.  The `dotted' index or 
+indices are the rows or columns that are summed over.  For example,
 \begin{equation} p_{\cdot b} = \sum_a^A p_{ab} \end{equation}
 \begin{equation} N = N_{\cdot \cdot} = \sum_{a,b}^{A,B} N_{ab} \end{equation}
 Then, the entropy is defined as the sum of $p\log p$ for any parameter or parameter combination:
 \begin{equation} H(R) = - \sum_a^A p_{a \cdot} \ln(p_{a \cdot}) \end{equation}
 \begin{equation} H(x) = - \sum_b^B p_{\cdot b} \ln(p_{\cdot b}) \end{equation}
 \begin{equation} H(R,x) = - \sum_{a,b}^{A,B} p_{ab} \ln(p_{ab}) \end{equation}
-The last entropy in the equations above, $H(R,x)$, is known as the \emph{joint entropy} since it measures the entropy of the contingency table as a whole.
+The last entropy in the equations above, $H(R,x)$, is known as the \emph{joint entropy} since 
+it measures the entropy of the contingency table as a whole.
 Three dimensional expressions for entropy may be extrapolated from the equations above.
 
 Entropy is not neatly bounded on the range $[0,1]$.
-Rather the maximum value for the entropy is given as the natural logarithm of the total number of bins $K$ of any table or slice such that
+Rather the maximum value for the entropy is given as the natural logarithm of the total 
+number of bins $K$ of any table or slice such that
 the entropy is defined on the range $[0, \ln(K)]$.
 
 \subsubsection{Mutual Information}
@@ -375,7 +400,8 @@ the entropy is defined on the range $[0, \ln(K)]$.
 
 The next metric is the \emph{mutual information} $I$.
 The mutual information is defined as the overlap in the entropies of various parameters.
-Figure \ref{entropy_info_relations} displays the relationship between the various entropies and the mutual information graphically.
+Figure \ref{entropy_info_relations} displays the relationship between the various entropies 
+and the mutual information graphically.
 This figure is based on a similar one presented in \cite{Press2007}.
 \begin{figure}
 \caption{Relationship between the Mutual Information and Entropy \cite{Press2007}}
@@ -404,33 +430,50 @@ This figure is based on a similar one presented in \cite{Press2007}.
 \end{center}
 \label{entropy_info_relations}
 \end{figure}
-As a physical example, consider the DNA sequences of a parent and a child.  The sequence of the child ($R$) is some unknown function of the DNA of the parent ($x$).
+As a physical example, consider the DNA sequences of a parent and a child.  The sequence of 
+the child ($R$) is some unknown function of the DNA of the parent ($x$).
 $I(R,x)$ then measures the overlap of the sequences, in entropy space.
 
 The mutual information indicates how much of a response is determined by a particular input.
-As an illustration, FR UF separations might account for half of the variation in fuel cycle costs.  However, FR burnup may also
-account for half of the variability.  Yet, these halves likely have a significant overlap since both affect the amount of TRU top-up required on the next pass.
-The maximum possible overlap could be inferred by comparing the mutual information values for each of these two inputs.
+As an illustration, FR UF separations might account for half of the variation in fuel cycle costs.  
+However, FR burnup may also
+account for half of the variability.  Yet, these halves likely have a significant overlap since both 
+affect the amount of TRU top-up required on the next pass.
+The maximum possible overlap could be inferred by comparing the mutual information values for each of 
+these two inputs.
 
 The mutual information may be calculated in two- and three-dimensional senses as follows:
-\begin{equation} I(R,x) = - \sum_{a,b}^{A,B} p_{ab} \ln\left(\frac{p_{ab}}{p_{a\cdot}\cdot p_{\cdot b}}\right) \end{equation}
-\begin{equation} I(R,x,y) = - \sum_{a,b,c}^{A,B,C} p_{abc} \ln\left(\frac{p_{abc}}{p_{a\cdot \cdot}\cdot p_{\cdot b \cdot}\cdot p_{\cdot \cdot c}}\right) \end{equation}
-The minimum value of $I$ is zero, indicating that $x$ and $R$ share nothing in common.  This occurs when $x$ and $R$ are fully independent.
-On the other hand, the maximum value of the mutual information depends on the structure of the contingency table and may not be easily expressed in general.
+\begin{equation}
+I(R,x) = - \sum_{a,b}^{A,B} p_{ab} \ln\left(\frac{p_{ab}}{p_{a\cdot}\cdot p_{\cdot b}}\right) 
+\end{equation}
+\begin{equation}
+I(R,x,y) = - \sum_{a,b,c}^{A,B,C} p_{abc} \ln\left(\frac{p_{abc}}{p_{a\cdot \cdot}\cdot p_{\cdot b \cdot}\cdot p_{\cdot \cdot c}}\right)
+\end{equation}
+The minimum value of $I$ is zero, indicating that $x$ and $R$ share nothing in common.  
+This occurs when $x$ and $R$ are fully independent.
+On the other hand, the maximum value of the mutual information depends on the structure 
+of the contingency table and may not be easily expressed in general.
+
+
+
+
 
 \subsubsection{Uncertainty}
 \index{Uncertainty@\emph{Uncertainty}}
 \label{cts_sec:uncertainty}
 
-The uncertainty $U$ is the first metric to be used to rank the relative value of input parameters to a response.  Informally, the uncertainty is defined
+The uncertainty $U$ is the first metric to be used to rank the relative value of input 
+parameters to a response.  Informally, the uncertainty is defined
 as the mutual information divided by the entropy.
 
-More exactly, the \emph{uncertainty coefficients} are used to rank inputs.  They are specified with the conditional notation $U(x|R)$.  Such coefficients are calculated via:
+More exactly, the \emph{uncertainty coefficients} are used to rank inputs.  They are 
+specified with the conditional notation $U(x|R)$.  Such coefficients are calculated via:
 \begin{equation}
 U(x|R) = \frac{I(R,x)}{H(x)}
 \label{eq:U_x_R}
 \end{equation}
-In essence, equation \ref{eq:U_x_R} measures the extent to which knowing the input $x$ is the same as knowing the response $R$.  As such, $U(x|R)$ has the following properties:
+In essence, equation \ref{eq:U_x_R} measures the extent to which knowing the input $x$ 
+is the same as knowing the response $R$.  As such, $U(x|R)$ has the following properties:
 \begin{enumerate}
     \item Defined on the range $[0, 1]$.
     \item $U(x|R) = 0$ implies that $I(R,x) = 0$, which indicates that the parameter
@@ -439,49 +482,69 @@ In essence, equation \ref{eq:U_x_R} measures the extent to which knowing the inp
         the system response $R(x)$ is solely determined by $x$.
 \end{enumerate}
 
-It is important to note that both $H(R)$ and $H(x)$ are the same for all $x$.  Thus the rankings of $x$ from $U(x|R)$ are the same as the rankings from the, perhaps more natural, uncertainty coefficient $U(R|x)$.  Hence, the scaling factor, seen in equation \ref{uncertainty_scale}, is the same for all inputs.
+It is important to note that both $H(R)$ and $H(x)$ are the same for all $x$.  Thus the 
+rankings of $x$ from $U(x|R)$ are the same as the rankings from the, perhaps more natural, 
+uncertainty coefficient $U(R|x)$.  Hence, the scaling factor, seen in equation 
+\ref{uncertainty_scale}, is the same for all inputs.
 \begin{equation}
 U(x|R) = \frac{H(R)}{H(x)} U(R|x)
 \label{uncertainty_scale}
 \end{equation}
 
-Moreover, a related uncertainty coefficient may be calculated for the three dimensional case of two inputs to one
+Moreover, a related uncertainty coefficient may be calculated for the three dimensional 
+case of two inputs to one
 response.  $U(x,y|R)$ is computed from:
 \begin{equation} U(x,y|R) = \frac{I(R,x,y)}{H(x,y)} \end{equation}
-The reason for choosing $U(x,y|R)$ as opposed to $U(R|x,y)$ follows analogously to the two dimensional case.
+The reason for choosing $U(x,y|R)$ as opposed to $U(R|x,y)$ follows analogously to the 
+two dimensional case.
 
-In fact, the interpretation of $U(x,y|R)$ is much the same as the meaning of $U(x|R)$.  The difference here is that input parameter pairs are being compared to
-all other $(x, y)$ combinations.  For instance, by ranking with this 3D metric, the fuel cycle analyst may quantitatively state that the FR plutonium and americium SEs
-together are more important to the repository capacity than the repository drift diameter together with the LWR neptunium SE.
+In fact, the interpretation of $U(x,y|R)$ is much the same as the meaning of $U(x|R)$.  
+The difference here is that input parameter pairs are being compared to
+all other $(x, y)$ combinations.  For instance, by ranking with this 3D metric, the fuel 
+cycle analyst may quantitatively state that the FR plutonium and americium SEs
+together are more important to the repository capacity than the repository drift diameter 
+together with the LWR neptunium SE.
 
 
 \subsubsection{Sensitivity of Sensitivity Metrics}
 \index{Sensitivity of Sensitivity Metrics@\emph{Sensitivity of Sensitivity Metrics}}
 \label{cts_sec:sensitivity_of_sensitivity_metrics}
 
-In so far as the uncertainty coefficient is a surrogate for sensitivity, a suitable replacement for covariance should be found.
+In so far as the uncertainty coefficient is a surrogate for sensitivity, a suitable 
+replacement for covariance should be found.
 This sort of association is called a \emph{sensitivity of sensitivity} because it seeks
 to quantify the sensitivity of $x$ given the sensitivity of  $y$ to the response $R$.
 
-To obtain such a metric, recall that each slice of a three-way table is itself a 2D contingency table.  It is therefore possible to compute the uncertainty
-coefficient $U(x|R)$ for every slice over $y$.  In doing so, a set of $C$ uncertainties are generated such that,
+To obtain such a metric, recall that each slice of a three-way table is itself a 2D contingency table.  
+It is therefore possible to compute the uncertainty
+coefficient $U(x|R)$ for every slice over $y$.  In doing so, a set of $C$ uncertainties are generated 
+such that,
 \begin{equation}
-U(x|R)|y = \left\{ \left.U(x|R)\right|_{l_0}^{l_1}, \left.U(x|R)\right|_{l_1}^{l_2}, \ldots \left.U(x|R)\right|_{l_{C-1}}^{l_C}  \right\}
 \label{eq:U_x_R_y}
+U(x|R)|y = \left\{ \left.U(x|R)\right|_{l_0}^{l_1}, \left.U(x|R)\right|_{l_1}^{l_2}, \ldots \left.U(x|R)\right|_{l_{C-1}}^{l_C}  \right\}
 \end{equation}
 where $l$ is a sequence of $C+1$ points that defines the bin boundaries of $y$.
 From here, the mean $\mu$ and standard deviation $\sigma$ of the set seen in equation \ref{eq:U_x_R_y} may be 
 calculated.
-\begin{equation} \mu(U(x|R)|y) = \frac{1}{C} \sum_c^C U(x|R)|y_c \end{equation}
-\begin{equation} \sigma(U(x|R)|y) = \sqrt{ \frac{1}{C} \sum_c^C \left( U(x|R)|y_c - \mu(U(x|R)|y) \right)^2 } \end{equation}
-However, the choice of slicing along $y$ is somewhat arbitrary.  One could instead slice along $x$ and compute $\mu(U(y|R)|x)$ and $\sigma(U(y|R)|x)$
+\begin{equation}
+\mu(U(x|R)|y) = \frac{1}{C} \sum_c^C U(x|R)|y_c 
+\end{equation}
+\begin{equation}
+\sigma(U(x|R)|y) = \sqrt{ \frac{1}{C} \sum_c^C \left( U(x|R)|y_c - \mu(U(x|R)|y) \right)^2 } 
+\end{equation}
+However, the choice of slicing along $y$ is somewhat arbitrary.  One could instead slice along $x$ 
+and compute $\mu(U(y|R)|x)$ and $\sigma(U(y|R)|x)$
 by analogy to the equations above.
 
 Dividing the standard deviation by the mean yields a \emph{coefficient of variation} $c_v$:
 \begin{equation} c_v(U(x|R)|y) = \frac{\sigma(U(x|R)|y)}{\mu(U(x|R)|y)} \end{equation}
-Unlike the uncertainty coefficient, $c_v(U(x|R)|y)$ is not symmetric with respect to $x$ and $y$.  Thus the same pair will have a different rank when measuring
-with $c_v(U(y|R)|x)$.  A symmetric expression of the coefficient of variation is obtained by taking the average of the non-symmetric terms:
-\begin{equation} c_v(x|y|R) = \frac{1}{2} \left(c_v(U(x|R)|y) + c_v(U(y|R)|x)\right) \end{equation}
+Unlike the uncertainty coefficient, $c_v(U(x|R)|y)$ is not symmetric with respect to $x$ and $y$.  
+Thus the same pair will have a different rank when measuring
+with $c_v(U(y|R)|x)$.  A symmetric expression of the coefficient of variation is obtained by taking 
+the average of the non-symmetric terms:
+\begin{equation}
+c_v(x|y|R) = \frac{1}{2} \left(c_v(U(x|R)|y) + c_v(U(y|R)|x)\right)
+\end{equation}
 This measure has the following properties:
 \begin{enumerate}
     \item Defined on the range $[0, 1]$ since $0 \le U \le 1$.
@@ -491,11 +554,13 @@ This measure has the following properties:
         that the value of $x$ soley governs the response $R$ from $y$.
 \end{enumerate}
 
-The difference in ranking parameter pairs using $U(x,y|R)$ versus $c_v(U(x|R)|y)$ is that the uncertainty coefficient measures the magnitude
-of the effect on $R$ while the coefficients of variation measure the interdependence of $x$ and $y$ on the response.
-For example, the HLW storage time together with the LWR UF storage time are not of global importance to the repository capacity (low $U(x,y|R)$ value).
-However, changing one input has a great effect on the impact of other input to the repository capacity (high $c_v$ value).
-Therefore, both metrics are needed to have a complete description of the three dimensional contingency tables.
+The difference in ranking parameter pairs using $U(x,y|R)$ versus $c_v(U(x|R)|y)$ is that the uncertainty 
+coefficient measures the magnitude of the effect on $R$ while the coefficients of variation measure the 
+interdependence of $x$ and $y$ on the response. For example, the HLW storage time together with the LWR UF 
+storage time are not of global importance to the repository capacity (low $U(x,y|R)$ value).
+However, changing one input has a great effect on the impact of other input to the repository capacity 
+(high $c_v$ value). Therefore, both metrics are needed to have a complete description of the three 
+dimensional contingency tables.
 
 
 
@@ -510,7 +575,8 @@ traditional sensitivity.  Likewise, the three dimensional $U(x,y|R)$ may be seen
 for a pair of parameters.  Lastly, the coefficient of variation $c_v(U(x|R)|y)$ is taken as a 
 measure of covariance effects between $x$ and $y$.  The covariance metric shows that some parameter 
 pairs have a significant joint effect on the fuel cycle. Hence, $x$ and $y$ may exhibit a greater 
-(or less than) commensurate response on the fuel cycle response than the sum of $x$ and $y$ effects individually.
+(or less than) commensurate response on the fuel cycle response than the sum of $x$ and $y$ 
+effects individually.
 
 
 A brief examination of the binning structure and how it was determined is follows. 
@@ -523,63 +589,93 @@ about particular parameters and pairs of interest.
 \index{Binning Structure@\emph{Binning Structure}}
 \label{cts_sec:binning}
 
-Inevitably when performing Monte Carlo calculations the question of `good statistics' arises.  At the root of this question is the concern that enough runs
+Inevitably when performing Monte Carlo calculations the question of `good statistics' arises.  
+At the root of this question is the concern that enough runs
 have been performed to ensure that the subsequent analysis can be made with confidence. 
 
-Moreover, contingency tables exhibit dynamic effects as a function of the number of bins used to generate them, even for the same underlying data set.  An example from
-thermodynamics demonstrates this behavior.  Take a chamber the moment after a piston has been suddenly removed, as in a Carnot heat engine.
-This system is not at its highest entropy.  Most of its fluid lies in the part of the chamber that was not compressed by the piston while most of the
+Moreover, contingency tables exhibit dynamic effects as a function of the number of bins used to 
+generate them, even for the same underlying data set.  An example from
+thermodynamics demonstrates this behavior.  Take a chamber the moment after a piston has been 
+suddenly removed, as in a Carnot heat engine.
+This system is not at its highest entropy.  Most of its fluid lies in the part of the chamber 
+that was not compressed by the piston while most of the
 chamber remains evacuated.
 
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[scale=0.50]{figs/PistonCT.eps}
+\includegraphics[scale=0.50]{ct_sensitivity/figs/PistonCT.eps}
 \caption{Abstract Piston with Representative Partitions: Blue Line for 2 Bins, Red Line for 5 Bins.}
 \label{piston_ct}
 \end{center}
 \end{figure}
 
-Now, to capture the state of the piston, impose imaginary partitions at equidistant points in the chamber.  A diagram of this is seen in Figure \ref{piston_ct}.  The blue
-dotted line represents partitioning the piston chamber into two distinct bins.  The particle distribution is heavily weighted to the leftmost bin
+Now, to capture the state of the piston, impose imaginary partitions at equidistant points in the 
+chamber.  A diagram of this is seen in Figure \ref{piston_ct}.  The blue
+dotted line represents partitioning the piston chamber into two distinct bins.  The particle 
+distribution is heavily weighted to the leftmost bin
 since this is where the large majority of the fluid (yellow dots) falls.  
 
-The red dotted lines in Figure \ref{piston_ct} represent the same chamber partitioned into five bins.  The left most red partition runs through the
-densely populated region, adding information about the distribution that was not available under the more corasely-binned structure.
+The red dotted lines in Figure \ref{piston_ct} represent the same chamber partitioned into 
+five bins.  The left most red partition runs through the
+densely populated region, adding information about the distribution that was not available 
+under the more corasely-binned structure.
 
 From this one might conclude that only an infinite number of partitions and bins would converge 
 to the `true' value of the entropy.  However, this is not necessary for contingency tables.  
 The metrics (entropy, uncertainty, \emph{et cetera}) rely on the relative populations of the bins.
-An infinite number of partitions would result in zero or one particle per bin, thereby giving in poor statistics.
+An infinite number of partitions would result in zero or one particle per bin, thereby 
+giving in poor statistics.
 
-Thus there is a balancing act between the number of bins and the number of stochastic simulation executions.  This study uses a symmetric seven bins per axis formulation.  (Two dimensional tables have $7^2=49$ bins while the three dimensional tables have
+Thus there is a balancing act between the number of bins and the number of stochastic 
+simulation executions.  This study uses a symmetric seven bins per axis formulation.  
+(Two dimensional tables have $7^2=49$ bins while the three dimensional tables have
 $7^3=343$ bins.)
 Such behavior is consistent with other Monte Carlo techniques \cite{Press2007}.
 
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[scale=0.70]{figs/U_xy_R_for_FR_SE_PU_and_LWR_SE_NP_to_Capacity_rank.eps}
+\includegraphics[scale=0.70]{ct_sensitivity/figs/U_xy_R_for_FR_SE_PU_and_LWR_SE_NP_to_Capacity_rank.eps}
 \caption{Dynamic Effects of Binning Structure Example: $U(x,y|R)$ for the parameter pair (\texttt{FR\_SE\_PU}, \texttt{LWR\_SE\_NP}) to repository capacity.}
 \label{dynamic_effects}
 \end{center}
 \end{figure}
 
-Seven bins per axis were chosen since the uncertainty rankings for moderately important parameter pairs stabilize at approximately this point.  While the choice of binning resolution is system-specific -- it depends on the dynamics of the underlying simulation model -- important parameters are always going to dominate the top ranks and non-important ones will change ranks rapidly, but randomly.  Therefore it is necessary  to
-examine the parameters which are most sensitive to the binning effects.
+Seven bins per axis were chosen since the uncertainty rankings for moderately important 
+parameter pairs stabilize at approximately this point.  While the choice of binning 
+resolution is system-specific -- it depends on the dynamics of the underlying 
+simulation model -- important parameters are always going to dominate the top 
+ranks and non-important ones will change ranks rapidly, but randomly.  Therefore 
+it is necessary  to examine the parameters which are most sensitive to the binning effects.
 
-Figure \ref{dynamic_effects} shows how the 3D sensitivity $U(x,y|R)$ for FR plutonium separation efficiency and LWR neptunium separation efficiency given the repository
-capacity changes as a function of symmetric bin structure (\emph{i.e.} $A=B=C$).  It is known that \texttt{FR\_SE\_PU} is very important
-while \texttt{LWR\_SE\_NP} is not.  Therefore the combination of these two inputs has some modest impact largely driven by the plutonium vector.
+Figure \ref{dynamic_effects} shows how the 3D sensitivity $U(x,y|R)$ for FR 
+plutonium separation efficiency and LWR neptunium separation efficiency given the repository
+capacity changes as a function of symmetric bin structure (\emph{i.e.} $A=B=C$).  
+It is known that \texttt{FR\_SE\_PU} is very important
+while \texttt{LWR\_SE\_NP} is not.  Therefore the combination of these two inputs 
+has some modest impact largely driven by the plutonium vector.
 
-Figure \ref{dynamic_effects} displays both the value of the uncertainty metric for this parameter pair as well as its relative ranking to all other pairs.
-Lower ranks ($1, 2, \ldots$) indicate more important parameters while higher ranks ($\ldots, 29, 30$ or $\ldots, 434, 435$) mean that the parameter has less overall
-impact.  From this figure, the importance of (\texttt{FR\_SE\_PU}, \texttt{LWR\_SE\_NP}) fluctuates significantly from 50 to the mid-twenties for low symmetric
-bin number.  However once 7 bins are reached, the rank stabilizes at ~22.  This stability indicates that the repository capacity response to changes in \texttt{FR\_SE\_PU} and \texttt{LWR\_SE\_NP}, relative to the response for similarly important parameter pairs, becomes well-captured at 7-bin resolution.
+Figure \ref{dynamic_effects} displays both the value of the uncertainty metric 
+for this parameter pair as well as its relative ranking to all other pairs.
+Lower ranks ($1, 2, \ldots$) indicate more important parameters while higher 
+ranks ($\ldots, 29, 30$ or $\ldots, 434, 435$) mean that the parameter has less overall
+impact.  From this figure, the importance of (\texttt{FR\_SE\_PU}, \texttt{LWR\_SE\_NP}) 
+fluctuates significantly from 50 to the mid-twenties for low symmetric
+bin number.  However once 7 bins are reached, the rank stabilizes at ~22.  This stability 
+indicates that the repository capacity response to changes in \texttt{FR\_SE\_PU} and 
+\texttt{LWR\_SE\_NP}, relative to the response for similarly important parameter pairs, 
+becomes well-captured at 7-bin resolution.
 
 After 10 bins, the rank creeps up and down.  This is expected as the number of
-fuel cycle realizations remains constant for all bin numbers.  Thus higher bin numbers relate to correspondingly worse statistics for the contingency table (see below).  The goal, therefore, is to pick the lowest bin number after which the rankings have become stable.  Such a point for this study seems to lie at approximately
+fuel cycle realizations remains constant for all bin numbers.  Thus higher bin numbers 
+relate to correspondingly worse statistics for the contingency table (see below).  
+The goal, therefore, is to pick the lowest bin number after which the rankings have 
+become stable.  Such a point for this study seems to lie at approximately
 7 bins per axis.  Studies have been made of several other parameter pairs to support this conclusion.
 
-The mutual information may be used to ensure that the binning structure offers satisfactory statistics given the number of stochastic realizations available.  Since every input parameter is independent of every other input parameter, $I(x,y)$ should be zero for all combinations of $x$ and $y$
+The mutual information may be used to ensure that the binning structure offers 
+satisfactory statistics given the number of stochastic realizations available.  
+Since every input parameter is independent of every other input parameter, $I(x,y)$ 
+should be zero for all combinations of $x$ and $y$
 in the limit as $N$ becomes large.
 
 Call $t$ the maximum acceptable tolerance along any stochastic axis.
@@ -587,12 +683,14 @@ For instance, $t = 0.01$ indicates a 1\% intrinsic uncertainty.
 Then the threshold mutual information for `good' statistics goes as $I(x,y) \approx t^2$, since
 two stochastic parameters are being compared.  The approximate number of runs required to achieve $t$ is thus:
 \begin{equation}
-N \approx \frac{1}{t^2} B C
 \label{runs_needed}
+N \approx \frac{1}{t^2} B C
 \end{equation}
-Thus by equation \ref{runs_needed}, it is a factor of $25$ times easier to achieve 5\% uncertainty than to get to the 1\% level for the same binning structure.
+Thus by equation \ref{runs_needed}, it is a factor of $25$ times easier to achieve 5\% 
+uncertainty than to get to the 1\% level for the same binning structure.
 Given $100,000$ runs performed here and seven bins on each axis, equation \ref{runs_needed} implies
-that the induced uncertainty is approximately 2.2\%.  Seven bins per axis are used for the remainder of this analysis.
+that the induced uncertainty is approximately 2.2\%.  Seven bins per axis are used for the 
+remainder of this analysis.
 
 
 
@@ -600,42 +698,57 @@ that the induced uncertainty is approximately 2.2\%.  Seven bins per axis are us
 \index{Rankings: One Input to One Response@\emph{Rankings: One Input to One Response}}
 \label{cts_sec:rank2D}
 
-Determining the impact of a single input parameter on a nuclear fuel cycle outcome is the first step in a screening study.  Using the contingency table methodology above,
-the uncertainty coefficient $U(x|R)$ measures the importance of $x$.  Table \ref{U_x_R_for_Capacity_with_IJK7} displays the input parameters, ranked by
+Determining the impact of a single input parameter on a nuclear fuel cycle outcome is the 
+first step in a screening study.  Using the contingency table methodology above,
+the uncertainty coefficient $U(x|R)$ measures the importance of $x$.  
+Table \ref{U_x_R_for_Capacity_with_IJK7} displays the input parameters, ranked by
 uncertainty, for the repository capacity response.
 
-\input{figs/U_x_R_for_Capacity_with_IJK7}
+\input{ct_sensitivity/figs/U_x_R_for_Capacity_with_IJK7}
 
-As expected, the fast reactor plutonium separation efficiency is shown to be the driver of the system.  How much more important this parameter is that the
-other inputs may be quantitatively stated by taking the ratio of the two $U(x|R)$.  For instance, \texttt{LWR\_SE\_AM}, the parameter at rank 7,
-has an uncertainty of 0.007304.  Meanwhile \texttt{FR\_SE\_PU} has an uncertainty of 0.07667.  The ratio of these uncertainties,
+As expected, the fast reactor plutonium separation efficiency is shown to be the 
+driver of the system.  How much more important this parameter is that the
+other inputs may be quantitatively stated by taking the ratio of the two $U(x|R)$.  
+For instance, \texttt{LWR\_SE\_AM}, the parameter at rank 7,
+has an uncertainty of 0.007304.  Meanwhile \texttt{FR\_SE\_PU} has an uncertainty 
+of 0.07667.  The ratio of these uncertainties,
 and thus the magnitude of the parameters' effects on relative repository capacity, is 10.5.
 
-From Table \ref{U_x_R_for_Capacity_with_IJK7}, most inputs have at least an order of magnitude less impact than the most important one, \texttt{FR\_SE\_PU}.
-This bottom heavy distribution indicates that there are only a handful of fuel cycle parameters which strongly drive
+From Table \ref{U_x_R_for_Capacity_with_IJK7}, most inputs have at least an order of magnitude 
+less impact than the most important one, \texttt{FR\_SE\_PU}.
+This bottom heavy distribution indicates that there are only a handful of fuel cycle 
+parameters which strongly drive
 repository capacity over even part of the range on which they are varied.
-Namely, they are the LWR \& FR plutonium SE, the HLW storage time, the FR americium SE, and the repository heat loss factor.
+Namely, they are the LWR \& FR plutonium SE, the HLW storage time, the FR americium SE, 
+and the repository heat loss factor.
 
 However, this only addresses a single response in a large and coupled system.
-Similar rankings could be computed in analogy to Table \ref{U_x_R_for_Capacity_with_IJK7} for all other responses.
-For example, even fewer inputs were found to be drivers of the LWR/FR support ratio than drive the repository capacity.  The sole parameter above 0.1 uncertainty is, predictably, the fast reactor conversion ratio.
-The only two inputs on the range $[0.001, 0.01]$ are the LWR \& FR burnups.  Thus all 27 other inputs are at least two orders of magnitude
+Similar rankings could be computed in analogy to Table \ref{U_x_R_for_Capacity_with_IJK7} 
+for all other responses.  For example, even fewer inputs were found to be drivers of the 
+LWR/FR support ratio than drive the repository capacity.  The sole parameter above 
+0.1 uncertainty is, predictably, the fast reactor conversion ratio.
+The only two inputs on the range $[0.001, 0.01]$ are the LWR \& FR burnups.  
+Thus all 27 other inputs are at least two orders of magnitude
 less important than the top one for the \texttt{Support\_Ratio}.
 
-Even though the input rankings may change dramatically for different responses, a short list of the most important may be determined from the union of all top
-inputs for all response.  Moreover, some responses tend to produce similar rankings because their values are derived from other responses.
+Even though the input rankings may change dramatically for different responses, 
+a short list of the most important may be determined from the union of all top
+inputs for all response.  Moreover, some responses tend to produce similar rankings 
+because their values are derived from other responses.
 This limits the overall number of top parameters.
 
-One non-intuitive result from the 2D study is that the cesium and strontium separation efficiencies do not appear higher in the ranks.  Indeed, the reason for
-partitioning these species is \emph{because} of their large impact.  They are ranked relatively low here 
-because by the point of 0.9 separations for these species,
+One non-intuitive result from the 2D study is that the cesium and strontium separation 
+efficiencies do not appear higher in the ranks.  Indeed, the reason for
+partitioning these species is \emph{because} of their large impact.  They are ranked 
+relatively low here  because by the point of 0.9 separations for these species,
 the lower bound of the SE range, has been achieved, most of their repository impact has been mitigated.
 
 \subsection{Rankings: Two Inputs to One Response}
 \index{Rankings: Two Inputs to One Response@\emph{Rankings: Two Inputs to One Response}}
 \label{cts_sec:rank3D}
 
-The analysis of three dimensional contingency tables follows in two parts.  The first is a ranking of associations of input parameter pairs, analogous to
+The analysis of three dimensional contingency tables follows in two parts.  The first is 
+a ranking of associations of input parameter pairs, analogous to
 the 2D case.  Second, covariance effects between the two inputs are measured.
 
 \subsubsection{3D Sensitivity}
@@ -643,40 +756,60 @@ the 2D case.  Second, covariance effects between the two inputs are measured.
 \label{cts_sec:3D_sensitivity}
 
 %\input{figs/U_xy_R_for_Capacity_with_IJK7}
-The three dimensional expression of the uncertainty coefficient, $U(x,y|R)$, is used to capture the strength of association from a parameter pair to the response.
-Therefore a table similar to Table \ref{U_x_R_for_Capacity_with_IJK7} would show the rankings of all 435 parameter pairs
+The three dimensional expression of the uncertainty coefficient, $U(x,y|R)$, is used to 
+capture the strength of association from a parameter pair to the response.
+Therefore a table similar to Table \ref{U_x_R_for_Capacity_with_IJK7} would show the 
+rankings of all 435 parameter pairs
 to the repository capacity.
 
 However, from the previous 2D study, the \texttt{FR\_SE\_PU}
-is known to be the most important single parameter to repository capacity by a wide margin.  Because of this overwhelming impact, \texttt{FR\_SE\_PU} appears as a member of
-29 of the top 30 pairs in the 3D sensitivity study.  In fact, the only pair in the top thirty which does not contain FR plutonium SE is the rank 3 pair
-(\texttt{FR\_SE\_AM}, \texttt{HLW\_Storage\_Time}), which simply matches the rank 2 \& 3 inputs from the two-dimensional contingency tables.
-Thus if an input is important by its own merits, any pair that this input is a member of is likely to also have a large system-wide effect.
-Since little additional information is added here over the 2D study, the specific 3D sensitivity tables are not displayed.
+is known to be the most important single parameter to repository capacity by a wide 
+margin.  Because of this overwhelming impact, \texttt{FR\_SE\_PU} appears as a member of
+29 of the top 30 pairs in the 3D sensitivity study.  In fact, the only pair in the 
+top thirty which does not contain FR plutonium SE is the rank 3 pair
+(\texttt{FR\_SE\_AM}, \texttt{HLW\_Storage\_Time}), which simply matches the 
+rank 2 \& 3 inputs from the two-dimensional contingency tables.
+Thus if an input is important by its own merits, any pair that this input is 
+a member of is likely to also have a large system-wide effect.
+Since little additional information is added here over the 2D study, the specific 
+3D sensitivity tables are not displayed.
 
 \subsubsection{3D Sensitivity of Sensitivity}
 \index{3D Sensitivity of Sensitivity@\emph{3D Sensitivity of Sensitivity}}
 \label{cts_sec:3D_sensitivity_of_sensitivity}
 
-As was seen in section \ref{sec:3D_sensitivity}, the three dimensional uncertainty coefficient did not reveal fundamentally different information
-about the system than the two dimensional rankings.  $U(x,y|R)$ coupled important inputs together, but which inputs were important remained the same.  This was
+As was seen in section \ref{sec:3D_sensitivity}, the three dimensional 
+uncertainty coefficient did not reveal fundamentally different information
+about the system than the two dimensional rankings.  $U(x,y|R)$ coupled 
+important inputs together, but which inputs were important remained the same.  This was
 due to the fact that inputs were still being measured against a response.
 
-How one input affects the impact of another input is a critical issue to the system designer.  For example, one would want to know that the gains made by
-changing the \texttt{FR\_SE\_PU} would thrust another, previously unimportant, system design parameter to the fore.  As a second example, if \texttt{HLW\_Storage\_Time} and \texttt{LWR\_UF\_Storage\_Time} are seen to have a strong joint effect, it may mean that pursuing a strategy of extensive pre-emplacement storage would require lengthier pre-separation used fuel storage to be most effective.
+How one input affects the impact of another input is a critical issue to the system designer.  
+For example, one would want to know that the gains made by
+changing the \texttt{FR\_SE\_PU} would thrust another, previously unimportant, system design 
+parameter to the fore.  As a second example, if \texttt{HLW\_Storage\_Time} and 
+\texttt{LWR\_UF\_Storage\_Time} are seen to have a strong joint effect, it may 
+mean that pursuing a strategy of extensive pre-emplacement storage would require 
+lengthier pre-separation used fuel storage to be most effective.
 
-\input{figs/cv_x_y_R_for_Capacity_with_IJK7}
+\input{ct_sensitivity/figs/cv_x_y_R_for_Capacity_with_IJK7}
 
-These sensitivities of sensitivities are measured in terms of the coefficient of variation $c_v$, as described in section \ref{sec:sensitivity_of_sensitivity_metrics}.
-Table \ref{cv_x_y_R_for_Capacity_with_IJK7} shows the top 10\% of 435 ranked parameter pairs for $c_v(x|y|R)$ for the repository capacity.
-As expected, the top parameters from before (\texttt{FR\_SE\_PU}, \texttt{FR\_SE\_AM}, \& \texttt{HLW\_Storage\_Time}) all exhibit large effects on
+These sensitivities of sensitivities are measured in terms of the coefficient of 
+variation $c_v$, as described in section \ref{sec:sensitivity_of_sensitivity_metrics}.
+Table \ref{cv_x_y_R_for_Capacity_with_IJK7} shows the top 10\% of 435 ranked parameter 
+pairs for $c_v(x|y|R)$ for the repository capacity.
+As expected, the top parameters from before (\texttt{FR\_SE\_PU}, \texttt{FR\_SE\_AM}, 
+\& \texttt{HLW\_Storage\_Time}) all exhibit large effects on
 the impact of the others.
 
 An input that is present in most of the top pairs in Table \ref{cv_x_y_R_for_Capacity_with_IJK7} is the
 ambient environment temperature of the repository.
-In many cases, this makes intuitive sense.  The majority of the inputs that \texttt{Ambient\_Temp} is paired with here are those that affect the composition of
-material in the repository (\emph{i.e.} the various SE, the FR conversion ratio, the LWR fuel to moderator ratio).
-Moreover, the \texttt{Ambient\_Temp} itself may be seen as a metric of remaining heat capacity in the repository while the material composition determines the heat load.
+In many cases, this makes intuitive sense.  The majority of the inputs that 
+\texttt{Ambient\_Temp} is paired with here are those that affect the composition of
+material in the repository (\emph{i.e.} the various SE, the FR conversion ratio, 
+the LWR fuel to moderator ratio).
+Moreover, the \texttt{Ambient\_Temp} itself may be seen as a metric of remaining 
+heat capacity in the repository while the material composition determines the heat load.
 Thus the fact that such parameters pairs exhibit strong covariances is not surprising.
 
 
@@ -689,26 +822,35 @@ Thus the fact that such parameters pairs exhibit strong covariances is not surpr
 \index{Covariance of Plutonium \& Americium Separations@\emph{Covariance of Plutonium \& Americium Separations}}
 \label{cts_sec:pu_am_se}
 
-Plutonium and americium separation efficiencies provide an intuitive example of the covariance measure.  There is already known
-to be a strong coupling between these two parameters with respect to the repository capacity \cite{Scopatz2009c}.  From the
-2D sensitivity study, both \texttt{FR\_SE\_PU} and \texttt{FR\_SE\_AM} are highly ranked inputs.  They exhibit
-a high covariance because \nuc{Pu}{238} and \nuc{Am}{241} are in direct competition for being the top heat load contributor to the
-repository.  Therefore, the degree to which plutonium is recycled in the FR relative to that of americium shifts
-repository performance in a way that may have a greater impact than when altering \texttt{FR\_SE\_PU} and \texttt{FR\_SE\_AM}
+Plutonium and americium separation efficiencies provide an intuitive example of 
+the covariance measure.  There is already known
+to be a strong coupling between these two parameters with respect to the repository 
+capacity \cite{Scopatz2009c}.  From the
+2D sensitivity study, both \texttt{FR\_SE\_PU} and \texttt{FR\_SE\_AM} are highly 
+ranked inputs.  They exhibit
+a high covariance because \nuc{Pu}{238} and \nuc{Am}{241} are in direct competition 
+for being the top heat load contributor to the
+repository.  Therefore, the degree to which plutonium is recycled in the FR relative 
+to that of americium shifts
+repository performance in a way that may have a greater impact than when altering 
+\texttt{FR\_SE\_PU} and \texttt{FR\_SE\_AM}
 in tandem.
 
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[scale=0.70]{figs/FR_SE_AM_and_FR_SE_PU_Decay_Heat.eps}
+\includegraphics[scale=0.70]{ct_sensitivity/figs/FR_SE_AM_and_FR_SE_PU_Decay_Heat.eps}
 \caption{Total \& Top Contibutor Decay Heat [Watts/kg] of HLW for the parameter pair (\texttt{FR\_SE\_AM}, \texttt{FR\_SE\_PU}).}
 \label{am_pu_decay_heat}
 \end{center}
 \end{figure}
 
 Such covariant effects are visible in Figure \ref{am_pu_decay_heat}.
-Low values of \texttt{FR\_SE\_PU} and \texttt{FR\_SE\_AM} have high decay heats and high values have low decay heats.
-However, for the middle cases where one parameter is high and one is low, the top contributor takes on the value of the low separation efficiency.
-The switch between Am/Pu and the two order of magnitude range in the decay heat is captured by the covariance metric.
+Low values of \texttt{FR\_SE\_PU} and \texttt{FR\_SE\_AM} have high 
+decay heats and high values have low decay heats.
+However, for the middle cases where one parameter is high and one is 
+low, the top contributor takes on the value of the low separation efficiency.
+The switch between Am/Pu and the two order of magnitude range in the 
+decay heat is captured by the covariance metric.
 
 
 \subsubsection{Covariance of Americium Separations and FR TRU Conversion Ratio}
@@ -716,22 +858,34 @@ The switch between Am/Pu and the two order of magnitude range in the decay heat 
 \label{cts_sec:am_se_fr_tru_cr}
 
 The interplay between the FR americium SE and the FR transuranic conversion ratio exhibits a covariance
-to the repository capacity.  As seen in Table \ref{cv_x_y_R_for_Capacity_with_IJK7}, these two inputs display a relatively high sensitivity of sensitivity.  The covariance effect here is confirmed by examining Table \ref{FR_SE_AM_and_FR_TRU_CR_to_Capacity_with_IJK433_prop}.
+to the repository capacity.  As seen in Table \ref{cv_x_y_R_for_Capacity_with_IJK7}, 
+these two inputs display a relatively high sensitivity of sensitivity.  
+The covariance effect here is confirmed by examining 
+Table \ref{FR_SE_AM_and_FR_TRU_CR_to_Capacity_with_IJK433_prop}.
 
-\input{figs/FR_SE_AM_and_FR_TRU_CR_to_Capacity_with_IJK433_prop}
+\input{ct_sensitivity/figs/FR_SE_AM_and_FR_TRU_CR_to_Capacity_with_IJK433_prop}
 
-Table \ref{FR_SE_AM_and_FR_TRU_CR_to_Capacity_with_IJK433_prop} displays the probability table, which is a normalized representation of the contingency table.
-This table shows that repository capacity increases with increasing \texttt{FR\_SE\_AM}, a result consistent
-with the previous case study.  On the other hand, with increasing \texttt{FR\_TRU\_CR}, the repository capacity \emph{decreases}.  Moreover, the
+Table \ref{FR_SE_AM_and_FR_TRU_CR_to_Capacity_with_IJK433_prop} displays the 
+probability table, which is a normalized representation of the contingency table.
+This table shows that repository capacity increases with increasing \texttt{FR\_SE\_AM}, 
+a result consistent
+with the previous case study.  On the other hand, with increasing \texttt{FR\_TRU\_CR}, 
+the repository capacity \emph{decreases}.  Moreover, the
 peak of the repository capacity distribution as a function
 of americium separations increases with increasing \texttt{FR\_TRU\_CR}.
 
-This covariance effect is due in part to the fact that the \texttt{FR\_TRU\_CR} is the major driver of the support ratio.  As the conversion ratio
-increases, the mass of LWR UF required per kilogram of FR fresh fuel decreases.  Therefore all components downstream from the FR become correspondingly more important;
+This covariance effect is due in part to the fact that the \texttt{FR\_TRU\_CR} is the 
+major driver of the support ratio.  As the conversion ratio
+increases, the mass of LWR UF required per kilogram of FR fresh fuel decreases.  
+Therefore all components downstream from the FR become correspondingly more important;
 there are simply fewer LWRs.  In specific, the relative impact of \texttt{FR\_SE\_AM} increases.
 
-Due to increasing \texttt{FR\_TRU\_CR}, the americium contribution (as measured through \nuc{Am}{241}) negatively affects the repository capacity.  At high conversion ratios, there is more high Am content FR UF per unit nuclear electricity produced.  This in turn implies that the
-packing density of used fuel per meter of drift tunnel goes down.  Therefore the total mass of heavy metal (\texttt{Capacity}) that may be stored in a
+Due to increasing \texttt{FR\_TRU\_CR}, the americium contribution (as measured 
+through \nuc{Am}{241}) negatively affects the repository capacity.  At high 
+conversion ratios, there is more high Am content FR UF per unit nuclear 
+electricity produced.  This in turn implies that the
+packing density of used fuel per meter of drift tunnel goes down.  Therefore 
+the total mass of heavy metal (\texttt{Capacity}) that may be stored in a
 fixed-size repository decreases.
 
 
@@ -739,10 +893,16 @@ fixed-size repository decreases.
 \index{Covariance of HLW Storage Time \& Fast Reactor Plutonium Separations@\emph{Covariance of HLW Storage Time \& Fast Reactor Plutonium Separations}}
 \label{cts_sec:hlw_pu_covariance}
 
-The top two inputs from the sensitivity study, \texttt{FR\_SE\_PU} and \texttt{HLW\_Storage\_Time}, appear to exert a strong joint effect on the outcome.  According to Table \ref{cv_x_y_R_for_Capacity_with_IJK7}, this input pair is ranked fifth with respect to $c_v(x|y|R)$.
-Through an examination of the the 3D contingency table, high respository capacities are only allowed when both \texttt{FR\_SE\_PU} and
-\texttt{HLW\_Storage\_Time} are high.  Similarly, low capacities occur for low values of the two inputs.  Middle values for either of the
-inputs yield middling capacities.  Additionally, the entropy increases with increasing \texttt{FR\_SE\_PU} and \texttt{HLW\_Storage\_Time}.
+The top two inputs from the sensitivity study, \texttt{FR\_SE\_PU} and 
+\texttt{HLW\_Storage\_Time}, appear to exert a strong joint effect on the 
+outcome.  According to Table \ref{cv_x_y_R_for_Capacity_with_IJK7}, this 
+input pair is ranked fifth with respect to $c_v(x|y|R)$.
+Through an examination of the the 3D contingency table, high respository 
+capacities are only allowed when both \texttt{FR\_SE\_PU} and
+\texttt{HLW\_Storage\_Time} are high.  Similarly, low capacities occur 
+for low values of the two inputs.  Middle values for either of the
+inputs yield middling capacities.  Additionally, the entropy increases 
+with increasing \texttt{FR\_SE\_PU} and \texttt{HLW\_Storage\_Time}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -752,24 +912,63 @@ inputs yield middling capacities.  Additionally, the entropy increases with incr
 \end{center}
 \end{figure}
 
-Physically, the reason for this covariance is because the HLW storage time effectively shifts the opening time of the repository.
-By having a long \texttt{HLW\_Storage\_Time}, the short- and medium-term repository tempurature limits may be avoided.
-Figure \ref{hlw_pu_decay_heat} displays the decay heat for the HLW and for the top elemental contributor to the decay heat as a
-function of time after emplacement in the repository.  The curves here represent the four corner cases of the input values.
+Physically, the reason for this covariance is because the HLW storage 
+time effectively shifts the opening time of the repository.
+By having a long \texttt{HLW\_Storage\_Time}, the short- and medium-term 
+repository tempurature limits may be avoided.
+Figure \ref{hlw_pu_decay_heat} displays the decay heat for the HLW and for 
+the top elemental contributor to the decay heat as a
+function of time after emplacement in the repository.  The curves here 
+represent the four corner cases of the input values.
 
-The time shift effect may be observed by holding \texttt{FR\_SE\_PU} constant and comparing curves on Figure \ref{hlw_pu_decay_heat}
-where \texttt{HLW\_Storage\_Time} is one year to the curves where the storage time is three hundred years.  Points on the 1 year curves have
-roughly the same value as the 300 year HLW storage time curves, only 300 years farther in the future.  By shifting the 1 year data
-three hundred years to the left, the two curves would nearly overlap.  The statistical analysis confirms the strong importance to repository capacity of a strategy of `waiting out' the decay of Pu-238 if Pu separation efficiencies are low, and its much weaker importance if efficiencies are high.
+The time shift effect may be observed by holding \texttt{FR\_SE\_PU} constant 
+and comparing curves on Figure \ref{hlw_pu_decay_heat}
+where \texttt{HLW\_Storage\_Time} is one year to the curves where the storage 
+time is three hundred years.  Points on the 1 year curves have
+roughly the same value as the 300 year HLW storage time curves, only 300 years 
+farther in the future.  By shifting the 1 year data
+three hundred years to the left, the two curves would nearly overlap.  The 
+statistical analysis confirms the strong importance to repository capacity 
+of a strategy of `waiting out' the decay of Pu-238 if Pu separation efficiencies 
+are low, and its much weaker importance if efficiencies are high.
 
 \section{Concluding Remarks \& Future Work}
 \index{Concluding Remarks \& Future Work@\emph{Concluding Remarks \& Future Work}}
 \label{cts_sec:conclusion}
 
-The statistical techniques of contingency table and entropy analysis presented in this paper are widely-used tools for capturing the behavior of complex systems, particularly biological ones.  Here they have been applied to a simulator of the nuclear fuel cycle.  NFC outcomes, like those of any complex system, are shaped by intricate and highly nonlinear interactions between many inputs.
+The statistical techniques of contingency table and entropy analysis presented 
+in this paper are widely-used tools for capturing the behavior of complex systems, 
+particularly biological ones.  Here they have been applied to a simulator of the 
+nuclear fuel cycle.  NFC outcomes, like those of any complex system, are shaped 
+by intricate and highly nonlinear interactions between many inputs.
 
-The strength of association between the inputs and the outcome studied here, the capacity of a Yucca Mountain-like repository, was quantified through uncertainty coefficients.  Three-dimensional uncertainties were augmented by a coefficient of variation to determine the system response inputs acting jointly.  The latter is especially important because alternative approaches, for instance linear sensitivity analyses, can only capture the response to departures from a reference state.  This reference state is defined by the values assumed by dozens or hundreds of system inputs, each of which may be varied by system or technology designers.  It was shown that the coefficient of variation could illuminate dependencies where changes in one input have a strong effect on the system response to another.  
+The strength of association between the inputs and the outcome studied here, the 
+capacity of a Yucca Mountain-like repository, was quantified through uncertainty 
+coefficients.  Three-dimensional uncertainties were augmented by a coefficient of 
+variation to determine the system response inputs acting jointly.  The latter is 
+especially important because alternative approaches, for instance linear sensitivity 
+analyses, can only capture the response to departures from a reference state.  This 
+reference state is defined by the values assumed by dozens or hundreds of system 
+inputs, each of which may be varied by system or technology designers.  It was 
+shown that the coefficient of variation could illuminate dependencies where changes 
+in one input have a strong effect on the system response to another.  
 
-This tool can aid system designers by helping them perceive which design variables matter.  The contingency tables represent a (coarsely-gridded) importance map for the inverse problem.  Conditioned on a specific system response, like repository capacity, the measure of the strength of response provided by the uncertainty coefficients can provide guidance to technologists optimizing design parameters in the face of uncertainty regarding the shape of the larger system.  Illuminating joint dependencies, coefficients of variation can guide iterative technology development by showing which design features must be considered together.
+This tool can aid system designers by helping them perceive which design variables 
+matter.  The contingency tables represent a (coarsely-gridded) importance map for 
+the inverse problem.  Conditioned on a specific system response, like repository 
+capacity, the measure of the strength of response provided by the uncertainty coefficients 
+can provide guidance to technologists optimizing design parameters in the face of uncertainty 
+regarding the shape of the larger system.  Illuminating joint dependencies, coefficients of 
+variation can guide iterative technology development by showing which design features must 
+be considered together.
 
-The approach described here can be generalized to include boolean as well as continuous inputs.  For example, if the technology ultimately chosen for the permanent repository is unknown, a boolean flag can allow each stochastic realization to follow one of several options.  The outcome, still repository capacity, would now be conditioned on this boolean input as well.  It would illuminate system design parameters that will be important regardless of technology ultimately chosen, those that have strongly technology-dependent effects, and those that are unimportant to determining capacity regardless of technology.  In view of the uncertainties in the direction taken by nuclear energy in the future, coupled with the need to develop technologies now that can support or even enable these outcomes, this capability, if developed, could provide invaluable guidance.
+The approach described here can be generalized to include boolean as well as continuous inputs.  
+For example, if the technology ultimately chosen for the permanent repository is unknown, 
+a boolean flag can allow each stochastic realization to follow one of several options.  
+The outcome, still repository capacity, would now be conditioned on this boolean input as well.  
+It would illuminate system design parameters that will be important regardless of technology 
+ultimately chosen, those that have strongly technology-dependent effects, and those that are 
+unimportant to determining capacity regardless of technology.  In view of the uncertainties 
+in the direction taken by nuclear energy in the future, coupled with the need to develop 
+technologies now that can support or even enable these outcomes, this capability, if 
+developed, could provide invaluable guidance.
