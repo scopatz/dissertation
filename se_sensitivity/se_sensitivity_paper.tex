@@ -258,23 +258,18 @@ contaminated groundwater from a well in a single location.
 
 
 
-\section{}
-\index{@\emph{}}
-\label{ses_sec:}
-Benchmarking
-
+\section{Benchmarking}
+\index{Benchmarking@\emph{Benchmarking}}
+\label{ses_sec:benchmarking}
 The OECD Nuclear Energy Agency has gathered participants from several
 countries to perform system evaluation of several advanced fuel cycle
-designs (  NOTEREF \_Ref202815094 $\backslash$h  $\backslash$*
-MERGEFORMAT  4 ). In this study, the advanced fuel cycles are compared
+designs (  NOTEREF Ref202815094 MERGEFORMAT  4 ). In this study, the advanced fuel cycles are compared
 with the reference once-through thermal reactor system.
 
 
-\subsection{}
-\index{@\emph{}}
-\label{ses_sec:}
-3.1 Benchmark Cases
-
+\subsection{Benchmark Cases}
+\index{Benchmark Cases@\emph{Benchmark Cases}}
+\label{ses_sec:benchmark_cases}
 The system simulation tool developed in this study is applied to the two
 scenarios defined in the NEA study for benchmark. The scenarios are
 notated ``scheme 1a'' and ``scheme 3a''.  Scheme 1a is a once-through
@@ -282,124 +277,74 @@ PWR system.  Enriched uranium (4.9\% U235) is burned in a PWR to 60
 GWd/MTHM.  The SNF is sent to a storage facility for 7 year decay.
 Another 50 years cooling is assumed before the SNF is disposed in the
 repository.  The key fuel cycle parameters describing this case are
-presented in Table 3.
+presented in Table \ref{ses_table3}.
 
-Table 3. Scheme 1a system and reactor design
-
-Mass flows for scheme 1a (KgHM/Twhe)\\
-
-Natural U&20723\\
-
-Depleted U&18673\\
-
-UOX&2050\\
-
-Element in SNF after 7 yrs decay\\
-
-&U&1890\\
-
-Pu&26\\
-
-Np&1.9\\
-
-Am&1.6\\
-
-Cm&0.28\\
-
-F.P.&130\\
-
-0.71\% natural U is enriched to 4.90\% for UOX with tail enrichment
-0.25\%; Designed capacity of the PWR is 1450 MWe. The load factor is
-90\%. The burnup is 60 GWd/.\\
+\begin{table}[htbp]
+\begin{center}
+\caption{Scheme 1a System and Reactor Design: 0.71\% Natural U is enriched 
+to 4.90\% for UOX with tail enrichment 0.25\%; Designed capacity of the PWR 
+is 1450 MWe. The load factor is 90\%. The burnup is 60 MWd/kgIHM.}
+\label{ses_table3}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Stage \#} & \textbf{Description} & \textbf{Material Form} \\
+\hline
+\multicolumn{2}{|c|}{Mass Flows for Scheme 1a (KgHM/TWh\subscript{e})}\\
+Natural U  & 20723\\
+Depleted U & 18673\\
+UOX        & 2050\\
+\multicolumn{2}{|c|}{Element in SNF after 7 yrs decay}\\
+U  & 1890\\
+Pu & 26\\
+Np & 1.9\\
+Am & 1.6\\
+Cm & 0.28\\
+FP & 130\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
 
 
-	Scheme 3a is a closed fuel cycle design using a fast reactor burner to
+Scheme 3a is a closed fuel cycle design using a fast reactor burner to
 consume recycled TRU from the PWR SNF.  The precise isotopic composition
 of this fuel was not provided in the study; therefore ORIGEN was used to
 calculate it.  The results, which act as an input to the FR burnup
-calculations, are given in Table 4.  For this calculation, as stipulated
+calculations, are given in Table \ref{ses_table4}.  For this calculation, as stipulated
 in the OECD study, the uranium was enriched to 4.2\% U-235 and burned in
-the PWR to 50 GWd/tIHM (tonne initial heavy metal). 
+the PWR to 50 MWd/kgIHM (megawatt-days per kilogram initial heavy metal). 
 
-Table 4.  Isotopic Composition [Weight Percent] of LWR TRU feed to
-FR
-
-Isotope&PWR Fresh&PWR SNF 
-
-(6 yrs cooling)\\
-
-Am241\\
-
-4.74E-04\\
-
-Am243\\
-
-2.13E-04\\
-
-Cm242\\
-
-3.80E-09\\
-
-Cm243\\
-
-6.97E-07\\
-
-Cm244\\
-
-7.21E-05\\
-
-Cm245\\
-
-4.38E-06\\
-
-Cm246\\
-
-6.91E-07\\
-
-Cm247\\
-
-9.03E-09\\
-
-Cm248\\
-
-6.36E-10\\
-
-Np237\\
-
-7.62E-04\\
-
-Pu238\\
-
-2.95E-04\\
-
-Pu239\\
-
-5.89E-03\\
-
-Pu240\\
-
-2.73E-03\\
-
-Pu241\\
-
-1.31E-03\\
-
-Pu242\\
-
-8.59E-04\\
-
-U234\\
-
-1.64E-05\\
-
-U235\\
-
-6.83E-03\\
-
-U236&4.20E-02&5.65E-03\\
-
-U238&9.58E-01&9.23E-01\\
+\begin{table}[htbp]
+\begin{center}
+\caption{Nuclide Composition [kg\subscript{i}/kgIHM] of LWR TRU feed to FR after 6 yr Cooling}
+\label{ses_table4}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Nuclide} & \textbf{PWR Fresh} & \textbf{PWR SNF} \\
+\nuc{Am}{241}    &                    & 4.74E-04\\
+\nuc{Am}{243}    &                    & 2.13E-04\\
+\nuc{Cm}{242}    &                    & 3.80E-09\\
+\nuc{Cm}{243}    &                    & 6.97E-07\\
+\nuc{Cm}{244}    &                    & 7.21E-05\\
+\nuc{Cm}{245}    &                    & 4.38E-06\\
+\nuc{Cm}{246}    &                    & 6.91E-07\\
+\nuc{Cm}{247}    &                    & 9.03E-09\\
+\nuc{Cm}{248}    &                    & 6.36E-10\\
+\nuc{Np}{237}    &                    & 7.62E-04\\
+\nuc{Pu}{238}    &                    & 2.95E-04\\
+\nuc{Pu}{239}    &                    & 5.89E-03\\
+\nuc{Pu}{240}    &                    & 2.73E-03\\
+\nuc{Pu}{241}    &                    & 1.31E-03\\
+\nuc{Pu}{242}    &                    & 8.59E-04\\
+\nuc{U}{234}     &                    & 1.64E-05\\
+\nuc{U}{235}     & 4.20E-02           & 6.83E-03\\
+\nuc{U}{236}     &                    & 5.65E-03\\
+\nuc{U}{238}     & 9.58E-01           & 9.23E-01\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
 
 
