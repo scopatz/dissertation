@@ -787,12 +787,10 @@ serve as top-up only.
 \end{figure}
 
 
-\subsubsection{}
-\index{@\emph{}}
-\label{ses_sec:}
-4.1.2 Fuel Cycle Cost
-
-	Table 12 shows the FCC computed according to the methods of Section 2.3
+\subsubsection{Fuel Cycle Cost}
+\index{Fuel Cycle Cost@\emph{Fuel Cycle Cost}}
+\label{ses_sec:fcc}
+Table \ref{ses_table12} shows the FCC computed according to the methods of Section 2.3
 using the unit costs described in Section 3. For all strategies, higher
 separation efficiencies (SE) lead to lower FCC while there is no
 advantage for 99.99\% SE compared to 99.9\% SE.  Note that the
@@ -803,7 +801,27 @@ leading to more costly plant operations.  However a review of literature
 shows that the difficult task of correlating process costs to separation
 efficiency has not yet been undertaken.
 
-	The FCC components are listed in detail in Table 13. At Level1, lower
+\begin{table}[htbp]
+\begin{center}
+\caption{FCC with Fixed Disposal Charge [\$/MWh]}
+\label{ses_table12}
+\hline
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+                & \textbf{Stra1} & \textbf{Stra2} & \textbf{Stra3} & \textbf{Stra4} \\
+\hline
+\textbf{Level1} & 5.51           & 5.51           & 5.50           & 5.50 \\
+\textbf{Level2} & 5.18           & 5.18           & 5.16           & 5.16 \\
+\textbf{Level3} & 5.15           & 5.14           & 5.13           & 5.12 \\
+\textbf{Level4} & 5.14           & 5.14           & 5.13           & 5.12 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+
+The FCC components are listed in detail in Tables \ref{ses_table13_0}-\ref{ses_table13_2}. At Level1, lower
 separation efficiency results in more mass is reprocessed in the
 reprocessing facility; hence the difference from the reprocessing charge
 component dominates the small difference in FCC as one progresses to
@@ -814,43 +832,30 @@ commensurate with the process mass reduction.  It is expected that the
 unaccounted-for cost premium associated with achieving the higher
 efficiencies would counteract this effect.  
 
-Table 12. FCC with Fixed Disposal Charge (\$/MWh)
 
-?&Stra1&Stra2&Stra3&Stra4\\
-
-Level1&5.51 &5.51 &5.50 &5.50 \\
-
-Level2&5.18 &5.18 &5.16 &5.16 \\
-
-Level3&5.15 &5.14 &5.13 &5.12 \\
-
-Level4&5.14 &5.14 &5.13 &5.12 \\
-
-
-
-Table 13. Cost Components
-
-?&case21&case22&case23&case24\\
-
-U Ore (yellow cake)&0.68&0.68&0.68&0.68\\
-
-U Conversion&0.07&0.07&0.07&0.07\\
-
-U Enrichment&0.99&0.99&0.99&0.99\\
-
-LWR Fuel Fabrication&0.40&0.40&0.40&0.40\\
-
-FR Fuel Fabrication&0.69&0.69&0.69&0.69\\
-
-Reprocessing&1.93&1.93&1.93&1.93\\
-
-SNF Storage&0.16&0.16&0.16&0.16\\
-
-LLW Disposal&0.05&0.05&0.05&0.05\\
-
-LLW GTCC Disposal&0.00&0.00&0.00&<0.01\\
-
-HLW/TRU Disposal&0.19&0.18&0.17&0.16\\
+\begin{table}[htbp]
+\begin{center}
+\caption{Cost Components for Cases 21-24}
+\label{ses_table13_2}
+\hline
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Components [\$/MWh]} & \textbf{case21} & \textbf{case22} & \textbf{case23} & \textbf{case24} \\
+\hline
+U Ore (yellow cake)          & 0.68            & 0.68            & 0.68            & 0.68 \\
+U Conversion                 & 0.07            & 0.07            & 0.07            & 0.07 \\
+U Enrichment                 & 0.99            & 0.99            & 0.99            & 0.99 \\
+LWR Fuel Fabrication         & 0.40            & 0.40            & 0.40            & 0.40 \\
+FR Fuel Fabrication          & 0.69            & 0.69            & 0.69            & 0.69 \\
+Reprocessing                 & 1.93            & 1.93            & 1.93            & 1.93 \\
+SNF Storage                  & 0.16            & 0.16            & 0.16            & 0.16 \\
+LLW Disposal                 & 0.05            & 0.05            & 0.05            & 0.05 \\
+LLW GTCC Disposal            & 0.00            & 0.00            & 0.00            & $<0.01$ \\
+HLW/TRU Disposal             & 0.19            & 0.18            & 0.17            & 0.16 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
 
 
