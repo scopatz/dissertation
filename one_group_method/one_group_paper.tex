@@ -494,52 +494,51 @@ next section.
 
 
 
-\subsection{Generating Burnup Parameters}
-\index{Generating Burnup Parameters@\emph{Generating Burnup Parameters}}
+\subsection{Burnup Parameter Generation}
+\index{Burnup Parameter Generation@\emph{Burnup Parameter Generation}}
 \label{1g_sec:gen_BU_param}
 The burnup parameters $p_i(F)$, $d_i(F)$, $\mbox{BU}_i(F)$, and $T_{ij}(F)$ are typically calculated 
-for a specific reactor design.  However, if the reactor type is perceived as being representative of 
-all reactors of that type then the burnup parameters may be applied generally to all reactors of this 
+for a specific reactor design.  However if the reactor type is perceived as being representative of 
+all cores of that type, then the burnup parameters may be applied generally to all reactors of this 
 type without having to recalculate new $p_i(F)$, $d_i(F)$, $\mbox{BU}_i(F)$, and $T_{ij}(F)$.  
 Qualitatively, what it means to be representative of a reactor type and fuel composition is that the 
 neutron energy spectrum inherent in the few-group cross sections used to generate the burnup parameters 
 is similar to that of other reactors of this type and other fuel compositions that will be studied.   
 
 In this study, the burnup parameters are calculated and tabulated based on the reactor-specific data 
-libraries created from ORIGEN 2.2 [7] isotope-by-isotope burnup analyses.  As mentioned, the ORIGEN 
+libraries created from ORIGEN 2.2 \cite{Croff2002} isotope-specific burnup analyses.  The ORIGEN 
 input libraries contain cross sections that are thought of as generic to a reactor type and range of 
 fuel compositions.  For example, the libraries used here for fast reactors were prepared for a sodium 
 cooled burner reactor with a target conversion ratio of 0.5.  This reactor is described in more detail 
-in [4].  The burnup model therefore utilizes pre-computed libraries of the $p_i(F)$, $d_i(F)$, 
-$\mbox{BU}_i(F)$, and $T_{ij}(F)$ that were built up from ORIGEN runs.  These libraries contain point 
-wise data as a function of fluence.  Recall that all data in these libraries track the evolution of the 
-parameter on a per unit mass basis.
+in \cite{INL/CON-07-12478}.  The burnup model therefore utilizes pre-computed libraries of the 
+$p_i(F)$, $d_i(F)$, $\mbox{BU}_i(F)$, and $T_{ij}(F)$ that were built up from ORIGEN runs.  
+These libraries contain pointwise data as a function of fluence.  Recall that all data in these 
+libraries track the evolution of the parameter on a per unit mass basis.
 
-To be more explicit, ORIGEN 2.2 is run for a kilogram mass of a given nuclide with the characteristic 
-ORIGEN libraries.  Therefore, the isotopic mass balances and reaction rates obtained from this run 
+More explicitly, ORIGEN 2.2 is run for a kilogram mass of a given nuclide with the characteristic 
+input libraries.  Therefore, the isotopic mass balances and reaction rates obtained from this run 
 reflect the evolution of one kilogram of this isotope within the core.  The ORIGEN output is then 
 parsed and placed in the appropriate libraries for usage by the burnup model.  These ORIGEN runs are 
 performed for all nuclides in the core.  Naturally, if one were to use initial ORIGEN libraries for a 
 different reactor type, then the tables and matrices generated here would be representative of this 
-other reactor.  These libraries only need to be generated once ever for a given reactor type, geometry 
+other reactor.  These libraries only need to be generated once for a given reactor type, geometry 
 and representative fuel composition.
 
 In addition, the representative cycle-average neutron energy spectrum changes with BUd.  This is because 
 more fissile fuel is needed to achieve increased burnups and even for an identical fuel to coolant volume 
 ratio the spectral dependence on burnup is often too large to neglect.  Thus for thermal-spectrum systems 
 ORIGEN input libraries are prepared for a number of differing BUds: for PWRs, for instance, libraries 
-representative of 20, 33 and 50 MWd/kgIHM discharge burnups have been used in these studies.  Thes 
+representative of 20, 33 and 50 MWd/kgIHM discharge burnups have been used in these studies.  These 
 libraries are interpolated to create customized libraries at any burnup in this range.  They thus 
 capture the dependence of the cycle-average cross sections on discharge fluence and, implicitly, 
 initial isotopics.  This is of more significance to PWRs as fast reactor spectra are relatively more 
-stable; moreover, to investigate high-burnup PWR fuels additional libraries for BUd of 70 and 100 MWd/kgIHM 
+stable. To investigate high-burnup PWR fuels additional libraries for BUd of 70 and 100 MWd/kgIHM 
 have been prepared using assumed initial \nuc{U}{235} enrichments of 5.5 and 8 w/o, respectively.
 
 Even systems whose spectra are less sensitive to initial composition and burnup must be treated using a 
 number of cross section libraries prepared from detailed transport calculations.  For the sodium-cooled 
-FR design studied here, for example, a number of libraries are available.  The core aspect ratio for the 
-design varies to ensure acceptable coolant void reactivity properties as the conversion ratio and uranium 
-content decrease, so distinct sets of libraries were prepared for 0.5 (used in this study) and 0.25 target 
+FR design studied here a number of libraries are available.  
+Distinct sets of libraries were prepared for 0.5 (used in this study) and 0.25 target 
 conversion ratio designs.  Additionally, separate libraries were prepared at each conversion ratio for 
 fuels with higher and lower minor actinide (MA) content.   The higher MA case is representative of the 
 feed to a FR if Pu from spent UOX is first burned in MOX, while the lower MA library, the one used in 
@@ -551,16 +550,16 @@ this study, reflects the TRU content with no MOX burn.
 \index{Hydrogen Cross Section Rescaling@\emph{Hydrogen Cross Section Rescaling}}
 \label{1g_sec:H_rescale}
 The one group cross sections are functions of fuel burnup and therefore fluence, in some cases quite 
-strongly so.  The model supports the adjustment of cross sections \nuc{H}{1} and therefore production 
-and destruction rates as well as transmutation rates \nuc{H}{1} with fluence.  For instance, the effective 
-one group radiative capture cross section of 1H in typical PWR coolant changes significantly with fluence 
+strongly so.  The model supports the adjustment of \nuc{H}{1} cross sections, production 
+and destruction rates, and transmutation rates \nuc{H}{1} as a function of fluence.  For instance, the effective 
+one group radiative capture cross section of \nuc{H}{1} in typical PWR coolant changes significantly with fluence 
 as the flux spectrum in the core evolves to maintain constant power density.  Just as with the interpolation 
 of the ORIGEN input libraries, the hydrogen cross section may be parameterized around the burnup that the core 
 has experienced.  Moreover, hydrogen contributes about 10\% to the total destruction rate in the core.  
 Thus a significant change in the hydrogen cross section could yield an appreciable error in the model as 
 formulated above.  What follows is more of an adjustment to the hydrogen one-group cross section than a 
-true mutli-group theory response.  However, this provides an easy to calculate and integrate model to 
-reduce the error induced into the neutron destruction rates.
+true mutli-energy group response.  However, this adjustment provides an easy to calculate model to 
+reduce the error induced into the neutron destruction rates by non-represntative hydrogen cross sections.
 
 To account for these spectral variations an f-factor is introduced that is a function of the burnup 
 $\mbox{BU}(F)$.    $f(F)$ is a unitless factor by which all hydrogen destruction rates $d_H(F)$ are 
