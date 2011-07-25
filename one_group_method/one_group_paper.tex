@@ -146,10 +146,7 @@ yields the isotopic composition of the fuel at removal.
 \subsection{Neutron Production \& Destruction Rates and Burnup}
 \index{Neutron Production \& Destruction Rates and Burnup@\emph{Neutron Production \& Destruction Rates and Burnup}}
 \label{1g_sec:pdbu}
-Other fuel cycle parameters that are required to perform burnup calculations are the neutron 
-production and destruction rates, $p_i(F)$ and $d_i(F)$ [n/s/flux/kg\subscript{i}].  These are given 
-as functions of fluence for each isotope initially present in the core, just as with the isotopic 
-transformation data.  An example of these parameters is shown in Figure \ref{1g_fig02}.
+
 \begin{figure}[htbp]
 \caption{Sample Neutron Production and Destruction Rate Figure as a Function of Fluence for an Initial Unit Mass of \nuc{Pu}{239} in a Sample Fast Reactor}
 \label{1g_fig02}
@@ -157,15 +154,14 @@ transformation data.  An example of these parameters is shown in Figure \ref{1g_
 \includegraphics[scale=0.5]{one_group_method/figs/Fig02.eps}
 \end{center}
 \end{figure}
+
+Other fuel cycle parameters that are required to perform burnup calculations are the neutron 
+production and destruction rates, $p_i(F)$ and $d_i(F)$ [n/s/flux/kg\subscript{i}].  These are given 
+as functions of fluence for each isotope initially present in the core, just as with the isotopic 
+transformation data.  An example of these parameters is shown in Figure \ref{1g_fig02}.
 This figure displays the production and destruction rates for one initial kilogram of \nuc{Pu}{239} 
 in the sodium-cooled FR.  
 
-Lastly, the specific burnup for each isotope initially present, $\mbox{BU}_i(F)$ 
-[MWd/kg\subscript{i}] must also be given to the burnup model.  The burnup is defined 
-in the same way as the neutron 
-production and destruction rates.  It is given as a function of fluence for each nuclide initially 
-present in the core.  Figure \ref{1g_fig03} displays $\mbox{BU}_i(F)$ for a few actinides that may 
-be present in the fresh fuel.
 \begin{figure}[htbp]
 \caption{Burnup as a Function of Fluence for an Initial Unit Mass of Specific Nuclides in a Sample Fast Reactor}
 \label{1g_fig03}
@@ -173,6 +169,13 @@ be present in the fresh fuel.
 \includegraphics[scale=0.5]{one_group_method/figs/Fig03.eps}
 \end{center}
 \end{figure}
+
+Lastly, the specific burnup for each isotope initially present, $\mbox{BU}_i(F)$ 
+[MWd/kg\subscript{i}] must also be given to the burnup model.  The burnup is defined 
+in the same way as the neutron 
+production and destruction rates.  It is given as a function of fluence for each nuclide initially 
+present in the core.  Figure \ref{1g_fig03} displays $\mbox{BU}_i(F)$ for a few actinides that may 
+be present in the fresh fuel.
 Now that all input quantities have been outlined and defined, a description of the 
 algorithm that calculates the discharge burnup and the input and output fuel isotopics follows.   
 
@@ -182,13 +185,13 @@ algorithm that calculates the discharge burnup and the input and output fuel iso
 \subsection{Solving for BUd and Isotopics}
 \index{Solving for BUd and Isotopics@\emph{Solving for BUd and Isotopics}}
 \label{1g_sec:solve_BUd_iso}
-First, knowing only the $\mbox{BU}_i(F)$, $p_i(F)$, $d_i(F)$, and $T_i(F)$ from the prior section, 
-the maximum achievable discharge burnup, BUd [MWd/kgIHM], must be found.  The burnup of the fresh 
+First, knowing only the $\mbox{BU}_i(F)$, $p_i(F)$, $d_i(F)$, and $T_{ij}(F)$ from the prior section, 
+the maximum achievable discharge burnup BUd [MWd/kgIHM] must be found.  The burnup of the fresh 
 fuel as a function of fluence is then computed as a mass-weighted linear combination of the burnups 
 from the initial constituent isotopes.  Similarly, the neutron production and destruction rates as a 
 function of fluence for an arbitrary fresh fuel may also be found.  In the development below, it is 
-assumed that the core consists of a lattice in which each cell contains two spatial regions, fuel ``F'' 
-and coolant ``C'' but the formulation can generalize to additional regions.  Denote the mass of the 
+assumed that the core consists of a lattice in which each cell contains two spatial regions, teh fuel ``F'' 
+and the coolant ``C'', though the formulation can generalize to additional regions.  Denote the mass of the 
 $i$\superscript{th} isotope initially present in the fuel region ``F'' per unit mass of initial heavy 
 metal (IHM) in the cell by $m_i^F$ [kg\subscript{i}/kgIHM] and the mass of the $i$\superscript{th} 
 isotope initially present in the coolant region ``C'' per unit mass of initial heavy metal (IHM) by 
@@ -199,8 +202,8 @@ by equation \ref{Q_mass_weights}.
 m_i^Q = \frac{N_i}{N_{\mbox{IHM}}} = \frac{n_i A_i}{A_{\mbox{IHM}}} \cdot \frac{\rho^Q\cdot\mbox{MW}^F}{\rho^F\cdot\mbox{MW}^Q} \frac{V^Q}{V^F}
 \end{equation}
 The volumes of the fuel and coolant regions, $V^F$ and $V^C$ [cm\superscript{3}], are needed to 
-compute these IHM-normalized masses and the infinite lattice of unit cell model mentioned 
-above is used in modified form for this purpose.  This two region method ignores the small 
+compute these IHM-normalized masses.  An infinite lattice made up of the unit cells mentioned 
+above is used for this purpose.  This two region method ignores the small 
 effect of the cladding material on neutron capture.  Call $r$ [cm] the radius of the fuel pin and $\ell$ [cm] 
 the pitch of the unit fuel cell.  It is important to correct for the fact that not all fuel 
 pin slots in a fuel assembly are filled with fuel.  Denote $S_T$ as the total number of pin 
@@ -214,28 +217,28 @@ V^F = \frac{\pi r^2}{\ell^2} \cdot \left(1 - \frac{S_O}{S_T}\right)
 \label{1g_VC}
 V^C = \frac{\ell^2 - \pi r^2}{\ell^2} \cdot \left(1 - \frac{S_O}{S_T}\right) + \frac{S_O}{S_T}
 \end{equation}
-Hence the burnup of the core as a function of fluence, $\mbox{BU}(F)$ [MWd/kgIHM], is given by 
+Hence the burnup of the core as a function of fluence $\mbox{BU}(F)$ [MWd/kgIHM] is given by 
 the following sum.
 \begin{equation}
 \label{1g_BU_F}
 \mbox{BU}(F) = \sum_i m_i^F \cdot \mbox{BU}_i(F)
 \end{equation}
-Once this burnup is known, the maximum discharge burnup can be computed as that value of burnup 
+Once this burnup is known, the maximum discharge burnup can be computed via the fluence point 
 for which the core ceases to be critical.  The fluence-dependent neutron production and destruction 
-rates for each constituent are used here to compute the multiplication factor, $k$.    When $k$ drops 
-below unity, a reactor full of this fuel will no longer be able to sustain a chain reaction.  $k(F)$ is 
-approximated by calculating the full-core neutron production rate, $P(F)$ [n/s/kgIHM], divided by the 
-full-core average neutron destruction rate, $D(F)$ [n/s/kgIHM].  Namely,
+rates for each constituent species are used here to compute the multiplication factor, $k$.    When $k$ drops 
+below unity, a reactor full of this nuclide alone would no longer be able to sustain a chain reaction.  $k(F)$ is 
+approximated by calculating the full-core neutron production rate $P(F)$ [n/s/kgIHM] divided by the 
+full-core average neutron destruction rate $D(F)$ [n/s/kgIHM].  Namely,
 \begin{equation}
 \label{1g_k_F}
 k(F) = \frac{P(F)}{D(F)}
 \end{equation}
 $k(F)$ may thus also be calculated, like $\mbox{BU}(F)$, as a mass-weighted convolution of the $p_i(F)$ and 
 $d_i(F)$.  The method by which one obtains $P(F)$ and $D(F)$ from the isotope-specific rates is discussed 
-in the following sections.  However once known, $k(F)$ is then set equal to one and then equation \ref{1g_k_F} 
-solved for the fluence.  This is the fluence at discharge and is called $F\mbox{d}$ [n/kb].  $F\mbox{d}$ may then 
-be reinserted into equation \ref{1g_BU_F} and the burnup of the fuel composition at discharge, 
-BUd [MWd/kgIHM], is attained.
+in the following sections.  However once computed, $k(F)$ is then set equal to unity and equation \ref{1g_k_F} 
+is solved for the fluence.  This point is the fluence at discharge and is denoted $F\mbox{d}$ [n/kb].  
+$F\mbox{d}$ may then be reinserted into equation \ref{1g_BU_F} and the burnup of the fuel composition at discharge 
+BUd [MWd/kgIHM] is attained.
 
 Note that equation \ref{1g_k_F} can hold for a multi-batch fuel management scheme as well as a one batch core 
 system.  Extending this equation to a multi-batch system follows after a discussion of the calculation of 
@@ -245,12 +248,12 @@ Additional factors complicate the calculation of the core-average neutron produc
 A complete depiction of the neutron balance requires that $p_i(F)$ and $d_i(F)$ for non-fuel components of 
 the core must also be known.  These non-fuel components include the coolant outside of fuel regions and the 
 non-actinide species in the fuel region (\emph{e.g.} oxygen in UOX).  Both of these classes of parasitic 
-species serve to increase the full core destruction rate.  Disadvantage factors also affect the flux 
-suppression in fuel regions which needs to be accounted for as well for PWR cases.  Furthermore, to 
+species serve to increase the full core destruction rate.  Disadvantage factors also reflect that there is flux 
+suppression in fuel regions, which needs to be accounted for in PWR cases.  Furthermore, to 
 account for spatial variation in the neutron flux when computing neutron interaction rates in non-fuel 
 components, a general fuel assembly model is needed (as described above).  For example, to reflect a 
-standard PWR fuel assembly geometry values from the OECD Burnup Credit Criticality Benchmark [3] 
-were used for LWRs and nominal values for fast reactors were taken from [4].  
+standard PWR fuel assembly geometry values from the OECD Burnup Credit Criticality Benchmark \cite{Takano1994} 
+were used for LWRs and nominal values for fast reactors were taken from \cite{INL/CON-07-12478}.  
 
 A walkthrough of how to calculate the core-average production and destruction rates, $P(F)$ and $D(F)$, 
 from the known set of $p_i(F)$ and $d_i(F)$ for a given collection of $m_i$ now follows.  
