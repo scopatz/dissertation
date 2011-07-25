@@ -79,13 +79,37 @@ The remainder of this section is delineated into a discussion on notation, how i
 reactor conditions are specified, the three methods that were used to compute the
 cross sections, and the validation technique used.
 
+
+
+
+
 \subsection{Notation}
 \index{Notation@\emph{Notation}}
 \label{mg_sec:notation}
-In the RMG, nuclides are indexed by $i$, times are indexed by $t$, perturbations are indexed by $p$, 
+In the RMG, nuclides are indexed by $i$, times are indexed by $\tau$ (tau), perturbations are indexed by $p$, 
 and energy is indexed by $g$ with lower indices representing higher energy groups.
 Thus the group constants $\sigma_{itg}$ or $\sigma_{ipg}$ are themselves parameterized by nuclide, 
 time or perturbation (see \S \ref{mg_sec:param_ic}), and incident neutron energy.  
+For reference, cross section indices may be seen in Table \ref{rmg_xs_ind}.
+
+\begin{table}[htbp]
+\begin{center}
+\caption{Cross Section Indices}
+\label{rmg_xs_ind}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Index}        & \textbf{Symbol} \\
+\hline
+Nuclide               & $i$ \\
+Time                  & $\tau$ \\
+Perturbation          & $p$ \\
+Incident Energy Group & $g$ \\
+Exiting Energy Group  & $h$ \\
+Reaction Channel, Table \ref{reaction_type_table} & $r_x$ \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
 
 \begin{table}[htbp]
@@ -916,7 +940,7 @@ complete.
 \label{mg_sec:benchmark}
 The RMG was validated against a Serpent model of the same standard light-water reactor core.  
 The state of the reactor for the both RMG and Serpent was taken at an off-perturbation point in 
-order to test the nearest-neighbor interpolation in additional to the criticality and burnup calculations.  
+order to test the nearest-neighbor interpolation in addition to the criticality and burnup calculations.  
 The reactor state is for this benchmark is shown in Table \ref{benchmark_rx_state}. 
 \begin{table}[htbp]
 \begin{center}
@@ -953,17 +977,21 @@ burn and gradually migrates closer to 400 days by the end.
 Moreover the initial \nuc{U}{235} vector falls in between two of the perturbation cases, but 4.5\% lies
 clearly closer to the 5\% perturbations than the 3.5\% cases.
 Lastly, the fuel region density lies exactly between two of the perturbation steps.  Thus, the 
-perturbations with the minimal distance to the reactor will flank the fuel density, staying closer to 5\%
-\nuc{U}{235}, while otherwise moving through the core in time.  Note that, because of the linear 
+perturbations with the minimal distance to the configuration will flank the fuel enrichment 
+(staying closer to 5\% \nuc{U}{235}) and remain equidistant from the two perturbation fuel 
+densities while otherwise moving through the core in time.  Note that, because of the linear 
 interpolation of the group constants, only the two leftmost $p^*$ columns in Table \ref{nn_table}
 (representing $p_1^*$ and $p_2^*$) 
 influence the RMG calculation.  The remaining columns are shown for demonstrative purposes only.
+Microscopic cross sections calculated via an interpolation between the two nearest neighbor points 
+$p_1^*$ \& $p_2^*$  may be collapsed to obtain one-group values  $\sigma_{r_x,i\tau}$.  These 
+one-group values are presented below as part of the benchmark.
 
 \input{multigroup_method/figs/benchmark/nearest_neighbor_table}
 
 Next, the criticality calculation is compared for the Serpent case and the RMG.  This consists of 
 contrasting the multiplication factor and the flux spectrum at different burn times.  In all further
-benchmarks, the errors in the two-point comparison are defined by a fractional deviation.  Call, $a_r$ 
+benchmarks, the errors in the two-point comparison are defined by a fractional deviation.  Call $a_r$ 
 a parameter computed via the RMG and $a_s$ the same parameter from the Serpent model.  Equation 
 \ref{r_s_fractional_deviation} is the fractional deviation $\varepsilon$ such that values which the RMG
 over-predicts will be positive and under-predictions will be negative.
@@ -982,8 +1010,8 @@ Figure \ref{k_compare} displays the comparison for the multiplication factor $k$
 Note that the fractional deviation error bars on the RMG curve in Figure \ref{k_compare} 
 take on a value of less than 1\% at every burnup step.  
 The error bars on the Serpent curve are the stochastic modeling errors inherent in any Monte
-Carlo calculation and do not represent inaccuracies in the cross sections, like $\varepsilon$.
-Additionally, these two curves both adhere to the linear reactivity model but are seen to have slightly 
+Carlo calculation and do not represent inaccuracies in the cross sections.
+Additionally, these two curves both exhibit the linear trend expected but are seen to have slightly 
 different slopes due to errors in the cross sections and discrepancies in which nuclides are included in 
 the burnup-criticality calculation.
 
@@ -1005,14 +1033,15 @@ may be seen in Figures \ref{spec_BOL} \& \ref{spec_EOL}.
 \end{figure}
 By inspection, there is good agreement between the RMG and Serpent spectra.  Quantitatively, 
 the fractional deviation lies between 0.5 - 5\% for most groups.  The groups for which 
-significantly larger $\varepsilon$ are present (10 - 85\%) are categorically the low energy groups 
-where the flux may be smaller by orders of magnitudes.  Moreover, differences in Figures \ref{spec_BOL} \& 
+significantly larger $\varepsilon$ are present (10 - 85\%) are  the low energy groups 
+where the flux may be smaller by orders of magnitudes.  Differences in Figures \ref{spec_BOL} \& 
 \ref{spec_EOL} are partially explained by the difference in regions for which the flux is defined.
 The RMG curves here represent a homogenized full-core, while the Serpent spectra are only for the 
-fuel region.  Because of more scattering events in the coolant and more absorption reactions in the fuel, 
-the harder Serpent fuel spectrum is expected than that calculated by the RMG.
+fuel region.  Given the higher probability of thermal scattering events in the coolant and a greater likelihood of
+absorption reactions in the fuel, the harder Serpent fuel spectrum is expected.
 
-To compute the spectra above, the disadvantage factor must be known.
+As previously discussed, the RMG modifies the above spectra by a disadvantage factor when computing 
+reaction rates to account for spectral differences bewteen the fuel and coolant regions.
 Figure \ref{zeta_BOL_EOL} shows $\zeta_{tg}$ as a function of group for both BOL \& EOL.
 Because the absorption cross section of the fuel is larger than that of the coolant, 
 $\zeta_{tg}$ will always be greater than unity.  Moreover, the disadvantage factor generally
@@ -1027,13 +1056,12 @@ increases with decreasing energy due to the `one-over-v' dependence on the cross
 \end{figure}
 
 
-Lastly in the reactor model flow, the transmutation calculation must be benchmarked.
+Lastly, the transmutation calculation is benchmarked.
 Figures \ref{act_benchmark}-\ref{fp_benchmark} display the time evolution of the mass 
 fractions of various important nuclides. This set includes the major actinides 
 as well a various fission products that are tracked in the VISION suite.  
 In these figures, $\varepsilon$ is defined as before and is again displayed as the error bars on 
-the RMG curve.   Unfortunately, Serpent does not report errors associated with the mass fraction 
-so such curves do not have associated error bars.
+the RMG curve.   Serpent does not report errors associated with the mass fraction.
 
 \begin{figure}[htbp]
 \caption{Actinide Mass Fraction Benchmarks}
@@ -1093,9 +1121,7 @@ As is seen in these figures, there is good agreement between the transmutation v
 Serpent and those computed by the RMG via Origen.  The instances with non-trivial disagreements are 
 largely in the higher order actinides.  These nuclides exist in such small amounts, that the relatively
 high errors do not adversely effect the neutronic performance of the fuel.   Moreover, the errors in the
-mass concentrations of are largely a function of the error in flux the lowest energy groups.  While 
-the flux here is small, the cross sections (following a one-over-velocity dependence) are typically 
-larger than other parts of the spectrum.
+mass concentrations of are largely a function of the error in flux the lowest energy groups.  
 
 
 However, the true strength of the RMG methodology is 
@@ -1163,9 +1189,12 @@ it is important to ensure that no reaction is far off from a benchmark value.  T
 \ref{rank_Actinide_sigma_s_table}-\ref{rank_Actinide_sigma_f_table} display the 
 nuclides with the highest $|\varepsilon|$ (in descending order) at any time step for absorption and scattering
 reactions for the fission products and for absorption, scattering and fission reactions for the actinides.
-These tables have been filtered to remove species that have very short half lives within the reactor.
-As Tables \ref{rank_Actinide_sigma_s_table}-\ref{rank_Actinide_sigma_f_table} display, even in the worst case 
-the cross sections meet within acceptable levels of error.
+These tables have been filtered to remove species that have short half lives ($<1$ day).  A superior 
+filter may be to remove nuclides for which no Serpent or Cinder data exists, since these species are 
+presumably unimportant to the system as a whole.
+As Tables \ref{rank_Actinide_sigma_s_table}-\ref{rank_Actinide_sigma_f_table} display, 
+the RMG predicts one-group collapsed cross sections (and thus reaction rates) nearly universally to 
+within 10\% of the Serpent values.
 
 \input{multigroup_method/figs/benchmark/rank_table_Actinide_sigma_s}
 \input{multigroup_method/figs/benchmark/rank_table_Fission_Product_sigma_s}
@@ -1173,14 +1202,14 @@ the cross sections meet within acceptable levels of error.
 \input{multigroup_method/figs/benchmark/rank_table_Fission_Product_sigma_a}
 \input{multigroup_method/figs/benchmark/rank_table_Actinide_sigma_f}
 
-Lastly, the multigroup model here ignores many reaction channels that are assumed to be 
+Lastly, the multigroup model ignores many reaction channels that are assumed to be 
 unimportant.  While individual channels have only minor effects, the summation of all 
 unobserved reactions may be non-trivial.  Define the missing channel fraction $m_f$ as the maximum 
 over all time of the total one-group cross section less the sum of all other constituent reaction 
 cross sections.
 \begin{equation}
 \label{mcf}
-m_f = \mbox{max}_t\left[1 - \frac{\sum_{r_x \ne t}\sigma_{r_x,it}}{\sigma_{t,it}}\right]
+m_f = \mbox{max}_{\tau}\left[1 - \frac{\sum_{r_x \ne t}\sigma_{r_x,i\tau}}{\sigma_{t,i\tau}}\right]
 \end{equation}
 Table \ref{missing_channel_fraction} displays the sorted (highest to lowest) missing 
 channel fractions for all nuclides tracked.  Since nearly all of the $m_f$ values are
