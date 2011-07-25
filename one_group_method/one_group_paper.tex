@@ -369,16 +369,16 @@ burnup $\mbox{BU}(F\mbox{d}) = \mbox{BUd}$.
 What has just been shown is how to find the discharge burnup with a given fuel composition for a one
 batch system.  However, for multiple batches of fuel the process is less straightforward as the 
 production and destruction rates are averaged over their end of cycle values for each batch.  
-The general idea is to perform these operations in reverse and then iterate over them.  
+The strategy employed here is to perform these operations in reverse and then iterate over them.  
 In other words, one picks a burnup and then solves for the multiplication factor.  Then one picks 
 another burnup that will yield a $k$ closer to one and solves again for $k$.  This process continues 
 until a $k$ is found that is acceptably close to one.  
 
 The bisection method is preferred to pick successively closer values of $k$.  It is not prone to the 
 erratic behavior that arises when Newton's method is used with pointwise data.   Furthermore, the 
-bisection method ensures that the fuel is burnable.  To use the bisection method here there must 
-be both some fluence where $k < 1$ and some fluence where $1 < k$.  Since the multiplication factor 
-is in reality continuous and more or less monotonic, these conditions imply that at some fluence $k = 1$.  
+bisection method ensures that the fuel is burnable.  The bisection method requires that there must 
+be both some fluence where $k < 1$ and a fluence such that $1 < k$.  Since the multiplication factor 
+is in reality continuous and roughtly monotonic, these conditions imply that at some fluence $k = 1$.  
 However, if these conditions fail then the fuel has too little fissile material to sustain a chain reaction. 
 
 \begin{figure}[htbp]
@@ -399,7 +399,7 @@ However, if these conditions fail then the fuel has too little fissile material 
 
 A walkthrough of the details of this process for multiple batches follows.  First, a maximum 
 discharge burnup BUd is guessed.  Say without loss of generality that the system at hand is 
-concerned with a three batch refueling cycle.  Then, assuming equal interbatch power sharing, 
+concerned with a three batch refueling cycle.  Then, assuming equal inter-batch power sharing, 
 the fluence must be found for three burnups, namely BUd, 2/3 BUd, and 1/3 BUd.   Lines drawn on 
 Figure \ref{1g_fig05} from the burnup axis to the curve and then down from the curve to the fluence 
 axis will give the fluence at the three points required.  Note that the highest fluence ($F3$ here) 
@@ -408,8 +408,8 @@ the multiplication factor of the system needs to be known.
 
 To achieve this for a multibatch core, a flux-weighted batch averaging procedure is followed.  
 The multiplication factor at each fluence is determined by the $P(F)/D(F)$ ratio.  Denote the batch 
-number that a parameter is associated with by the index subscript ``b''.  In Figure \ref{1g_fig06}, 
-the three $k_b$s correspond to the three fluences chosen and here $k_b(F_b) = P_b(F_b)/D_b(F_b)$.  
+number that a parameter is associated with by the subscript ``b''.  In Figure \ref{1g_fig06}, 
+the three $k_b$s correspond to the three fluences chosen,  $k_b(F_b) = P_b(F_b)/D_b(F_b)$.  
 These are interpreted as the multiplication factors if the full core was in fact composed entirely 
 of fuel that had been exposed to this fluence. Thus the true multiplication factor of the core is 
 the weighted average of the production divided by destruction rates with the flux as a weight for 
@@ -418,16 +418,16 @@ the weighted average of the production divided by destruction rates with the flu
 \label{1g_k_batch_ave}
 k = \frac{\sum_b^B \frac{P_b(F_b)}{D_b(F_b)} \phi_b}{\sum_b^B \phi_b}
 \end{equation}
-However, the flux $\phi_b$ in equation \ref{1g_k_batch_ave}, the average flux within batch $b$, is not known.  
-Thus because the batch power remains constant $\phi_b$ does not.  Yet the flux is by definition the time 
-derivative of the fluence. Thus a good approximation of the flux is given in equation \ref{1g_k_batch_ave}.
+However, the average flux within each batch $\phi_b$ is not known.  
+Moreover, because the batch power remains constant, $\phi_b$ does not.  Yet the flux is by definition the time 
+derivative of the fluence. Thus a good approximation of the flux is given in equation \ref{1g_phi_b}.
 \begin{equation}
 \label{1g_phi_b}
 \phi_b \approx \frac{\Delta F}{\Delta t}
 \end{equation}
 Here, $\Delta F$ can be measured at a given fluence by perturbing $\mbox{BU}(F)$ by a small amount 
 and finding the $\Delta\mbox{BU}$.  This is easily done as $\Delta\mbox{BU}/\Delta F$ is identically 
-the slope of the $\mbox{BU}(F)$ graph at fluence $F$ as seen in Figure \ref{1g_fig05}.  Given the 
+the slope of the $\mbox{BU}(F)$ graph at fluence $F$ in Figure \ref{1g_fig05}.  Given the 
 assumption of constant power density, a change in burnup yields a corresponding change in time such that
 \begin{equation}
 \label{1g_delta_t}
@@ -440,8 +440,8 @@ $\phi_b$ is found to be
 \label{1g_phi_b_1}
 \phi_b \approx \frac{\Delta F}{\Delta \mbox{BU}} \cdot \frac{T_{\mbox{res}}}{\mbox{BUd}}
 \end{equation}
-Inserting equation \ref{1g_phi_b_1} into equation \ref{1g_k_batch_ave} an expression for the effective 
-multiplication factor for a multiple batch system at the time that a batch is discharged is obtained.
+By inserting equation \ref{1g_phi_b_1} into equation \ref{1g_k_batch_ave}, an expression for the effective 
+multiplication factor for a multiple batch system at discharged time is obtained.
 \begin{equation}
 \label{1g_k_batch_ave_1}
 k \approx \frac{\sum_b^B \frac{P_b(F_b)}{D_b(F_b)} \cdot \left. \frac{\Delta F}{\Delta \mbox{BU}} \right|_b \cdot \frac{T_{\mbox{res}}}{\mbox{BUd}}}
@@ -449,22 +449,23 @@ k \approx \frac{\sum_b^B \frac{P_b(F_b)}{D_b(F_b)} \cdot \left. \frac{\Delta F}{
  =  \frac{\sum_b^B \frac{P_b(F_b)}{D_b(F_b)} \cdot \left. \frac{\Delta F}{\Delta \mbox{BU}} \right|_b }
                 {\sum_b^B \left. \frac{\Delta F}{\Delta \mbox{BU}} \right|_b}
 \end{equation}
+
 Now that a $k$ has been found, its value is converged to unity via the bisection iterations.  Another 
-value of the maximum discharge burnup is then chosen and this process is repeated until a BUd is found 
+value of the maximum discharge burnup may then chosen and this process repeated until a BUd is found 
 that yields a $k = 1$.  Figures \ref{1g_fig05} \& \ref{1g_fig06} represent the process of finding a 
 multiplication factor for a sample three batch system for a light-water reactor core.  
 
-In the process of determining the maximum discharge burnup $F\mbox{d}$ is also found.  It is also 
-easy to perform a mass-weighted linear combination of the isotopic transformation matrices. From here 
-how each isotope initially present is transmuted at any fluence is known.  The mass of the j\superscript{th} 
+In the process of determining the maximum discharge burnup, $F\mbox{d}$ is also found.  Additonally, it is  
+easy to perform a mass-weighted linear combination of the isotopic transformation matrices. 
+The mass of the j\superscript{th} 
 nuclide at fluence $F$ is called $M_j(F)$ [kg\subscript{j}/kgIHM] and is given by
 \begin{equation}
 \label{1g_trans_Mj}
 M_j(F) = \sum_i m_i^F \cdot T_{ij}(F)
 \end{equation}
-Here ``i'' represents isotopes initially present in the fuel.  Plugging in the fluence at discharge 
-$F\mbox{d}$ into equation \ref{1g_trans_Mj} will yield the mass of isotope ``j'' in the spent fuel per 
-kilogram of IHM.  Performing this operation for all ``j'' isotopes of interest will yield the isotopic 
+Here $i$ represents isotopes initially present in the fuel.  Plugging in the fluence at discharge 
+$F\mbox{d}$ into equation \ref{1g_trans_Mj} will yield the mass of isotope $j$ in the spent fuel per 
+kilogram of IHM.  Performing this operation for all $j$ isotopes of interest will yield the isotopic 
 output vector for the core.  Since fission product masses were included in the transformation matrices, 
 the fission products at discharge are also known.  
 
@@ -478,18 +479,18 @@ the fission products at discharge are also known.
 
 Figure \ref{1g_fig07} shows a graphical representation of the $M_j(F)$ for various isotopes present 
 in a fast reactor.  Each curve for each nuclide is the superposition of all of the transformation 
-matrices with their weight, as described above.  Some species, such as \nuc{U}{238} and \nuc{Pu}{239}, 
+matrices.  Some species, such as \nuc{U}{238} and \nuc{Pu}{239}, 
 are burned out of the core faster than they are bred back in and are therefore represented by lines of 
-negative slope.  Other isotopes, namely fission products, were not initially present and get bred into 
+negative slope.  Other isotopes, namely fission products, were not initially present and are bred into 
 the core by any fissioning species.  These are shown as the curves growing towards some asymptote.  
 Still other nuclides, higher order species like \nuc{Am}{243} and \nuc{Cm}{244}, have a more dynamic effect.  
 They grow into the core and then peak and start to burn out.  
 
 In conclusion, the above is an algorithm for finding the maximum discharge burnup and its discharge 
-composition given only a fuel form represented by mi, the pre-generated burnup parameters ($p_i(F)$, 
+composition given only a fuel form represented by $m_i^F$, the pre-generated burnup parameters ($p_i(F)$, 
 $d_i(F)$, $\mbox{BU}_i(F)$, and $T_{ij}(F)$), the number of batches in the core $B$, and the non-leakage 
-probability $P_{NL}$.  However, methods for generating these burnup parameters have not been discussed.  
-This follows in the next section. 
+probability $P_{NL}$.  Methods for generating these burnup parameters are disscussed in the   
+next section. 
 
 
 
