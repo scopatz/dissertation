@@ -92,10 +92,10 @@ burnup of the fuel as well as its post-irradiation isotopic composition.  Thus, 
 target burnup, the model can mix multiple material streams to solve for the fresh fuel composition 
 that achieves this burnup.
 
-To form the basis for the burnup model algorithm, certain quantities are assumed to be known.  
+The burnup model algorithm takes several quantities as inputs.
 The neutron production and destruction rates, the burnup, and the compositional evolution of 
-every isotope initially present, namely the actinides and the coolant, are given.  Furthermore, 
-they are all specified as functions of fluence (F), the time integral of the total spatially-averaged 
+every isotope initially present, namely the actinides and the coolant, must be given.  Furthermore, 
+these parameters are all specified as functions of fluence (F), the time integral of the total spatially-averaged 
 flux in the reactor. A discussion of how to compute and compile these presupposed parameters follows 
 later in the burnup model section. 
 
@@ -103,12 +103,12 @@ later in the burnup model section.
 \subsection{Isotopic Transformation}
 \index{Isotopic Transformation@\emph{Isotopic Transformation}}
 \label{1g_sec:iso_transform}
-The first of the known burnup model parameters is nuclide-specific isotopic transformation as a 
+The first of the burnup model parameters is the nuclide-specific isotopic transformation as a 
 function of fluence, $T_{ij}(F)$ [kg\subscript{j}/kg\subscript{i}].  The subscript $i$ denotes 
 the isotope initially present in the core, where as the subscript $j$ labels those nuclides bred in.  
 The $T_{ij}(F)$ hence track the transmutation under fluence of the ith isotope into its daughters 
 given a nominal reactor spectrum embodied by one-group cross sections.  The daughters tracked 
-include both fission products (FP) as well and transuranics (TRU).
+include both fission products (FP) as well as transuranics (TRU).
 \begin{figure}[htbp]
 \caption{\nuc{Pu}{239} Transformation as a Function of Fluence for a Sample Fast Reactor}
 \label{1g_fig01}
@@ -118,14 +118,15 @@ include both fission products (FP) as well and transuranics (TRU).
 \end{figure}
 Figure \ref{1g_fig01} displays an example of this transformation data: the concentration in 
 kilograms of tracked isotopes that are present in a sodium-cooled FR core as a function of 1 kg 
-of the initial isotope (\nuc{Pu}{239} in this illustration).  In the figure, only one isotope 
-(\nuc{Pu}{239} here) is non-zero at zero fluence (ie zero time in the reactor).  For each 
-distinct reactor and general fuel type, similar data are required for all other transmuting 
-nuclides initially present.   Note that not all species that \nuc{Pu}{239} transforms into are displayed. 
+of the initial isotope (\nuc{Pu}{239}).  In the figure, only one isotope 
+is non-zero at zero fluence (ie zero time in the reactor).  For each 
+reactor and fuel form, similar data are required for all other transmuting 
+nuclides initially present.   Note that not all species that \nuc{Pu}{239} transforms into are displayed
+in Figure \ref{1g_fig01}. 
 
 Since this example is for fast reactors, a constant flux of $2\times10^{15}$ [n/cm2/s] was used 
-when generating the transformation matrices.  For PWRs a constant flux of was $4\times10^{14}$ [n/cm2/s] 
-assumed.  The units of fluence ($F$) here are [neutrons/kilobarn], abbreviated [n/kb], while the 
+when generating the transformation matrices.  For PWRs a constant flux of $4\times10^{14}$ [n/cm2/s] 
+was assumed.  The units of fluence ($F$) here are [neutrons/kilobarn], abbreviated [n/kb], while the 
 flux ($\phi$) is again [n/cm2/s], and time ($t$) is given in [days].
 \begin{equation}
 \label{fluence}
@@ -134,10 +135,10 @@ F = \int_0^t \phi dt^\prime = \phi \int_0^t dt^\prime = \phi \times t \cdot \fra
 In practice, the $T_{ij}$ data need only exist for the actinides because coolant and structural 
 material transmutation does not significantly impact core neutronic performance.
 
-From here it is simple to apply initial isotopic weight fractions and superposition to Figure \ref{1g_fig01}
-and its analogies for all isotopes initially present in the core.  This superimposed result then describes 
+From here it is simple to apply initial isotopic weight fractions and the princile of superposition 
+to Figure \ref{1g_fig01} and its analogies for all isotopes initially present in the core.  This superimposed result then describes 
 how 1 kg of fresh fuel transforms as a function of fluence within the core. Once the burnup model is applied, 
-the output fluence will also be known, as described below.  Plugging this fluence into the combined data 
+the output fluence will also be known (described below).  Plugging this fluence into the superimposed data 
 yields the isotopic composition of the fuel at removal. 
 
 
@@ -145,8 +146,8 @@ yields the isotopic composition of the fuel at removal.
 \subsection{Neutron Production \& Destruction Rates and Burnup}
 \index{Neutron Production \& Destruction Rates and Burnup@\emph{Neutron Production \& Destruction Rates and Burnup}}
 \label{1g_sec:pdbu}
-Other assumed fuel cycle parameters that are required to perform burnup calculations are the neutron 
-production and destruction rates, $p_i(F)$ and $d_i(F)$ [n/s/flux/kg\superscript{i}].  These are given 
+Other fuel cycle parameters that are required to perform burnup calculations are the neutron 
+production and destruction rates, $p_i(F)$ and $d_i(F)$ [n/s/flux/kg\subscript{i}].  These are given 
 as functions of fluence for each isotope initially present in the core, just as with the isotopic 
 transformation data.  An example of these parameters is shown in Figure \ref{1g_fig02}.
 \begin{figure}[htbp]
@@ -157,8 +158,11 @@ transformation data.  An example of these parameters is shown in Figure \ref{1g_
 \end{center}
 \end{figure}
 This figure displays the production and destruction rates for one initial kilogram of \nuc{Pu}{239} 
-in the sodium-cooled FR.  Lastly, the specific burnup for each isotope initially present, $\mbox{BU}_i(F)$ 
-[MWd/kgi], is assumed known by the burnup model.  The burnup is defined in the same way as the neutron 
+in the sodium-cooled FR.  
+
+Lastly, the specific burnup for each isotope initially present, $\mbox{BU}_i(F)$ 
+[MWd/kg\subscript{i}] must also be given to the burnup model.  The burnup is defined 
+in the same way as the neutron 
 production and destruction rates.  It is given as a function of fluence for each nuclide initially 
 present in the core.  Figure \ref{1g_fig03} displays $\mbox{BU}_i(F)$ for a few actinides that may 
 be present in the fresh fuel.
@@ -169,7 +173,7 @@ be present in the fresh fuel.
 \includegraphics[scale=0.5]{one_group_method/figs/Fig03.eps}
 \end{center}
 \end{figure}
-Now that all quantities assumed to be known have been outlined and defined, a description of the 
+Now that all input quantities have been outlined and defined, a description of the 
 algorithm that calculates the discharge burnup and the input and output fuel isotopics follows.   
 
 
