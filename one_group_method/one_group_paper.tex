@@ -9,24 +9,26 @@
 \label{1g_sec:intro}
 High fidelity coupled neutron transport and fuel burnup calculations require large execution times
 and intensive computational resources.  This constraint renders such calculations impractical when 
-it is desired to address high level fuel cycle engineering problems on a reasonable time scale.  
+attempting to address high-level fuel cycle engineering problems on a reasonable time scale.  
 The approaches taken in the past to circumvent these time constraints have typically sacrificed 
-fidelity by fully decoupling the fuel cycle simulation from physics-based reactor burnup calculations [1].  
+fidelity by fully decoupling the fuel cycle simulation from physics-based reactor burnup calculations 
+\cite{Jacobson2009}.  
 
-Fuel cycle problems revolve around finding the optimum value for a parameter in order to achieve a certain 
-global result.  For instance, initial fresh fuel compositions in a reactor may be varied to attain a specific 
+Fuel cycle problems revolve around perturbing input paramter values and measuring cooresponing component or
+systemic changes which result. For instance, initial fresh fuel compositions in a reactor may be varied 
+to attain a specific 
 burnup. Or repository impact may be of more concern so cooling time before emplacement may be varied.  Even 
-the simplest once-through fuel cycle on an isotopic level has a large number of degrees of freedom, each 
-featuring a continuum of acceptable values.  Lengthy calculation times for input and output fuel vectors 
-in the fuel cycles reactor or reactors make a real parameterization of these degrees of freedom a near 
-impossibility.  
+the simplest once-through fuel cycle, when making isotopic considerations, has a large number of degrees of 
+freedom, each 
+featuring a continuum of acceptable values.  Lengthy calculation times in going from input to output fuel vectors 
+makes a real parameterization of these degrees of freedom a near impossibility.  
 
 Rather than relying on predetermined recipes that limit study to specific cores with precise burnups, 
 there is a need for a medium fidelity mechanism that allows for quick, dynamic calculation of burnup 
 parameters.  The methodology that is described within details a tool for use in fuel cycle analyses 
-that calculates these burnup-related parameters for any arbitrary reactor or interacting fleet of reactors.
+that calculates these burnup-related parameters for any reactor or interacting fleet of reactors.
 
-The burnup-related parameters include at least the input and output isotopic vectors for the reactor 
+The burnup-related parameters include the input and output isotopic vectors for the reactor 
 as well as the burnup itself, which in turn depends on criticality, allowable fluence, safety issues 
 such as reactivity coefficient values, and other constraints.  Other parameters may be of interest 
 for specific fuel cycles and will be discussed as they arise.  The burnup tool uses pre-tabulated 
@@ -53,7 +55,7 @@ fully closed cycle.
 
 The second fuel cycle that utilizes the burnup tool developed here demonstrates how the tool may 
 be used to improve the fidelity of the fuel cycle material balance calculations associated with 
-one of the Global Nuclear Energy Partnership (GNEP) base-case proposals [2].  This case is a 
+one of the Global Nuclear Energy Partnership (GNEP) base-case proposals \cite{PC-000555}.  This case is a 
 closed fuel cycle that uses a fast burner reactor (FR) with a conversion ratio of 0.5.  
 Actinides are continually recycled in the FR while fission products (FP) are removed and 
 disposed.  The reprocessing facility that is built for fast reactor spent fuel has a separation 
@@ -73,7 +75,7 @@ neutronic characteristics on feed composition, an issue that is inherent to the 
 Moreover, models that use static recipes may fail to accurately capture the evolution of material 
 balances with each successive pass through a fast reactor.   
 
-The remainder of this paper proceeds via the following layout. The next and second section is a 
+The remainder of this discussion proceeds as follows. The next and second section is a 
 full illustration of the burnup model.  The third section is discusses the in depth the recyclable 
 uranium and fast reactor fuel cycles to which the burnup model is applied.  The fourth section 
 presents the results obtained for these cycles.  The fifth and final section is concludes this 
