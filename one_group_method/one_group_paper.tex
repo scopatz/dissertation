@@ -256,7 +256,7 @@ standard PWR fuel assembly geometry values from the OECD Burnup Credit Criticali
 were used for LWRs and nominal values for fast reactors were taken from \cite{INL/CON-07-12478}.  
 
 A walkthrough of how to calculate the core-average production and destruction rates, $P(F)$ and $D(F)$, 
-from the known set of $p_i(F)$ and $d_i(F)$ for a given collection of $m_i$ now follows.  
+from the known set of $p_i(F)$ and $d_i(F)$ for a given collection of $m_i$ follows.  
 
 
 
@@ -266,13 +266,13 @@ from the known set of $p_i(F)$ and $d_i(F)$ for a given collection of $m_i$ now 
 \label{1g_sec:p_rate}
 The $p_i(F)$ and $d_i(F)$ are superimposed to build the full-core loading.  These rates reflect the 
 evolution of the neutron balance for an initial unit mass of the species $i$ when exposed to the 
-neutron flux spectrum extant in the reactor being studied.  Therefore they are computed using cross 
+neutron flux spectrum in the reactor being studied.  Therefore they are computed using cross 
 sections prepared for a specific reactor and fresh fuel composition.
 
 However as mentioned above, flux spectra and magnitudes are spatially dependent.  The most basic geometric 
-model and the one again used is that of an infinite lattice of unit cells consisting of a central fuel region 
+model is that of an infinite lattice of unit cells consisting of a central fuel region 
 surrounded by a coolant-filled region.  These two regions have neutron production and destruction rates that 
-are distinct since the set of mi that are used in each region is different.  Once again, use the 
+are distinct since the set of $m_i$ that are used in each region is different.  Once again, use the 
 superscript ``F'' to denote a parameter relating to the fuel region and the superscript ``C'' for the coolant 
 region. 
 
@@ -287,39 +287,38 @@ and $p^C(F) = 0$ since the coolant contains no neutron producing isotopes.
 
 The advantage of this algorithm is seen through equation \ref{1g_pF_F}.  By assuming that isotopic 
 production and destruction rates are known, superposition is then used combine the individual rates 
-into full-core or region specific rates.  This allows for fast recombining of core constituents without 
+into full-core or region specific rates.  This allows for fast recombining of initial core species without 
 having to recalculate the isotopic rates from scratch.  For instance, to calculate the burnups achievable 
 from 2\% and 4\% \nuc{U}{235} enriched PWR fuel would typically require distinct computationally intensive 
-runs because of differing initial fuel compositions.  With this method all that is needed is to change the 
-$m_i$ used in equation \ref{1g_pF_F} and also perhaps to obtain case-specific burnup parameters $p_i(F)$, 
-$d_i(F)$ and $\mbox{BU}_i(F)$ by interpolating between a handful of precomputed sets.  
+runs because of differing initial fuel compositions.  With this method all, that is needed is to change the 
+$m_i$ used in equation \ref{1g_pF_F}.   For greater fidelity, one may obtain case-specific burnup parameters $p_i(F)$, 
+$d_i(F)$ and $\mbox{BU}_i(F)$ and interpolating between a handful of precomputed sets.  
 
 However, the fuel region production rate is not equivalent to the full-core production rate.  There is one 
 core effect that is not seen at the fuel cell level: leakage.  To capture this macroscopic effect a 
-non-leakage probability PNL is introduced.  The $P_{NL}$ effectively reduces the production rate of 
-neutrons for the core. The PNL used is characteristic of the reactor design and composition; it may 
+non-leakage probability $P_{NL}$ is introduced.  The $P_{NL}$ effectively reduces the production rate of 
+neutrons for the core. The $P_{NL}$ used is characteristic of the reactor design and composition; it may 
 be computed using macroscopic transport methods, but in practice it is used as a calibration parameter.  
 Finally then, the full-core production rate is given simply as 
 \begin{equation}
 \label{1g_P_F}
 P(F) = P_{NL} \cdot p^F(F)
 \end{equation}
-Note that $P(F)$ here is normalized to a unit mass of IHM.  Thus $P(F)$ has units of [n/s/kgIHM], 
-and the neutron destruction rate will be normalized in the same way.
+Note that $P(F)$ here is normalized to a unit mass of IHM.  Thus $P(F)$ has units of [n/s/kgIHM].
+The neutron destruction rate must therefore be normalized in the same way.
 
 
 
 \subsubsection{The Destruction Rate}
 \index{The Destruction Rate@\emph{The Destruction Rate}}
 \label{1g_sec:d_rate}
-The full-core destruction rate, $D(F)$, is calculated in the same manner as the fuel 
+The full-core destruction rate $D(F)$ is calculated in the same manner as the fuel 
 region production rate.  However, the other nuclides in the reactor, while not contributing 
-to fission, do contribute to neutron destruction in the core. Similarly, the burnup $\mbox{BU}_i(F)$ 
-for these nuclides will also be zero since fission does not occur. In fuel cell model used above, 
+to fission, do contribute to neutron destruction in the core.  In fuel cell model used above, 
 two other isotopes are present in a PWR core (\nuc{O}{16} and \nuc{H}{1}) and one other main species 
 in a FR core (\nuc{Na}{23}).
 
-The following example walks through the calculation of $D(F)$.  First, start with the fuel region 
+To compute $D(F)$ first start with the fuel region 
 destruction rate $d^F(F)$ in analogy to the fuel region production rate equation \ref{1g_pF_F}.  Note that the 
 units of $d^F(F)$ are [n/s/flux/kgIHM].  
 \begin{equation}
@@ -328,15 +327,15 @@ d^F(F) = \sum_i m_i^F \cdot d_i(F)
 \end{equation}
 Moreover, the coolant can strongly contribute to the destruction rate.  However, it is 
 important to take into account that for some fuel/coolant combinations the flux is not 
-spatially uniform; for instance in PWRs the thermal flux is generally higher in the coolant 
+spatially uniform.  For instance, in PWRs the thermal flux is generally higher in the coolant 
 than in the fuel. To account for this, a disadvantage factor is introduced.  For other reactor 
 types, for example FRs, the flux profile is much flatter over the unit cell and a disadvantage 
 factor is not necessary. The disadvantage factor $\zeta$ is qualitatively the average flux in 
-the moderator divided by the average flux in the fuel. The fuel suppresses the thermal flux 
-levels so $\zeta$ will always be greater than one and the flux in the moderator will always 
+the coolant divided by the average flux in the fuel. The fuel suppresses the thermal flux 
+levels so $\zeta$ will always be greater than one and the flux in the coolant will always 
 be greater than the flux in the fuel. Since it is dependent on the composition of the fuel, $\zeta$ 
 is therefore also a function of the fluence because the fuel isotopic makeup is altered as a function 
-of fluence. A fuller look at how to calculate $\zeta(F)$ can be found in [5].  Figure \ref{1g_fig04} 
+of fluence. A fuller look at how to calculate $\zeta(F)$ is found in \cite{Lamarsh2002}.  Figure \ref{1g_fig04} 
 shows how $\zeta(F)$ changes with fluence for two LEU fuels with 3.2\% and 4.3\% \nuc{U}{235}. 
 \begin{figure}[htbp]
 \caption{Disadvantage Factor as a Function of Fluence for LEU with a Three Batch Core}
@@ -352,7 +351,7 @@ d^C(F) = \zeta(F) \cdot \sum_i m_i^C \cdot d_i(F)
 \end{equation}
 Note that the volumetric weight in $m_i^C$ for the coolant region already includes both 
 empty and filled fuel pin slots.  Therefore the full-core destruction rate $D(F)$ is given by 
-the sum of the destruction rate in the fuel and the destruction rate in the coolant.  Namely, 
+the sum of the destruction rate in the fuel and the destruction rate in the coolant.  
 \begin{equation}
 \label{1g_D_F}
 D(F) = d^F(F) + d^C(F)
