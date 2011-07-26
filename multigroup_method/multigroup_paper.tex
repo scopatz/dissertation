@@ -45,6 +45,7 @@ concludes this study with observations on current limitations of the method and 
 opportunities for future work.
 
 
+
 \section{Multigroup Cross Section Generation}
 \index{Multigroup Cross Section Generatrion@\emph{Multigroup Cross Section Generation}}
 \label{mg_sec:xs_gen}
@@ -82,13 +83,12 @@ cross sections, and the validation technique used.
 
 
 
-
 \subsection{Notation}
 \index{Notation@\emph{Notation}}
 \label{mg_sec:notation}
 In the RMG, nuclides are indexed by $i$, times are indexed by $\tau$ (tau), perturbations are indexed by $p$, 
 and energy is indexed by $g$ with lower indices representing higher energy groups.
-Thus the group constants $\sigma_{itg}$ or $\sigma_{ipg}$ are themselves parameterized by nuclide, 
+Thus the group constants $\sigma_{i\tau g}$ or $\sigma_{ipg}$ are themselves parameterized by nuclide, 
 time or perturbation (see \S \ref{mg_sec:param_ic}), and incident neutron energy.  
 For reference, cross section indices may be seen in Table \ref{rmg_xs_ind}.
 
@@ -150,12 +150,12 @@ Metastable (n, 2n*)                         & $2n*$           & $\dagger$ \\
 To fully describe a reactor, several neutron reaction types are required.  The type 
 also augments the group constant notation by being a comma-separated preposition to 
 the index.  For example, the total cross section would be represented by the symbol 
-$\sigma_{t,itg}$. Table \ref{reaction_type_table} displays the reactions used in this 
+$\sigma_{t,i\tau g}$. Table \ref{reaction_type_table} displays the reactions used in this 
 study, their symbolic abbreviations, and the corresponding MT number coming from ENDF 
 specification \cite{MFMT}.  Entries whose MT number is given as a $\dagger$ indicates 
 that the generation of these tallies were performed in a special way (see below).
 Additionally, the group-to-group scattering cross section is denoted by the symbol
-$\sigma_{s,itg\to h}$ where $g$ denotes the incident neutron energy (as before) and $h$
+$\sigma_{s,i\tau g\to h}$ where $g$ denotes the incident neutron energy (as before) and $h$
 gives the exiting neutron energy.  Lastly, let $E_g$ [MeV] represent the group 
 upper energy boundaries.  Note that for $G$ groups, there will be $G+1$ boundaries.
 
@@ -750,7 +750,7 @@ implemented are discussed in \S \ref{mg_sec:nn_xs}-\ref{mg_sec:trans_calc}.
 \index{Nearest Neighbor Cross Section Calculation@\emph{Nearest Neighbor Cross Section Calculation}}
 \label{mg_sec:nn_xs}
 The process of converting from the perturbation-based cross section library $\sigma_{r_x,ipg}$ to 
-group constants as a function of burn time in the RMG $\sigma_{r_x,itg}$ involves a nearest 
+group constants as a function of burn time in the RMG $\sigma_{r_x,i\tau g}$ involves a nearest 
 neighbor calculation as well as a multi-dimensional linear interpolation.
 
 Call $a$ a perturbable reactor parameter, such as fuel density or burn time (\emph{i.e.} the 
@@ -798,20 +798,20 @@ for all reactions.
 Now that group constants have been built for the reactor specified, the next phase of the reactor 
 calculation is to estimate the neutron flux spectrum and the multiplication factor. 
 
-The flux spectrum is computed through an iterative matrix method.  Call $N_{q,it}$ [atoms/cm\superscript{3}] 
-the number density for the $i$\superscript{th} nuclide at time $t$ in the $q$\superscript{th} region 
+The flux spectrum is computed through an iterative matrix method.  Call $N_{q,i\tau}$ [atoms/cm\superscript{3}] 
+the number density for the $i$\superscript{th} nuclide at time $\tau$ in the $q$\superscript{th} region 
 (fuel, cladding, coolant).  The macroscopic cross section of a region is therefore given by equation 
 \ref{region_xs}.
 \begin{equation}
 \label{region_xs}
-\Sigma_{r_x,q,tg} = \sum_i^I N_{q,it} \cdot \sigma_{r_x,itg}
+\Sigma_{r_x,q,\tau g} = \sum_i^I N_{q,i\tau} \cdot \sigma_{r_x,i\tau g}
 \end{equation}
 Since the fuel and coolant are the only two regions with significant neutronic characteristics, 
 homogenized full-core cross sections are given by the reduction in equation \ref{region_collapse}
 \begin{equation}
 \label{region_collapse}
-\Sigma_{r_x,tg} = \frac{V_{\mbox{fuel}}\Sigma_{r_x,\mbox{fuel},tg} + \zeta_{tg}V_{\mbox{cool}}\Sigma_{r_x,\mbox{cool},tg}}
-                       {V_{\mbox{fuel}} + \zeta_{tg}V_{\mbox{cool}}}
+\Sigma_{r_x,\tau g} = \frac{V_{\mbox{fuel}}\Sigma_{r_x,\mbox{fuel},\tau g} + \zeta_{\tau g}V_{\mbox{cool}}\Sigma_{r_x,\mbox{cool},\tau g}}
+                           {V_{\mbox{fuel}} + \zeta_{\tau g}V_{\mbox{cool}}}
 \end{equation}
 Here, $\zeta_{tg}$ is the disadvantage factor per group.  This is computed via the macroscopic 
 cross sections and the lattice functions found in \cite{Lamarsh2002}.  
@@ -820,17 +820,17 @@ cross sections and the lattice functions found in \cite{Lamarsh2002}.
 The absorption or $A$-matrix is defined as 
 \begin{equation}
 \label{A_matrix}
-A_{tgh} = I_G \times \Sigma_{t,tg} - \Sigma_{s,tgh}
+A_{\tau g\to h} = I_G \times \Sigma_{t,tg} - \Sigma_{s,\tau g\to h}
 \end{equation}
 where $I_G$ is the $G \times G$ identity matrix. The fission source or $F$-matrix is defined by
 \begin{equation}
 \label{F_matrix}
-F_{tgh} = \chi_{\mbox{fuel},tg} \times \bar{\nu} \Sigma_{f,\mbox{fuel},tg}
+F_{\tau g\to h} = \chi_{\mbox{fuel},\tau g} \times \bar{\nu} \Sigma_{f,\mbox{fuel},\tau g}
 \end{equation}
 The multigroup flux spectrum is then calculated via the linear relation in equation \ref{A_eq_F}.
 \begin{equation}
 \label{A_eq_F}
-A_{tgh} \cdot \phi_{tg} = \frac{1}{k} F_{tgh} \cdot \phi_{tg}
+A_{\tau g\to h} \cdot \phi_{\tau g} = \frac{1}{k} F_{\tau g\to h} \cdot \phi_{\tau g}
 \end{equation}
 To solve this equation in an efficient iterative fashion, note that the expression 
 $\frac{1}{k}A^{-1}F$ is a matrix with constant coefficients.
@@ -839,54 +839,54 @@ index, equations \ref{next_flux} \& \ref{next_k} may be successively applied
 until convergence.
 \begin{equation}
 \label{next_flux}
-\phi_{tg}^{m+1} = \frac{1}{k^m} A_{tgh}^{-1} F_{tgh} \cdot \phi_{tg}^{m+1}
+\phi_{\tau g}^{m+1} = \frac{1}{k^m} A_{\tau g\to h}^{-1} F_{\tau g\to h} \cdot \phi_{\tau g}^{m+1}
 \end{equation}
 \begin{equation}
 \label{next_k}
-k^{m+1} = k^m  \frac{\sum_g^G \bar{\nu} \Sigma_{f,\mbox{fuel},tg} \phi_{tg}^{m+1}}
-                         {\sum_g^G \bar{\nu} \Sigma_{f,\mbox{fuel},tg} \phi_{tg}^m}
+k^{m+1} = k^m  \frac{\sum_g^G \bar{\nu} \Sigma_{f,\mbox{fuel},\tau g} \phi_{\tau g}^{m+1}}
+                         {\sum_g^G \bar{\nu} \Sigma_{f,\mbox{fuel},\tau g} \phi_{\tau g}^m}
 \end{equation}
 The convergence criteria are defined by equations \ref{converge_flux} and \ref{converge_k}
 or when $m=100$.
 \begin{equation}
 \label{converge_flux}
-\left|\frac{\phi_{tg}^{m+1} - \phi_{tg}^m}{\phi_{tg}^{m+1}}\right| = \epsilon
+\left|\frac{\phi_{\tau g}^{m+1} - \phi_{\tau g}^m}{\phi_{\tau g}^{m+1}}\right| = \epsilon
 \end{equation}
 \begin{equation}
 \label{converge_k}
-\left|\frac{k_t^{m+1} - k_t^m}{k_t^{m+1}}\right| = \epsilon
+\left|\frac{k_{\tau}^{m+1} - k_{\tau}^m}{k_{\tau}^{m+1}}\right| = \epsilon
 \end{equation}
 For this study a value of $\epsilon=0.005$ was taken and convergence was typically 
 reached within two or three iterations.
 
 The iterative algorithm described by equations \ref{next_flux} \& \ref{next_k} is 
 sufficient for finding the shape of the neutron flux spectrum.  However, $k^m$ and 
-$\phi_{tg}^m$ are more properly interpreted as unnormalized eigenvalues and eigenvectors
+$\phi_{\tau g}^m$ are more properly interpreted as unnormalized eigenvalues and eigenvectors
 of the linear equation in \ref{A_eq_F}.  Normalization is, therefore, required to 
-discern the `true' values of  $k_t$ and $\phi_{tg}$.
+discern the `true' values of  $k_{\tau}$ and $\phi_{\tau g}$.
 
 In general, there are two methods with which to normalize the total flux: by assuming constant flux
 or constant power.  The total flux here was determined by matching the specific power $p_s$ [MW/kg] 
 inout to the model.  Denote the one-group macroscopic 
-fission cross section as $\Sigma_{f,\mbox{fuel},t}$ [cm\superscript{-1}].
+fission cross section as $\Sigma_{f,\mbox{fuel},\tau}$ [cm\superscript{-1}].
 \begin{equation}
 \label{one_group_fission}
-\Sigma_{f,\mbox{fuel},t} = \frac{\sum_g^G \Sigma_{f,\mbox{fuel},tg}\phi_{tg}^m}
-                                {\sum_g^G \phi_{tg}^m}
+\Sigma_{f,\mbox{fuel},\tau} = \frac{\sum_g^G \Sigma_{f,\mbox{fuel},\tau g}\phi_{\tau g}^m}
+                                   {\sum_g^G \phi_{\tau g}^m}
 \end{equation}
 The total flux for time $t$ is thus given by equation \ref{total_flux_rescale}.
 \begin{equation}
 \label{total_flux_rescale}
-\phi_t = p_s \cdot  \rho_{\mbox{fuel}} \cdot \frac{1}
-                                                  {\mbox{3.284E-14} \cdot \Sigma_{f,\mbox{fuel},t}}
+\phi_{\tau} = p_s \cdot  \rho_{\mbox{fuel}} \cdot \frac{1}
+                                                       {\mbox{3.284E-14} \cdot \Sigma_{f,\mbox{fuel},\tau}}
 \end{equation}
 Here the value of 3.284E-14 [kJ/n] is a conversion factor assuming an average 
 energy release of 205 [MeV/fission].  This value may used to rescale the spectrum 
 as seen in equation \ref{spectrum_rescale}
 \begin{equation}
 \label{spectrum_rescale}
-\phi_{tg} = \phi_t \cdot  \frac{\phi_{tg}^m}
-                               {\sum_g^G \phi_{tg}^m}
+\phi_{\tau g} = \phi_{\tau} \cdot  \frac{\phi_{\tau g}^m}
+                                        {\sum_g^G \phi_{\tau g}^m}
 \end{equation}
 
 The multiplication factor of the RMG is handled by another side calculation which 
@@ -894,8 +894,8 @@ uses the rescaled flux spectrum.  Here, $k_t$ is computed strictly as a function
 material and neutronic properties of the core.
 \begin{equation}
 \label{k_rescale}
-k_t = P_{\mbox{NL}} \cdot \frac{\sum_g^G V_{\mbox{fuel}} \cdot \bar{\nu}\Sigma_{f,\mbox{fuel},tg} \cdot \phi_{tg}}
-                                {\sum_g^G \left(V_{\mbox{fuel}} \cdot \Sigma_{a,\mbox{fuel},tg} + \zeta_{tg} \cdot V_{\mbox{cool}} \cdot \Sigma_{a,\mbox{cool},tg}\right) \cdot  \phi_{tg}}
+k_{\tau} = P_{\mbox{NL}} \cdot \frac{\sum_g^G V_{\mbox{fuel}} \cdot \bar{\nu}\Sigma_{f,\mbox{fuel},\tau g} \cdot \phi_{\tau g}}
+                                    {\sum_g^G \left(V_{\mbox{fuel}} \cdot \Sigma_{a,\mbox{fuel},\tau g} + \zeta_{\tau g} \cdot V_{\mbox{cool}} \cdot \Sigma_{a,\mbox{cool},\tau g}\right) \cdot  \phi_{\tau g}}
 \end{equation}
 In equation \ref{k_rescale}, $P_{NL}$ represents the non-leakage probability and must be externally supplied
 to the reactor model.  Note that $P_{NL}$ is functionally an adjustment parameter
@@ -910,22 +910,22 @@ vary by reactor type.
 \index{Transmutation Calculation@\emph{Transmutation Calculation}}
 \label{mg_sec:trans_calc}
 The last portion of the coupled multigroup reactor calculation is the transmutation calculation.
-This step takes the fuel vector at time $t$ and burns it to obtain the fuel vector at time $t+1$.
+This step takes the fuel vector at time $\tau$ and burns it to obtain the fuel vector at time $\tau+1$.
 
 Origen 2.2 \cite{Croff2002} was used 
-to calculate the nuclide vector $T_{it+1}$.  Origen has the capability to take an input vector 
-$T_{it}$ and one-group cross sections and perform the transmutation calculation above.  The one-group 
+to calculate the nuclide vector $T_{i\tau+1}$.  Origen has the capability to take an input vector 
+$T_{i\tau}$ and one-group cross sections and perform the transmutation calculation above.  The one-group 
 cross sections that Origen requires are for constituent absorption reactions.  Namely, these are 
 $r_x = \gamma, 2n, 3n, f, \alpha, p, \gamma^*, 2n^*$.  Such cross sections may be found via 
 a simple group collapse as seen in equation \ref{origen_gc}.
 \begin{equation}
 \label{origen_gc}
-\sigma_{r_x,it} = \frac{1}{\phi_t} \sum_g^G \sigma_{r_x,itg} \phi_{tg}
+\sigma_{r_x,i\tau} = \frac{1}{\phi_{\tau}} \sum_g^G \sigma_{r_x,i\tau g} \phi_{\tau g}
 \end{equation}
-Filling an Origen cross section template with the $\sigma_{r_x,it}$ for all available nuclides
-provides the transmutation code a customized library for the RMG at time $t$.  Executing Origen
-with this library, for an input vector $T_{it}$, with a constant power irradiation at $p_s$ for
-$\Delta t / 86400$ days provides the output nuclide concentration vector.
+Filling an Origen cross section template with the $\sigma_{r_x,i\tau}$ for all available nuclides
+provides the transmutation code a customized library for the RMG at time $\tau$.  Executing Origen
+with this library, for an input vector $T_{i\tau}$, with a constant power irradiation at $p_s$ for
+$\Delta s$ days provides the output nuclide concentration vector.
 
 Therefore the
 time evolution of the flux spectrum and the neutronic characteristics of the fuel are accounted
@@ -1042,13 +1042,13 @@ absorption reactions in the fuel, the harder Serpent fuel spectrum is expected.
 
 As previously discussed, the RMG modifies the above spectra by a disadvantage factor when computing 
 reaction rates to account for spectral differences bewteen the fuel and coolant regions.
-Figure \ref{zeta_BOL_EOL} shows $\zeta_{tg}$ as a function of group for both BOL \& EOL.
+Figure \ref{zeta_BOL_EOL} shows $\zeta_{\tau g}$ as a function of group for both BOL \& EOL.
 Because the absorption cross section of the fuel is larger than that of the coolant, 
-$\zeta_{tg}$ will always be greater than unity.  Moreover, the disadvantage factor generally
+$\zeta_{\tau g}$ will always be greater than unity.  Moreover, the disadvantage factor generally
 increases with decreasing energy due to the `one-over-v' dependence on the cross sections. 
 
 \begin{figure}[htbp]
-\caption{Disadvantage Factor $\zeta_{tg}$ at BOL \& EOL}
+\caption{Disadvantage Factor $\zeta_{\tau g}$ at BOL \& EOL}
 \label{zeta_BOL_EOL}
 \begin{center}
 \includegraphics[scale=0.5]{multigroup_method/figs/benchmark/zeta.eps}
@@ -1237,7 +1237,7 @@ is negligible.  On the other hand, the RMG enables appropriate modeling of forms
 fuel for which R1G models would fundamentally break.
 
 Another constraint with the RMG as formulated is that a multidimensional linear interpolation is 
-used when calculating $\sigma_{r_x,itg}$ from the reactor library $\sigma_{r_x,ipg}$.  Therefore, 
+used when calculating $\sigma_{r_x,i\tau g}$ from the reactor library $\sigma_{r_x,ipg}$.  Therefore, 
 in order to capture non-linear effects in the cross sections, a refinement to the time grid may 
 be required if the number of steps is too coarse in the area of interest.  This problem may be solved
 in other ways as well.  Using a higher order polynomial fit or a spline interpolation would 
