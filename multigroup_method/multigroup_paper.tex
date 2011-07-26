@@ -60,14 +60,14 @@ constant flux irradiation, fluence is a surrogate for time.)
 
 A $G$-energy-group reactor model (RMG) seeks to re-parameterize the one-group formulation 
 in terms of energy.  While the multi-group formulation will remain on a per nuclide basis, 
-fluence based metrics are no logner sufficient.  Parameterizing based on fluence was successful in R1G because 
+fluence based metrics are no longer sufficient.  Parameterizing based on fluence was successful in R1G because 
 flux spectrum changes with respect to the buildup of new species were ignored, even as changes to the total 
 flux were accounted for to achieve constant power.   However, 
 spectral changes based on initial composition are precisely what the RMG seeks to capture.
 
 To calculate the multigroup spectrum requires multigroup microscopic neutron cross-sections.  
-Performing a spectral calculation follwoed by a group collapse generates burnup dependent 
-group fluxes and cross sections, and thus burnup dependnent reaction rates.
+Performing a spectral calculation followed by a group collapse generates burnup dependent 
+group fluxes and cross sections, and thus burnup dependent reaction rates.
 This is seen in Equation \ref{reaction_rate_calc}
 \begin{equation}
 \label{reaction_rate_calc}
@@ -245,9 +245,9 @@ Every parameter is specified with one or more values.  The outer product of all 
 values defines the set of perturbations for which the group constants are calculated.
 The total number of perturbations, $n_p$, is therefore given by the product of 
 the lengths of the parameter arrays.  Table \ref{char_param_outer_product} 
-displays the perturbations when the fuel density has two refernece values, the initial \nuc{U}{235} mass 
+displays the perturbations when the fuel density has two reference values, the initial \nuc{U}{235} mass 
 fraction also takes two values, the group constants are calculated at five burn steps, and all 
-other parameters are single valued.  The group constants are caclulated for each perturbation
+other parameters are single valued.  The group constants are calculated for each perturbation
 case (row) defined in Table \ref{char_param_outer_product}.
 
 While Table \ref{char_param_outer_product} spans a limited set of initial conditions, this formulation 
@@ -867,7 +867,7 @@ discern the `true' values of  $k_{\tau}$ and $\phi_{\tau g}$.
 
 In general, there are two methods with which to normalize the total flux: by assuming constant flux
 or constant power.  The total flux here was determined by matching the specific power $p_s$ [MW/kg] 
-inout to the model.  Denote the one-group macroscopic 
+input to the model.  Denote the one-group macroscopic 
 fission cross section as $\Sigma_{f,\mbox{fuel},\tau}$ [cm\superscript{-1}].
 \begin{equation}
 \label{one_group_fission}
@@ -1041,7 +1041,7 @@ fuel region.  Given the higher probability of thermal scattering events in the c
 absorption reactions in the fuel, the harder Serpent fuel spectrum is expected.
 
 As previously discussed, the RMG modifies the above spectra by a disadvantage factor when computing 
-reaction rates to account for spectral differences bewteen the fuel and coolant regions.
+reaction rates to account for spectral differences between the fuel and coolant regions.
 Figure \ref{zeta_BOL_EOL} shows $\zeta_{\tau g}$ as a function of group for both BOL \& EOL.
 Because the absorption cross section of the fuel is larger than that of the coolant, 
 $\zeta_{\tau g}$ will always be greater than unity.  Moreover, the disadvantage factor generally
@@ -1224,45 +1224,48 @@ remains sound.
 \label{mg_sec:conc}
 The multigroup reactor model presented in this study provides a method for dynamically
 computing group constants for any reactor state.  While the initial cross section library
-generation stage may be computationally expensive (days), the resulting RMG calculations take
-only a fraction of the time to execute (seconds).  This dramatic difference in time scales
+generation stage may be computationally expensive (days), the resulting RMG calculations 
+execute in seconds.  This dramatic difference in time scales
 makes the RMG well-suited to nuclear fuel cycle simulations.
 
 Still, the RMG is subject to certain natural constraints.  First, in moving from one- to $G$-groups,
-the RMG will necessarily always take more computational resources to execute than the one-group
+the RMG will take more computational resources to execute than the one-group
 reactor model previously presented.  However, the benefit of using additional groups is that the flux
 spectrum is allowed to change over the course of the fuel burn.  For fast reactors or standard light 
 water reactor, changes in the spectrum are minimal so the error induced by the R1G from a static spectrum
 is negligible.  On the other hand, the RMG enables appropriate modeling of forms such as inert matrix 
-fuel for which R1G models would fundamentally break.
+fuel for which R1G models could not capture dramatic shifts in local spectra induced by the compositional
+evolution of in-core material.
 
 Another constraint with the RMG as formulated is that a multidimensional linear interpolation is 
 used when calculating $\sigma_{r_x,i\tau g}$ from the reactor library $\sigma_{r_x,ipg}$.  Therefore, 
 in order to capture non-linear effects in the cross sections, a refinement to the time grid may 
 be required if the number of steps is too coarse in the area of interest.  This problem may be solved
-in other ways as well.  Using a higher order polynomial fit or a spline interpolation would 
-remove the use of a simple linear interpolation and may be more accurate.
+in other ways as well.  Foremost among these would be to project the current reactor state onto a 
+set of basis states defined from the perturbations.  A linear combination of these basis states could then
+be used to obtain more representative interpolation coefficients.  Another alternative would be to use a 
+higher order polynomial fit or a spline interpolation to remove the use of a simple linear interpolation. 
 
 Moreover, the perturbation table as formulated is static.  Simple changes to the table
 require a complete re-computation of the outer product of all parameters.  While not computationally
 intensive on its own, the perturbation table determines the state of the reactor and thus the 
-value of all of the group constants in the reactor library.  In effect, it is the keystone of the RMG. 
-Invalidating the perturbation table invalidates all other parts of the reactor library.  
+value of all of the group constants in the reactor library.  
 
 A more dynamic perturbation table, and thus more dynamic reactor library, would allow for the RMG to 
 handle an increased number of reactor cases without causing a reset of all cases previously computed.
 One method of implementation would be to allow the parameters in the perturbation table to be stochastically
 generated.  Each parameter $a_p$ would be given a range on which it would be randomly sampled to form a 
-perturbation vector.  The exception to this is that burnup times would remain static and sequential, as
-in the current formulation.  Such an implementation would enable the easy extension of the perturbation 
-table (\emph{i.e.} adding rows).  Where this ability becomes particularly important is in the case 
+perturbation vector.  Such an implementation would enable the easy extension of the perturbation 
+table in that adding rows would not require a re-computation of the outer product.  
+Where this ability becomes particularly important is in the case 
 where there are a large number of parameters, such as the strategy in which the initial concentration of 
 every actinide is varied.  Here, the option space is much more efficiently covered by a stochastic 
 perturbation table than an outer product one.
 
 Lastly, refinements and optimizations to the existing model may be made.  For example, the current 
-transmutation calculation is backed by Origen.  More sophisticated methods which minimize global error 
-could be implemented into the RMG.  However, even the matrix exponential method used here is 
+transmutation calculation is carried by Origen to avoid writing a custom Bateman equation solver.  
+More sophisticated methods which minimize global error 
+could be implemented into the RMG.  However, the matrix exponential method used here is 
 sufficient for most calculations.
 
 In conclusion, the RMG satisfies the requirements of correctly handling changes in the neutron flux 
