@@ -37,19 +37,19 @@ By closing the fuel cycle it is possible  that only one repository need be built
 future conceivable needs.
 
 Repository space is not the sole consideration for NFC designers.  Economic considerations 
-are also weighted very heavily.  The total cost of electricity from nuclear power must remain competitve 
+are also weighted very heavily.  The total cost of electricity from nuclear power must remain competitive 
 with other forms of production.  As all components in the cycle contribute to the overall cost burden, 
 different strategies \& technologies used may have disparate levelized electricity costs.
 
-However, increased costs may be deemed acceptable if there is a commeasurate value added.
+However, increased costs may be deemed acceptable if there is a commensurate value added.
 For instance, system designers often seek to improve the implicit resistance a fuel cycle 
-has to the proliferation of weapons.  Other considerations include natrual resource 
+has to the proliferation of weapons.  Other considerations include natural resource 
 utilization and sustainability, operating capacity, dynamic deployment effects,
-embodied energy costs, and political feasilbitly.  These cycle wide metrics are all computable 
+embodied energy costs, and political feasibility.  These cycle wide metrics are all computable 
 from the material balance for a given strategy. 
 
 Because NFCs allow for recycling, material balance calculations may require a higher degree of
-algorithmic sophistication than other forms of electricty production.  
+algorithmic sophistication than other forms of electricity production.  
 Recycle scenarios in which only one or two 
 elements from waste streams are re-burned may partially close the fuel cycle.  
 For instance, Mixed-oxide (MOX) strategies, such as those pursued in France, 
@@ -60,30 +60,30 @@ of material flows at each stage in terms of mass, isotopics composition, and tim
 the coupling of nuclear fuel cycle component design to the design and evaluation of the system as whole.  
 
 Perturbing a single parameter in the NFC may have global reach over the entire cycle.
-For example, in the case of the once-through fuel cycle, altering the inital fresh-fuel 
-\nuc{U}{235} enrichment given to a standard light-water reactor changes how much natrual 
+For example, in the case of the once-through fuel cycle, altering the initial fresh-fuel 
+\nuc{U}{235} enrichment given to a standard light-water reactor changes how much natural 
 uranium must be mined earlier in the cycle.  Furthermore, enrichment changes also affect 
 how much energy may be extracted from the fuel form and how the waste may be safely disposed.
 
-Due to the high degreee of interconectedness between components 
+Due to the high degree of interconnectedness between components 
 even in the simplest of cycles, the need for a dynamic 
 fuel cycle simulator and analysis framework arises.
 
 Hence strongly coupling design considerations requires that the fuel cycle be simulated repeatedly, each 
 time perturbing some aspect of the cycle.  
-Moreover, descion analysis methods often require many iterations over the design option space
+Moreover, decision analysis methods often require many iterations over the design option space
 to function in a statistically meaningful way.
 Thus it is desirable for
 NFC simulations to run quickly.  This in turn requires that component simulation is even faster. 
 By capturing only the essential physics in component models, commensurate algorithmic speed 
 boosts are obtained.
 
-Essential physics models are fuel cycle component alogrithms which remain valid in the 
+Essential physics models are fuel cycle component algorithms which remain valid in the 
 locality on which they are defined.  At a minimum, their inputs are \emph{perturbable} 
 within an acceptable range and their outputs respond accordingly.  However, such 
 models do not seek to compute extraneous parameters that are not of direct importance
-to the system at hand.  For example, the neutron current in the sheilding of a reactor
-is not pertinant to the discharge material composition though the flux in the fuel region is.
+to the system at hand.  For example, the neutron current in the shielding of a reactor
+is not pertinent to the discharge material composition though the flux in the fuel region is.
 Essential physics models seek reasonable simplifications of more detailed computational methods.
 
 The work presented herein demonstrates two essential physics models of nuclear power reactors.
@@ -95,12 +95,40 @@ space are often computationally prohibitive and error-prone.
 Alternative analysis techniques, such as those from information theory, may prove useful
 if essential physics simulators prove performant.
 
-In \S \ref{1g_paper}, a one-energy group reactor model is demonstrated.  Then \S \ref{ses_paper}
-uses this essential physics model to simulate a sampling of once-through and closed fuel cycles,
-which are perturbations of well known base-case cycles.  Next \S \ref{cts_paper} dramatically
-expands the space analyzed by removing the dependence on base-case cycles and stochastically 
-modeling the NFC as a whole.  However, the single energy group reactor restricts types of fleets
-that may be modeled with adequate fidelity.  Thus \S \ref{mg_paper} presents a multigroup reactor
+The remainder of this document proceeds as follows.  
+A fluence-based reactor model will be developed.  This method seeks to characterize nuclear power
+reactors on properties of the material initially loaded into the core.  The nuclides
+themselves will be parametrized in terms of the time-evolution of the neutron production 
+and destruction rates, their burnup, and their transmutation vectors.  Since no discretization
+is done in terms of energy or solid angle, the model will focus exclusively on computing 
+material flows.  Thus this method will have the fewest number of algorithmic steps while 
+remaining perturbable. 
+
+Once a quickly executing reactor model is demonstrated, it will be applied within a fuel
+cycle context.  This will show the validity of such a model as a tool for system designers.
+Analyzing several strategies, such as a standard once-through fuel cycle, a recyclable uranium
+cycle, and a fast burner reactor cycle, will test the dynamic properties of the fluence-based
+model.  
+
+Having proved the reactor model inside of various cycles, the NFC framework will be ready to 
+perform at scale.  Picking the fast burner cycle from above, as it has the highest degree of complexity, 
+many (stochastically chosen) realizations will be performable.  With this hitherto unseen amount of data, 
+fundamentally new types of analysis will be needed to parse through the information.  Entropy-based measures
+will be considered as a surrogate for traditional linear sensitivity studies.
+
+After considering the abilities and limitations of this multi-scale model, a refinement to 
+the original fluence-based reactor model will be proposed.  In many cores, the flux spectrum
+evolves along with the composition.  Such effects would not be captured by the previously 
+proposed reactor model.  This in turn limits the fuel cycle schema that may be analyzed.
+Therefore, a second reactor model will be proposed that accounts for internal spectral shifts.
+The integration of a this multi-energy group model into an NFC analysis framework follows
+analogously to the work above.
+
+In \S \ref{1g_paper}, the one-energy group reactor model is demonstrated and \S \ref{ses_paper}
+uses this essential physics model to simulate a sampling fuel cycles which are perturbations of 
+well known base-case cycles.  Next \S \ref{cts_paper} dramatically
+expands the space analyzed by stochastically 
+modeling the NFC as a whole. Then \S \ref{mg_paper} presents a multigroup reactor
 model which incorporates spectral changes as a function of burnup.  Finally, concluding remarks
 are presented.
 
