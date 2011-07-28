@@ -746,17 +746,17 @@ parameters are recorded, and (for the FR case) the next cycle starts.
 \label{1g_sec:fcmodel_benchmark}
 The fuel cycle model is the computational wrapper that executes much of the calculation and analysis.  The fuel 
 cycles that are studied are specified by a large set of inputs extending to the various intrinsic parameters of 
-the reactors that comprise it.  For example, the PNL of the different reactors are specific to that reactor's 
-design and neutron transport characteristics.  Other parameters include the reactor's target burnup, the 
+the reactors that comprise it.  For example, the $P_{NL}$ of different reactors are specific to the underlying
+design and neutron transport characteristics.  Other parameters include the target burnup, the 
 amount of time that SNF spends in storage cooling, and the fuel cell specifications that are used.  Values 
 for these parameters that were used in this study are presented in Table \ref{1g_table1}.  Knowing this information, the 
 fuel cycle model wraps around the reactor burnup model and invokes it when input streams need to be mixed 
 or spent fuel compositions must be found.  The fuel cycle model then sends the results of the burnup model 
 to the next fuel cycle component (as seen in Figures \ref{1g_fig08} \& \ref{1g_fig09}).  Thus the fuel cycle 
 model coupled with the burnup model developed here to produce unique, physics-based values for the material 
-balances and isotopics for one or many recycle passes.  This represents an advantage over recipe based 
-simulations which are not able to alter any of the input parameters at will whereas here all of them are 
-allowed to change. 
+balances for one or many recycle passes.  This represents an advantage over recipe based 
+simulations which are not able to alter any of the input parameters at will.  In this model all of them are 
+allowed to change simeltaneously. 
 
 \begin{table}[htbp]
 \begin{center}
