@@ -629,7 +629,7 @@ enriched uranium (LEU).
 LWR SNF contains a higher enrichment of \nuc{U}{235} than NU; therefore RU blending may be economically 
 advantageous over the once-through fuel cycle given that reprocessing is already taking place to recover 
 TRU. The weight percent of \nuc{U}{235} in the legacy spent fuel of the United States is between 0.8-0.9\% [6].  
-However, LWR SNF also has had \nuc{U}{236} bred into it in non-negligible amounts of around 0.3-0.5\%.  
+However, LWR SNF also has non-negligible amounts of \nuc{U}{236} bred into it, between 0.3-0.5\%.  
 As \nuc{U}{236} is a neutron poison, the advantage of the extra \nuc{U}{235} in RU is not immediately 
 quantitatively obvious.  Therefore, to increase the fissile content of an RU fuel form, it is blended 
 with LEU. This LEU blend stock serves to dilute the \nuc{U}{236} and thereby decrease its negative 
@@ -646,10 +646,10 @@ Thus the fissile content of the RU-bearing fuel is controlled by the enrichment 
 other hand, the LEU enrichment can be held constant and the mass that is mixed with the RU may be 
 varied.  In this second case the LEU enrichment may be up to 19.9\%.  
 
-It should be noted that higher LEU enrichment levels mean that more RU can be blended for a given 
-mass of LEU.  But generally, near-future enrichment plants will not be licensed to produce LEU at 
+It should be noted that higher LEU enrichment levels mean that more RU can be blended in.
+Near-future enrichment plants will not be licensed to produce LEU at 
 greater than 8\% \nuc{U}{235} enrichment. However, the LEU/HEU limit is 19.9\% so it is conceivable 
-that if RU recycle came to fruition civilian enrichment facilities would be allowed to produce 19.9\% 
+that if RU recycle came to fruition civilian enrichment facilities would be allowed to manufacture 19.9\% 
 enriched product.  
 
 
@@ -657,7 +657,7 @@ enriched product.
 \subsection{Fast Burner Reactor Fuel Cycle}
 \index{Fast Burner Reactor Fuel Cycle@\emph{Fast Burner Reactor Fuel Cycle}}
 \label{1g_sec:FRFC}
-A fuel cycle that features full, sustained TRU recycle is the second one being examined.  The basis 
+A fuel cycle which features sustained TRU recycle is the second one  examined.  The basis 
 of the model used here is a fast reactor (FR) with LWR SNF top up.  The purpose of this fuel cycle 
 option is to reduce the global actinide inventory per unit energy as compared to the standard 
 once-through fuel cycle, with the specific aim of reducing transuranics.   To this end, the FR 
@@ -671,7 +671,7 @@ point design used in GNEP scoping studies [2].
 \includegraphics[scale=1.0]{one_group_method/figs/Fig09.eps}
 \end{center}
 \end{figure}
-Figure \ref{1g_fig09} depicts the FR fuel cycle that is being studied.  Once again, mass flows 
+Figure \ref{1g_fig09} depicts the FR fuel cycle that is studied.  Once again, mass flows 
 represented in red are the four mass streams that form the FR fresh fuel blend stock.  The mass 
 of each stream relative to the others may be varied by the burnup model to achieve a target burnup.  
 The mass flows in black are the flows that are considered static to the burnup model and are not changed, 
@@ -693,28 +693,27 @@ in the reprocessing facilities and then combined to form the input stream to the
 products from these streams are also removed from the fuel at this point and sent off to a disposal facility.  
 
 It should be noted here that the reprocessing facility that deals with the light water reactor spent nuclear 
-fuel (LWR SNF) and the reprocessing facility that handles the fast reactor spent nuclear fuel (FR SNF) are not 
-the same.  They are displayed as one box in fuel cycle Figure 8 for ease of reading, although it is likely that 
-these two fuel cycle components would be collocated.
+fuel (LWR SNF) and the reprocessing facility that handles the fast reactor spent nuclear fuel (FR SNF) 
+would likely be collocated.
 
 Lastly, Figure \ref{1g_fig09} represents a closed fuel cycle which implies that actinides may be recycled 
-indefinitely or until they are eventually burned as long as there exist enough FRs to handle the mass 
-throughput.  Of course this is not strictly true since no separation process is perfect.  Some small 
+indefinitely or until they are eventually burned.  The constraint is that there exist enough FRs to handle 
+the mass throughput.  As no separation process is perfect, some small 
 actinide mass will be mixed with the fission products after reprocessing and be sent to the repository.  
 It is known that the reprocessing separation efficiencies ultimately affect repository performance [11].  
 However, because the isotopics change with every pass of TRU through the fuel cycle, there arises a mass 
-stream feedback between the reactor burnup, the cooling time, and the reprocessing efficiencies that the 
-burnup model handles with ease. 
+stream feedback between the reactor burnup, the cooling time, and the reprocessing efficiencies. 
+The burnup model handles such feedback effects with ease. 
 
 The implication of a closed or partially closed fuel cycle is that mass may be sent through many recycles.  
 For a specific target FR burnup and other fuel cycle parameters, the relative masses and the isotopics of 
 the four mass streams (LWR-U, LWR-TRU, FR-U, FR-TRU) may change significantly as a function of pass number.  
 However, one would eventually expect that equilibrium values for the mass balances and isotopics will be 
-reached and indeed they typically are.  For some species, though, so-called equilibrium is not reached 
-even after many recycles; indeed, in practice many decades, even centuries, would elapse before an 
-`equilibrium' scenario result would reflect reality.  Therefore, equilibrium fuel cycle simulation 
-results must be interpreted with caution.  When equilibrium is achieved and how it is defined is discussed 
-further in a later section.  
+reached.  Typically, such an equilibrium state is indeed obtained.  For some species though, equilibrium is not reached 
+even after many recycles. In practice many decades, even centuries, would elapse before an 
+equilibrium scenario result would reflect reality.  Therefore, equilibrium fuel cycle simulation 
+results must be interpreted with caution.  When equilibrium is achieved and how it is defined is discussed
+in a later section.  
 
 
 
@@ -727,17 +726,16 @@ fuel cycle Figures \ref{1g_fig08} \& \ref{1g_fig09}.  The cooling model computes
 to the Bateman equations [12]: 
 \begin{equation}
 \label{1g_bateman}
-N_i(t_C) = \left( N_i\gamma_1\lambda_1\gamma_2\lambda_2\cdots\gamma_{i-1}\lambda_{i-1} \right)
+m_i(t_C) = \left( m_1\gamma_1\lambda_1\gamma_2\lambda_2\cdots\gamma_{i-1}\lambda_{i-1} \right)
             \sum_{j=h}^i \left[\frac{e^{-\lambda_j t_C}}{\prod_{k=h, k\ne j}^i} (\lambda_k - \lambda_j) \right] \, \mbox{ for } 1 < i
 \end{equation}
-Here, $t_C$ [years] is the time that the SNF spends in storage cooling,  $N_i(t_C)$ [kg] is the 
-mass of the $i$\superscript{th} daughter of the parent species with mass $N_1$ [kg]. The $\lambda$s [1/years] 
+Here, $t_C$ [years] is the time that the SNF spends in storage cooling,  $m_i(t_C)$ [kg] is the 
+mass of the $i$\superscript{th} daughter of the parent species with mass $m_1$ [kg]. The $\lambda$s [1/years] 
 are the decay constants for the respective nuclides in the decay chain.   The $\gamma$s are the branch ratios 
 that correspond to each decay constant for this decay chain.  
 
 Finally, these results are sent to the reprocessing model (where separation efficiencies are applied), output 
-parameters are recorded, graphs are generated, and (for the FR case) the next cycle starts.   It is therefore 
-time for the dynamic fuel cycle results to be computed using the burnup model.
+parameters are recorded, and (for the FR case) the next cycle starts.   
 
 
 
