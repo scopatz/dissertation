@@ -810,9 +810,9 @@ each reactor system to be analyzed.
 \hline
 \textbf{Label} & $P_{NL}$ & $\rho^C$ & \textbf{f used?} & \textbf{\%\nuc{U}{235} at BUd=33} & \textbf{\%\nuc{U}{235} at BUd=51} \\ 
 \hline
-VISION [1]     &          &          &                  & 3.2                               & 4.3 \\
-ORNL [9]       &          &          &                  &                                   & 4.26 @ BUd=50 \\
-OECD [3]       &          &          &                  & 3.6 @ BUd=40                      & \\
+VISION \cite{Jacobson2009} &          &          &                  & 3.2                               & 4.3 \\
+ORNL \cite{Michaels1993}       &          &          &                  &                                   & 4.26 @ BUd=50 \\
+OECD \cite{Takano1994}    &          &          &                  & 3.6 @ BUd=40                      & \\
 A              & 0.98     & 1.00     & yes              & 3.38                              & 4.85 \\
 B              & 0.98     & 1.00     & no               & 3.29                              & 4.89 \\
 C              & 1.00     & 1.00     & yes              & 3.22                              & 4.54 \\
@@ -828,7 +828,7 @@ I              & 0.98     & 0.73     & no               & 3.05                  
 \end{table}
 
 A series of benchmarks were carried out to verify both the fresh fuel composition and fuel burnup calculations.  
-The OECD Burnup Credit Criticality Benchmark [3] series is a composite of many international studies using 
+The OECD Burnup Credit Criticality Benchmark \cite{Takano1994} series is a composite of many international studies using 
 independent, high fidelity neutronics codes acting on the same specifications.  The study selected for 
 benchmarking, Phase I for PWRs, uses an initial fuel vector (3.6 w/o \nuc{U}{235} with trace amounts of 
 \nuc{U}{234} and \nuc{U}{236}) that is burned to 40 MWd/kg.  The study lists output isotopics at various 
@@ -845,11 +845,11 @@ a 40 MWd/kgIHM burn with no cooling.  The table also shows the standard deviatio
 for the 21 participants in the Phase-IB study.  
 \begin{table}[htbp]
 \begin{center}
-\caption{Isotopic Benchmark of the OECD Burnup Credit [3] to This Method}
+\caption{Isotopic Benchmark of the OECD Burnup Credit \cite{Takano1994} to This Method}
 \label{1g_table3}
 \begin{tabular}{|l|c|c|c|c|}
 \hline
-\textbf{Isotope} & \textbf{OECD[3] [w/o]} & \textbf{$\sigma$ of OECD [\%]} & \textbf{Results [w/o]} & \textbf{\% Difference} \\
+\textbf{Isotope} & \textbf{OECD \cite{Takano1994} [w/o]} & \textbf{$\sigma$ of OECD [\%]} & \textbf{Results [w/o]} & \textbf{\% Difference} \\
 \hline
 \nuc{U}{234}     & 0.0178  & 9.0  & 0.0184  & +3.6  \\
 \nuc{U}{235}     & 0.8001  & 8.1  & 0.7079  & -11.5 \\
@@ -880,14 +880,14 @@ is smaller because the concentration of the much more abundant parent, \nuc{Pu}{
 
 It is also necessary to benchmark the feed stream blending and discharge burnup calculations.  This is best 
 achieved in the context of a comparitive fuel cycle material balance.  Material balances of this type 
-generated using the high-fidelity material balance simulation package COSI [14] are available in a number 
-of OECD systems studies [15].  A benchmark of the equilibrium material balance for a PWR/FR fleet 
+generated using the high-fidelity material balance simulation package COSI \cite{Boucher2006} are 
+available in a number 
+of OECD systems studies \cite{OECD2002}.  A benchmark of the equilibrium material balance for a PWR/FR fleet 
 has been carried out.  In this benchmark, the methodology described here is used to find the enrichment 
 of PWR fuel to achieve a specified burnup as well as to derive the equilibrium FR fresh and spent fuel 
 compositions through the cycle iteration procedure described in this paper.  Specific results benchmarked 
 included the PWR/FR thermal power split, the isotopic composition of the burned fuel, and the fuel cycle 
-cost derived from the material balance flowsheets.  A detailed description of the benchmark results may be 
-found in section 3.2 of the companion paper [13] appearing in this issue.  Since the benchmark fuel cycle 
+cost derived from the material balance flowsheets.  Since the benchmark fuel cycle 
 scenario served as a point of departure for the system study presented in that paper, and also because 
 items outside the scope of this paper such as cost calculations were being benchmarked, it was felt 
 more appropriate that this benchmark be presented there.
@@ -1000,7 +1000,7 @@ $k$ & 8.2 \\
 In equation \ref{1g_BUd_fit}, fit parameters and the dependent variables are based on various 
 physical meanings.  First, the $2B/(B+1)$ dependence of BUd comes directly from the results of a 
 linear reactivity model with the core burnup being an independent variable when calculating the 
-reactivity.  The proof of this dependence and its physicality are given in [10]. Moreover, the 
+reactivity.  The proof of this dependence and its physicality are given in \cite{Driscoll1990}. Moreover, the 
 $j(x-h)m$ term comes from the fact that the major trend for burnup follows a power law. One 
 expects that the burnup would, as a function of fluence, asymptotically approach the maximum 
 possible burnup (~935 MWd/kgIHM).  However, the power law, with $m<1$, seen here is a good 
@@ -1162,7 +1162,7 @@ isotope \nuc{Cm}{244} still has not converged by the above definition, even afte
 
 Now that the entirety of the fuel cycle over multiple passes has been computed via the prior 
 algorithm, a number of cycle specific parameters may be calculated.  The following example data 
-was all produced using LWR SNF isotopic vectors from VISION [1]. Moreover the following table 
+was all produced using LWR SNF isotopic vectors from VISION \cite{Jacobson2009}. Moreover the following table 
 displays initial parameters input into the computational burnup and fuel cycle models.
 
 \begin{figure}[htbp]
