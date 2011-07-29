@@ -34,31 +34,41 @@ For instance, system designers often seek to improve the implicit resistance a f
 has to the proliferation of weapons.  Other considerations include natural resource 
 utilization and sustainability, operating capacity, dynamic deployment effects,
 embodied energy costs, and political feasibility.  The material balance for a given strategy
-affects all of these cycle wide metrics.
+affects, and often drives, these cycle wide metrics.
 
 Because NFCs allow for recycling, material balance calculations may require a higher degree of
-algorithmic sophistication than other forms of electricity production.  
+algorithmic sophistication than is the case for other forms of electricity production.  
 Recycle scenarios in which only one or two 
 elements from waste streams are re-burned may partially close the fuel cycle.  
 Mixed-oxide (MOX) strategies, such as those pursued in France, 
 generally recycle only the plutonium stream.  
-To compare alternative recycle strategies it therefore important to simulate the nuclear fuel cycle.  
+To compare alternative recycle strategies such as once-through and MOX on the basis of the metrics 
+described above, it is important to simulate the nuclear fuel cycle.  
 This involves the characterization 
-of material flows at each stage in terms of mass, isotopics composition, and time.  This enables 
+of material flows at each stage in terms of mass, isotopic composition, and time.  This enables 
 the coupling of nuclear fuel cycle component design to the design and evaluation of the system as whole.  
 
 Moreover, perturbing a single parameter in the NFC may have global reach over the entire cycle.
 For example, in the case of the once-through fuel cycle, altering the initial fresh-fuel 
 \nuc{U}{235} enrichment given to a standard light-water reactor changes how much natural 
-uranium must be mined earlier in the cycle.  On the back end, enrichment changes also affect 
+uranium must be mined earlier in the cycle.  On the back end, changes to the design of 
+a reprocessing facility also affect 
 how much energy may be extracted from the fuel form and how the waste may be safely disposed.
 
 Due to the high degree of interconnectedness between components 
 even in the simplest cycles, the need for a dynamic 
-fuel cycle simulator and analysis framework arises.
+fuel cycle simulator and analysis framework arises.  
 
-Hence strongly coupling design considerations requires that the fuel cycle be simulated repeatedly, each 
-time perturbing some aspect of the cycle.  
+Many fuel cycles are stuided via pre-defined base case scenarios in which all input parameters
+take on set values.  Linear one-dimensional sensitivity studies are sometimes performed that evaluate
+the effects of changing a single parameter in a local region, while keeping all other inputs
+constant.  However, perturbing a single value may push these models into a regime in which 
+they are no longer valid.  Morever, important design regions of the parameter space may be 
+completely overlooked by base case analysis.  With their fast execution times, essential 
+physics models allow for these design regimes to be explored and analyzed.
+
+Strongly coupling component-cycle design considerations requires that the fuel cycle be 
+simulated repeatedly, each time perturbing some aspect of the cycle.  
 Moreover, decision analysis methods often require many iterations over the design option space
 to function in a statistically meaningful way.
 Thus it is desirable for
@@ -74,19 +84,14 @@ to the system at hand.  For example, the flux in the fuel region is of a reactor
 pertinent to the discharge material composition.  However, the neutron current in the 
 shielding is not. 
 Essential physics models seek reasonable simplifications of more detailed computational 
-simmulations.
+simulations that presever physics-driven responses to changes in important system 
+inputs.
 
-The work presented herein will demonstrate two essential physics models of nuclear power reactors.
-This allows the simulation of the nuclear fuel cycle on a previously unobtainable level.
-For statistical fidelity, over 100000 distinct fuel cycle realizations should be analyzed.  
-However, traditional analysis techniques may no longer be sufficient due to the quantity of fuel cycle data now 
-available. For example, attempting to perform parametric fits of a large multi-dimensional 
-space are often computationally prohibitive and error-prone.
-Alternative analysis techniques, such as those from information theory, may prove useful
-if essential physics simulators are performant.
+The work presented herein will develop essential physics models of nuclear power reactors
+and incorporate them into a NFC simulation framework.
 
-The remainder of this document proceeds as follows.  
-A fluence-based reactor model will be developed.  This method seeks to characterize nuclear power
+The first is a fluence-based parameterized reactor burnup model.  
+This method seeks to characterize nuclear power
 reactors on properties of the material initially loaded into the core.  The nuclides
 themselves will be parametrized in terms of the time-evolution of the neutron production 
 and destruction rates, their burnup, and their transmutation vectors.  Since no discretization
@@ -94,7 +99,7 @@ will be done in energy or solid angle, the model will focus exclusively on compu
 material flows.  Thus this method will have the fewest number of algorithmic steps while 
 remaining perturbable. 
 
-Once a quickly executing reactor model is demonstrated, it will be applied within a fuel
+Once this reactor model is demonstrated, it will be applied within a fuel
 cycle context.  This will show the validity of such a model as a tool for system designers.
 Analyzing several strategies, such as a standard once-through fuel cycle, a recyclable uranium
 cycle, and a fast burner reactor cycle, will test the dynamic properties of the fluence-based
@@ -114,7 +119,7 @@ The integration of a this multi-energy group model which
 accounts for internal spectral shifts into an NFC analysis framework follows
 analogously to the work above.
 
-In \S \ref{1g_paper}, the one-energy group reactor model is demonstrated and \S \ref{ses_paper}
+In \S \ref{1g_paper}, the one-energy group reactor model is demonstrated; \S \ref{ses_paper}
 uses this essential physics model to simulate a sampling fuel cycles which are perturbations of 
 well known base-case cycles.  Next, \S \ref{cts_paper} dramatically
 expands the space analyzed by stochastically 
