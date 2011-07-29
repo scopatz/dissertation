@@ -7,7 +7,7 @@
 \section{Introduction}
 \index{Introduction@\emph{Introduction}}
 \label{1g_sec:intro}
-High fidelity coupled neutron transport and fuel burnup calculations require large execution times
+Coupled neutron transport and fuel burnup calculations require large execution times
 and intensive computational resources.  This constraint renders such calculations impractical when 
 attempting to address high-level fuel cycle engineering problems on a reasonable time scale.  
 The approaches taken in the past to circumvent these time constraints have typically sacrificed 
@@ -24,7 +24,7 @@ featuring a continuum of acceptable values.  Lengthy calculation times in going 
 makes a parameterization of these degrees of freedom a near impossibility.  
 
 Rather than relying on predetermined recipes that limit study to specific cores with precise burnups, 
-there is a need for a medium fidelity mechanism that allows for quick, dynamic calculation of burnup 
+there is a need for an essential physics mechanism that allows for quick, dynamic calculation of burnup 
 parameters.  The methodology that is described within details a tool for use in fuel cycle analyses 
 that calculates these burnup-related parameters for any reactor or interacting fleet of reactors.
 
@@ -33,8 +33,8 @@ as well as the burnup itself, which in turn depends on criticality, allowable fl
 such as reactivity coefficient values, and other constraints.  Other parameters may be of interest 
 for specific fuel cycles and will be discussed as they arise.  The burnup tool uses pre-tabulated 
 values for the neutron production and destruction rates and the burnup as a function of initial 
-isotope present and fluence.  The algorithm then eliminates fluence, giving the burnup only in 
-terms of the initial isotopics of the reactor.  The initial isotopics of the core may be iterated 
+isotope present and fluence.  The algorithm then determines the burnup-fluence relationship, giving the 
+burnup only in terms of the initial isotopics of the reactor.  The initial isotopics of the core may be iterated 
 using this process until the composition that reaches some target burnup is found.  This process 
 assumes that there are multiple actinide streams to be blended, and the blending ratios are unknowns 
 to be computed.  The output isotopics of the reactor are dependent on initial core composition and 
@@ -56,8 +56,8 @@ fully closed cycle.
 
 The second fuel cycle that utilizes the burnup tool developed here demonstrates how the tool may 
 be used to improve the fidelity of the fuel cycle material balance calculations associated with 
-one of the Global Nuclear Energy Partnership (GNEP) base-case proposals \cite{PC-000555}.  This case is a 
-closed fuel cycle that uses a fast burner reactor (FR) with a conversion ratio of 0.5.  
+one of the Advanced Fuel Cycle Research and Development (AFC R\&D) base-case proposals \cite{PC-000555}.  
+This case is a closed fuel cycle that uses a fast burner reactor (FR) with a conversion ratio of 0.5.  
 Actinides are continually recycled in the FR while fission products (FP) are removed and 
 disposed.  The reprocessing facility that is built for fast reactor spent fuel has a separation 
 efficiency of 0.99 for all actinides.  This is a meaningful option to explore since fast reactors 
@@ -1324,18 +1324,17 @@ modeled as it will extend over many decades.
 \section{Conclusions}
 \index{Conclusions@\emph{Conclusions}}
 \label{1g_sec:conclusions}
-The burnup model that was developed in the previous methodology has shown itself to be a 
-versatile tool.  Given the proper the input libraries, it may be applied to nearly any 
-reactor in any fuel cycle system that one wishes to study.  Moreover, the computational 
+Given the proper the input libraries, this burnup model may be applied to nearly any 
+reactor in any fuel cycle system.  Moreover, the computational 
 requirements are very light, with complete 
 non-equilibrium fuel cycle material balances being generated in a few seconds.   
 
 The quickness of these burnup calculations allows for larger fuel cycle problems to be 
-more accurately studied.  Many of the parameters set as static in this model, in fact, 
-serve as future knobs to turn.  Iterating these may yield optimum values for various fuel 
+more accurately studied.  Many of the variables set as static in this model may 
+serve as future parameterizations.  Iterating these may yield optimum values for various fuel 
 cycle metrics.  For example, the separation efficiencies and partitioning strategies may be 
 changed in the FR case.  This would have a significant impact on the FR-TRU stream if 
-different reprocessing efficiencies were not the same for all elements.  This would not 
+reprocessing efficiencies were not the same for all elements.  This would not 
 only alter the fresh fuel that the FR received, but repository performance and proliferation 
 resistance would be affected as well.  
 
@@ -1367,13 +1366,7 @@ Both evince strongly burnup dependent per-atom reaction rates for some species,
 Combined with the many degrees of freedom in the initial compositions of these fuels 
 (\emph{i.e.} plutonium and minor actinide isotopics in the fresh fuels) that may be of interest 
 in fuel cycle studies, an impractically large number of pre-computed cross section libraries 
-would need to be prepared for use with the method presented here.  Hence, future work will extend 
+would need to be prepared for use with the method presented here.  Hence, \S \ref{mg_paper} will extend 
 this algorithm to a multi-group format so as to be able to treat these spectral effects at a higher 
 level of fidelity using a reasonable number of pre-computed libraries.
 
-In summary, there remain a great number of reactors and fuel cycles to study.  Importantly, the 
-burnup model developed here will serve as a baseline component when parameterizing these fuel 
-revolve around implementing the model to solve these problems.  The burnup model will 
-be extended in such a way as utilize a more general parameter set.  This will allow for one 
-set of multigroup fast reactor libraries to be used irrespective of conversion ratio, or 
-indeed for the parameter sets to become more generally perturbable.
