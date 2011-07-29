@@ -14,11 +14,7 @@ prospect of much larger inventories in the future, poses a considerable
 obstacle to the development of nuclear energy.  While the technical
 difficulty of storing and disposing of the SNF is considerable, it is
 public trepidation that may have the strongest effect upon the future of
-the industry.  A 2007 survey by the Massachusetts Institute of
-Technology showed that while public support for the expansion of nuclear
-power is on the rise, only 28\% of the American public agreed with the
-statement, ``nuclear waste can be stored safely for long periods
-of time.'' \cite{}
+the industry.  
 
 Partitioning and transmutation will significantly reduce the nuclear
 waste disposal burden by recycling actinides from SNF in advanced
@@ -28,7 +24,7 @@ is one of the key components shared by all advanced fuel cycle concepts.
  Notably, the efficiency of the reprocessing facilities will have a
 great impact on the performance of any advanced fuel cycle. 
 
-This paper investigates how the properties of the reprocessing facility,
+This study investigates how the properties of the reprocessing facility,
 in particular its separation efficiency for each of the partitioned
 elements, affect the system characteristics of the fuel cycle. The
 element-specific separation efficiency is defined as the mass ratio of
@@ -44,7 +40,7 @@ deployed in an equilibrium that results in zero net TRU production.
 Actinide management schemes ranging from recycle of plutonium to full
 TRU recycle are considered.
 
-The objective of the work is to use physics based models at all stages
+The objective of the work is to use essential physics models at multiple scales
 to establish a technical basis for comparing the trade off between
 repository footprint, system economics and proliferation resistance and
 the performance characteristics of the reprocessing facilities.  This
@@ -53,7 +49,7 @@ identified at the earliest stages of reprocessing facility design.  The
 models incorporate feedback between the separation efficiencies, reactor
 performance and fuel cycle mass balances.  In that sense, this effort
 expands upon work conducted under the auspices of the Global Nuclear
-Energy Partnership () that addresses the correlation between heat load
+Energy Partnership \cite{repmodel} that addresses the correlation between heat load
 and repository capacity.  Although there is not yet enough information
 in the literature to correlate reprocessing costs to separation
 efficiency, once such data is developed it can be coupled to this
@@ -61,9 +57,9 @@ framework, and the resulting tool would be an ideal platform for
 selecting optimal separation efficiencies.
 
 Section \ref{ses_sec:sys_modeling} of the paper describes the simulation and metric evaluation
-methods used to study the selected fuel cycle scenarios.  In \S 3
+methods used to study the selected fuel cycle scenarios.  In \S \ref{ses_sec:benchmarking}
 the simulation approach is benchmarked against published results. 
-Finally, Section 4 presents and discusses the results of the analyses.
+Finally, \S \ref{ses_sec:conclusions} presents and discusses the results of the analyses.
 
 
 \section{System Modeling Approach}
@@ -73,7 +69,7 @@ The closed fuel cycle selected for study includes uranium-fueled LWRs
 as well as FR burners.  This fuel cycle was examined in great detail in 
 \S \ref{1g_sec:FRFC}; a brief overview follows here.  After uranium oxide 
 (UOX) fuel is discharged from the LWRs, it undergoes aqueous reprocessing 
-to retrieve transuranics and fission products (FP).  A variety of UREX+-inspired
+to retrieve transuranics and fission products (FP).  A variety of UREX+ inspired
 partitioning schemes are considered for this step; some or all of the
 retrieved TRU elements are recycled into the FR TRU burner.  In
 particular, Pu, Pu/Np, and full TRU recycle are studied.  FR spent fuel
@@ -84,10 +80,7 @@ reprocessed from SNF at an interim site before they decay to very low
 level radioactive materials. The other FP will be sent to repository
 with the residual TRU from reprocessing facility as high level waste
 (HLW).  This scenario is equivalent to a case being considered by the
-Global Nuclear Energy Partnership (GNEP) systems analysis group (). 
-Quantitative depiction of the scenario may be found in Sections 3 and 4;
-the remainder of this section discusses methodologies developed to
-assess material balances and performance metrics.
+Global Nuclear Energy Partnership (GNEP) systems analysis group \cite{Piet2004}. 
 
 
 \subsection{Overview of Methods}
@@ -97,7 +90,7 @@ The fuel cycle is specified by reactor material balances and material
 flows between reactors and fuel cycle facilities.  Parameters related to
 the LWR, for instance burnup and spent fuel isotopic composition, are
 the reference values adopted in a recent OECD Nuclear Energy Agency
-systems study ().  The fuel cycle material balance strategy for FR
+systems study \cite{NEA-5990}.  The fuel cycle material balance strategy for FR
 multirecycle is identical to that used in both the OECD and the GNEP
 studies: to reach the designated burnup level, the first core of the FR
 is loaded with only the retrieved TRU and U from LWR SNF. The second and
@@ -118,8 +111,7 @@ in the fuel management scheme, while the burnup module calculates the
 isotopic composition of the burned fuel for a specified fresh fuel
 composition and discharge burnup target.  The decay model applies the
 Bateman equations to a mass of fuel and returns the isotopic output
-after a given decay time.  The fast reactor simulation tool is described
-further in Section 2.2.
+after a given decay time.  
 
 After the fuel isotopic compositions at each pass are determined, the
 inventory at each stage can be calculated and the system performance of
@@ -127,8 +119,7 @@ the fuel cycle evaluated.  System performance is characterized through
 fuel cycle cost, proliferation resistance and repository impact. 
 Repository impact is represented by both repository capacity limited by
 thermal constraints and the projected dose rate from a fully loaded
-repository.  The methodologies for assessing system performance are
-presented in Section 2.3.
+repository.  
 
 
 
@@ -148,7 +139,7 @@ fabrication, FR fuel fabrication, SNF storage, SNF reprocessing, LLW
 HLW (High Level Waste) disposal. The unit costs for these components are
 collected from published literature as described in Section 3. 
 
-Procedures for calculating the FCC are well-known (\emph{e.g.} ()) and the
+Procedures for calculating the FCC were presented in \S \ref{1g_paper} and the
 method used in this study will be summarized only briefly.  The FCC\subscript{t}
 total charge is the sum of charges for all components of the fuel cycle
 cost.  It is calculated using the formulation
@@ -161,7 +152,7 @@ is the service ammount. The FCC [\$/MWh] may then be obtained by dividing the
 FCC\subscript{t} total charge [\$/yr] by the annual electricity production [MWh/yr].
 
 A fuzzy logic based barrier method is used to evaluate the
-proliferation resistance of the fuel cycle system \cite{}. The proliferation
+proliferation resistance of the fuel cycle system \cite{Li2009}. The proliferation
 resistance is defined here as the ability of the system to intrinsically
 protect itself against proliferators seeking to construct a nuclear
 explosive device. The method relies upon a group of system-dependent,
@@ -233,21 +224,21 @@ inventory of materials handled in the stage.
 The repository impact is quantified through capacity limitations imposed
 by thermal constraints as well as the dose release from a fully loaded
 repository. The Yucca Mountain repository with footprint 1165.8 acres is
-used for this study \cite{}.	
+used for this study \cite{Wiegland2006}.	
 
 The repository capacity is constrained by the thermal limits placed on
 the rocks to ensure the successful performance of the engineering
 barrier system employed in the repository. The thermal restraints
 considered in this study are $200^\circ$ C on drift walls and
-$96^\circ$ C midway between drifts (). The repository capacity is
+$96^\circ$ C midway between drifts. The repository capacity is
 estimated using both a simplified repository thermal analysis SRTA tool
 and mass based prediction model.  The SRTA is a code based on analytical
-solution of models of the Yucca Mountain repository (). The code
+solution of models of the Yucca Mountain repository \cite{Li2010a}. The code
 calculates the temperature of give location in the repository and this
 function is used to determine the repository capacity. 
 
 To evaluate the dose release rate for a loaded repository, a simplified
-performance assessment tool is used in this study (). This model has
+performance assessment tool is used in this study. This model has
 four main parts: source term model, unsaturated zone transport model,
 saturated zone transport model, and dose analysis model. The transport
 in the saturated zone was modeled based on a 2D analytic solution to the
@@ -263,7 +254,7 @@ contaminated groundwater from a well in a single location.
 \label{ses_sec:benchmarking}
 The OECD Nuclear Energy Agency has gathered participants from several
 countries to perform system evaluation of several advanced fuel cycle
-designs (  NOTEREF Ref202815094 MERGEFORMAT  4 ). In this study, the advanced fuel cycles are compared
+designs \cite{NEA-5990}. In this study, the advanced fuel cycles are compared
 with the reference once-through thermal reactor system.
 
 
