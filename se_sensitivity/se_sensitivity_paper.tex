@@ -24,10 +24,12 @@ is one of the key components shared by all advanced fuel cycle concepts.
  Notably, the efficiency of the reprocessing facilities will have a
 great impact on the performance of any advanced fuel cycle. 
 
-This study investigates how the properties of the reprocessing facility,
-in particular its separation efficiency for each of the partitioned
-elements, affect the system characteristics of the fuel cycle. The
-element-specific separation efficiency is defined as the mass ratio of
+This chapter investigates a fuel cycle parameterization which is only possible 
+because of the essential physics reactor and NFC models presented in \S \ref{1g_paper}.
+how the properties of the reprocessing facility,
+In particular, the system characteristics of the fuel cycle to its separation efficiency 
+for each of the partitioned elements are studied. 
+The element-specific separation efficiency is defined as the mass ratio of
 the recovered product to its input mass to the reprocessing facility. 
 The fuel cycle system performance is characterized via three metrics:
 fuel cycle cost, proliferation resistance and repository impact.  To
@@ -49,13 +51,13 @@ identified at the earliest stages of reprocessing facility design
 and may be sensitive to other fuel cycle inputs.  These
 models incorporate feedback between the separation efficiencies, reactor
 performance and fuel cycle mass balances.  Therefore, this effort
-expands upon work conducted under the auspices of the Global Nuclear
-Energy Partnership \cite{repmodel} that addresses the correlation between heat load
-and repository capacity.  
+expands upon work that addresses the correlation between heat load
+and repository capacity \cite{repmodel}.  
 
-Section \ref{ses_sec:sys_modeling} of the paper describes the simulation and metric evaluation
+Section \ref{ses_sec:sys_modeling} describes the simulation and metric evaluation
 methods used to study the selected fuel cycle scenarios.  In \S \ref{ses_sec:benchmarking}
-the simulation approach is benchmarked against published results. 
+the simulation approach is benchmarked against published results. \S \ref{ses_sec:case_study}
+then applies this model to multiple proposed strategies.
 Finally, \S \ref{ses_sec:conclusions} presents and discusses the results of the analyses.
 
 
@@ -1079,7 +1081,7 @@ system input variables such as separation efficiencies are propagated
 through all the submodels: for instance, the material balance tool
 recalculates the transient and equilibrium FR cycle material balances.
 
-This new framework was applied to a GNEP-inspired LWR and transmuter 
+This new framework was applied to an AFC R\&D-inspired LWR and transmuter 
 FR fuel cycle architechture.  Partitioning strategies were varied with 
 Np, Am/Cm, and Cs/Sr alternatively being partitioned for recycle or storage 
 or sent to the repository with the low heat emitting fission products.
@@ -1108,5 +1110,7 @@ efficiency improves, system design sensitivities will emerge as an important
 area of study.  This self-contained, physics-based tool executes and
 incorporates needed feedbacks between components.  As such, a stochastic
 system wrapper that invokes this new fuel cycle tool could efficiently
-search the parameter space.
+search the parameter space.  This wrapper would be capable of generating 
+a large number of histories such that an information-theortic approach 
+would also be needed to extract the relevant analyses from the data set.
 
