@@ -455,7 +455,7 @@ fuel, similar pitch and fuel pin radius) were used instead.
 \label{ses_table7}
 \begin{tabular}{|l|c|c|c|}
 \hline
-\textbf{Parameter} & \textbf{OECD 2006} & \textbf{Results} & \textbf{\% Differnec} \\
+\textbf{Parameter} & \textbf{OECD 2006} & \textbf{Results} & \textbf{\% Difference} \\
 \hline
 UOX FF [kg/TWh\subscript{e}]    & 2050  & 2050    & 0.0 \\
 NU [kg/TWh\subscript{e}]        & 20723 & 20722.8 & 0.0 \\
@@ -465,6 +465,7 @@ Np in HLW [kg/TWh\subscript{e}] & 1.9   & 2.0     & 4.29 \\
 Am in HLW [kg/TWh\subscript{e}] & 1.6   & 1.7     & 8.55 \\
 Cm in HLW [kg/TWh\subscript{e}] & 0.28  & 0.24    & -15.17 \\
 FP in HLW [kg/TWh\subscript{e}] & 130   & 127     & -2.61 \\
+\hline
 FCC [\$/MWh]                    & 4.7   & 4.27    & -9.15 \\
 \hline
 \end{tabular}
@@ -478,10 +479,11 @@ FCC [\$/MWh]                    & 4.7   & 4.27    & -9.15 \\
 \label{ses_table7_3a}
 \begin{tabular}{|l|c|c|c|}
 \hline
-\textbf{Parameter} & \textbf{OECD 2006} & \textbf{Results} & \textbf{\% Differnec} \\
+\textbf{Parameter} & \textbf{OECD 2006} & \textbf{Results} & \textbf{\% Difference} \\
 \hline
 Electricity Share: PWR [\%]     & 63.2   & 66.1    & 4.59 \\
 Electricity Share: FR [\% ]     & 36.8   & 33.9    & -7.88 \\
+\hline
 UOX FF [kg/TWh\subscript{e}]    & 1513   & 1583    & 4.63 \\
 NU [kg/TWh\subscript{e}]        & 12991  & 13593.2 & 4.64 \\
 UOX FF [kg/TWh\subscript{e}]    & 289    & 266.2   & -7.88 \\
@@ -491,6 +493,7 @@ Np in HLW [kg/TWh\subscript{e}] & 0.0027 & 0.0030  & 10.52 \\
 Am in HLW [kg/TWh\subscript{e}] & 0.006  & 0.0073  & 21.62 \\
 Cm in HLW [kg/TWh\subscript{e}] & 0.0026 & 0.0020  & -21.8 \\
 FP in HLW [kg/TWh\subscript{e}] & 117.5  & 119.3   & 1.59 \\
+\hline
 FCC [\$/MWh]                    & 5.5    & 5.13    & -6.73 \\
 \hline
 \end{tabular}
@@ -753,10 +756,6 @@ Figure \ref{ses_fig09} shows that the TRU
 CR equilibrates at around 0.495.  Note that the CR is not an input to the model, but rather a
 derived quantity that is a consequence of the reactor configuration and
 discharge burnup.  The FR power fraction is likewise a derived quantity.
-Figure \ref{ses_fig10} shows the mass of LWR UF needed to fabricate 1 kg of FR fresh fuel
-as a function of cycle number for the 99.9\% separation
-efficiency case.  For cycle numbers greater than 2, actinides from LWR fuel
-serve as top-up only.  
 
 \begin{figure}[htbp]
 \caption{TRU Conversion Ratio}
@@ -766,13 +765,6 @@ serve as top-up only.
 \end{center}
 \end{figure}
 
-\begin{figure}[htbp]
-\caption{LWR UF Required to Top Up FR Fresh Fuel [kg LWR UF/kg FR IHM]}
-\label{ses_fig10}
-\begin{center}
-\includegraphics[scale=0.5]{se_sensitivity/figs/LWRsnfNeeded.eps}
-\end{center}
-\end{figure}
 
 
 \subsubsection{Fuel Cycle Cost}
