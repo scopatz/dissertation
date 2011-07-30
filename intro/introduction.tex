@@ -10,8 +10,8 @@ into electricity while the excess process heat is released to the environment.
 After the fuel is burned, it is removed from the reactor and stored as a solid on the surface.
 This is known as a the once-through fuel cycle.
 
-This work focuses on methods for assesing the open fuel cycle and a variety of other 
-strategies have been subjected to intensive levels of technology development and 
+This work focuses on methods for assesing an open fuel cycle and a variety of other 
+strategies which have been subjected to intensive levels of technology development and 
 deployment (TD\&D).
 
 There are many possible fuel cycle strategies that may be implemented in a nuclear power economy.
@@ -60,16 +60,18 @@ even in the simplest cycles, the need for a dynamic
 fuel cycle simulator and analysis framework arises.  
 
 Many fuel cycles are stuided via pre-defined base case scenarios in which all input parameters
-take on set values.  Linear one-dimensional sensitivity studies are sometimes performed that evaluate
-the effects of changing a single parameter in a local region, while keeping all other inputs
-constant.  However, perturbing a single value may push these models into a regime in which 
+take on static values.  Linear one-dimensional sensitivity studies may be performed which evaluate
+the effects of slightly changing a single parameter, while keeping all other inputs
+constant.  However, perturbing a single value may push these base case models into a regime in which 
 they are no longer valid.  Morever, important design regions of the parameter space may be 
-completely overlooked by base case analysis.  With their fast execution times, essential 
-physics models allow for these design regimes to be explored and analyzed.
+overlooked by base case analysis due to the inability to perturb several parameters
+simeltaneously.  
+Exploring and analyzing design regimes that are far from pre-set scenarios is necessary for 
+correctly designing components based on parameters with global fuel cycle reach.
 
-Strongly coupling component-cycle design considerations requires that the fuel cycle be 
+Strongly coupling component \& cycle design considerations requires that the fuel cycle be 
 simulated repeatedly, each time perturbing some aspect of the cycle.  
-Moreover, decision analysis methods often require many iterations over the design option space
+Decision analysis methods often require many iterations over the design option space
 to function in a statistically meaningful way.
 Thus it is desirable for
 NFC simulations to run quickly.  This in turn requires that component simulation is even faster. 
@@ -78,13 +80,13 @@ boosts are obtained.
 
 Essential physics models are fuel cycle component algorithms which remain physically valid in the 
 locality on which they are defined.  At a minimum, their inputs are \emph{perturbable} 
-within an acceptable range and their outputs respond accordingly.  However, such 
+within an acceptable range and their outputs respond accordingly.  Such 
 models do not seek to compute extraneous parameters that are not of direct importance
-to the system at hand.  For example, the flux in the fuel region is of a reactor is 
+to the system at hand.  For example, the flux in the fuel regionof a reactor is 
 pertinent to the discharge material composition.  However, the neutron current in the 
 shielding is not. 
 Essential physics models seek reasonable simplifications of more detailed computational 
-simulations that presever physics-driven responses to changes in important system 
+simulations that preserve physics-driven responses to changes in important system 
 inputs.
 
 The work presented herein will develop essential physics models of nuclear power reactors
@@ -115,8 +117,8 @@ After considering the abilities and limitations of this multi-scale model, a ref
 the original fluence-based reactor model will be proposed.  In many cores, the flux spectrum
 evolves along with the composition.  Such effects would not be captured by the previously 
 proposed reactor model.  This in turn limits the fuel cycle schema that may be analyzed.
-The integration of a this multi-energy group model which 
-accounts for internal spectral shifts into an NFC analysis framework follows
+The integration of this multi-energy group model (which 
+accounts for internal spectral shifts) into an NFC analysis framework follows
 analogously to the work above.
 
 In \S \ref{1g_paper}, the one-energy group reactor model is demonstrated; \S \ref{ses_paper}
