@@ -90,7 +90,7 @@ flows between reactors and fuel cycle facilities.  Parameters related to
 the LWR, for instance burnup and spent fuel isotopic composition, are
 the reference values adopted in a recent OECD Nuclear Energy Agency (NEA)
 systems study \cite{NEA-5990}.  The fuel cycle material balance strategy for FR
-multirecycle is identical to that used in both the OECD and the AFC R\&D
+multi-recycle is identical to that used in both the OECD and the AFC R\&D
 studies: to reach the designated burnup level, the first core of the FR
 is loaded with only DU and retrieved TRU from LWR UF. The second and
 subsequent cycle are loaded with TRU and U from FR UF plus retrieved
@@ -146,7 +146,7 @@ cost.  It is calculated using the formulation
 \mbox{FCC}_t = C_u \cdot s
 \end{equation}
 where $C_u$ [\$/KgHM or \$/SWU] is the unit charge and $s$ [kgHM/yr or SWU/yr] 
-is the service ammount. The FCC [\$/MWh] may then be obtained by dividing the 
+is the service amount. The FCC [\$/MWh] may then be obtained by dividing the 
 FCC\subscript{t} total charge [\$/yr] by the annual electricity production [MWh/yr].
 
 A fuzzy logic based barrier method is used to evaluate the
@@ -181,7 +181,7 @@ inventory of materials handled in the stage.
 8  & DoseRate        & mrem/hr/kg  & Dose rate at 1-meter distance\\
 9  & Concentration   & \# of CM/kg & Concentration of fissile material\\
 10 & Detectability   &             & Detectability levels (Five levels)\\
-11 & FacilityModTime & weeks       & Modification timeto produce 1 CM in a year\\
+11 & FacilityModTime & weeks       & Modification time to produce 1 CM in a year\\
 12 & AccessFrequency & days/yr     & Frequency of possible access to facility\\
 13 & AvailableMass   & \# of CM    & Available fissile materials\\
 14 & MeasureUncert   & \# of CM/yr & Uncertainty of measurement\\
@@ -305,7 +305,7 @@ the LWR to 50 MWd/kgIHM.
 \label{ses_table4}
 \begin{tabular}{|l|c|c|}
 \hline
-\textbf{Nuclide} & \textbf{PWR Fresh} & \textbf{PWR UF} \\
+\textbf{Nuclide} & \textbf{LWR Fresh} & \textbf{LWR UF} \\
 \hline
 \nuc{Am}{241}    &                    & 4.74E-04\\
 \nuc{Am}{243}    &                    & 2.13E-04\\
@@ -345,8 +345,8 @@ Table \ref{ses_table5}.
 \begin{center}
 \caption{Scheme 3a System and Reactor Design:
 0.71\% NU is enriched to 4.20\% for UOX with tail enrichment
-0.25\%; capacity of the PWR is 1450 MWe. The load factor is 90\%. The
-burnup is 50 MWd/kgIHM for PWR and the UF is decayed for 6 years
+0.25\%; capacity of the LWR is 1450 MWe. The load factor is 90\%. The
+burnup is 50 MWd/kgIHM for LWR and the UF is decayed for 6 years
 before it is reprocessed. The retrieved TRU is mixed with DU for
 FR fresh fuel. The FR burnup is 140 MWd/kgIHM and the FR UF
 is reprocessed after 3 years of decay. The capacity of the FR is 600 MWe and the
@@ -436,7 +436,7 @@ Scheme 1a does not benchmark the dynamic FR simulation tool; however it
 does provide the TRU isotopics that serve as the starting point for the
 calculations carried out by the tool.  The procedure described in
 \S \ref{1g_paper} was used to perform cycle iterations until the FR fuel
-composition converged to equilibrium.  Good agreement on the PWR to FR
+composition converged to equilibrium.  Good agreement on the LWR to FR
 power split, charge and discharge inventories and the FCC for scheme 3a
 can be observed.  Whether the difference observed for scheme 3a can be
 ascribed to the FR simulation tool, or to inconsistencies in the LWR
@@ -481,7 +481,7 @@ FCC [\$/MWh]                    & 4.7   & 4.27    & -9.15 \\
 \hline
 \textbf{Parameter} & \textbf{OECD 2006} & \textbf{Results} & \textbf{\% Difference} \\
 \hline
-Electricity Share: PWR [\%]     & 63.2   & 66.1    & 4.59 \\
+Electricity Share: LWR [\%]     & 63.2   & 66.1    & 4.59 \\
 Electricity Share: FR [\% ]     & 36.8   & 33.9    & -7.88 \\
 \hline
 UOX FF [kg/TWh\subscript{e}]    & 1513   & 1583    & 4.63 \\
@@ -704,7 +704,7 @@ However, the mass fraction of each of the four
 streams converges quickly toward an apparent equilibrium after only a
 few cycles.  The criterion described in Table \ref{ses_table11} leads to equilibrium
 being reached at cycle 10.  Therefore Figure \ref{ses_fig06} is very similar to the
-cooresponding Figure \ref{1g_fig18} in \S \ref{1g_paper}.
+corresponding Figure \ref{1g_fig18} in \S \ref{1g_paper}.
 
 \begin{figure}[htbp]
 \caption{Input Streams to FR Fuel Fabrication [kg/kgIHM]}
@@ -1066,13 +1066,13 @@ through all the submodels.  For instance, the material balance tool
 recalculates the transient and equilibrium FR cycle material balances.
 
 This new framework was applied to an AFC R\&D-inspired LWR and transmuter 
-FR fuel cycle architechture.  Partitioning strategies were varied with 
+FR fuel cycle architecture.  Partitioning strategies were varied with 
 Np, Am/Cm, and Cs/Sr alternatively being partitioned for recycle or storage 
 or sent to the repository with the low heat emitting fission products.
-Elemental separation efficinecies were also varied with values of
+Elemental separation efficiencies were also varied with values of
 90\% to 99.99\% being considered.  It was shown that the efficiency 
-of repository space usage, meausred by the energy produced by the fuel from
-which the HLW placed in the repository was derived, can be imporved by 
+of repository space usage, measured by the energy produced by the fuel from
+which the HLW placed in the repository was derived, can be improved by 
 more than two orders of magnitude if 99.99\% separation efficiency is 
 achieved and Cs/Sr are partitioned.  If Cs/Sr are not partitioned, it was not seen
 to be worthwhile to exceed 99.9\% efficiency.  On the other hand,
@@ -1095,6 +1095,6 @@ area of study.  This self-contained, physics-based tool executes and
 incorporates needed feedbacks between components.  As such, a stochastic
 system wrapper that invokes this new fuel cycle tool could efficiently
 search the parameter space.  This wrapper would be capable of generating 
-a large number of histories such that an information-theortic approach 
+a large number of histories such that an information-theoretic approach 
 would also be needed to extract the relevant analyses from the data set.
 
