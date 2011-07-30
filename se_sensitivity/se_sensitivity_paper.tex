@@ -8,16 +8,16 @@
 \index{Introduction@\emph{Introduction}}
 \label{ses_sec:intro}
 As of 2008, the United States power reactor fleet had generated over
-50,000 tonnes initial heavy metal (tIHM) of spent nuclear fuel (SNF). 
-The quandary posed by this growing stockpile of SNF, combined with the
+50,000 tonnes initial heavy metal (tIHM) of used fuel (UF). 
+The quandary posed by this growing stockpile of UF, combined with the
 prospect of much larger inventories in the future, poses a considerable
 obstacle to the development of nuclear energy.  While the technical
-difficulty of storing and disposing of the SNF is considerable, it is
+difficulty of storing and disposing of the UF is considerable, it is
 public trepidation that may have the strongest effect upon the future of
 the industry.  
 
 Partitioning and transmutation will significantly reduce the nuclear
-waste disposal burden by recycling actinides from SNF in advanced
+waste disposal burden by recycling actinides from UF in advanced
 reactors and separating the most hazardous fission products for storage
 in dedicated facilities or target irradiation.  Reprocessing technology
 is one of the key components shared by all advanced fuel cycle concepts.
@@ -75,7 +75,7 @@ particular, Pu, Pu/Np, and full TRU recycle are studied.  FR spent fuel
 is itself reprocessed and actinide species identified above are
 recycled. Reprocessed burned uranium and depleted uranium are treated as
 low level waste. Cs and Sr, as two strong heat contributors, are
-reprocessed from SNF at an interim site before they decay to very low
+reprocessed from UF at an interim site before they decay to very low
 level radioactive materials. The other FP will be sent to repository
 with the residual TRU from reprocessing facility as high level waste
 (HLW).  This scenario is equivalent to a case being considered by the
@@ -92,9 +92,9 @@ the reference values adopted in a recent OECD Nuclear Energy Agency
 systems study \cite{NEA-5990}.  The fuel cycle material balance strategy for FR
 multirecycle is identical to that used in both the OECD and the GNEP
 studies: to reach the designated burnup level, the first core of the FR
-is loaded with only the retrieved TRU and U from LWR SNF. The second and
-subsequent cycle are loaded with TRU and U from FR SNF plus retrieved
-top-up TRU from LWR SNF and depleted uranium (DU).  Cycles are continued
+is loaded with only the retrieved TRU and U from LWR UF. The second and
+subsequent cycle are loaded with TRU and U from FR UF plus retrieved
+top-up TRU from LWR UF and depleted uranium (DU).  Cycles are continued
 until the equilibrium state is reached.  It is important to dynamically
 simulate the FR fuel composition at each pass, since critical system
 variables such as partitioning strategy, cooling time and separation
@@ -133,7 +133,7 @@ limits, dose release and toxicity.
 The fuel cycle cost is the cost to buy the fresh fuel to be loaded into
 the reactors and the cost for recycling and waste disposal.  Its
 components include U ore purchase, U conversion, U enrichment, LWR fuel
-fabrication, FR fuel fabrication, SNF storage, SNF reprocessing, LLW
+fabrication, FR fuel fabrication, UF storage, UF reprocessing, LLW
 (Low Level Waste) disposal, LLW-GTCC (Greater than Class C) disposal,
 HLW (High Level Waste) disposal. 
 
@@ -209,7 +209,7 @@ inventory of materials handled in the stage.
 6  & LWR                  & UOX\\
 7  & FR                   & IMF\\
 8  & Reprocessing         & TRU\\
-9  & SNF Storage          & SNF (UOX \& IMF)\\
+9  & UF Storage           & UF (UOX \& IMF)\\
 10 & LLW Disposal         & BU DU\\
 11 & LLW GTCC Disposal    & CS/SR\\
 12 & HLW/TRU Disposal     & FP, Residual TRU\\
@@ -263,8 +263,8 @@ The system simulation tool developed in this study is applied to the two
 scenarios defined in the NEA study for benchmark. The scenarios are
 notated ``scheme 1a'' and ``scheme 3a''.  Scheme 1a is a once-through
 PWR system.  Enriched uranium (4.9\% U235) is burned in a PWR to 60
-GWd/MTHM.  The SNF is sent to a storage facility for 7 year decay.
-Another 50 years cooling is assumed before the SNF is disposed in the
+GWd/MTHM.  The UF is sent to a storage facility for 7 year decay.
+Another 50 years cooling is assumed before the UF is disposed in the
 repository.  The key fuel cycle parameters describing this case are
 presented in Table \ref{ses_table3}.
 
@@ -284,7 +284,7 @@ Natural U  & 20723\\
 Depleted U & 18673\\
 UOX        & 2050\\
 \hline
-\multicolumn{2}{|c|}{Element in SNF after 7 yrs decay}\\
+\multicolumn{2}{|c|}{Element in UF after 7 yrs decay}\\
 \hline
 U  & 1890\\
 Pu & 26\\
@@ -300,7 +300,7 @@ FP & 130\\
 
 
 Scheme 3a is a closed fuel cycle design using a fast reactor burner to
-consume recycled TRU from the PWR SNF.  The precise isotopic composition
+consume recycled TRU from the PWR UF.  The precise isotopic composition
 of this fuel was not provided in the study; therefore ORIGEN was used to
 calculate it.  The results, which act as an input to the FR burnup
 calculations, are given in Table \ref{ses_table4}.  For this calculation, as stipulated
@@ -313,7 +313,7 @@ the PWR to 50 MWd/kgIHM (megawatt-days per kilogram initial heavy metal).
 \label{ses_table4}
 \begin{tabular}{|l|c|c|}
 \hline
-\textbf{Nuclide} & \textbf{PWR Fresh} & \textbf{PWR SNF} \\
+\textbf{Nuclide} & \textbf{PWR Fresh} & \textbf{PWR UF} \\
 \hline
 \nuc{Am}{241}    &                    & 4.74E-04\\
 \nuc{Am}{243}    &                    & 2.13E-04\\
@@ -385,10 +385,10 @@ FP & 117.5\\
 
 
 The unit costs used are summarized in Table 6. The disposal costs for
-HLW and SNF are calculated from the information available in an earlier
+HLW and UF are calculated from the information available in an earlier
 OECD NEA report ().  This report recommends 210,000 \$/m3 and 400,000
-\$/m3 for the disposal charges of SNF and HLW respectively. After
-conditioning, 1 tIHM SNF will result in 2 m\superscript{3} waste, i.e., 420 \$/kgIHM.
+\$/m3 for the disposal charges of UF and HLW respectively. After
+conditioning, 1 tIHM UF will result in 2 m\superscript{3} waste, i.e., 420 \$/kgIHM.
 For vitrified HLW, a canister of volume 0.18 m3 is taken to contain 47.6
 kg fission products and 3.55 kg actinides.  Therefore the disposal
 charge for HLW becomes 1408 \$/kgIHM.
@@ -408,7 +408,7 @@ LWR Fuel Fabrication            & \$/kgHM       & 250.0 \\
 FR Fuel Fabrication             & \$/kgHM       & 2600.0 \\
 Reprocessing for LWR Spent Fuel & \$/kgHM       & 800.0 \\
 Reprocessing for FR Spent Fuel  & \$/kgHM       & 2500.0 \\
-SNF Storage                     & \$/kgHM       & 90.0 \\
+UF Storage                      & \$/kgHM       & 90.0 \\
 LLW Near Surface Disposal       & \$/kgHM       & 3.60 \\
 LLW GTCC Disposal               & \$/kgHM       & 381.0 \\
 SF Disposal                     & \$/kgHM       & 420.0 \\
@@ -541,7 +541,7 @@ in scheme 3a of the OECD study.
 \index{Definition of the Cases@\emph{Definition of the Cases}}
 \label{ses_sec:case_def}
 The present-day industrial scale reprocessing technology, PUREX,
-retrieves U and Pu from SNF. Fuel cycle strategies developed under the
+retrieves U and Pu from UF. Fuel cycle strategies developed under the
 DOE Advanced Fuel Cycle Initiative called for extraction of Np with Pu
 to ease proliferation concerns, material accountability and tracking
 procedures for the product stream. It has been convincingly established
@@ -647,8 +647,8 @@ in Section 2.3 have been calculated.  Table \ref{ses_table_10} lists the fractio
 equilibrium reactor fleet electrical power generated by the FRs.  Note
 that for neutronic purposes Stra3 is the same as Stra4 in which Cs and
 Sr are partitioned.  For each strategy, higher separation efficiency
-leads to higher FR share because more TRU are reused from LWR SNF and FR
-SNF.  
+leads to higher FR share because more TRU are reused from LWR UF and FR
+UF.  
 
 \begin{table}[htbp]
 \begin{center}
@@ -703,7 +703,7 @@ Post-discharge Cooling Time           & 3 years\\
 
 Figure \ref{ses_fig06} shows the mass fraction [kg/kgIHM] of each of the four
 input streams, DU, LWR-TRU, FR-U and FR-TRU, to FR fuel fabrication as a
-function of FR recycle number.  Self recycle of FR SNF begins on pass 2.
+function of FR recycle number.  Self recycle of FR UF begins on pass 2.
 
 It can be seen that the top-up drawn from the recycled LWR fuel is
 predominantly LWR-TRU, but the gross mass fraction of each of the four
@@ -756,12 +756,12 @@ output stream.
 The transuranic conversion ratio (TRU CR) is defined as presented in the previous study.  
 Here, TRU\subscript{in} is set as the sum of the LWR-TRU and FR-TRU stream mass
 fractions as plotted in Figure \ref{ses_fig07}.  TRU\subscript{out} is the TRU 
-mass fraction in the FR SNF stream.  Figure \ref{ses_fig09} shows that the TRU 
+mass fraction in the FR UF stream.  Figure \ref{ses_fig09} shows that the TRU 
 CR equilibrates at around 0.495.  Note that the CR is not an input to the model, but rather a
 derived quantity that is a consequence of the reactor configuration and
 discharge burnup.  The FR power fraction is likewise a derived quantity.
 Figure \ref{ses_fig10} shows as a function of cycle number for the 99.9\% separation
-efficiency case, the mass of LWR SNF needed to fabricate 1 kg of FR
+efficiency case, the mass of LWR UF needed to fabricate 1 kg of FR
 fresh fuel.  For cycle numbers greater than 2, actinides from LWR fuel
 serve as top-up only.  
 
@@ -774,7 +774,7 @@ serve as top-up only.
 \end{figure}
 
 \begin{figure}[htbp]
-\caption{LWR SNF Required to Top Up FR Fresh Fuel [kg LWR SNF/kg FR IHM]}
+\caption{LWR UF Required to Top Up FR Fresh Fuel [kg LWR UF/kg FR IHM]}
 \label{ses_fig10}
 \begin{center}
 \includegraphics[scale=0.5]{se_sensitivity/figs/LWRsnfNeeded.eps}
@@ -841,7 +841,7 @@ U Enrichment                 & 1.11            & 1.11            & 1.11         
 LWR Fuel Fabrication         & 0.44            & 0.44            & 0.44            & 0.44 \\
 FR Fuel Fabrication          & 0.53            & 0.53            & 0.53            & 0.53 \\
 Reprocessing                 & 1.93            & 1.93            & 1.93            & 1.93 \\
-SNF Storage                  & 0.17            & 0.17            & 0.17            & 0.17 \\
+UF Storage                   & 0.17            & 0.17            & 0.17            & 0.17 \\
 LLW Disposal                 & 0.05            & 0.05            & 0.05            & 0.05 \\
 LLW GTCC Disposal            & 0.00            & 0.00            & 0.00            & $<0.01$ \\
 HLW/TRU Disposal             & 0.44            & 0.44            & 0.43            & 0.42 \\
@@ -865,7 +865,7 @@ U Enrichment                 & 1.00            & 1.00            & 1.00         
 LWR Fuel Fabrication         & 0.40            & 0.40            & 0.40            & 0.40 \\
 FR Fuel Fabrication          & 0.67            & 0.67            & 0.67            & 0.67 \\
 Reprocessing                 & 1.93            & 1.93            & 1.93            & 1.93 \\
-SNF Storage                  & 0.16            & 0.16            & 0.16            & 0.16 \\
+UF Storage                   & 0.16            & 0.16            & 0.16            & 0.16 \\
 LLW Disposal                 & 0.05            & 0.05            & 0.05            & 0.05 \\
 LLW GTCC Disposal            & 0.00            & 0.00            & 0.00            & $<0.01$ \\
 HLW/TRU Disposal             & 0.21            & 0.21            & 0.19            & 0.18 \\
@@ -889,7 +889,7 @@ U Enrichment                 & 0.99            & 0.99            & 0.99         
 LWR Fuel Fabrication         & 0.40            & 0.40            & 0.40            & 0.40 \\
 FR Fuel Fabrication          & 0.69            & 0.69            & 0.69            & 0.69 \\
 Reprocessing                 & 1.93            & 1.93            & 1.93            & 1.93 \\
-SNF Storage                  & 0.16            & 0.16            & 0.16            & 0.16 \\
+UF Storage                   & 0.16            & 0.16            & 0.16            & 0.16 \\
 LLW Disposal                 & 0.05            & 0.05            & 0.05            & 0.05 \\
 LLW GTCC Disposal            & 0.00            & 0.00            & 0.00            & $<0.01$ \\
 HLW/TRU Disposal             & 0.19            & 0.18            & 0.17            & 0.16 \\
@@ -913,7 +913,7 @@ U Enrichment                 & 0.99            & 0.99            & 0.99         
 LWR Fuel Fabrication         & 0.40            & 0.40            & 0.40            & 0.40 \\
 FR Fuel Fabrication          & 0.69            & 0.69            & 0.69            & 0.69 \\
 Reprocessing                 & 1.93            & 1.93            & 1.93            & 1.93 \\
-SNF Storage                  & 0.16            & 0.16            & 0.16            & 0.16 \\
+UF Storage                   & 0.16            & 0.16            & 0.16            & 0.16 \\
 LLW Disposal                 & 0.05            & 0.05            & 0.05            & 0.05 \\
 LLW GTCC Disposal            & 0.00            & 0.00            & 0.00            & $<0.01$ \\
 HLW/TRU Disposal             & 0.19            & 0.18            & 0.17            & 0.16 \\
@@ -938,7 +938,7 @@ the system.  As an example, when applied to the OECD benchmark case
 value of 0.2416.
 
 The differences between cases arise from the reprocessing and HLW
-disposal stages.  SNF storage and HLW disposal handle similar materials
+disposal stages.  UF storage and HLW disposal handle similar materials
 and both represent pure storage sites.  Hence they share same level of
 proliferation resistance. The large difference in inventory at HLW
 disposal site as the partitioning strategy is varied generates
