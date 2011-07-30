@@ -693,14 +693,15 @@ Post-discharge Cooling Time           & 3 years\\
 
 
 Figure \ref{ses_fig06} shows the mass fraction [kg/kgIHM] of each of the four
-input streams, DU, LWR-TRU, FR-U and FR-TRU, to FR fuel fabrication as a
+input streams (DU, LWR-TRU, FR-U, and FR-TRU) to FR fuel fabrication as a
 function of FR recycle number.  Self recycle of FR UF begins on pass 2.
 
-It can be seen that the top-up drawn from the recycled LWR fuel is
-predominantly LWR-TRU, but the gross mass fraction of each of the four
+It can be seen that the top-up is drawn predominantly from the recycled LWR-TRU.
+However, the mass fraction of each of the four
 streams converges quickly toward an apparent equilibrium after only a
 few cycles.  The criterion described in Table \ref{ses_table11} leads to equilibrium
-being reached at cycle 10.
+being reached at cycle 10.  Therefore Figure \ref{ses_fig06} is very similar to the
+cooresponding Figure \ref{1g_fig18} in \S \ref{1g_paper}.
 
 \begin{figure}[htbp]
 \caption{Input Streams to FR Fuel Fabrication [kg/kgIHM]}
@@ -718,9 +719,9 @@ discharge of \nuc{Np}{237}, \nuc{Pu}{239}, \nuc{Am}{241} and \nuc{Cm}{244}.
 It can be seen that the higher A number actinides have not yet converged even after 10 cycles. 
 Also noteworthy is the dependence of the isotopic composition of the FR
 fuel upon separation efficiency.  The higher A number species are
-especially strongly affected by the efficiency, with the \nuc{Cm}{244}
-inventory, for example, differing by 20\% at equilibrium for the 90\%
-efficiency case versus the 99.99\% case.  Fig. 8 plots the fraction of
+especially strongly affected by the efficiency. The \nuc{Cm}{244}
+inventory, for example, differs by 20\% at equilibrium for the 90\%
+efficiency case versus the 99.99\% case.  Figure \ref{ses_fig08} plots the fraction of
 uranium and transuranics relative to the total actinide content of the
 output stream.
 
@@ -744,16 +745,17 @@ output stream.
 \end{center}
 \end{figure}
 
-The transuranic conversion ratio (TRU CR) is defined as presented in the previous study.  
+The transuranic conversion ratio (TRU CR) is defined in equation \ref{1g_tru_cr}.
 Here, TRU\subscript{in} is set as the sum of the LWR-TRU and FR-TRU stream mass
-fractions as plotted in Figure \ref{ses_fig07}.  TRU\subscript{out} is the TRU 
-mass fraction in the FR UF stream.  Figure \ref{ses_fig09} shows that the TRU 
+fractions as plotted in Figure \ref{ses_fig06}.  TRU\subscript{out} is the TRU 
+mass fraction in the FR UF stream, as seen in Figure \ref{ses_fig08}.  
+Figure \ref{ses_fig09} shows that the TRU 
 CR equilibrates at around 0.495.  Note that the CR is not an input to the model, but rather a
 derived quantity that is a consequence of the reactor configuration and
 discharge burnup.  The FR power fraction is likewise a derived quantity.
-Figure \ref{ses_fig10} shows as a function of cycle number for the 99.9\% separation
-efficiency case, the mass of LWR UF needed to fabricate 1 kg of FR
-fresh fuel.  For cycle numbers greater than 2, actinides from LWR fuel
+Figure \ref{ses_fig10} shows the mass of LWR UF needed to fabricate 1 kg of FR fresh fuel
+as a function of cycle number for the 99.9\% separation
+efficiency case.  For cycle numbers greater than 2, actinides from LWR fuel
 serve as top-up only.  
 
 \begin{figure}[htbp]
@@ -776,8 +778,8 @@ serve as top-up only.
 \subsubsection{Fuel Cycle Cost}
 \index{Fuel Cycle Cost@\emph{Fuel Cycle Cost}}
 \label{ses_sec:fcc}
-Table \ref{ses_table12} shows the FCC computed according to the methods of Section 2.3
-using the unit costs described in Section 3. For all strategies, higher
+Table \ref{ses_table12} shows the FCC computed 
+using the unit costs described above. For all strategies, higher
 separation efficiencies (SE) lead to lower FCC while there is no
 advantage for 99.99\% SE compared to 99.9\% SE.  Note that the
 reprocessing cost is of necessity assumed to be independent of the
@@ -814,7 +816,7 @@ more complex actinide partitioning strategies (Stra1 to Stra4).  When
 the separation efficiency increases from 90\% to 99\% or 99.9\% the
 annual charge for reprocessing service drops by around 10\%,
 commensurate with the process mass reduction.  It is expected that the
-unaccounted-for cost premium associated with achieving the higher
+unaccounted for cost premium associated with achieving the higher
 efficiencies would counteract this effect.  
 
 
@@ -922,10 +924,9 @@ The intrinsic proliferation resistance varies weakly between the cases
 due to the separation efficiency and more strongly as a consequence of
 partitioning strategy.  Table \ref{ses_table14} lists the system proliferation
 resistance value for all cases.  Recall that higher numbers imply a
-greater intrinsic proliferation resistance for the system.  Recall that
-higher numbers imply a greater intrinsic proliferation resistance for
-the system.  As an example, when applied to the OECD benchmark case
-``scheme 1a'' (PWR-OT) this model generates a proliferation resistance
+greater intrinsic proliferation resistance for the system.  
+As an example, when applied to the OECD benchmark case
+scheme 1a this model generates a proliferation resistance
 value of 0.2416.
 
 The differences between cases arise from the reprocessing and HLW
@@ -1029,7 +1030,7 @@ repository is not matched by commensurate decreases in HLW volume or
 dose.  Table \ref{ses_table17} shows the mass of HLW generated by each unit of
 electricity produced. Therefore, the capacity
 enhancement shown in Table \ref{ses_table15} may not be accompanied by a proportionate
-decrease in disposal cost; likewise, the potential dose of materials
+decrease in disposal cost. Likewise, the potential dose of materials
 placed in a fully loaded repository is many times higher for Stra4 than
 for the other cases.  
 
@@ -1056,7 +1057,7 @@ for the other cases.
 \section{Conclusions}
 \index{Conclusions@\emph{Conclusions}}
 \label{ses_sec:conclusions}
-Here, a modeling framework which couples essential physics models for fuel
+A modeling framework which couples essential physics models for fuel
 cycle and reactor material balance generation, repository capacity, dose
 and toxicity assessment, economics, and proliferation resistance has been 
 developed and benchmarked.  The
@@ -1069,7 +1070,7 @@ calculations with a repository thermal analysis tool and
 multi-zonal transport model to treat repository performance and an
 economic module.  The linkage is significant because perturbations to
 system input variables such as separation efficiencies are propagated
-through all the submodels: for instance, the material balance tool
+through all the submodels.  For instance, the material balance tool
 recalculates the transient and equilibrium FR cycle material balances.
 
 This new framework was applied to an AFC R\&D-inspired LWR and transmuter 
@@ -1083,15 +1084,15 @@ which the HLW placed in the repository was derived, can be imporved by
 more than two orders of magnitude if 99.99\% separation efficiency is 
 achieved and Cs/Sr are partitioned.  If Cs/Sr are not partitioned, it was not seen
 to be worthwhile to exceed 99.9\% efficiency.  On the other hand,
-drastic increases in the low heat release fission product loading of the
-repository may limit the potential repository benefit of the
-transmutation scheme by increasing the dose, toxicity and mass to be
+drastic increases in the loading of the low heat releasing fission products 
+to the repository may limit the potential benefit of the
+transmutation scheme by increasing the dose, toxicity, and mass to be
 interred.
 
 In the short term, it is of interest to consider the separation
 efficiency for individual elements.  Perhaps capacity enhancement goals
 can still be met even if 99.9\% or 99.99\% efficiency is not met at each
-step - for example, if Cs/Sr efficiency is limited to 99.9\%, it
+step.  For example, if Cs/Sr efficiency is limited to 99.9\%, it
 appears that achieving an equivalent TRU separation efficiency may not
 be necessary. 99\% could suffice with the same repository benefit.  
 
