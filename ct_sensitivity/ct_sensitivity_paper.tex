@@ -65,13 +65,13 @@ measure supports fuel cycle analysis and TD\&D decision-making by identifying in
 parent technologies) that can, if also altered, augment or reduce the effect of the decision
 being considered.
 
-The remainder of this paper is organized as follows.  Section 2 begins with a summary of the
-methodology employed to carry out the study.  Section 3 describes the fuel cycle simulations and 
-method for sampling the input parameters to be varied, while section 4 presents the theoretical 
-background underpinning the entropy-based
-statistical measures.  Section 5 provides results for the statistical measures applied to the scenario
-space outlined in Section 3 and offers several case studies that illustrate the interpretation
-of the statistical outcomes.
+The remainder of this chapter is organized as follows.  \S \ref{cts_sec:methodology} begins 
+with a summary of the methodology employed to carry out the study.  \S \ref{cts_sec:nfcsim} describes the 
+fuel cycle simulations and method for sampling the input parameters to be varied, 
+while \S \ref{cts_sec:ct} presents the theoretical background underpinning the entropy-based
+statistical measures.  \S \ref{cts_sec:results} provides results for the statistical measures 
+applied to the scenario space outlined in \S \ref{cts_sec:nfcsim} and offers several case 
+studies that illustrate the interpretation of the statistical outcomes.
 
 \section{Methodology}
 \index{Methodology@\emph{Methodology}}
@@ -970,7 +970,12 @@ a boolean flag can allow each stochastic realization to follow one of several op
 The outcome, still repository capacity, would now be conditioned on this boolean input as well.  
 It would illuminate system design parameters that will be important regardless of technology 
 ultimately chosen, those that have strongly technology-dependent effects, and those that are 
-unimportant to determining capacity regardless of technology.  In view of the uncertainties 
-in the direction taken by nuclear energy in the future, coupled with the need to develop 
-technologies now that can support or even enable these outcomes, this capability, if 
-developed, could provide invaluable guidance.
+unimportant to determining capacity regardless of technology.  
+
+Still, the entropy-based analysis tools presented here are only as accurate as the 
+underlying essential physics models.  Therefore one method to increase the fidelity of
+CT-based analysis would be to adress the assumptions made in the reactor model.  By allowing
+multiple energy groups, spectral shifts in the core durring burn could be adequately accounted for.  
+\S \ref{mg_paper} presents such adjustements to the reactor model, which in turn would propogate 
+an increase in fidelity up through to the statitsical metrics seen above.
+ 
