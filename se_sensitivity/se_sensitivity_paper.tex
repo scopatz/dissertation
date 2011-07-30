@@ -416,37 +416,37 @@ HLW Disposal                    & \$/kgHM       & 1408.0 \\
 \index{Benchmark Results@\emph{Benchmark Results}}
 \label{ses_sec:benchmark_results}
 The composition of FR fuel at equilibrium is calculated with the
-dynamic FR simulation tool described in Section 2.2\ref{} and compared to
+dynamic FR simulation tool described in \S \ref{1g_paper} and compared to
 results published in the OECD study.  The fuel cycle cost is also
-benchmarked using the unit costs shown in Table 6 and methodology
-depicted in Section 2.3.  The inventory and FCC comparisons are shown in
+benchmarked using the unit costs shown in Table \ref{ses_table6} 
+The inventory and FCC comparisons are shown in
 Table \ref{ses_table7} for both schemes.  As mentioned above, ORIGEN was used to
-compute the PWR material balance.
+compute the LWR material balance.
 
 The inventories of major actinides in the HLW in scheme 1a from both
 studies are in close agreement with relative errors of less than 10\%,
 except Cm which has a smaller absolute inventory in the system. The mean
 value of FCC from OECD study is approximately 4.7 \$/MWh for scheme 1a
 from the sensitivity result in the OECD report. The value of 4.27 \$/MWh
-in this study results less than 10\% error.  This variation stems from
+here is within 10\% error.  This variation stems from
 minor differences in the cost assessment methodology and back-end unit
 costs. 
 
 Scheme 1a does not benchmark the dynamic FR simulation tool; however it
 does provide the TRU isotopics that serve as the starting point for the
 calculations carried out by the tool.  The procedure described in
-Section 2.2 was used to perform cycle iterations until the FR fuel
+\S \ref{1g_paper} was used to perform cycle iterations until the FR fuel
 composition converged to equilibrium.  Good agreement on the PWR to FR
 power split, charge and discharge inventories and the FCC for scheme 3a
 can be observed.  Whether the difference observed for scheme 3a can be
 ascribed to the FR simulation tool, or to inconsistencies in the LWR
 feed arising from the absence of isotopic data in the OECD study, cannot
-be established.  However in view of the great complexity of the fuel
+be established.  However in view of the complexity of the fuel
 cycle system the agreement is strong.  For instance, the design
 parameters of the FR were not given in sufficient detail to perform
 transport-burnup calculations, so a case-specific cross section library
 could not be prepared and available data for a FR that shares many
-properties of the OECD study reactor (e.g., sodium-cooled, metallic
+properties of the OECD study reactor (\emph{e.g.} sodium-cooled, metallic
 fuel, similar pitch and fuel pin radius) were used instead.
 
 \begin{table}[htbp]
@@ -458,7 +458,7 @@ fuel, similar pitch and fuel pin radius) were used instead.
 \textbf{Parameter} & \textbf{OECD 2006} & \textbf{Results} & \textbf{\% Differnec} \\
 \hline
 UOX FF [kg/TWh\subscript{e}]    & 2050  & 2050    & 0.0 \\
-U Natural [kg/TWh\subscript{e}] & 20723 & 20722.8 & 0.0 \\
+NU [kg/TWh\subscript{e}]        & 20723 & 20722.8 & 0.0 \\
 U in HLW [kg/TWh\subscript{e}]  & 1890  & 1896    & 0.3 \\
 Pu in HLW [kg/TWh\subscript{e}] & 26    & 24      & -8.86 \\
 Np in HLW [kg/TWh\subscript{e}] & 1.9   & 2.0     & 4.29 \\
@@ -483,7 +483,7 @@ FCC [\$/MWh]                    & 4.7   & 4.27    & -9.15 \\
 Electricity Share: PWR [\%]     & 63.2   & 66.1    & 4.59 \\
 Electricity Share: FR [\% ]     & 36.8   & 33.9    & -7.88 \\
 UOX FF [kg/TWh\subscript{e}]    & 1513   & 1583    & 4.63 \\
-U Natural [kg/TWh\subscript{e}] & 12991  & 13593.2 & 4.64 \\
+NU [kg/TWh\subscript{e}]        & 12991  & 13593.2 & 4.64 \\
 UOX FF [kg/TWh\subscript{e}]    & 289    & 266.2   & -7.88 \\
 U in HLW [kg/TWh\subscript{e}]  & 1.588  & 1.6361  & 3.03 \\
 Pu in HLW [kg/TWh\subscript{e}] & 0.084  & 0.0814  & -3.10 \\
@@ -507,9 +507,9 @@ to yield nearly equivalent results.
 The energy that has been produced by disposed waste in a fully loaded
 salt-based repository is given as 6615 TWh for scheme 1a and 26930 TWh
 for scheme 3c.  In other words, the waste from closed fuel cycle 3c
-would have generate 4.0 times as much electricity as scheme 1a waste
+would have generated 4.0 times as much electricity as scheme 1a waste
 placed in the same repository.  Using the repository capacity assessment
-methodology described in Section 2.3 \ref{}, the energy that has been produced
+methodology described in \S \ref{ses_sec:spa}, the energy that has been produced
 by disposed waste in a tuff-based repository in this study is 28286 TWh
 for scheme 1a and 186365.3 TWh for scheme 3a. Therefore, the current
 work predicts that scheme 3a can, when compared to scheme 1a, generate
@@ -524,7 +524,7 @@ complicates the comparison.
 \index{Case Study and Results@\emph{Case Study and Results}}
 \label{ses_sec:case_study}
 For the study of system sensitivity to separation efficiency and
-partitioning strategy, we consider a fleet in which PWRs and CR 0.5 FRs
+partitioning strategy, we consider a fleet in which LWRs and CR 0.5 FRs
 are in equilibrium.  This is the same concept as was put into practice
 in scheme 3a of the OECD study.
 
@@ -534,11 +534,10 @@ in scheme 3a of the OECD study.
 \label{ses_sec:case_def}
 The present-day industrial scale reprocessing technology, PUREX,
 retrieves U and Pu from UF. Fuel cycle strategies developed under the
-DOE Advanced Fuel Cycle Initiative called for extraction of Np with Pu
+AFC R\&D called for extraction of Np with Pu
 to ease proliferation concerns, material accountability and tracking
 procedures for the product stream. It has been convincingly established
-(see for instance (  NOTEREF 
-MERGEFORMAT  2 )) that separation of Am and Cm as well is necessary to
+\cite{Wiegland2006} that separation of Am and Cm as well is necessary to
 maximize the benefit of increasing the capacity of a repository that is
 constrained by thermal limits.  The repository capacity can be further
 expanded by removing Cs and Sr for interim storage. Therefore, in this
@@ -556,7 +555,7 @@ In a scenario involving multi-recycle of spent fuel, the cumulative
 effect of reprocessing losses at each recycle can become quite
 significant, so that only with high separation efficiencies can the full
 benefit of the multi-recycle strategy be realized.  For example, the NEA
-study indicated that for their cases 3a and 3c less than 0.01\% loss is
+study indicated that for their cases 3a and 3c that less than 0.01\% loss is
 needed to reach a factor of 100 reduction in the high level waste heat
 burden to the repository.  Therefore, to develop an understanding of the
 sensitivity of the system performance metrics to separation efficiency,
@@ -574,7 +573,7 @@ There is no \emph{a priori} reason to make this assumption as no aspect of
 reprocessing facility design or operation imposes such a constraint. 
 Instead, this assumption was made to simplify the analysis and prevent
 an egregious proliferation of cases to be studied.  In addition, and for
-similar reasons of clarity, the aqueous PWR fuel reprocessing and the
+similar reasons of clarity, the aqueous LWR fuel reprocessing and the
 electrochemical FR metallic fuel separations share the same
 efficiencies. Four partitioning strategies and four separation
 efficiency levels generate the 16 cases defined in Table \ref{ses_table8}.  
@@ -602,7 +601,7 @@ stream.
 \begin{table}[htbp]
 \begin{center}
 \caption{Separation Efficiencies by Case and Element}
-\label{ses_table8}
+\label{ses_table9}
 \begin{tabular}{|l|c|c|c|c|c|c|c|}
 \hline
 \textbf{Case} & \textbf{U} & \textbf{Np} & \textbf{Pu} & \textbf{Am} & \textbf{Cm} & \textbf{Cs} & \textbf{Sr} \\
@@ -634,8 +633,8 @@ case24 & 0.9999 & 0.9999 & 0.9999 & 0.9999 & 0.9999 & 0.9999 & 0.9999 \\
 \label{ses_sec:res_disc}
 The 16 cases defined in previous chapter have each been modeled through
 the transient phase to equilibrium with the FR material balance tool
-described in Section 2.2.  In addition, the performance metrics defined
-in Section 2.3 have been calculated.  Table \ref{ses_table_10} lists the fraction of
+described in \S \ref{1g_paper}.  In addition, the performance metrics defined
+in \S \ref{ses_sec:spa} have been calculated.  Table \ref{ses_table10} lists the fraction of
 equilibrium reactor fleet electrical power generated by the FRs.  Note
 that for neutronic purposes Stra3 is the same as Stra4 in which Cs and
 Sr are partitioned.  For each strategy, higher separation efficiency
