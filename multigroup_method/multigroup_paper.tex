@@ -6,7 +6,7 @@
 \index{Introduction@\emph{Introduction}}
 \label{mg_sec:intro}
 Previous studies have examined the use of quickly executing fuel cycle models focusing on capturing 
-the essential physics.  Unlike analytic techniques which seek to represent  
+the essential physics.  Unlike analytic techniques which seek to couple   
 fundamental physical systems via direct coupling of models (\emph{e.g.} neutron transport), 
 essential physics codes parameterize the system.   Interpolations
 of parameterized results from precomputed analytic methods form a quick, run-time solution to the system at hand.
@@ -1231,8 +1231,8 @@ makes the RMG well-suited to nuclear fuel cycle simulations.
 Still, the RMG is subject to certain natural constraints.  First, in moving from one- to $G$-groups,
 the RMG will take more computational resources to execute than the one-group
 reactor model previously presented.  However, the benefit of using additional groups is that the flux
-spectrum is allowed to change over the course of the fuel burn.  For fast reactors or standard light 
-water reactor, changes in the spectrum are minimal so the error induced by the R1G from a static spectrum
+spectrum is allowed to change over the course of the fuel burn.  For fast reactors,
+changes in the spectrum are minimal so the error induced by the R1G from a static spectrum
 is negligible.  On the other hand, the RMG enables appropriate modeling of forms such as inert matrix 
 fuel for which R1G models could not capture dramatic shifts in local spectra induced by the compositional
 evolution of in-core material.
@@ -1267,8 +1267,3 @@ transmutation calculation is carried by Origen to avoid writing a custom Bateman
 More sophisticated methods which minimize global error 
 could be implemented into the RMG.  However, the matrix exponential method used here is 
 sufficient for most calculations.
-
-In conclusion, the RMG satisfies the requirements of correctly handling changes in the neutron flux 
-spectrum while maintaining comparable (though somewhat slower) runtimes to the one-group reactor model.
-Future work could combine the refinements mentioned above and the inclusion of the RMG in a fuel cycle 
-modeling framework.
