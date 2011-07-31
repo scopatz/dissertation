@@ -307,7 +307,7 @@ interest. For instance, exponential data could have one bin per decade.
 For the NFC and input parameter family considered here, all parameters are functions of a real 
 (stochastic) continuous variable.  This approach can support discrete variables too (e.g., a 
 boolean flag indicating the availability of mixed-oxide fuel), but that avenue is not developed 
-in this study. For the continuous variables, more than two bins are required to
+her. For the continuous variables, more than two bins are required to
 be able to demonstrate a meaningful association.  It will be shown that 7 bins per axis on the 
 contingency tables give rise to acceptable
 statistical fidelity.  However, even seven bins becomes unwieldy for visualization.
@@ -341,7 +341,7 @@ is itself a 2D contingency table for $x$ to $R$.
 Additionally, the bottom slice in Table \ref{ct3d_example} represents the marginal sums over 
 the $y$ axis.  Because $x$ here was chosen the same as in the
 2D case (\texttt{FR\_SE\_PU}), the last slice in Table \ref{ct3d_example} \emph{is} Table 
-\ref{ct2d_example}.  Therefore the 2D CT for \texttt{HLW\_Storage\_Time}
+\ref{ct2d_example}.  Moreover, the 2D CT for \texttt{HLW\_Storage\_Time}
 to \texttt{Capacity} is represented by the right-hand column of Table \ref{ct3d_example}.
 Since there are thirty inputs, of which two are examined, there are $_{30}C_2 = 435$ three 
 dimensional contingency tables that may be constructed for every response.
@@ -355,7 +355,7 @@ This section describes the statistical measures used to quantify the strength of
 between input parameters and responses in contingency tables.
 This allows the system designer to determine the most `important' input parameters to this response.  
 For example, one
-could quantitatively state the degree of importance of FR plutonium SE relative to the repository drift 
+could quantitatively state the degree of importance of FR plutonium separations relative to the repository drift 
 diameter in the sense of how each affects the repository capacity.
 
 \subsubsection{Entropy}
@@ -402,8 +402,8 @@ the entropy is defined on the range $[0, \ln(K)]$.
 
 The next metric is the \emph{mutual information} $I$.
 The mutual information is defined as the overlap in the entropies of various parameters.
-Figure \ref{entropy_info_relations} displays the relationship between the various entropies 
-and the mutual information graphically.
+Figure \ref{entropy_info_relations} graphically displays the relationship between the various entropies 
+and the mutual information.
 This figure is based on a similar one presented in \cite{Press2007}.
 \begin{figure}
 \caption{Relationship between the Mutual Information and Entropy \cite{Press2007}}
@@ -474,7 +474,7 @@ specified with the conditional notation $U(x|R)$.  Such coefficients are calcula
 U(x|R) = \frac{I(R,x)}{H(x)}
 \label{eq:U_x_R}
 \end{equation}
-In essence, equation \ref{eq:U_x_R} measures the extent to which knowing the input $x$ 
+Equation \ref{eq:U_x_R} measures the extent to which knowing the input $x$ 
 is the same as knowing the response $R$.  As such, $U(x|R)$ has the following properties:
 \begin{enumerate}
     \item Defined on the range $[0, 1]$.
@@ -484,10 +484,12 @@ is the same as knowing the response $R$.  As such, $U(x|R)$ has the following pr
         the system response $R(x)$ is solely determined by $x$.
 \end{enumerate}
 
-It is important to note that both $H(R)$ and $H(x)$ are the same for all $x$.  Thus the 
+It is important to note that both $H(R)$ and $H(x)$ do not change as a function of $x$.  
+$H(R)$ is itself not a function of $x$.  Moreover since all of the $x$ are chosen stochastically,
+$H(x)$ always has its maximal value.  Thus the 
 rankings of $x$ from $U(x|R)$ are the same as the rankings from the, perhaps more natural, 
-uncertainty coefficient $U(R|x)$.  Hence, the scaling factor, seen in equation 
-\ref{uncertainty_scale}, is the same for all inputs.
+uncertainty coefficient $U(R|x)$.  Hence, the scaling factor seen in equation 
+\ref{uncertainty_scale} is the same for all inputs.
 \begin{equation}
 U(x|R) = \frac{H(R)}{H(x)} U(R|x)
 \label{uncertainty_scale}
@@ -500,7 +502,7 @@ response.  $U(x,y|R)$ is computed from:
 The reason for choosing $U(x,y|R)$ as opposed to $U(R|x,y)$ follows analogously to the 
 two dimensional case.
 
-In fact, the interpretation of $U(x,y|R)$ is much the same as the meaning of $U(x|R)$.  
+The interpretation of $U(x,y|R)$ is much the same as the meaning of $U(x|R)$.  
 The difference here is that input parameter pairs are being compared to
 all other $(x, y)$ combinations.  For instance, by ranking with this 3D metric, the fuel 
 cycle analyst may quantitatively state that the FR plutonium and americium SEs
@@ -542,7 +544,7 @@ Dividing the standard deviation by the mean yields a \emph{coefficient of variat
 \begin{equation} c_v(U(x|R)|y) = \frac{\sigma(U(x|R)|y)}{\mu(U(x|R)|y)} \end{equation}
 Unlike the uncertainty coefficient, $c_v(U(x|R)|y)$ is not symmetric with respect to $x$ and $y$.  
 Thus the same pair will have a different rank when measuring
-with $c_v(U(y|R)|x)$.  A symmetric expression of the coefficient of variation is obtained by taking 
+with $c_v(U(y|R)|x)$ instead.  A symmetric expression of the coefficient of variation is obtained by taking 
 the average of the non-symmetric terms:
 \begin{equation}
 c_v(x|y|R) = \frac{1}{2} \left(c_v(U(x|R)|y) + c_v(U(y|R)|x)\right)
@@ -550,14 +552,15 @@ c_v(x|y|R) = \frac{1}{2} \left(c_v(U(x|R)|y) + c_v(U(y|R)|x)\right)
 This measure has the following properties:
 \begin{enumerate}
     \item Defined on the range $[0, 1]$ since $0 \le U \le 1$.
-    \item $c_v = 0$ implies that both $\sigma = 0$, which indicates that $U(x|R)$
+    \item $c_v = 0$ implies that $\sigma = 0$, which indicates that $U(x|R)$
         shows no dependence on $y$.  Thus there are no covariant effects observed.
-    \item $c_v = 1$ indicates that both $\sigma = \mu$.  This connotes
+    \item $c_v = 1$ indicates that $\sigma = \mu$.  This connotes
         that the value of $x$ soley governs the response $R$ from $y$.
 \end{enumerate}
 
-The difference in ranking parameter pairs using $U(x,y|R)$ versus $c_v(U(x|R)|y)$ is that the uncertainty 
-coefficient measures the magnitude of the effect on $R$ while the coefficients of variation measure the 
+The difference in ranking parameter pairs using $U(x,y|R)$ rather than using $c_v(U(x|R)|y)$ is that 
+the uncertainty coefficient measures the magnitude of the effect on $R$ while the coefficients of 
+variation measure the 
 interdependence of $x$ and $y$ on the response. For example, the HLW storage time together with the LWR UF 
 storage time are not of global importance to the repository capacity (low $U(x,y|R)$ value).
 However, changing one input has a great effect on the impact of other input to the repository capacity 
@@ -570,7 +573,7 @@ dimensional contingency tables.
 \index{Results \& Case Studies@\emph{Results \& Case Studies}}
 \label{cts_sec:results}
 
-The goal of this study, similar to other sensitivity studies \cite{Scopatz2010b} or uncertainty 
+The goal of using CTs, similar to other sensitivity studies \cite{Scopatz2010b} or uncertainty 
 analyses \cite{Barratt2004}, is to quantitatively rank fuel cycle inputs against their effect on 
 the chosen response.  Here, the two dimensional uncertainty $U(x|R)$ takes the place of a 
 traditional sensitivity.  Likewise, the three dimensional $U(x,y|R)$ may be seen as a sensitivity 
@@ -581,10 +584,10 @@ pairs have a significant joint effect on the fuel cycle. Hence, $x$ and $y$ may 
 effects individually.
 
 
-A brief examination of the binning structure and how it was determined is follows. 
+A brief examination of the binning structure and how it was determined follows. 
 Then, an illustration of the rankings of all fuel cycle metrics for the 2D \& 3D sensitivities 
 and covariant analyses is presented.  The final portion of this section reviews case studies 
-about particular parameters and pairs of interest.
+about particular parameters and parameter pairs of interest.
 
 
 \subsection{Binning Structure}
@@ -626,7 +629,7 @@ From this one might conclude that only an infinite number of partitions and bins
 to the `true' value of the entropy.  However, this is not necessary for contingency tables.  
 The metrics (entropy, uncertainty, \emph{et cetera}) rely on the relative populations of the bins.
 An infinite number of partitions would result in zero or one particle per bin, thereby 
-giving in poor statistics.
+giving poor statistics.
 
 Thus there is a balancing act between the number of bins and the number of stochastic 
 simulation executions.  This study uses a symmetric seven bins per axis formulation.  
