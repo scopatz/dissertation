@@ -11,7 +11,7 @@
 Technology development and deployment (TD\&D) decisions will play a key role in
 establishing the array of diverse, interconnected technologies that might comprise
 future nuclear fuel cycles (NFCs).  These decisions are made in view of one or more
-objectives for the NFC the technology will support.  As \S \ref{ses_paper} dicsusses,  
+objectives for the NFC the technology will support.  As \S \ref{ses_paper} discusses,  
 objectives include minimizing
 electricity production costs, increasing the efficiency of resource or geologic
 repository utilization, and mitigating the risk of safety incidents or misuse of
@@ -126,7 +126,7 @@ The importance of essential physics models (as opposed to curve fits or other pa
 only under specific conditions) in a sensitivity study of this type must be stressed. Given the number of
 degrees of freedom associated with a fuel cycle scenario, it is not feasible, for example, to parameterize
 reactor burnup with respect to transuranic isotopic stream compositions. Nor would it be possible to do
-so for repository performance with respect to changes in host medium physical properties or ogeometry.
+so for repository performance with respect to changes in host medium physical properties or geometry.
 
 The reactor submodel couples burnup and criticality calculations as seen in \S \ref{1g_paper}. The burnup portion of the
 model uses pre-tabulated physical data for each initially-present nuclide (neutron production and destruction
@@ -139,7 +139,7 @@ fresh fuel compositions.
 The repository thermal analysis model was developed based on the
 analytical solution of a thermal conduction model for the presence of
 loaded nuclear waste in a geologic repository \cite{Li2010a}. The
-repository is modeled as a homogenous hosting medium with constant
+repository is modeled as a homogeneous hosting medium with constant
 properties. The nuclear waste packages were assumed to be loaded into parallel
 waste emplacement drifts. Each drift is treated as
 an infinite line heat source. The temperature increase at the critical
@@ -239,7 +239,7 @@ and the binning method implemented (see \S \ref{cts_sec:binning}) for each input
 
 \input{ct_sensitivity/param_def.tex}
 
-In the case where a set of input parameters is chosen such that the cycle is not physically calcuable,
+In the case where a set of input parameters is chosen such that the cycle is not physically calculable,
 internal variables inside of the models are adjusted to a point such that the fuel cycle is feasible.
 For example, suppose a vector of inputs specifies a high value of the LWR burnup as well as other default
 internal parameters.  The reactor model will adjust the non-leakage probability, the initial enrichment
@@ -623,7 +623,7 @@ since this is where the large majority of the fluid (yellow dots) falls.
 The red dotted lines in Figure \ref{piston_ct} represent the same chamber partitioned into 
 five bins.  The left most red partition runs through the
 densely populated region, adding information about the distribution that was not available 
-under the more corasely-binned structure.
+under the more coarsely-binned structure.
 
 From this one might conclude that only an infinite number of partitions and bins would converge 
 to the `true' value of the entropy.  However, this is not necessary for contingency tables.  
@@ -693,7 +693,7 @@ N \approx \frac{1}{t^2} B C
 \end{equation}
 Thus by equation \ref{runs_needed}, it is a factor of $25$ times easier to achieve 5\% 
 uncertainty than to get to the 1\% level for the same binning structure.
-Given $100,000$ runs performed here and seven bins on each axis, equation \ref{runs_needed} implies
+Given 10\superscript{5} runs performed here and seven bins on each axis, equation \ref{runs_needed} implies
 that the induced uncertainty is approximately 2.2\%.  Seven bins per axis are used for the 
 remainder of this analysis.
 
@@ -703,13 +703,13 @@ remainder of this analysis.
 \index{Rankings: One Input to One Response@\emph{Rankings: One Input to One Response}}
 \label{cts_sec:rank2D}
 
+\input{ct_sensitivity/figs/U_x_R_for_Capacity_with_IJK7}
+
 Determining the impact of a single input parameter on a nuclear fuel cycle outcome is the 
 first step in a screening study.  Using the contingency table methodology above,
 the uncertainty coefficient $U(x|R)$ measures the importance of $x$.  
 Table \ref{U_x_R_for_Capacity_with_IJK7} displays the input parameters, ranked by
 uncertainty, for the repository capacity response.
-
-\input{ct_sensitivity/figs/U_x_R_for_Capacity_with_IJK7}
 
 As expected, the fast reactor plutonium separation efficiency is shown to be the 
 driver of the system.  How much more important this parameter is that the
@@ -717,7 +717,7 @@ other inputs may be quantitatively stated by taking the ratio of the two $U(x|R)
 For instance, \texttt{LWR\_SE\_AM}, the parameter at rank 7,
 has an uncertainty of 0.007304.  Meanwhile \texttt{FR\_SE\_PU} has an uncertainty 
 of 0.07667.  The ratio of these uncertainties,
-and thus the magnitude of the parameters' effects on relative repository capacity, is 10.5.
+and thus the magnitude of the effects on relative repository capacity, is 10.5.
 
 From Table \ref{U_x_R_for_Capacity_with_IJK7}, most inputs have at least an order of magnitude 
 less impact than the most important one, \texttt{FR\_SE\_PU}.
@@ -738,15 +738,15 @@ less important than the top one for the \texttt{Support\_Ratio}.
 
 Even though the input rankings may change dramatically for different responses, 
 a short list of the most important may be determined from the union of all top
-inputs for all response.  Moreover, some responses tend to produce similar rankings 
+inputs for all responses.  Moreover, some responses tend to produce similar rankings 
 because their values are derived from other responses.
-This limits the overall number of top parameters.
+This also limits the overall number of top parameters.
 
 One non-intuitive result from the 2D study is that the cesium and strontium separation 
 efficiencies do not appear higher in the ranks.  Indeed, the reason for
 partitioning these species is \emph{because} of their large impact.  They are ranked 
-relatively low here  because by the point of 0.9 separations for these species,
-the lower bound of the SE range, has been achieved, most of their repository impact has been mitigated.
+relatively low here  because by the point of 0.9 separations for these species
+(the lower bound of the SE range) has been achieved, most of their repository impact has been mitigated.
 
 \subsection{Rankings: Two Inputs to One Response}
 \index{Rankings: Two Inputs to One Response@\emph{Rankings: Two Inputs to One Response}}
@@ -761,6 +761,7 @@ the 2D case.  Second, covariance effects between the two inputs are measured.
 \label{cts_sec:3D_sensitivity}
 
 %\input{figs/U_xy_R_for_Capacity_with_IJK7}
+
 The three dimensional expression of the uncertainty coefficient, $U(x,y|R)$, is used to 
 capture the strength of association from a parameter pair to the response.
 Therefore a table similar to Table \ref{U_x_R_for_Capacity_with_IJK7} would show the 
@@ -776,14 +777,16 @@ top thirty which does not contain FR plutonium SE is the rank 3 pair
 rank 2 \& 3 inputs from the two-dimensional contingency tables.
 Thus if an input is important by its own merits, any pair that this input is 
 a member of is likely to also have a large system-wide effect.
-Since little additional information is added here over the 2D study, the specific 
+Since little additional information is added here over the 2D study, the 
 3D sensitivity tables are not displayed.
 
 \subsubsection{3D Sensitivity of Sensitivity}
 \index{3D Sensitivity of Sensitivity@\emph{3D Sensitivity of Sensitivity}}
 \label{cts_sec:3D_sensitivity_of_sensitivity}
 
-As was seen in section \ref{sec:3D_sensitivity}, the three dimensional 
+\input{ct_sensitivity/figs/cv_x_y_R_for_Capacity_with_IJK7}
+
+As was seen in section \ref{cts_sec:3D_sensitivity}, the three dimensional 
 uncertainty coefficient did not reveal fundamentally different information
 about the system than the two dimensional rankings.  $U(x,y|R)$ coupled 
 important inputs together, but which inputs were important remained the same.  This was
@@ -797,10 +800,8 @@ parameter to the fore.  As a second example, if \texttt{HLW\_Storage\_Time} and
 mean that pursuing a strategy of extensive pre-emplacement storage would require 
 lengthier pre-separation used fuel storage to be most effective.
 
-\input{ct_sensitivity/figs/cv_x_y_R_for_Capacity_with_IJK7}
-
 These sensitivities of sensitivities are measured in terms of the coefficient of 
-variation $c_v$, as described in section \ref{sec:sensitivity_of_sensitivity_metrics}.
+variation $c_v$, as described in section \ref{cts_sec:sensitivity_of_sensitivity_metrics}.
 Table \ref{cv_x_y_R_for_Capacity_with_IJK7} shows the top 10\% of 435 ranked parameter 
 pairs for $c_v(x|y|R)$ for the repository capacity.
 As expected, the top parameters from before (\texttt{FR\_SE\_PU}, \texttt{FR\_SE\_AM}, 
@@ -815,7 +816,7 @@ material in the repository (\emph{i.e.} the various SE, the FR conversion ratio,
 the LWR fuel to moderator ratio).
 Moreover, the \texttt{Ambient\_Temp} itself may be seen as a metric of remaining 
 heat capacity in the repository while the material composition determines the heat load.
-Thus the fact that such parameters pairs exhibit strong covariances is not surprising.
+Thus the fact that such parameter pairs exhibit strong covariances is not surprising.
 
 
 
@@ -844,7 +845,7 @@ in tandem.
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[scale=0.70]{ct_sensitivity/figs/FR_SE_AM_and_FR_SE_PU_Decay_Heat.eps}
-\caption{Total \& Top Contibutor Decay Heat [Watts/kg] of HLW for the parameter pair (\texttt{FR\_SE\_AM}, \texttt{FR\_SE\_PU}).}
+\caption{Total \& Top Contributor Decay Heat [Watts/kg] of HLW for the parameter pair (\texttt{FR\_SE\_AM}, \texttt{FR\_SE\_PU}).}
 \label{am_pu_decay_heat}
 \end{center}
 \end{figure}
@@ -862,13 +863,13 @@ decay heat is captured by the covariance metric.
 \index{Covariance of Americium Separations and FR TRU Conversion Ratio@\emph{Covariance of Americium Separations and FR TRU Conversion Ratio}}
 \label{cts_sec:am_se_fr_tru_cr}
 
+\input{ct_sensitivity/figs/FR_SE_AM_and_FR_TRU_CR_to_Capacity_with_IJK433_prop}
+
 The interplay between the FR americium SE and the FR transuranic conversion ratio exhibits a covariance
 to the repository capacity.  As seen in Table \ref{cv_x_y_R_for_Capacity_with_IJK7}, 
 these two inputs display a relatively high sensitivity of sensitivity.  
 The covariance effect here is confirmed by examining 
 Table \ref{FR_SE_AM_and_FR_TRU_CR_to_Capacity_with_IJK433_prop}.
-
-\input{ct_sensitivity/figs/FR_SE_AM_and_FR_TRU_CR_to_Capacity_with_IJK433_prop}
 
 Table \ref{FR_SE_AM_and_FR_TRU_CR_to_Capacity_with_IJK433_prop} displays the 
 probability table, which is a normalized representation of the contingency table.
@@ -898,11 +899,11 @@ fixed-size repository decreases.
 \index{Covariance of HLW Storage Time \& Fast Reactor Plutonium Separations@\emph{Covariance of HLW Storage Time \& Fast Reactor Plutonium Separations}}
 \label{cts_sec:hlw_pu_covariance}
 
-The top two inputs from the sensitivity study, \texttt{FR\_SE\_PU} and 
-\texttt{HLW\_Storage\_Time}, appear to exert a strong joint effect on the 
+\texttt{FR\_SE\_PU} and \texttt{HLW\_Storage\_Time}, the top two inputs 
+from the sensitivity study, appear to exert a strong joint effect on the 
 outcome.  According to Table \ref{cv_x_y_R_for_Capacity_with_IJK7}, this 
 input pair is ranked fifth with respect to $c_v(x|y|R)$.
-Through an examination of the the 3D contingency table, high respository 
+Through an examination of the the 3D contingency table, high repository 
 capacities are only allowed when both \texttt{FR\_SE\_PU} and
 \texttt{HLW\_Storage\_Time} are high.  Similarly, low capacities occur 
 for low values of the two inputs.  Middle values for either of the
@@ -912,7 +913,7 @@ with increasing \texttt{FR\_SE\_PU} and \texttt{HLW\_Storage\_Time}.
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[scale=0.70]{ct_sensitivity/figs/FR_SE_PU_and_HLW_Storage_Time_Decay_Heat.eps}
-\caption{Total \& Top Contibutor Decay Heat [Watts/kg] of HLW for the parameter pair (\texttt{HLW\_Storage\_Time}, \texttt{FR\_SE\_PU}).}
+\caption{Total \& Top Contributor Decay Heat [Watts/kg] of HLW for the parameter pair (\texttt{HLW\_Storage\_Time}, \texttt{FR\_SE\_PU}).}
 \label{hlw_pu_decay_heat}
 \end{center}
 \end{figure}
@@ -920,7 +921,7 @@ with increasing \texttt{FR\_SE\_PU} and \texttt{HLW\_Storage\_Time}.
 Physically, the reason for this covariance is because the HLW storage 
 time effectively shifts the opening time of the repository.
 By having a long \texttt{HLW\_Storage\_Time}, the short- and medium-term 
-repository tempurature limits may be avoided.
+repository temperature limits may be avoided.
 Figure \ref{hlw_pu_decay_heat} displays the decay heat for the HLW and for 
 the top elemental contributor to the decay heat as a
 function of time after emplacement in the repository.  The curves here 
@@ -934,7 +935,7 @@ roughly the same value as the 300 year HLW storage time curves, only 300 years
 farther in the future.  By shifting the 1 year data
 three hundred years to the left, the two curves would nearly overlap.  The 
 statistical analysis confirms the strong importance to repository capacity 
-of a strategy of `waiting out' the decay of Pu-238 if Pu separation efficiencies 
+of a strategy of `waiting out' the decay of \nuc{Pu}{238} if plutonium separation efficiencies 
 are low, and its much weaker importance if efficiencies are high.
 
 \section{Concluding Remarks \& Future Work}
@@ -942,7 +943,7 @@ are low, and its much weaker importance if efficiencies are high.
 \label{cts_sec:conclusion}
 
 The statistical techniques of contingency table and entropy analysis presented 
-in this paper are widely-used tools for capturing the behavior of complex systems, 
+are widely-used tools for capturing the behavior of complex systems, 
 particularly biological ones.  Here they have been applied to a simulator of the 
 nuclear fuel cycle.  NFC outcomes, like those of any complex system, are shaped 
 by intricate and highly nonlinear interactions between many inputs.
@@ -962,7 +963,7 @@ This tool can aid system designers by helping them perceive which design variabl
 matter.  The contingency tables represent a (coarsely-gridded) importance map for 
 the inverse problem.  Conditioned on a specific system response, like repository 
 capacity, the measure of the strength of response provided by the uncertainty coefficients 
-can provide guidance to technologists optimizing design parameters in the face of uncertainty 
+can provide guidance to technologists designing system parameters in the face of uncertainty 
 regarding the shape of the larger system.  Illuminating joint dependencies, coefficients of 
 variation can guide iterative technology development by showing which design features must 
 be considered together.
@@ -977,8 +978,8 @@ unimportant to determining capacity regardless of technology.
 
 Still, the entropy-based analysis tools presented here are only as accurate as the 
 underlying essential physics models.  Therefore one method to increase the fidelity of
-CT-based analysis would be to adress the assumptions made in the reactor model.  By allowing
-multiple energy groups, spectral shifts in the core durring burn could be adequately accounted for.  
-\S \ref{mg_paper} presents such adjustements to the reactor model, which in turn would propogate 
-an increase in fidelity up through to the statitsical metrics seen above.
+CT-based analysis would be to address the assumptions made in the reactor model.  By allowing
+multiple energy groups, spectral shifts in the core during burn could be adequately accounted for.  
+\S \ref{mg_paper} presents such adjustments to the reactor model, which in turn would propagate 
+an increase in fidelity up through to the statistical metrics demonstrated above.
  
