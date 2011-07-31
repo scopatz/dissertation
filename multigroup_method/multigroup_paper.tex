@@ -768,7 +768,7 @@ However, the space that the reactor parameters live in is at least 10-dimensiona
 the scale for these parameters may vary greatly from one $a$ to the next.  Therefore, a realistic
 nearness metric must normalize the values for these parameters individually before calculating a
 global distance.  Equation \ref{nn_distance} calculates $d_p$, the distance of the $p$\superscript{th} 
-perturbation from the state of reactor.
+perturbation from the state of the reactor.
 \begin{equation}
 \label{nn_distance}
 d_p = \sqrt{\sum_a \left(\frac{a_r - a_p}{a_{n_p}}\right)^2}
@@ -976,7 +976,7 @@ of the perturbation Table \ref{char_param_outer_product}, is given in Table \ref
 The reason this matrix is expected is because the computation is closest to zero time at the start of the 
 burn and gradually migrates closer to 400 days by the end.
 Moreover the initial \nuc{U}{235} vector falls in between two of the perturbation cases, but 4.5\% lies
-clearly closer to the 5\% perturbations than the 3.5\% cases.
+clearly closer to the 5\% perturbations than the 3\% cases.
 Lastly, the fuel region density lies exactly between two of the perturbation steps.  Thus, the 
 perturbations with the minimal distance to the configuration will flank the fuel enrichment 
 (staying closer to 5\% \nuc{U}{235}) and remain equidistant from the two perturbation fuel 
@@ -1008,7 +1008,7 @@ Figure \ref{k_compare} displays the comparison for the multiplication factor $k$
 \includegraphics[scale=0.5]{multigroup_method/figs/benchmark/k.eps}
 \end{center}
 \end{figure}
-Note that the fractional deviation error bars on the RMG curve in Figure \ref{k_compare} 
+Note that the fractional deviations on the RMG curve in Figure \ref{k_compare} 
 take on a value of less than 1\% at every burnup step.  
 The error bars on the Serpent curve are the stochastic modeling errors inherent in any Monte
 Carlo calculation and do not represent inaccuracies in the cross sections.
@@ -1061,8 +1061,7 @@ Lastly, the transmutation calculation is benchmarked.
 Figures \ref{act_benchmark}-\ref{fp_benchmark} display the time evolution of the mass 
 fractions of various important nuclides. This set includes the major actinides 
 as well a various fission products that are tracked in the VISION suite.  
-In these figures, $\varepsilon$ is defined as before and is again displayed as the error bars on 
-the RMG curve.   Serpent does not report errors associated with the mass fraction.
+Serpent does not report errors associated with the mass fraction so no error bars are shown.
 
 \begin{figure}[htbp]
 \caption{Actinide Mass Fraction Benchmarks}
@@ -1122,7 +1121,7 @@ As is seen in these figures, there is good agreement between the transmutation v
 Serpent and those computed by the RMG via ORIGEN.  The instances with non-trivial disagreements are 
 largely in the higher order actinides.  These nuclides exist in such small amounts, that the relatively
 high errors do not adversely effect the neutronic performance of the fuel.   Moreover, the errors in the
-mass concentrations of are largely a function of the error in flux the lowest energy groups.  
+mass concentrations are largely a function of the error in the lowest energy groups of the flux.  
 
 
 However, the true strength of the RMG methodology is 
