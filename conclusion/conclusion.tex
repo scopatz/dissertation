@@ -1,7 +1,7 @@
 \chapter{Conclusion}
 \index{Conclusion@\emph{Conclusion}}
 \label{diss_conclusion}
-Previous NFC simulators were not by physics-based models which capture perturbations made to the system
+Previous NFC simulators were not physics-based models and could not capture perturbations made to the system
 or had prohibitively long run times when perturbations were introduced.  Because of these 
 limitations, only static base cases and linear sensitivity analyses have historically been considered.  
 Though such base cases were often chosen on the informed knowledge of the system designer, 
@@ -20,16 +20,16 @@ Thus perturbing their initial conditions yields appropriate responses to the fin
 in ways that linear or statistical parametric fits are not capable of.
 
 These essential physics reactor models have been used to examine three fuel cycles 
-in depth: Once-Through, RU and FR cases.  
+in depth: Once-Through, RU, and FR cases.  
 Departing from discrete, pre-defined scenario studies, they were next used to perform 
 a stochastic entropy-based sensitivity analysis on thirty design parameters in a fast
 burner recycle scenario.  However, the one-energy group reactor model originally demonstrated, 
-which was sufficient for fast reactors and (to a lesser degree) urnaium-fuel light 
+which was sufficient for fast reactors and (to a lesser degree) uranium-fueled light 
 water reactors,  failed to capture 
 spectral changes in the core as a function of burnup.
 Therefore to enable the analysis of other fuel cycles, a multigroup reactor model was implemented.  
 
-The analysis that was performed herein was enabled by the essential physics models themselves.
+The analysis that was performed herein was facilitated by the essential physics models themselves.
 Low-fidelity (lookup-table) models do not allow for perturbations that respond 
 in a physics-based way.  High-fidelity models continue to have prohibitive execution times in the 
 context of fuel cycle simulation.  By achieving fast, physics-based results these models increase 
@@ -45,4 +45,4 @@ Because of these essential physics models, it is now possible to tightly couple 
 concerns from multiple components simultaneously.  When assessing the impact of any 
 proposed fuel cycle change, or when attempting to balance the relative merits of one 
 cycle to another, the ability to track perturbation effects through the entire system becomes
-`essential.
+essential.
