@@ -1,0 +1,4 @@
+#! /bin/bash
+
+latex scopatz_defense_pres.tex
+dvipdf scopatz_defense_pres.dvi

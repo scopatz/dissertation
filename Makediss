@@ -223,3 +223,4 @@ ps -eo cmd 2>/dev/null | grep -v grep | grep "gv" \
 
 # Make it a PDF
 dvipdf ${DISS}.dvi
+cp ${DISS}.pdf Scopatz_Dissertation_2011.pdf

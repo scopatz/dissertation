@@ -1,0 +1,567 @@
+% Presentation name and date
+% To build, use the following command:
+%	NAME="Scopatz_Physor_2010_Pres" && latex ${NAME}.tex && dvipdf ${NAME}.dvi
+\documentclass[pdf, autumn, slideColor, nocolorBG]{prosper}
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{hyperref}
+
+%General Short-Cut Commands
+\newcommand{\superscript}[1]{\ensuremath{^{\textrm{#1}}}}
+\newcommand{\subscript}[1]{\ensuremath{_{\textrm{#1}}}}
+\newcommand{\nuc}[2]{\superscript{#2}{#1}}
+\newcommand{\FigCaption}[1]{\begin{center}{\tiny{#1}}\end{center}}
+
+%Commands for this document...
+\newcommand{\Red}[1]{\textcolor{red}{#1}}
+
+%Presentation information
+\title{Nuclear Fuel Cycle Sensitivity to the Variation of Physical Parameters}
+\subtitle{May 12\superscript{th}, 2010 - PHYSOR - Pittsburgh, PA}
+\author{Anthony Scopatz\superscript{A}, Jun Li\superscript{B}, 
+    Man-Sung Yim\superscript{C}, \& Erich Schneider\superscript{A}}
+\email{scopatz@mail.utexas.edu}
+\institution{\tiny
+\textbf{\underline{A:}}
+Department of Mechanical Engineering, Nuclear Engineering Program\\
+The University of Texas at Austin\\
+1 University Station, MC R9000, Austin, TX 78712\\
+
+\textbf{\underline{B:}}Institute for the Environment\\
+The University of North Carolina ­ Chapel Hill\\
+Campus Box 6116, Chapel Hill, NC 27599-6116\\
+
+\textbf{\underline{C:}}
+Department of Nuclear Engineering\\
+North Carolina State University, Raleigh, NC 27695
+}
+
+\slideCaption{Scopatz, \emph{et al.} - Physor 2010}
+
+\begin{document}
+
+% make the title slide
+\maketitle
+
+
+%Motivation
+\overlays{5}{
+\begin{slide}{Motivation}
+\FromSlide{1}
+\begin{itemize}
+    \item Many nuclear fuel cycle simulations are formulated on premade base-case scenarios:
+
+\FromSlide{2}
+    \begin{center}
+    \includegraphics[scale=0.5]{figs/base-case.eps}
+    \end{center}
+
+\FromSlide{3}
+    \item These base cases are very well studied.
+
+\FromSlide{4}
+    \item However, what is \textbf{\textit{not}} well known is 
+        how these sample scenarios are affected by perturbations to their 
+        initial physical parameters.
+            
+\FromSlide{1}
+\end{itemize}
+
+\FromSlide{5}
+\begin{center}
+``\textit{Do our parameter choices really give us the `best' solution?}''
+\end{center}
+
+\end{slide}}
+
+
+
+%Methodology Overview
+\overlays{4}{
+\begin{slide}{Methodology Overview}
+\FromSlide{1}
+\begin{itemize}
+    \item Here, we quantify the system-wide impact of physical parameter perturbations.
+
+\vspace{0.5cm}
+\FromSlide{2}
+    \item This is done by looking for linear, 1D sensitivity coefficients for each parameter
+        to the \underline{repository capacity} response, measured in [PWh].   
+
+\vspace{0.5cm}
+\FromSlide{3}
+    \item Denote these sensitivity coefficients as $S_x$ for a small change in an input parameter $x$.
+
+\vspace{0.5cm}
+\FromSlide{4}
+    \item Sensitivity coefficients are presented for 10\% 
+        changes in $x$ from assumed base-case values.
+
+\FromSlide{1}
+\end{itemize}
+\end{slide}}
+
+%Methodology Overview
+\overlays{5}{
+\begin{slide}{Methodology Overview}
+\FromSlide{1}
+\begin{itemize}
+\FromSlide{1}
+    \item The basic algorithm is as follows:
+
+\tiny
+\FromSlide{2}
+        \begin{enumerate}
+            \item For each input parameter $x$, change its base-case value $x_0$ by $\pm10\%$.
+                \[ x \to (1 \pm 0.1)x_0 \]
+
+            \FromSlide{3}
+            \item If $x$ is a separation efficiency (SE), instead perturb by $\pm$ ``one nine''
+                worth of separations.
+                \[ x = 0.999 \to x \in \{0.99, 0.9999\} \]
+
+            \FromSlide{4}
+            \item Meanwhile, maintain all other parameters ($y, z, \ldots$) at their
+                base-case values.
+                \[ y, z, \ldots \to y_0, z_0, \ldots \]    
+
+            \FromSlide{5}
+            \item Calculate the new repository capacity response, $R$, by the perturbed cycle and record 
+                the sensitivity as the percent change from the base-case response, $R_0$.
+                \[ S_{\pm x} = \left(\frac{R}{R_0} - 1\right) \times 100 \]
+
+        \FromSlide{2}
+        \end{enumerate}
+
+\FromSlide{1}
+\end{itemize}
+\end{slide}}
+
+
+
+%Background
+\overlays{2}{
+\begin{slide}{Background}
+\FromSlide{1}
+\begin{itemize}
+    \item We have developed a physics-based fuel cycle model
+        and used it to study a Fast Reactor (FR), Light
+        Water Reactor (LWR) symbiotic scenario 
+        analogous to Scheme 3a of the 2006 OECD report.
+\end{itemize}
+
+\FromSlide{2}
+\begin{center}
+\includegraphics[scale=0.65]{figs/FC.eps}
+\FigCaption{Figure 1: FR-LWR Cycle}
+\end{center}
+\end{slide}}
+
+
+
+
+%Background
+\overlays{3}{
+\begin{slide}{Background}
+\FromSlide{1}
+\begin{itemize}
+    \item In our model, we may adjust over 30 independent physical 
+        parameters in the fuel cycle.
+\end{itemize}
+
+\FromSlide{2}
+\begin{center}
+\includegraphics[scale=0.5]{figs/FC_knobs.eps}
+\FigCaption{Figure 2: FR-LWR Cycle with Parameter Representation}
+\end{center}
+
+\FromSlide{3}
+\begin{itemize}
+    \item We present equilibrium results derived from a full treatment
+        of the preceeding, transient cycles.
+\end{itemize}
+
+\end{slide}}
+
+
+%Reactor Model [1]
+\begin{slide}{Reactor Model [1]}
+\vspace{0.5cm}
+
+\includegraphics[scale=0.45]{figs/ReactorModel.eps}
+\vspace{0.5cm}
+
+\tiny
+\textcolor{gray}{\underline{1:} A. M. Scopatz, E. A. Schneider, ``\textit{A New Method for Rapid Computation of 
+Transient Fuel Cycle Material Balances,}'' Nuclear Engineering and Design (2009).}
+\end{slide}
+
+
+
+
+%Repository Model 
+\overlays{2}{
+\begin{slide}{Repository Model}
+\FromSlide{1}
+Like the reactor model, our repository model uses an isotopically weighted linear combination of 
+precomputed values that are stored in a data library.
+
+\FromSlide{2}
+\begin{center}
+\includegraphics[scale=0.50]{figs/RepositoryModel1.eps}
+\end{center}
+
+This data library is based off of an infinite series of linear heat sources.  
+This is because a repository is constrained by intrinsic temperature limits at 
+the driftwall and midway between the drifts.
+\end{slide}}
+
+
+
+
+
+%Repository Model [2]
+\begin{slide}{Repository Model [2]}
+\vspace{0.5cm}
+
+\includegraphics[scale=0.50]{figs/RepositoryModel2.eps}
+\vspace{0.5cm}
+
+\tiny
+\textcolor{gray}{\underline{2:} Li, J., Yim, M.-S., McNelis, D., 2004. 
+``\textit{Risk-based performance index for nuclear waste transmutation system optimization,}'' 
+Trans. Am. Nucl. Soc. 90, 239-240.}
+\end{slide}
+
+
+
+
+%Repository Temperature Distribution 
+\begin{slide}{Repository Temp Distribution}
+\begin{center}
+\includegraphics[scale=0.60]{figs/RepositoryModel3.eps}
+\end{center}
+\end{slide}
+
+
+
+
+%Fuel Cycle Benchmark
+\overlays{4}{
+\begin{slide}{Fuel Cycle Benchmark}
+\FromSlide{1}
+\begin{itemize}
+    \item We have benchmarked the model on three primary levels: the reactor components, 
+        the repository component, and the fuel cycle as a whole.
+
+\FromSlide{2}
+    \item LWRs and FRs benchmarks may be found at 
+        {\tiny \url{http://nukestar.me.utexas.edu/scopatz/Bright/}}
+
+\FromSlide{3}
+    \item For benchmarks of repository performance, see [3].
+
+\FromSlide{4}
+    \item However, since the fuel cycle we are modeling is based off of
+        the NEA Scheme 3a, we compared our code to the OECD's own results [4].
+
+\FromSlide{1}
+\end{itemize}
+
+\FromSlide{4}
+\tiny
+\textcolor{gray}{\underline{3:} Li, J., Nicholson, M., Proctor,W.C., Yim, M.-S., McNelis, D.N., 2007. 
+``\textit{Examining repository loading options to expand yucca mountain repository capacity.}'' 
+In: Proc. Advanced Nuclear Fuel Cycles and Systems, GLOBAL, Boise, ID, September.}
+
+\textcolor{gray}{\underline{4:} Nuclear Energy Agency, ``\textit{Advanced Nuclear Fuel 
+Cycles and Radioactive Waste Management,}'' - NEA-5990. 2006:1-248.}
+\end{slide}}
+
+
+%Fuel Cycle Benchmark
+\begin{slide}{Fuel Cycle Benchmark}
+\tiny
+\begin{center}
+\FigCaption{Table 1: NEA Scheme 3a Benchmark}
+\begin{tabular}{|l||c||c|c||c|c|}
+\hline
+\textbf{Scheme 3a}     & \textbf{NEA} & \textbf{Model\superscript{1}} & \textbf{\% Diff} & \textbf{Model\superscript{2}} & \textbf{\% Diff} \\
+\hline
+Electricity Share: LWR & 0.632       & 0.619459             & -2.0244 & 0.634907             & +0.4579 \\
+\hline
+Electricity Share: FR  & 0.368       & 0.380541             & +3.2955 & 0.365093             & -0.7962 \\
+\hline
+FR SNF: U              & 0.698       & 0.713806             & +2.2143 & 0.715224             & +2.4082 \\
+\hline
+FR SNF: NP             & 0.0065      & 0.00661961           & +1.8070 & 0.00685174           & +5.1335 \\
+\hline
+FR SNF: PU             & 0.266       & 0.248059             & -7.2327 & 0.248319             & -7.1204 \\
+\hline
+FR SNF: AM             & 0.02        & 0.0226796            & 11.8152 & 0.0217317            & +7.9687 \\
+\hline
+FR SNF: CM             & 0.0098      & 0.00883517           & -10.920 & 0.00787319           & -24.4730\\
+\hline
+HLW: U                 & 0.013324    & 0.0132681            & -0.4213 & 0.0134448            & +0.8984 \\
+\hline
+HLW: NP                & 2.26542E-05 & 2.4079E-05           & +5.9173 & 2.41083E-05          & +6.0316 \\
+\hline
+HLW: PU                & 0.000704797 & 0.000658893          & -6.9668 & 0.000632361          & -11.4548\\
+\hline
+HLW: AM                & 5.03426E-05 & 5.63068E-05          & 10.5923 & 5.12344E-05          & +1.7405 \\
+\hline
+HLW: CM                & 2.18151E-05 & 1.99031E-05          & -9.6068 & 1.67094E-05          & -30.5563\\
+\hline
+HLW: FP                & 0.985876    & 0.985973             & +0.0098 & 0.985831             & -0.0046 \\
+\hline
+\end{tabular}
+\end{center}
+
+1: Model with initial LWR \nuc{U}{235} enrichment of 4.2 w/o. 
+
+2: Model with LWR discharge burnup of 50 MWd/kg.
+\end{slide}
+
+
+
+\begin{slide}{Sensitivity Results}
+
+\small
+\begin{center}
+\FigCaption{Table 2: Top Parameters from Screening Study}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Parameter $x$}        & \textbf{Base Case $x_0$}    & \textbf{$S_{-x}$} [\%] & \textbf{$S_{+x}$} [\%]\\
+\hline
+\Red{\texttt{FR\_SE\_PU}}     & \Red{0.999}                 & \Red{-83.09}      & \Red{+99.30} \\
+\hline
+\Red{\texttt{LWR\_SE\_PU}}    & \Red{0.999}                 & \Red{-60.90}      & \Red{+18.28} \\
+\hline
+\Red{\texttt{FR\_SE\_AM}}     & \Red{0.999}                 & \Red{-59.53}      & \Red{+17.55} \\
+\hline
+\Red{\texttt{FR\_SE\_CM}}     & \Red{0.999}                 & \Red{-11.15}      & \Red{+1.28}  \\
+\hline
+\texttt{FR\_TRU\_CR}          & 0.500                       & +5.22             & -6.02  \\
+\hline
+\texttt{Rock\_Density}        & 2580 [kg/m\superscript{3}]  & -5.05             & +5.59  \\
+\hline
+\texttt{Rock\_Specific\_Heat} & 840 [J/kg/K]                & -4.90             & +5.59  \\
+\hline
+\texttt{LWR\_BUd}             & 50 [MWd/kg]                 & +5.46             & -3.48  \\
+\hline
+\texttt{FR\_BUd}              & 140 [MWd/kg]                & -5.44             & +5.32  \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{slide}
+
+
+
+
+
+
+%Sensitivity Results
+\begin{slide}{Sensitivity Results}
+
+\small
+\begin{center}
+\FigCaption{Table 3: Bottom Parameters from Screening Study}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Parameter $x$}           & \textbf{Base Case $x_0$}    & \textbf{$S_{-x}$} [\%] & \textbf{$S_{+x}$} [\%]\\
+\hline
+\Red{\texttt{LWR\_SE\_U}}        & \Red{0.999}                 & \Red{-0.01}      & \Red{+0.00} \\
+\hline
+\Red{\texttt{FR\_SE\_NP}}        & \Red{0.999}                 & \Red{-0.10}      & \Red{+0.01} \\
+\hline
+\Red{\texttt{FR\_SE\_U}}         & \Red{0.999}                 & \Red{-0.22}      & \Red{+0.01} \\
+\hline
+\texttt{FR\_LAN\_FF\_Cap}        & 0.0005 [w/o]                & +0.03            & -0.03 \\
+\hline
+\Red{\texttt{LWR\_SE\_NP}}       & \Red{0.999}                 & \Red{-0.26}      & \Red{+0.03} \\
+\hline
+\texttt{LWR\_SNF\_Storage\_Time} & 6 [y]                       & +0.06            & -0.14 \\
+\hline
+\Red{\texttt{LWR\_SE\_CM}}       & \Red{0.999}                 & \Red{-0.82}      & \Red{+0.08} \\
+\hline
+\texttt{Vent\_System\_On\_Time}  & 50 [y]                      & -0.11            & +1.13 \\
+\hline
+\texttt{Drift\_Diameter}         & 5.5 [m]                     & +0.26            & +0.58 \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{slide}
+
+
+
+
+
+%Counterintuitive Results
+\overlays{5}{
+\begin{slide}{Counterintuitive Results}
+\FromSlide{1}
+\begin{itemize}
+    \item For drift diameter, both $S_{-x}$ and $S_{+x}$ are positive!
+
+\vspace{0.2cm}
+\FromSlide{2}
+        \begin{itemize}
+            \item This arises from the assumption that the dirft diameter very small as compared to the spacing 
+                between drifts.
+        \end{itemize}
+
+\vspace{0.2cm}
+\FromSlide{3}
+    \item Since the base-case sits near a local drift diameter minimum, linear sensitivities will never 
+        capture the full effect on the response.
+    
+\vspace{0.2cm}
+\FromSlide{4}
+    \item Additionally egregious is that, with increasing LWR burnup, the repository capacity goes down!
+
+\vspace{0.2cm}
+\FromSlide{5}
+        \begin{itemize}
+    \item This due to the overall TRU production \emph{per unit energy produced from the LWRs} declining.
+        \end{itemize}
+
+\FromSlide{1}
+\end{itemize}
+\end{slide}}
+
+
+
+
+%LWR Burnup Sensitivity}
+\begin{slide}{LWR Burnup Sensitivity}
+\begin{center}
+\includegraphics[scale=0.44]{figs/LWR_BUd_sensitivity_RepCap.eps}\FigCaption{Figure 3: Nuclide Generation Rate in the Final Waste}
+\end{center}
+\end{slide}
+
+
+
+
+%Conclusions
+\overlays{3}{
+\begin{slide}{Conclusions}
+\FromSlide{1}
+\begin{itemize}
+    \item The sensitivity coefficients let us quantify which input parameters would 
+        benefit the most from further parametric studies.
+
+\FromSlide{2}
+\vspace{0.75cm}
+    \item However, the $S_{\pm x}$ represent linear perturbations that are tied to a base-case scenario.
+
+\FromSlide{3}
+\vspace{0.75cm}
+    \item To truly move away from base-case scenarios and more deeply study how $R(x)$ behaves
+        for all parameters, we need to adopt a more sophisticated methodology...
+
+\FromSlide{1}
+\end{itemize}
+\end{slide}}
+
+
+
+
+%Ongoing \& Future Work
+\overlays{4}{
+\begin{slide}{Ongoing \& Future Work}
+\FromSlide{1}
+\begin{itemize}
+    \item We are adopting a stochastic methodology 
+        where we simultaneously pick random values for all 30 input parameters.
+
+\vspace{0.2cm}
+\FromSlide{2}
+    \item Through this method, we obtain tens of thousands of realizations of our fuel cycle model.
+
+\vspace{0.2cm}
+\FromSlide{3}
+    \item We use \underline{contingency tables} and their corresponding information theoretic measures 
+        (\textit{entropy}, \textit{mutual information}, \textit{uncertainty}) to determine the strength of association 
+        between all physical inputs and each fuel cycle output.
+
+\vspace{0.2cm}
+\FromSlide{4}
+    \item Analysis of these measures mimics what we have just seen for $S_{\pm x}$, though
+        on a much improved basis.
+
+\FromSlide{1}
+\end{itemize}
+\end{slide}}
+
+
+
+%Ongoing \& Future Work
+\overlays{2}{
+\begin{slide}{Ongoing \& Future Work}
+\FromSlide{1}
+\tiny
+\begin{center}
+\FigCaption{Table 4: Contingency Table for Am/Cm SE to Repository Capacity [PWh]}
+\begin{tabular}{|c||c|c|c||c|}
+\hline
+&$0.9 - 0.99$&$0.99 - 0.999$&$0.999 - 0.9999$&\\
+\hline
+$300 <$ Rep. Cap. $< 3225$&$4969$&$1159$&$553$&$6681$\\
+\hline
+$3225 <$ Rep. Cap. $< 6150$&$0$&$2279$&$631$&$2910$\\
+\hline
+$6150 <$ Rep. Cap. $< 9075$&$0$&$1506$&$914$&$2420$\\
+\hline
+$9075 <$ Rep. Cap. $< 12000$&$0$&$4$&$2985$&$2989$\\
+\hline
+&$4969$&$4948$&$5083$&$15000$\\
+\hline
+\end{tabular}
+\end{center}
+
+\FromSlide{2}
+\vspace{0.25cm}
+Would produce associations such as, 
+\begin{center}
+\FigCaption{Table 5: Top Parameters Affecting Repository Capacity}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Parameter $x$}           & \textbf{$U(x|R)$} \\
+\hline
+\texttt{FR\_SE\_PU}              & 0.085329856138 \\
+\hline
+\texttt{INT\_SNF\_Storage\_Time} & 0.0592316541992\\
+\hline
+\texttt{FR\_SE\_AM}              & 0.0403626920053\\
+\hline
+\texttt{Heat\_Loss\_Factor}      & 0.0168894857328\\
+\hline
+\texttt{LWR\_SE\_PU}             & 0.0138739809511\\
+\hline
+\texttt{FR\_TRU\_CR}             & 0.0108559673721\\
+\hline
+\end{tabular}
+\end{center}
+
+\end{slide}}
+
+%Questions
+\begin{slide}{Questions}
+? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 
+? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 
+? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 
+? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 
+? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 
+? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 
+? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 
+? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 
+? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 
+? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 
+? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 
+? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 
+? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ?
+\end{slide}
+
+\end{document}
