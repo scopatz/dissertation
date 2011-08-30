@@ -179,6 +179,33 @@ One-Group Reactor Model
 
 
 
+% R1G Notation
+\begin{slide}{R1G Notation}
+\vspace{0.75cm}
+\begin{center}
+\begin{table}
+\caption{One-Group Reactor Symbols}
+\tiny
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Name} & \textbf{Symbol} & \textbf{Units} \\
+\hline
+Fluence & $F = \int_0^t \phi dt^\prime = \phi \int_0^t dt^\prime = \phi \times t \cdot \frac{24 \cdot 3600 \cdot 10^3}{10^{24}}$ & [n/kb] \\
+Nuclide Subscript & $i$ (or $j$) & [1/kg\subscript{$i$}] \\
+Region Superscript & $Q$ & [unitless] \\
+Mass Weights & $m_i^Q = \frac{N_i^Q}{N_{\mbox{IHM}}} = \frac{n_i^Q A_i}{A_{\mbox{IHM}}} \cdot \frac{\rho^Q\cdot\mbox{MW}^F}{\rho^F\cdot\mbox{MW}^Q} \frac{V^Q}{V^F}$ & [kg$_i^Q$/kgIHM] \\
+Burnup & $\mbox{BU}(F) = \sum_i m_i^F \cdot \mbox{BU}_i(F)$ & [MWd/kgIHM] \\
+Prod \& Des Rates & $p_i(F), d_i(F)$ & [n/s/flux/kg$_i$]\\ 
+Transmutation Matrix & $T_{ij}(F)$ & [kg$_j$/kg$_i$] \\
+Multiplication Factor & $k(F) = \frac{P(F)}{D(F)}$ & [unitless] \\
+\hline
+\end{tabular}
+\end{table}
+\end{center}
+\end{slide}
+
+
+
 
 
 % R1G
