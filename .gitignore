@@ -13,4 +13,8 @@
 *.pdf
 *.ps
 *.dia~
+*.out
+*.xml
+*-blx.bib
+
 multigroup_method/figs/benchmark/*.eps

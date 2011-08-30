@@ -5,6 +5,8 @@
 \usepackage{verbatim}
 \usepackage{color}
 \usepackage{hyperref}
+%\usepackage{cite}
+\usepackage{biblatex}
 
 %General Short-Cut Commands
 \newcommand{\superscript}[1]{\ensuremath{^{\textrm{#1}}}}
@@ -14,6 +16,11 @@
 
 %Commands for this document...
 \newcommand{\Red}[1]{\textcolor{red}{#1}}
+
+
+% Bibliography
+\bibliography{../library}{}
+
 
 %Presentation information
 \title{Essential Physics Fuel Cycle Modeling \& Analysis}
@@ -158,6 +165,22 @@ extraneous parameters.
 One-Group Reactor Model
 \end{center}
 \end{slide}
+
+
+
+
+
+% R1G
+\begin{slide}{R1G}
+\begin{center}
+\begin{figure}
+\caption{Reactor Model [1]}
+\includegraphics[scale=0.20]{figs/reactor_model.eps}
+\end{figure}
+\end{center}
+\end{slide}
+
+
 
 
 
@@ -649,6 +672,13 @@ Would produce associations such as,
 ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 
 ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 
 ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ?
+\end{slide}
+
+\begin{slide}{Bibliography}
+\tiny
+\begin{enumerate}
+    \item \fullcite{Scopatz2009}
+\end{enumerate}
 \end{slide}
 
 \end{document}
