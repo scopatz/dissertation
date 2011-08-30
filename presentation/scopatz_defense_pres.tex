@@ -1,12 +1,9 @@
-% Presentation name and date
-% To build, use the following command:
-%	NAME="scopatz_defense_pres" && latex ${NAME}.tex && dvipdf ${NAME}.dvi
 \documentclass[pdf, autumn, slideColor, nocolorBG]{prosper}
 \usepackage{verbatim}
 \usepackage{color}
 \usepackage{hyperref}
-%\usepackage{cite}
 \usepackage{biblatex}
+\usepackage{subfig}
 
 %General Short-Cut Commands
 \newcommand{\superscript}[1]{\ensuremath{^{\textrm{#1}}}}
@@ -179,6 +176,32 @@ One-Group Reactor Model
 \end{figure}
 \end{center}
 \end{slide}
+
+
+
+
+
+% R1G
+\overlays{2}{
+\begin{slide}{R1G}
+\FromSlide{1}
+\begin{center}
+Starting with ORIGEN generated fluence-dependent, nuclide specific data, we know:
+
+\setcounter{figure}{3}
+\begin{figure}
+\subfloat[prod \& des rates,]{\includegraphics[scale=0.21]{../one_group_method/figs/Fig02.eps}}
+\subfloat[burnups,]{\includegraphics[scale=0.21]{../one_group_method/figs/Fig03.eps}}
+\subfloat[transmutation matrices.]{\includegraphics[scale=0.21]{../one_group_method/figs/Fig01.eps}}
+\caption{Reactor Data Library}
+\end{figure}
+
+\end{center}
+
+\FromSlide{2}
+\footnotesize
+Folding these together based on an initial material yields...
+\end{slide}}
 
 
 
