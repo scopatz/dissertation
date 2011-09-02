@@ -557,64 +557,94 @@ a full treatment of the preceeding, transient cycles.
 \end{slide}}
 
 
-%Reactor Model [1]
-\begin{slide}{Reactor Model [1]}
-\vspace{0.5cm}
 
-\includegraphics[scale=0.45]{figs/ReactorModel.eps}
-\vspace{0.5cm}
 
+% Base Case Parameter Definition
+\begin{slide}{Base Case Parameter Definition}
 \tiny
-\textcolor{gray}{\underline{1:} A. M. Scopatz, E. A. Schneider, ``\textit{A New Method for Rapid Computation of 
-Transient Fuel Cycle Material Balances,}'' Nuclear Engineering and Design (2009).}
-\end{slide}
-
-
-
-
-%Repository Model 
-\overlays{2}{
-\begin{slide}{Repository Model}
-\FromSlide{1}
-Like the reactor model, our repository model uses an isotopically weighted linear combination of 
-precomputed values that are stored in a data library.
-
-\FromSlide{2}
 \begin{center}
-\includegraphics[scale=0.50]{figs/RepositoryModel1.eps}
-\end{center}
-
-This data library is based off of an infinite series of linear heat sources.  
-This is because a repository is constrained by intrinsic temperature limits at 
-the driftwall and midway between the drifts.
-\end{slide}}
-
-
-
-
-
-%Repository Model [2]
-\begin{slide}{Repository Model [2]}
-\vspace{0.5cm}
-
-\includegraphics[scale=0.50]{figs/RepositoryModel2.eps}
-\vspace{0.5cm}
-
-\tiny
-\textcolor{gray}{\underline{2:} Li, J., Yim, M.-S., McNelis, D., 2004. 
-``\textit{Risk-based performance index for nuclear waste transmutation system optimization,}'' 
-Trans. Am. Nucl. Soc. 90, 239-240.}
-\end{slide}
-
-
-
-
-%Repository Temperature Distribution 
-\begin{slide}{Repository Temp Distribution}
-\begin{center}
-\includegraphics[scale=0.60]{figs/RepositoryModel3.eps}
+\begin{tabular}{|l||c|c|}
+\hline
+\textbf{Input Parameter $x$} & \textbf{Value} & \textbf{Units} \\
+\hline
+LWR Burnup & 50.0 & MWd/kgIHM \\
+\hline
+LWR Fuel to Moderator Ratio & 0.301 & \\
+\hline
+LWR UF Storage Time & 60 & years \\
+\hline
+SE of U from LWR UF & 0.999 & \\
+\hline
+SE of NP from LWR UF & 0.999 & \\
+\hline
+SE of PU from LWR UF & 0.999 & \\
+\hline
+SE of AM from LWR UF & 0.999 & \\
+\hline
+SE of CM from LWR UF & 0.999 & \\
+\hline
+SE of CS from LWR UF & 0.999 & \\
+\hline
+SE of SR from LWR UF & 0.999 & \\
+\hline
+FR Burnup & 140.0 & MWd/kgIHM \\
+\hline
+FR TRU Conversion Ratio & 0.50 & \\
+\hline
+Max Fraction of Lanthanide in FR Fuel & 0.0005 & Atoms/TRU Atom \\
+\hline
+FR UF Storage Time & 3 & years \\
+\hline
+Storage Before Disposal & 50 & years \\
+\hline
+\end{tabular}
 \end{center}
 \end{slide}
+
+
+
+% Base Case Parameter Definition
+\begin{slide}{Base Case Parameter Definition}
+\tiny
+\begin{center}
+\begin{tabular}{|l||c|c|}
+\hline
+\textbf{Input Parameter $x$} & \textbf{Value} & \textbf{Units} \\
+\hline
+SE of U from FR UF & 0.999 & \\
+\hline
+SE of NP from FR UF & 0.999 & \\
+\hline
+SE of PU from FR UF & 0.999 & \\
+\hline
+SE of AM from FR UF & 0.999 & \\
+\hline
+SE of CM from FR UF & 0.999 & \\
+\hline
+SE of CS from FR UF & 0.999 & \\
+\hline
+SE of SR from FR UF & 0.999 & \\
+\hline
+Density of Host Rock & 2580 & kg/m\superscript{3} \\
+\hline
+Specific Heat of Host Rock & 840 & J/kg-K \\
+\hline
+Thermal Conductivity of Host Rock & 1.626 & W/m-K \\
+\hline
+Heat Loss Factor During Ventilation  & 0.7 & \\
+\hline
+Drift diameter & 5.5 & m \\
+\hline
+Ventilation System On Time & 50 & years \\
+\hline
+Ambient Environment Temperature & 20 & C \\
+\hline
+Distance Between Drifts & 81 & m \\
+\hline
+\end{tabular}
+\end{center}
+\end{slide}
+
 
 
 
