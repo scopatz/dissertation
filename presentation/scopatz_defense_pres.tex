@@ -69,6 +69,9 @@ The University of Texas at Austin\\
 \end{slide}}
 
 
+
+
+
 % Motivation
 \begin{slide}{Motivation}
 \begin{center}
@@ -78,6 +81,29 @@ The University of Texas at Austin\\
 \end{figure}
 \end{center}
 \end{slide}
+
+
+
+
+% Motivation
+\begin{slide}{Motivation}
+\small Basic Fuel Cycle Schema:
+\begin{center}
+\includegraphics[scale=0.5]{figs/basic_nfc_schema.eps}
+\end{center}
+
+Modeling Approaches: \small
+\begin{center}
+\begin{tabular}{lccc}
+\textit{Component}                  & \textit{Recipes}  & \textit{Essential} & \textit{Transport}   \\
+\underline{\textbf{Front End:}}     & Recipes           & Physics Models     & Physics Models       \\
+\underline{\textbf{Reactor:}}       & Recipes           & Rapid Burnup Code  & Neutron Transport    \\
+\underline{\textbf{Repository:}}    & Curve Fits        & Rapid Code         & Neutron Transport    \\
+\end{tabular}
+\end{center}
+\end{slide}
+
+
 
 
 
@@ -649,61 +675,28 @@ Distance Between Drifts & 81 & m \\
 
 
 
-%Fuel Cycle Benchmark
-\overlays{4}{
-\begin{slide}{Fuel Cycle Benchmark}
-\FromSlide{1}
-\begin{itemize}
-    \item We have benchmarked the model on three primary levels: the reactor components, 
-        the repository component, and the fuel cycle as a whole.
 
-\FromSlide{2}
-    \item LWRs and FRs benchmarks may be found at 
-        {\tiny \url{http://nukestar.me.utexas.edu/scopatz/Bright/}}
-
-\FromSlide{3}
-    \item For benchmarks of repository performance, see [3].
-
-\FromSlide{4}
-    \item However, since the fuel cycle we are modeling is based off of
-        the NEA Scheme 3a, we compared our code to the OECD's own results [4].
-
-\FromSlide{1}
-\end{itemize}
-
-\FromSlide{4}
-\tiny
-\textcolor{gray}{\underline{3:} Li, J., Nicholson, M., Proctor,W.C., Yim, M.-S., McNelis, D.N., 2007. 
-``\textit{Examining repository loading options to expand yucca mountain repository capacity.}'' 
-In: Proc. Advanced Nuclear Fuel Cycles and Systems, GLOBAL, Boise, ID, September.}
-
-\textcolor{gray}{\underline{4:} Nuclear Energy Agency, ``\textit{Advanced Nuclear Fuel 
-Cycles and Radioactive Waste Management,}'' - NEA-5990. 2006:1-248.}
-\end{slide}}
-
-
-%Fuel Cycle Benchmark
-\begin{slide}{Fuel Cycle Benchmark}
+% Fuel Cycle Benchmark
+\begin{slide}{Fuel Cycle Base Case Benchmark}
 \tiny
 \begin{center}
-\FigCaption{Table 1: NEA Scheme 3a Benchmark}
 \begin{tabular}{|l||c||c|c||c|c|}
 \hline
-\textbf{Scheme 3a}     & \textbf{NEA} & \textbf{Model\superscript{1}} & \textbf{\% Diff} & \textbf{Model\superscript{2}} & \textbf{\% Diff} \\
+\textbf{Scheme 3a}     & \textbf{NEA [3]} & \textbf{Model\superscript{1}} & \textbf{\% Diff} & \textbf{Model\superscript{2}} & \textbf{\% Diff} \\
 \hline
 Electricity Share: LWR & 0.632       & 0.619459             & -2.0244 & 0.634907             & +0.4579 \\
 \hline
 Electricity Share: FR  & 0.368       & 0.380541             & +3.2955 & 0.365093             & -0.7962 \\
 \hline
-FR SNF: U              & 0.698       & 0.713806             & +2.2143 & 0.715224             & +2.4082 \\
+FR UF: U               & 0.698       & 0.713806             & +2.2143 & 0.715224             & +2.4082 \\
 \hline
-FR SNF: NP             & 0.0065      & 0.00661961           & +1.8070 & 0.00685174           & +5.1335 \\
+FR UF: NP              & 0.0065      & 0.00661961           & +1.8070 & 0.00685174           & +5.1335 \\
 \hline
-FR SNF: PU             & 0.266       & 0.248059             & -7.2327 & 0.248319             & -7.1204 \\
+FR UF: PU              & 0.266       & 0.248059             & -7.2327 & 0.248319             & -7.1204 \\
 \hline
-FR SNF: AM             & 0.02        & 0.0226796            & 11.8152 & 0.0217317            & +7.9687 \\
+FR UF: AM              & 0.02        & 0.0226796            & 11.8152 & 0.0217317            & +7.9687 \\
 \hline
-FR SNF: CM             & 0.0098      & 0.00883517           & -10.920 & 0.00787319           & -24.4730\\
+FR UF: CM              & 0.0098      & 0.00883517           & -10.920 & 0.00787319           & -24.4730\\
 \hline
 HLW: U                 & 0.013324    & 0.0132681            & -0.4213 & 0.0134448            & +0.8984 \\
 \hline
