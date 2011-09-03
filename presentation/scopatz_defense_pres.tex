@@ -1499,6 +1499,71 @@ $10^7 <$ \texttt{Capacity} $< 10^8$&$0$&$213$&$1053$&$1266$\\
 
 
 
+% 3D Contingency Table Statistics
+\overlays{4}{
+\begin{slide}{3D Contingency Table Statistics}
+\FromSlide{1}
+\begin{itemize}
+    \item While $U(x,y|R)$ is roughly equivalent to the concept of \textit{mutual} \textit{sensitivity},
+        3D tables should allow for an information theoretic parallel to \textit{\underline{covariance}}.
+
+\FromSlide{2}
+    \item In general for contingency tables covariance is not well defined, however here there is 
+        the special stochastic situation where $x$ and $y$ are known \textit{a priori} to be independent of $R$.
+
+\FromSlide{3}
+    \item Therefore, the following new coefficient of variation metric is proposed:
+
+\FromSlide{4}
+        \begin{itemize}
+            \item $c_v(x|y|R)$ is the \textit{`sensitivity of sensitivity'}, or how much an input 
+                affects the response of another input.
+        \end{itemize}
+
+\FromSlide{1}
+\end{itemize}
+\end{slide}}
+
+
+
+
+
+% 3D Contingency Table Statistics
+\overlays{3}{
+\begin{slide}{3D Contingency Table Statistics}
+\FromSlide{1}
+First, define:
+\[ U(x|R)|y = \left\{ \left.U(x|R)\right|_{l_0}^{l_1}, \left.U(x|R)\right|_{l_1}^{l_2}, \ldots \left.U(x|R)\right|_{l_{C-1}}^{l_C}  \right\} \]
+
+\FromSlide{2}
+Then the coefficient of variation is,
+\[ c_v(U(x|R)|y) = \frac{\sigma(U(x|R)|y)}{\mu(U(x|R)|y)} \]
+
+\FromSlide{3}
+Finally, the symmetric $c_v$ is set as:
+\[ c_v(x|y|R) = \frac{1}{2} \left(c_v(U(x|R)|y) + c_v(U(y|R)|x)\right) \]
+\end{slide}}
+
+
+
+% 3D Contingency Table Statistics
+\begin{slide}{3D Contingency Table Statistics}
+\vspace{1.5cm}
+Thus, $c_v(x|y|R)$ has the following properties:
+\begin{enumerate}
+    \item Defined on the range $[0, 1]$ since $0 \le U \le 1$.
+    \item $c_v = 0$ implies that $\sigma = 0$, which indicates that $U(x|R)$
+        shows no associaion with $y$.  Thus there are no covariant effects observed.
+    \item $c_v = 1$ indicates that $\sigma = \mu$.  This connotes
+        that the value of $x$ soley governs the response $R$ from $y$.
+\end{enumerate}
+\end{slide}
+
+
+
+
+
+
 %Conclusions
 \overlays{4}{
 \begin{slide}{Conclusions}
