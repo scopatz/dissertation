@@ -87,12 +87,12 @@ The University of Texas at Austin\\
 
 % Motivation
 \begin{slide}{Motivation}
-\small Basic Fuel Cycle Schema:
+\small \underline{Basic Fuel Cycle Schema:}
 \begin{center}
 \includegraphics[scale=0.5]{figs/basic_nfc_schema.eps}
 \end{center}
 
-Modeling Approaches: \small
+\underline{Modeling Approaches:} \small
 \begin{center}
 \begin{tabular}{lccc}
 \textit{Component}                  & \textit{Recipes}  & \textit{Essential} & \textit{Transport}   \\
@@ -263,7 +263,8 @@ To obtan a specific reactor, the above data must be folded together.
 \begin{slide}{R1G Library Collapse}
 \FromSlide{1}
 \begin{itemize}
-    \item We now need to collapse our general library down to a specific reactor at hand.
+    \item Collapsing a general library down is the central calculation of 
+        the one-group reactor model.
 
 \FromSlide{2}
     \item Using a two-region fuel pin cell model, denote the mass weight of each initial 
@@ -950,134 +951,6 @@ Information Theoretic Analysis
 
 
 
-
-
-
-
-
-
-
-
-
-%Fuel Batch Averaging
-\begin{slide}{Fuel Batch Averaging}
-\begin{minipage}[t]{7cm}
-\begin{center}
-\includegraphics[scale=0.54]{figs/ReactorModel/FR_Batch_BU.eps}\\
-\includegraphics[scale=0.54]{figs/ReactorModel/FR_Batch_k.eps}
-\end{center}
-\end{minipage}
-\begin{minipage}{4.25cm}
-\begin{center}
-Figure 4: Sample fast reactor fuel parameters with a 3-batch loading schema.
-\end{center}
-\end{minipage}
-\end{slide}
-
-
-%Discharge Isotopics
-\begin{slide}{Discharge Isotopics}
-\begin{center}
-\includegraphics[scale=0.75]{figs/ReactorModel/Tij_Fd_.eps}
-\FigCaption{Figure 5: Sample fast reactor fuel transformation as a function of fluence 
-            with discharge slice.}
-\end{center}
-\end{slide}
-
-
-
-% Reactor Benchmark
-\begin{slide}{Reactor Benchmark}
-Light Water Reactor NEA/OECD Case:  
-\begin{itemize}
-    \item Burnup: 40 MWd/kg
-    \item Batches: 4 
-    \item $P_{NL}$: 0.98
-\end{itemize}
-
-\vspace{0.75cm}
-Input Isotopics: \tiny
-\begin{center}
-\begin{tabular}{lcccccc}
-Isotope         & Benchmark & Model     & Delta       & Mean      &  Sigma     & Fractional Dev \\
-\nuc{U}{234}    & 3.200E-04 & 3.200E-04 &  0.000E+00  & 3.200E-04 &  0.000E+00 & 0.000E+00      \\
-\nuc{U}{235}    & 3.600E-02 & 3.774E-02 &  -1.745E-03 & 3.687E-02 &  8.727E-04 & 2.367E-02      \\
-\nuc{U}{236}    & 1.600E-04 & 0.000E+00 &  1.600E-04  & 8.000E-05 &  8.000E-05 & 1.000E+00      \\
-\nuc{U}{238}    & 9.635E-01 & 9.619E-01 &  1.585E-03  & 9.627E-01 &  7.927E-04 & 8.234E-04      \\
-\end{tabular}
-\end{center}
-\end{slide}
-
-% Reactor Benchmark
-\begin{slide}{Reactor Benchmark}
-Output Isotopics: \tiny
-\begin{center}
-\begin{tabular}{lcccccc}
-Isotope         & Benchmark & Model     & Delta       & Mean      &  Sigma     & Fractional Dev \\
-\nuc{U}{234}    & 1.778E-04 & 1.729E-04 & 4.877E-06   & 1.753E-04 &  2.438E-06 & 1.390E-02      \\
-\nuc{U}{235}    & 8.005E-03 & 8.693E-03 & -6.879E-04  & 8.349E-03 &  3.439E-04 & 4.120E-02      \\
-\nuc{U}{236}    & 4.842E-03 & 4.736E-03 & 1.062E-04   & 4.789E-03 &  5.313E-05 & 1.109E-02      \\
-\nuc{U}{238}    & 9.337E-01 & 9.341E-01 & -3.830E-04  & 9.339E-01 &  1.915E-04 & 2.050E-04      \\
-\nuc{Np}{237}   & 6.146E-04 & 5.754E-04 & 3.916E-05   & 5.950E-04 &  1.958E-05 & 3.290E-02      \\
-\nuc{Pu}{238}   & 2.258E-04 & 1.825E-04 & 4.328E-05   & 2.041E-04 &  2.164E-05 & 1.059E-01      \\
-\nuc{Pu}{239}   & 5.993E-03 & 5.387E-03 & 6.066E-04   & 5.690E-03 &  3.033E-04 & 5.329E-02      \\
-\nuc{Pu}{240}   & 2.389E-03 & 2.081E-03 & 3.081E-04   & 2.235E-03 &  1.540E-04 & 6.890E-02      \\
-\nuc{Pu}{241}   & 1.636E-03 & 1.777E-03 & -1.407E-04  & 1.707E-03 &  7.036E-05 & 4.121E-02      \\
-%\nuc{Pu}{242}   & 6.026E-04 & 6.624E-04 & -5.982E-05  & 6.325E-04 &  2.991E-05 & 4.728E-02      \\
-\nuc{Am}{241}   & 4.672E-05 & 4.426E-05 & 2.462E-06   & 4.549E-05 &  1.231E-06 & 2.705E-02      \\
-\nuc{Am}{243}   & 1.481E-04 & 1.403E-04 & 7.741E-06   & 1.442E-04 &  3.870E-06 & 2.683E-02      \\
-\nuc{Tc}{99}    & 2.227E-03 & 9.030E-04 & 1.324E-03   & 1.565E-03 &  6.622E-04 & 4.230E-01      \\
-\nuc{Sm}{147}   & 1.395E-04 & 5.566E-05 & 8.388E-05   & 9.761E-05 &  4.194E-05 & 4.296E-01      \\
-\nuc{Sm}{151}   & 2.882E-05 & 1.884E-05 & 9.976E-06   & 2.383E-05 &  4.988E-06 & 2.093E-01      \\
-\end{tabular}
-\end{center}
-\end{slide}
-
-
-
-%Repository Model 
-\overlays{2}{
-\begin{slide}{Repository Model}
-\FromSlide{1}
-Like the reactor model, our repository model uses an isotopically weighted linear combination of 
-precomputed values that are stored in a data library.
-
-\FromSlide{2}
-\begin{center}
-\includegraphics[scale=0.50]{figs/RepModel/RepositoryModel1.eps}
-\end{center}
-
-This data library is based off of an infinite series of linear heat sources.  
-This is because a repository is constrained by intrinsic temperature limits at 
-the drift wall and midway between the drifts.
-\end{slide}}
-
-
-
-
-
-%Repository Model [2]
-\begin{slide}{Repository Model [2]}
-\vspace{0.5cm}
-
-\includegraphics[scale=0.50]{figs/RepModel/RepositoryModel2.eps}
-\vspace{0.5cm}
-
-\tiny
-\textcolor{gray}{\underline{2:} Li, J., Yim, M.-S., McNelis, D., 2004. 
-``\textit{Risk-based performance index for nuclear waste transmutation system optimization,}'' 
-Trans. Am. Nucl. Soc. 90, 239-240.}
-\end{slide}
-
-
-
-
-%Repository Temperature Distribution 
-\begin{slide}{Repository Temp Distribution}
-\begin{center}
-\includegraphics[scale=0.60]{figs/RepModel/RepositoryModel3.eps}
-\end{center}
-\end{slide}
 
 
 
