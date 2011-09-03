@@ -965,7 +965,7 @@ Information Theoretic Analysis
         to the \underline{repository} \underline{capacity} response, measured in units of energy.  
 
 \FromSlide{3}
-    \item Denote fuel cycle responses as $R$ [GWh] for $x$ input parameters.
+    \item Denote fuel cycle responses as $R$ [GWh] for $x$ \& $y$ input parameters.
 
 \FromSlide{4}
     \item \textbf{\underline{Goal:}} Determine strength of \textit{association} 
@@ -996,8 +996,8 @@ Information Theoretic Analysis
 
 
 
-%Input Variable Definition
-\begin{slide}{Input Variable Definition}
+% Input Parameter Definition
+\begin{slide}{Input Parameter Definition}
 \tiny
 \begin{center}
 \begin{tabular}{|l||c|c|c|c|}
@@ -1010,19 +1010,19 @@ LWR Fuel to Moderator Ratio & 0.28 & 0.36 & & linear \\
 \hline
 LWR SNF Storage Time & 3 & 30 & years & linear \\
 \hline
-SE of U from LWR SNF & 0.99 & 0.9999 & & nines \\
+SE of U from LWR UF & 0.99 & 0.9999 & & nines \\
 \hline
-SE of NP from LWR SNF & 0.9 & 0.9999 & & nines \\
+SE of NP from LWR UF & 0.9 & 0.9999 & & nines \\
 \hline
-SE of PU from LWR SNF & 0.9 & 0.9999 & & nines \\
+SE of PU from LWR UF & 0.9 & 0.9999 & & nines \\
 \hline
-SE of AM from LWR SNF & 0.9 & 0.9999 & & nines \\
+SE of AM from LWR UF & 0.9 & 0.9999 & & nines \\
 \hline
-SE of CM from LWR SNF & 0.9 & 0.9999 & & nines \\
+SE of CM from LWR UF & 0.9 & 0.9999 & & nines \\
 \hline
-SE of CS from LWR SNF & 0.9 & 0.9999 & & nines \\
+SE of CS from LWR UF & 0.9 & 0.9999 & & nines \\
 \hline
-SE of SR from LWR SNF & 0.9 & 0.9999 & & nines \\
+SE of SR from LWR UF & 0.9 & 0.9999 & & nines \\
 \hline
 FR Burnup Level & 100.0 & 200.0 & MWd/kgIHM & linear\\
 \hline
@@ -1030,7 +1030,7 @@ FR TRU Conversion Ratio & 0.25 & 0.95 & & linear \\
 \hline
 Max Fraction of Lanthanide in FR Fuel & 0.0001 & 0.005 & Atoms/TRU Atom & linear \\
 \hline
-FR SNF Storage Time & 3 & 30 & years & linear \\
+FR UF Storage Time & 3 & 30 & years & linear \\
 \hline
 Storage Before Disposal & 1 & 300 & years & log \\
 \hline
@@ -1038,27 +1038,27 @@ Storage Before Disposal & 1 & 300 & years & log \\
 \end{center}
 \end{slide}
 
-%Input Variable Definition
-\begin{slide}{Input Variable Definition}
+%Input Parameter Definition
+\begin{slide}{Input Parameter Definition}
 \tiny
 \begin{center}
 \begin{tabular}{|l||c|c|c|c|}
 \hline
 \textbf{Input Parameter $x$} & \textbf{Min} & \textbf{Max} & \textbf{Units} & \textbf{Sample Type}\\
 \hline
-SE of U from FR SNF & 0.99 & 0.9999 & & nines \\
+SE of U from FR UF & 0.99 & 0.9999 & & nines \\
 \hline
-SE of NP from FR SNF & 0.9 & 0.9999 & & nines \\
+SE of NP from FR UF & 0.9 & 0.9999 & & nines \\
 \hline
-SE of PU from FR SNF & 0.9 & 0.9999 & & nines \\
+SE of PU from FR UF & 0.9 & 0.9999 & & nines \\
 \hline
-SE of AM from FR SNF & 0.9 & 0.9999 & & nines \\
+SE of AM from FR UF & 0.9 & 0.9999 & & nines \\
 \hline
-SE of CM from FR SNF & 0.9 & 0.9999 & & nines \\
+SE of CM from FR UF & 0.9 & 0.9999 & & nines \\
 \hline
-SE of CS from FR SNF & 0.9 & 0.9999 & & nines \\
+SE of CS from FR UF & 0.9 & 0.9999 & & nines \\
 \hline
-SE of SR from FR SNF & 0.9 & 0.9999 & & nines \\
+SE of SR from FR UF & 0.9 & 0.9999 & & nines \\
 \hline
 Density of Host Rock & 2317 & 2869 & kg/m\superscript{3} & linear \\
 \hline
@@ -1085,21 +1085,22 @@ Distance Between Drifts & 56 & 106 & m & linear \\
 
 
 
-%Analysis Methodology
+% Contingency Table Methodology
 \overlays{5}{
-\begin{slide}{Analysis Methodology}
+\begin{slide}{Contingency Table Methodology}
 \FromSlide{1}
 \begin{itemize}
     \item Before attempting to comprehend the subtleties of a 30+ dimensional surface,  
-        prudence demands that we check and see if we really need all 30 variables...
+        prudence demands a check to see if all 30 variables are \textit{really} needed...
 
 \FromSlide{2}
     \begin{itemize}
-        \item (Hint: we probably don't!)
+        \item (Hint: probably not!)
     \end{itemize}
 
 \FromSlide{3}
-    \item Thus we are looking for a quantitative ranking of the \emph{associations} of each input parameter to the response.  
+    \item Thus a quantitative ranking of the \emph{associations} of each input parameter 
+        to the response is desired.  
 
 \FromSlide{4}
     \begin{itemize}
@@ -1107,7 +1108,8 @@ Distance Between Drifts & 56 & 106 & m & linear \\
     \end{itemize}
 
 \FromSlide{5}
-    \item To do this, we are going to borrow an analysis tool that is often used in Biology: \underline{Contingency Tables}.
+    \item These rankings are obtained by borrowing an analysis tool that is often 
+        used in Biology: \underline{Contingency Tables}.
 
 \FromSlide{1}
 \end{itemize}
@@ -1115,13 +1117,15 @@ Distance Between Drifts & 56 & 106 & m & linear \\
 
 
 
-%Contingency Tables
+% Contingency Tables
 \overlays{3}{
 \begin{slide}{Contingency Tables}
 \FromSlide{1}
 The $2\times 2$ table is most common:
+\setcounter{table}{4}
 \begin{center}
-\FigCaption{Table 2: Hair Color to Sex Contingency Table}
+\begin{table}
+\caption{Hair Color to Sex Contingency Table}
 \begin{tabular}{|l||c|c||c|}
 \hline
        & Blonde & Brunette & Totals \\
@@ -1133,14 +1137,15 @@ Male   & 11     & 14       & 25 \\
 Totals & 29     & 31       & 60 \\
 \hline
 \end{tabular}
+\end{table}
 \end{center} 
 
 \FromSlide{2}
-\vspace{1.0cm}
+\vspace{0.5cm}
 But doesn't this approach ignore the underlying biology?
 
 \FromSlide{3}
-\vspace{1.0cm}
+\vspace{0.5cm}
 \raggedleft{\LARGE \textit{Yes!}}
 \end{slide}}
 
