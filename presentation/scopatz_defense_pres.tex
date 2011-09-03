@@ -962,7 +962,7 @@ Information Theoretic Analysis
 
 \FromSlide{2}
     \item This is done by performing \textbf{Contingency Table} analysis for each parameter
-        to the \underline{repository} \underline{capacity} response, measured in units of energy.  
+        to the \underline{repository} \underline{capacity} response.  
 
 \FromSlide{3}
     \item Denote fuel cycle responses as $R$ [GWh] for $x$ \& $y$ input parameters.
@@ -1151,7 +1151,7 @@ But doesn't this approach ignore the underlying biology?
 
 
 
-%Contingency Tables
+% Contingency Tables
 \overlays{6}{
 \begin{slide}{Contingency Tables}
 \begin{center}
@@ -1171,7 +1171,7 @@ But doesn't this approach ignore the underlying biology?
 
 
 
-%Fuel Cycle Contingency Table
+% Fuel Cycle Contingency Table
 \overlays{2}{
 \begin{slide}{Fuel Cycle Contingency Table}
 \FromSlide{1}
@@ -1180,13 +1180,12 @@ measures the response from a sample input: fast reactor
 fuel plutonium separation efficiency, \texttt{FR\_SE\_PU}.
 
 \FromSlide{2}
-\vspace{1.0cm}
-\tiny
-\input{figs/ct2d_example}
+\vspace{0.50cm}
+\input{figs/ct2d_example.tex}
 \end{slide}}
 
 
-%Contingency Table Statistics
+% Contingency Table Statistics
 \overlays{3}{
 \begin{slide}{Contingency Table Statistics}
 \FromSlide{1}
@@ -1195,11 +1194,11 @@ associations with contingency tables.
 
 \FromSlide{2}
 \vspace{0.5cm}
-The measure we will be using is the \emph{Uncertainty Coefficient} $U(x|R)$.
+The primary measure here is the \emph{Uncertainty Coefficient} $U(x|R)$.
 
 \FromSlide{3}
 \vspace{0.5cm}
-To calculate $U(x|R)$ we will need, 
+To calculate $U(x|R)$ the following are needed, 
 \begin{itemize}
     \item The \emph{Entropy} $H(x)$, which is a measure of how evenly the 
         data is spread out in the $x$ parameter.
@@ -1213,8 +1212,8 @@ To calculate $U(x|R)$ we will need,
 \overlays{3}{
 \begin{slide}{Contingency Table Statistics}
 \FromSlide{1}
-Denote the entries in a contingency table as $N_{ij}$ for the i\superscript{th} response bin
-and the j\superscript{th} input bin.
+Denote the entries in a contingency table as $N_{ij}$ for the $i$\superscript{th} response bin
+and the $j$\superscript{th} input bin.
 
 \FromSlide{2}
 \vspace{0.5cm}
@@ -1223,7 +1222,7 @@ The probability of landing in a given bin is therefore,
 
 \FromSlide{3}
 \vspace{0.5cm}
-We may then calculate the entropy from, 
+Thus the entropy is calculated from, 
 \[ H(x) = - \sum_j^J p_{\cdot j} \ln(p_{\cdot j}) \]
 \end{slide}}
 
@@ -1237,7 +1236,7 @@ The mutual information is found via,
 
 \FromSlide{2}
 \vspace{0.5cm}
-The relations may be seen graphically:
+The relations may be seen graphically [4]:
 
 \vspace{0.5cm}
 \setlength{\unitlength}{1cm}
@@ -1395,6 +1394,7 @@ This metric has the following useful properties:
     \item \fullcite{Scopatz2009}
     \item \fullcite{Takano1994}
     \item \fullcite{NEA-5990}
+    \item \fullcite{Press2007c}
 \end{enumerate}
 \end{slide}
 
