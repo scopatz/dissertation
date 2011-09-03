@@ -780,12 +780,12 @@ HLW: FP                & 0.985876    & 0.985973             & +0.0098 & 0.985831
 
 
 
-
+% Sensitivity Results
 \begin{slide}{Sensitivity Results}
-
-\small
 \begin{center}
-\FigCaption{Table 2: Top Parameters from Screening Study}
+\begin{table}
+\scriptsize
+\caption{Top Parameters from Screening Study}
 \begin{tabular}{|l|c|c|c|}
 \hline
 \textbf{Parameter $x$}        & \textbf{Base Case $x_0$}    & \textbf{$S_{-x}$} [\%] & \textbf{$S_{+x}$} [\%]\\
@@ -809,8 +809,8 @@ HLW: FP                & 0.985876    & 0.985973             & +0.0098 & 0.985831
 \texttt{FR\_BUd}              & 140 [MWd/kg]                & -5.44             & +5.32  \\
 \hline
 \end{tabular}
+\end{table}
 \end{center}
-
 \end{slide}
 
 
@@ -818,12 +818,12 @@ HLW: FP                & 0.985876    & 0.985973             & +0.0098 & 0.985831
 
 
 
-%Sensitivity Results
+% Sensitivity Results
 \begin{slide}{Sensitivity Results}
-
-\small
 \begin{center}
-\FigCaption{Table 3: Bottom Parameters from Screening Study}
+\begin{table}
+\scriptsize
+\caption{Bottom Parameters from Screening Study}
 \begin{tabular}{|l|c|c|c|}
 \hline
 \textbf{Parameter $x$}           & \textbf{Base Case $x_0$}    & \textbf{$S_{-x}$} [\%] & \textbf{$S_{+x}$} [\%]\\
@@ -847,9 +847,10 @@ HLW: FP                & 0.985876    & 0.985973             & +0.0098 & 0.985831
 \texttt{Drift\_Diameter}         & 5.5 [m]                     & +0.26            & +0.58 \\
 \hline
 \end{tabular}
+\end{table}
 \end{center}
-
 \end{slide}
+
 
 
 
@@ -891,120 +892,22 @@ HLW: FP                & 0.985876    & 0.985973             & +0.0098 & 0.985831
 
 
 
-%LWR Burnup Sensitivity}
+
+
+% LWR Burnup Sensitivity}
 \begin{slide}{LWR Burnup Sensitivity}
 \begin{center}
-\includegraphics[scale=0.44]{figs/LWR_BUd_sensitivity_RepCap.eps}\FigCaption{Figure 3: Nuclide Generation Rate in the Final Waste}
+\begin{figure}
+\includegraphics[scale=0.4]{figs/LWR_BUd_sensitivity_RepCap.eps}
+\caption{Nuclide Generation Rate in the Final Waste}
+\end{figure}
 \end{center}
 \end{slide}
 
 
 
 
-%Conclusions
-\overlays{3}{
-\begin{slide}{Conclusions}
-\FromSlide{1}
-\begin{itemize}
-    \item The sensitivity coefficients let us quantify which input parameters would 
-        benefit the most from further parametric studies.
-
-\FromSlide{2}
-\vspace{0.75cm}
-    \item However, the $S_{\pm x}$ represent linear perturbations that are tied to a base-case scenario.
-
-\FromSlide{3}
-\vspace{0.75cm}
-    \item To truly move away from base-case scenarios and more deeply study how $R(x)$ behaves
-        for all parameters, we need to adopt a more sophisticated methodology...
-
-\FromSlide{1}
-\end{itemize}
-\end{slide}}
-
-
-
-
-%Ongoing \& Future Work
-\overlays{4}{
-\begin{slide}{Ongoing \& Future Work}
-\FromSlide{1}
-\begin{itemize}
-    \item We are adopting a stochastic methodology 
-        where we simultaneously pick random values for all 30 input parameters.
-
-\vspace{0.2cm}
-\FromSlide{2}
-    \item Through this method, we obtain tens of thousands of realizations of our fuel cycle model.
-
-\vspace{0.2cm}
-\FromSlide{3}
-    \item We use \underline{contingency tables} and their corresponding information theoretic measures 
-        (\textit{entropy}, \textit{mutual information}, \textit{uncertainty}) to determine the strength of association 
-        between all physical inputs and each fuel cycle output.
-
-\vspace{0.2cm}
-\FromSlide{4}
-    \item Analysis of these measures mimics what we have just seen for $S_{\pm x}$, though
-        on a much improved basis.
-
-\FromSlide{1}
-\end{itemize}
-\end{slide}}
-
-
-
-%Ongoing \& Future Work
-\overlays{2}{
-\begin{slide}{Ongoing \& Future Work}
-\FromSlide{1}
-\tiny
-\begin{center}
-\FigCaption{Table 4: Contingency Table for Am/Cm SE to Repository Capacity [PWh]}
-\begin{tabular}{|c||c|c|c||c|}
-\hline
-&$0.9 - 0.99$&$0.99 - 0.999$&$0.999 - 0.9999$&\\
-\hline
-$300 <$ Rep. Cap. $< 3225$&$4969$&$1159$&$553$&$6681$\\
-\hline
-$3225 <$ Rep. Cap. $< 6150$&$0$&$2279$&$631$&$2910$\\
-\hline
-$6150 <$ Rep. Cap. $< 9075$&$0$&$1506$&$914$&$2420$\\
-\hline
-$9075 <$ Rep. Cap. $< 12000$&$0$&$4$&$2985$&$2989$\\
-\hline
-&$4969$&$4948$&$5083$&$15000$\\
-\hline
-\end{tabular}
-\end{center}
-
-\FromSlide{2}
-\vspace{0.25cm}
-Would produce associations such as, 
-\begin{center}
-\FigCaption{Table 5: Top Parameters Affecting Repository Capacity}
-\begin{tabular}{|l|c|}
-\hline
-\textbf{Parameter $x$}           & \textbf{$U(x|R)$} \\
-\hline
-\texttt{FR\_SE\_PU}              & 0.085329856138 \\
-\hline
-\texttt{INT\_SNF\_Storage\_Time} & 0.0592316541992\\
-\hline
-\texttt{FR\_SE\_AM}              & 0.0403626920053\\
-\hline
-\texttt{Heat\_Loss\_Factor}      & 0.0168894857328\\
-\hline
-\texttt{LWR\_SE\_PU}             & 0.0138739809511\\
-\hline
-\texttt{FR\_TRU\_CR}             & 0.0108559673721\\
-\hline
-\end{tabular}
-\end{center}
-
-\end{slide}}
-
-%Questions
+% Questions
 \begin{slide}{Questions}
 ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 
 ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 
