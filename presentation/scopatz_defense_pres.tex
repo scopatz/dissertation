@@ -1381,6 +1381,124 @@ This metric has the following useful properties:
 
 
 
+
+
+
+% Contingency Table 3D Extension
+\overlays{5}{
+\begin{slide}{Contingency Table 3D Extension}
+\FromSlide{1}
+\begin{itemize}
+    \item \textbf{\underline{New Goal:}} Now that the assoction of $x$ to $R$ may be determined, 
+        finding the sensitivity of $R(x)$ to other inputs.
+
+\FromSlide{2}
+    \item Call $y$ an input parameter distinct from $x$.  Measuring the simultaneous
+        effect of two inputs to a response may be performed using 3D tables!
+
+\FromSlide{3}
+    \item Note that \textit{`slices'} of these 3D tables may be seen as 2D tables bins 
+        along a specific cut of data.
+
+\FromSlide{4}
+    \item For 30 inputs, there are $_{30}C_2 = 435$ contingency tables to construct.
+
+\FromSlide{5}
+    \item Different metrics will be needed to account for the added dimensionality.
+
+\FromSlide{1}
+\end{itemize}
+\end{slide}}
+
+
+
+
+
+% FR Pu SE and HLW Storage Time
+\begin{slide}{FR Pu SE and HLW Storage Time}
+\begin{center}
+\tiny
+\begin{tabular}{|c||c|c|c||c|}
+\hline
+\multicolumn{5}{|c|}{Slice for 1 $<$ \texttt{HLW\_Storage\_Time} $<$ 6.694}\\
+\hline
+&$0.9<$\texttt{SE}$<0.99$&$0.99<$\texttt{SE}$<0.999$&$0.999<$\texttt{SE}$< 0.9999$&\\
+\hline
+$10^4 <$ \texttt{Capacity} $< 10^5$&$419$&$23$&$14$&$456$\\
+\hline
+$10^5 <$ \texttt{Capacity} $< 10^6$&$11145$&$9970$&$9553$&$30668$\\
+\hline
+$10^6 <$ \texttt{Capacity} $< 10^7$&$110$&$1556$&$2085$&$3751$\\
+\hline
+$10^7 <$ \texttt{Capacity} $< 10^8$&$0$&$0$&$0$&$0$\\
+\hline
+&$11674$&$11549$&$11652$&$34875$\\
+\hline
+\hline
+\multicolumn{5}{|c|}{Slice for 6.694 $<$ \texttt{HLW\_Storage\_Time} $<$ 44.814}\\
+\hline
+&$0.9<$\texttt{SE}$<0.99$&$0.99<$\texttt{SE}$<0.999$&$0.999<$\texttt{SE}$< 0.9999$&\\
+\hline
+$10^4 <$ \texttt{Capacity} $< 10^5$&$273$&$19$&$11$&$303$\\
+\hline
+$10^5 <$ \texttt{Capacity} $< 10^6$&$10859$&$7527$&$6373$&$24759$\\
+\hline
+$10^6 <$ \texttt{Capacity} $< 10^7$&$484$&$4157$&$5175$&$9816$\\
+\hline
+$10^7 <$ \texttt{Capacity} $< 10^8$&$0$&$2$&$24$&$26$\\
+\hline
+&$11616$&$11705$&$11583$&$34904$\\
+\hline
+\end{tabular}
+\end{center}
+\end{slide}
+
+
+
+
+% FR Pu SE and HLW Storage Time
+\begin{slide}{FR Pu SE and HLW Storage Time}
+\begin{center}
+\tiny
+\begin{tabular}{|c||c|c|c||c|}
+\hline
+\multicolumn{5}{|c|}{Slice for 1 $<$ \texttt{HLW\_Storage\_Time} $<$ 6.694}\\
+\hline
+&$0.9<$\texttt{SE}$<0.99$&$0.99<$\texttt{SE}$<0.999$&$0.999<$\texttt{SE}$< 0.9999$&\\
+\hline
+$10^4 <$ \texttt{Capacity} $< 10^5$&$47$&$1$&$2$&$50$\\
+\hline
+$10^5 <$ \texttt{Capacity} $< 10^6$&$9506$&$4114$&$3543$&$17163$\\
+\hline
+$10^6 <$ \texttt{Capacity} $< 10^7$&$2054$&$7382$&$7170$&$16606$\\
+\hline
+$10^7 <$ \texttt{Capacity} $< 10^8$&$0$&$211$&$1029$&$1240$\\
+\hline
+&$11607$&$11708$&$11744$&$35059$\\
+\hline
+\hline
+\multicolumn{5}{|c|}{Aggregation over \texttt{HLW\_Storage\_Time}}\\
+\hline
+&$0.9<$\texttt{SE}$<0.99$&$0.99<$\texttt{SE}$<0.999$&$0.999<$\texttt{SE}$< 0.9999$&\\
+\hline
+$10^4 <$ \texttt{Capacity} $< 10^5$&$739$&$43$&$27$&$809$\\
+\hline
+$10^5 <$ \texttt{Capacity} $< 10^6$&$31510$&$21611$&$19469$&$72590$\\
+\hline
+$10^6 <$ \texttt{Capacity} $< 10^7$&$2648$&$13095$&$14430$&$30173$\\
+\hline
+$10^7 <$ \texttt{Capacity} $< 10^8$&$0$&$213$&$1053$&$1266$\\
+\hline
+&$34897$&$34962$&$34979$&$104838$\\
+\hline
+\end{tabular}
+\end{center}
+\end{slide}
+
+
+
+
+
 %Conclusions
 \overlays{4}{
 \begin{slide}{Conclusions}
@@ -1407,30 +1525,6 @@ This metric has the following useful properties:
 \end{slide}}
 
 
-%Future Work
-\overlays{4}{
-\begin{slide}{Future Work}
-\FromSlide{1}
-\begin{itemize}
-    \item On the NFC component side, extending the current reactor methodology from 
-        one group to multi-group is an ongoing project.
-
-\FromSlide{2}
-    \item Additionally, incorporating a fuel fabrication facility and a repository model 
-        into Bright are also ahead.
-
-\FromSlide{3}
-    \item Writing Bright bindings for a code like GENIUSv2 would allow us to get the 
-        best of both worlds with respect to system-dynamics and physics.
-
-\FromSlide{4}
-    \item On the fuel cycle side, applying the contingency table methodology to more system 
-        responses and other statistical metrics and increasing table dimensionality will 
-        also be done.
-
-\FromSlide{1}
-\end{itemize}
-\end{slide}}
 
 
 
