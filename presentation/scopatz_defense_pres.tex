@@ -1888,8 +1888,7 @@ $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\v
         \[ d_p = \sqrt{\sum_a \left(\frac{a_r - a_p}{a_{n_p}}\right)^2} \]
 
 \FromSlide{3}
-    \item %The nearest neighbors are determined via the sequence $p^*$:
-        The sequence $p^*$ determines the nearest neighbors:
+    \item The sequence $p^*$ determines the nearest neighbors:
 
         \[ p^* = \left\{p | d_p \le d_{p+1}\right\} \]
 
@@ -1897,6 +1896,33 @@ $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\v
 \end{itemize}
 \end{slide}}
 
+
+
+
+
+
+% Cross Section Interpolation
+\overlays{3}{
+\begin{slide}{Cross Section Interpolation}
+\FromSlide{1}
+\begin{itemize}
+    \item Using the shorthand $a_p^*$ as a substitue for $a_{p^*}$, 
+
+\FromSlide{2}
+    \vspace{0.5cm}
+    \item Then $x_f$ is a unitless multidimensional linear interpolation factor,
+
+        \[ x_f = \sum_a \left(\frac{a_r - a_1^*}{a_2^* - a_1^*}\right) \]
+
+\FromSlide{3}
+    \vspace{0.5cm}
+    \item Group constants \textit{for each time step} are computed:
+
+        \[ \sigma_{r_x,i\tau g} = (\sigma_{r_x,ip_2^*g} - \sigma_{r_x,ip_1^*g}) \cdot x_f  + \sigma_{r_x,ip_1^*g} \]
+
+\FromSlide{1}
+\end{itemize}
+\end{slide}}
 
 
 
