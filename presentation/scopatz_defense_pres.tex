@@ -1639,6 +1639,59 @@ Multi-Group Reactor Model
 
 
 
+% Remotivation
+\overlays{3}{
+\begin{slide}{Remotivation}
+\FromSlide{1}
+\begin{itemize}
+    \item In the R1G, fluxes are assumed to be static over the course of the burn.
+
+    \FromSlide{2}
+    \vspace{1cm}
+    \begin{itemize}
+        \item This restricts the types of reactors and fuel cycles which may be modeled.
+            (MOX, IMF, Traveling Wave, \emph{etc.} are unavailable to the R1G.)
+    \end{itemize}
+
+\FromSlide{3}
+\vspace{1cm}
+    \item Also in the R1G, changing reactor state variables in a way that would affect
+        the flux spectrum required additional libraries, or inter-library interpolations.
+
+\FromSlide{1}
+\end{itemize}
+\end{slide}}
+
+
+
+
+
+% Remotivation
+\overlays{3}{
+\begin{slide}{Remotivation}
+\FromSlide{1}
+\begin{itemize}
+    \item To solve these issues, moving to a multi-energy group reactor model 
+        will enable automatic spectral shifts in the core as needed.
+
+    \FromSlide{2}
+    \vspace{0.75cm}
+    \begin{itemize}
+        \item Rather than prameterizing burnup, transmutation, and neutron 
+            production \& destruction rates as functions of nuclide and fluence, 
+            the RMG parameterizes cross sections over a number of different states.
+    \end{itemize}
+
+\FromSlide{3}
+\vspace{0.75cm}
+    \item The R1G parameters are explicitly solved for by the RMG model.
+
+\FromSlide{1}
+\end{itemize}
+\end{slide}}
+
+
+
 
 
 
