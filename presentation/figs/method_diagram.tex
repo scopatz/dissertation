@@ -1,0 +1,63 @@
+\documentclass[12pt]{report} 
+
+% Needed for making certian figures
+\usepackage{color}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usetikzlibrary{shapes,arrows}
+
+\begin{document}
+
+% Define block styles
+\tikzstyle{decision} = [diamond, very thick, draw, fill=red!75, text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw,  very thick, fill=white!20, text width=5em, text centered, rounded corners, minimum height=2em]
+\tikzstyle{line} = [draw, very thick, color=black!100, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm, minimum height=2em]
+
+\begin{figure}
+\begin{tikzpicture}[node distance = 5cm, auto]
+    % Place nodes
+	\node [block, text width=12em, sharp corners] (known) {\underline{Known}: from library,\\ 
+		$\bullet$ $\sigma_{r_x,ipg}$ \, $\bullet$ $\bar{\nu}_{ipg}$\\
+		$\bullet$ $\sigma_{s,ipgh}$  \, $\bullet$ $\chi_{ipg}$};
+	\node [block, fill=green!20, right of=known] (given) {\underline{Given}:\\
+        $a_r$\\
+		$\tau=0$};
+	\node [block, text width=16em, fill=blue!20, below of=given, node distance=2.5cm] (interpolate) {\underline{Interpolate}:
+		Find $p_1^*$ \& $p_2^*$, the two nearest two perturbations,
+        and interpolate between them.\\
+		$\sigma_{r_x,i\tau g} = (\sigma_{r_x,ip_2^*g} - \sigma_{r_x,ip_1^*g})x_f + \sigma_{r_x,ip_1^*g}$};
+	\node [block, below of=interpolate, fill=yellow!40, text width=14em, node distance=2.5cm] (eigen) 
+		{\underline{Calculate Criticality}:\\
+		$\left(A_{\tau g\to h} - \frac{1}{k}F_{\tau g\to h}\right)\phi_{\tau g}=0$};
+	\node [block, left of=eigen, node distance=5.5cm, fill=purple!20] (store1){\underline{Store}:\\
+		$k_t$\\
+		$\phi_{tg}$};
+	\node [block, text width=14em, fill=blue!20, below of=store1, node distance=2.5cm] (set) {\underline{Set}: Time \& Fluence\\
+	    $\Delta s=s_{\tau+1}-s_{\tau}$\\
+		$\Phi_{\tau+1} = \Phi_{\tau} + \Delta s \sum_{g=1}^G \phi_{\tau g}$};
+	\node [block, text width=10em, below of=eigen, fill=yellow!40, node distance=5cm] (transmute){\underline{Transmute}:\\
+		$T_{i\tau+1}=e^{M_{\tau ij}\Delta s}T_{i\tau}$\\
+		\underline{Calculate}: $\mbox{BU}_{\tau}$};
+	\node [block, above of=transmute, node distance=2.5cm, fill=purple!20] (store2){\underline{Store}:\\
+		$T_{i\tau+1}$\\
+		$\mbox{BU}_{\tau}$};
+	\node [decision, right of=store2, text width=5.5em, node distance=4.5cm] (morestep) {\underline{More steps?}\\
+		$\tau\to \tau+1$};
+	\node [block, below of=morestep, text width=10em, sharp corners] (continue) 
+		{\underline{Continue} with batch averaging methodology (R1G).}; 
+
+	% Draw edges
+	\path [line] (known) -- (given);
+	\path [line] (given) -- (interpolate);
+	\path [line] (interpolate) -- (eigen);
+	\path [line] (eigen) -- (store1);
+	\path [line] (store1) -- (set); 
+	\path [line] (set) |- (transmute);
+	\path [line] (transmute) -- (store2);
+	\path [line] (store2) -- (morestep);
+	\path [line] (morestep) |- node [pos=0.2] {yes} (interpolate);
+	\path [line] (morestep) -- node [pos=0.5] {no}  (continue);
+\end{tikzpicture}
+\end{figure}
+\end{document}

@@ -4,6 +4,9 @@
 \usepackage{hyperref}
 \usepackage{biblatex}
 \usepackage{subfig}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+
 
 %General Short-Cut Commands
 \newcommand{\superscript}[1]{\ensuremath{^{\textrm{#1}}}}
@@ -1728,7 +1731,7 @@ Reaction Channel [5] & $r_x$ \\
 \begin{table}[htbp]
 \begin{center}
 \tiny
-\caption{Parameters which Define a Perturbation}
+\caption{Parameters $a_p$ which Define a Perturbation}
 \begin{tabular}{|l|c|c|}
 \hline
 \textbf{Parameter}            & \textbf{Symbol}      & \textbf{Units} \\
@@ -1749,6 +1752,7 @@ Burn Times                    & $s$                  & days \\
 \end{center}
 \end{table}
 \end{slide}
+
 
 
 
@@ -1812,6 +1816,26 @@ $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\v
 \FromSlide{1}
 \end{itemize}
 \end{slide}}
+
+
+
+
+% RMG Methodology
+% Getting this figure was tricky
+%   1. Modified version of method_diagrm.tex put in figs/ (added document info)
+%   2. Ran latex on this file to get dvi
+%   3. Rand dvips to get post-script file.
+% Oddly this was easier than try to change the fonts inside of the figure file
+\begin{slide}{RMG Methodology}
+\begin{center}
+\begin{figure}
+\caption{Multigroup Reactor Model Flow Diagram}
+\includegraphics[scale=0.45, clip, trim=1.5cm 6.75cm 1.5cm 6.75cm]{figs/method_diagram.ps}
+\end{figure}
+\end{center}
+\end{slide}
+
+
 
 
 
