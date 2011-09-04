@@ -1956,6 +1956,31 @@ $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\v
 
 
 
+% Transmutation Calculation
+\overlays{2}{
+\begin{slide}{Transmutation Calculation}
+\FromSlide{1}
+\begin{itemize}
+    \item ORIGEN 2.2 [7] is used as the transmutation kernel for the RMG.
+
+\FromSlide{2}
+    \vspace{1cm}
+    \item Custom ORIGEN cross section libraries are built for each time step.  
+        The group constants for the current reactor state are simply collapsed.
+
+        \[ \sigma_{r_x,i\tau} = \frac{1}{\phi_{\tau}} \sum_g^G \sigma_{r_x,i\tau g} \phi_{\tau g} \]
+
+\FromSlide{1}
+\end{itemize}
+\end{slide}}
+
+
+
+
+
+
+
+
 %Conclusions
 \overlays{4}{
 \begin{slide}{Conclusions}
@@ -2016,6 +2041,7 @@ $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\v
     \item \fullcite{Press2007c}
     \item \fullcite{ENDF}
     \item \fullcite{Lepp2011}
+    \item \fullcite{Croff2002}
 \end{enumerate}
 \end{slide}
 
