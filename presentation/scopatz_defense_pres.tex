@@ -1784,6 +1784,38 @@ $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\v
 
 
 
+% Cross Section Generation
+\overlays{4}{
+\begin{slide}{Cross Section Generation}
+\FromSlide{1}
+\begin{itemize}
+    \item Cross section generation takes a multi-tier approach:
+
+    \FromSlide{2}
+    \begin{itemize}
+        \item For very important nuclides, $\sigma_{pg}$ were found via the Monte
+            Carlo neutron transport code Serpent [6] (slightly modified). 
+
+    \FromSlide{3}
+        \item For important species for which high-fidelity continuous cross
+            section data is not avialable, physical models and/or a flux weighted
+            collapse of 64-group CINDER data is used.
+
+    \FromSlide{4}
+        \item For species unimportant to the FC material balance, a simple interpolation
+            between thermal and fast cross sections from KAERI is used to generate 
+            group constants.
+
+    \FromSlide{2}
+    \end{itemize}
+
+\FromSlide{1}
+\end{itemize}
+\end{slide}}
+
+
+
+
 %Conclusions
 \overlays{4}{
 \begin{slide}{Conclusions}
@@ -1843,6 +1875,7 @@ $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\v
     \item \fullcite{NEA-5990}
     \item \fullcite{Press2007c}
     \item \fullcite{ENDF}
+    \item \fullcite{Lepp2011}
 \end{enumerate}
 \end{slide}
 
