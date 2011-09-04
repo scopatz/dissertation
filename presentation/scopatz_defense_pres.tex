@@ -1926,6 +1926,34 @@ $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\v
 
 
 
+% Criticality Calculation
+\overlays{3}{
+\begin{slide}{Criticality Calculation}
+\scriptsize
+\FromSlide{1}
+\begin{itemize}
+    \item The shape of the spectrum is given by an iterative solution to a matrix method.
+
+        \[ A_{\tau g\to h} \cdot \phi_{\tau g} = \frac{1}{k} F_{\tau g\to h} \cdot \phi_{\tau g} \]
+
+\FromSlide{2}
+    \item ...with a rescaling to obtain the magnitude, 
+
+        \[ \phi_{\tau} = p_s \cdot  \rho_{\mbox{fuel}} \cdot \frac{1}
+                                                                  {\mbox{3.284E-14} \cdot \Sigma_{f,\mbox{fuel},\tau}} \]
+
+\FromSlide{3}
+    \item and a side calculation to obtain the multiplication factor.
+
+        \[ k_{\tau} = P_{\mbox{NL}} \cdot \frac{\sum_g^G V_{\mbox{fuel}} \cdot \bar{\nu}\Sigma_{f,\mbox{fuel},\tau g} \cdot \phi_{\tau g}}
+                                               {\sum_g^G \left(V_{\mbox{fuel}} \cdot \Sigma_{a,\mbox{fuel},\tau g} + \zeta_{\tau g} \cdot V_{\mbox{cool}} \cdot \Sigma_{a,\mbox{cool},\tau g}\right) \cdot  \phi_{\tau g}}  \]
+
+\FromSlide{1}
+\end{itemize}
+\end{slide}}
+
+
+
 
 
 %Conclusions
