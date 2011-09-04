@@ -1820,6 +1820,40 @@ $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\v
 
 
 
+
+
+% RMG Methodology
+\overlays{4}{
+\begin{slide}{RMG Methodology}
+\FromSlide{1}
+\begin{itemize}
+    \item Once the cross-section library has been assembled, the RMG proceeds in 
+        three main calculation routines per time step:
+
+    \FromSlide{2}
+    \begin{itemize}
+        \vspace{0.5cm}
+        \item First, there is as a nearest-neighbor calculation from the given
+            reactor state to the pertubations states in the library.
+
+    \FromSlide{3}
+        \vspace{0.5cm}
+        \item A multigroup spectrum-criticality calculation.
+
+    \FromSlide{4}
+        \vspace{0.5cm}
+        \item A burnup-transmutation calculation.
+
+    \FromSlide{2}
+    \end{itemize}
+
+\FromSlide{1}
+\end{itemize}
+\end{slide}}
+
+
+
+
 % RMG Methodology
 % Getting this figure was tricky
 %   1. Modified version of method_diagrm.tex put in figs/ (added document info)
@@ -1834,6 +1868,34 @@ $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\v
 \end{figure}
 \end{center}
 \end{slide}
+
+
+
+
+% RMG Metric Space
+\overlays{3}{
+\begin{slide}{RMG Metric Space}
+\FromSlide{1}
+\begin{itemize}
+    \item With $p$ as the perturbation index ($1 \le p \le n_p$),
+        $a_p$ is a parameter value in the library and $a_r$ the value on the 
+        reactor at run time.
+
+\FromSlide{2}
+    \item The distance from any perturbation to the current reactor is given 
+        by $d_p$:
+
+        \[ d_p = \sqrt{\sum_a \left(\frac{a_r - a_p}{a_{n_p}}\right)^2} \]
+
+\FromSlide{3}
+    \item %The nearest neighbors are determined via the sequence $p^*$:
+        The sequence $p^*$ determines the nearest neighbors:
+
+        \[ p^* = \left\{p | d_p \le d_{p+1}\right\} \]
+
+\FromSlide{1}
+\end{itemize}
+\end{slide}}
 
 
 

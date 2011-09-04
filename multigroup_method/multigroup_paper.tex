@@ -786,7 +786,7 @@ This $x_f$ value is set for the reactor as a whole then used to generate group c
 all reactions from $p_1^*$ \& $p_2^*$ perturbation information available in the cross section library. 
 \begin{equation}
 \label{sig_multi_interp}
-\sigma_{r_x,itg} = (\sigma_{r_x,ip_2^*g} - \sigma_{r_x,ip_1^*g}) \cdot x_f  + \sigma_{r_x,ip_1^*g}
+\sigma_{r_x,i\tau g} = (\sigma_{r_x,ip_2^*g} - \sigma_{r_x,ip_1^*g}) \cdot x_f  + \sigma_{r_x,ip_1^*g}
 \end{equation}
 Note, that $x_f$ is invalidated whenever the state of the reactor changes.  Since burnup time is one of 
 the parameters, $x_f$ must be recalculated every time step but is otherwise constant for all nuclides
@@ -875,7 +875,7 @@ fission cross section as $\Sigma_{f,\mbox{fuel},\tau}$ [cm\superscript{-1}].
 \Sigma_{f,\mbox{fuel},\tau} = \frac{\sum_g^G \Sigma_{f,\mbox{fuel},\tau g}\phi_{\tau g}^m}
                                    {\sum_g^G \phi_{\tau g}^m}
 \end{equation}
-The total flux for time $t$ is thus given by equation \ref{total_flux_rescale}.
+The total flux for time $\tau$ is thus given by equation \ref{total_flux_rescale}.
 \begin{equation}
 \label{total_flux_rescale}
 \phi_{\tau} = p_s \cdot  \rho_{\mbox{fuel}} \cdot \frac{1}
