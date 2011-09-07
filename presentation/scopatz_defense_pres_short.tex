@@ -208,37 +208,8 @@ One-Group Reactor Model
 
 
 
-% R1G Notation
-\begin{slide}{R1G Notation}
-\vspace{0.75cm}
-\begin{center}
-\begin{table}
-\caption{One-Group Reactor Symbols}
-\tiny
-\begin{tabular}{|l|c|c|}
-\hline
-\textbf{Name} & \textbf{Symbol} & \textbf{Units} \\
-\hline
-Fluence & $F = \int_0^t \phi dt^\prime = \phi \int_0^t dt^\prime = \phi \times t \cdot \frac{24 \cdot 3600 \cdot 10^3}{10^{24}}$ & [n/kb] \\
-Nuclide Subscript & $i$ (or $j$) & [1/kg\subscript{$i$}] \\
-Region Superscript & $Q$ & [unitless] \\
-Mass Weights & $m_i^Q = \frac{N_i^Q}{N_{\mbox{IHM}}} = \frac{n_i^Q A_i}{A_{\mbox{IHM}}} \cdot \frac{\rho^Q\cdot\mbox{MW}^F}{\rho^F\cdot\mbox{MW}^Q} \frac{V^Q}{V^F}$ & [kg$_i^Q$/kgIHM] \\
-Burnup & $\mbox{BU}(F) = \sum_i m_i^F \cdot \mbox{BU}_i(F)$ & [MWd/kgIHM] \\
-Prod \& Des Rates & $p_i(F), d_i(F)$ & [n/s/flux/kg$_i$]\\ 
-Transmutation Matrix & $T_{ij}(F)$ & [kg$_j$/kg$_i$] \\
-Multiplication Factor & $k(F) = \frac{P(F)}{D(F)}$ & [unitless] \\
-\hline
-\end{tabular}
-\end{table}
-\end{center}
-\end{slide}
-
-
-
-
 
 % R1G
-\overlays{2}{
 \begin{slide}{R1G}
 \FromSlide{1}
 \begin{center}
@@ -253,37 +224,7 @@ Starting with ORIGEN generated fluence-dependent, nuclide specific data, we know
 \end{figure}
 
 \end{center}
-
-\FromSlide{2}
-\footnotesize
-To obtain a specific reactor, the above data must be folded together.
-\end{slide}}
-
-
-
-% R1G Library Collapse
-\overlays{4}{
-\begin{slide}{R1G Library Collapse}
-\FromSlide{1}
-\begin{itemize}
-    \item Collapsing a general library down is the central calculation of 
-        the one-group reactor model.
-
-\FromSlide{2}
-    \item Using a two-region fuel pin cell model, denote the mass weight of each initial 
-        isotope $i$ in the fuel as $m^F_i$ and the in the coolant as $m^C_i$.
-
-\FromSlide{3}
-    \item Then, a mass-weighted linear combination of all of the library
-        parameters computes the full-core values.
-
-\FromSlide{4}
-    \item For example, 
-
-        \[ P(F) = P_{NL} \cdot p^F(F) = P_{NL} \sum^I_i m^F_i \cdot p_i(F) \]
-\FromSlide{1}
-\end{itemize}
-\end{slide}}
+\end{slide}
 
 
 
@@ -366,29 +307,6 @@ To obtain a specific reactor, the above data must be folded together.
 
 
 
-% R1G Benchmark Notes
-\overlays{2}{
-\begin{slide}{R1G Benchmark Notes}
-\FromSlide{1}
-\begin{itemize}
-    \item This benchmark compares an OECD study for a 40 MWd/kgIHM burn with no cooling.
-
-    \item This result shows the R1G matches the burnup credit to within two standard 
-        deviations for most actinides.
-
-\FromSlide{2}
-    \item \nuc{Am}{241} is the only nuclide showing a relatively higher departure.
-
-    \item This species is formed through \nuc{Pu}{241} decay.
-
-    \item \nuc{Am}{241} would thus match better if a constant flux or 
-        if zero reloading times were not assumed.
-
-\FromSlide{1}
-\end{itemize}
-\end{slide}}
-
-
 
 
 % R1G Fuel Cycle Example: RU
@@ -422,46 +340,6 @@ To obtain a specific reactor, the above data must be folded together.
 \end{minipage}
 \end{slide}}
 
-
-
-
-
-% R1G Fuel Cycle Example: RU
-\overlays{4}{
-\begin{slide}{R1G Fuel Cycle Example: RU}
-\FromSlide{1}
-\begin{minipage}[t]{0.49\textwidth}
-
-\setcounter{figure}{7}
-\begin{center}
-\begin{figure}
-\includegraphics[scale=0.32]{../one_group_method/figs/Fig14.eps}
-\caption{Burnup Model Fit for LWRs}
-\end{figure}
-\end{center}
-
-\end{minipage}
-\begin{minipage}[t]{0.49\textwidth}
-\footnotesize
-\begin{itemize}
-    \item RU utility may be further parameterized as a function of \nuc{U}{235},
-        \nuc{U}{236}, and the batch loading scheme.  (Not possible for FRs.)
-
-\FromSlide{2}
-    \item In Figure 8, data points were calculated and blue lines represent 
-        a best-fit curve.
-
-\FromSlide{3}
-    \item The 0\% \nuc{U}{236} curve represents a standard LWR.
-
-\FromSlide{4}
-    \item This further reduces the computational load of the R1G while remaining 
-        perturbable.
-
-\FromSlide{1}
-\end{itemize}
-\end{minipage}
-\end{slide}}
 
 
 
