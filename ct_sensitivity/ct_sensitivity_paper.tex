@@ -83,8 +83,9 @@ for each input are to be chosen stochastically from a predefined, physically-val
 By generating many inputs and tabulating the corresponding results from an underlying physics-based
 fuel cycle model, the fuel cycle undergoes a Monte Carlo simulation.  An input-output vector
 constitutes a single fuel cycle realization.  From here, relevant statistical metrics on the set of
-realizations yield information on how the system as a whole performs.  This methodology may be seen
-graphically in Figure \ref{mcmethod}.
+realizations yield information on how the system as a whole performs.  
+Two independent parameters ($x$ and $y$) and one response ($R$) variable are examined.
+This methodology may be seen graphically in Figure \ref{mcmethod}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -98,7 +99,7 @@ To further system analysis objectives, `standard' statistical metrics (such as t
 over all runs) may be calculated.  However, the usual correlation coefficients imply a linear
 relationship between input and response.  Given the complexity of the system, linearity is not
 a safe assumption for many system metrics.  Thus, novel information theoretic measures have
-proved more valuable to ranking the importance of input parameters.
+proved more valuable to ranking the importance of input parameters \cite{Liu2006}.
 
 Additionally, it is useful to extend the information theoretic metrics from their typical 2D
 formulations to the three dimensional equivalents.  If 3D metrics are constructed such that
@@ -120,7 +121,8 @@ transformations that constituent NFC technologies apply to the material flow.
 
 A fuel cycle simulation package that incorporates essential physics submodels of reactor burnup 
 \cite{Scopatz2009} and repository performance \cite{Li2009} served as the platform for this analysis. 
-The approach taken in each submodel is briefly summarized below. 
+The approach taken in each submodel is briefly summarized below.  Full fuel cycle execution time, 
+including all transients in a closed cycle scenario, takes between 10-30 seconds on a modern computer processor.
 
 The importance of essential physics models (as opposed to curve fits or other parameterizations that are valid
 only under specific conditions) in a sensitivity study of this type must be stressed. Given the number of
@@ -134,7 +136,9 @@ rates, burnup, and isotopic transformation) that are functions of fluence. These
 given reactor and fuel type. The reactor model then uses mass-weighted superposition to recombine these
 isotopic parameters as needed to calculate the multiplication factor and maximum discharge burnup. This result is
 then folded in with a linear reactivity model for multi-batch criticality calculations that derive viable
-fresh fuel compositions.
+fresh fuel compositions. Since the burnup, criticality, and transmutation information is parameterized per
+nuclide, this essential physics reactor submodel is more precise and perturbable than full-core linear            
+correlation coefficients.
 
 The repository thermal analysis model was developed based on the
 analytical solution of a thermal conduction model for the presence of
@@ -434,7 +438,7 @@ This figure is based on a similar one presented in \cite{Press2007}.
 \end{figure}
 As a physical example, consider the DNA sequences of a parent and a child.  The sequence of 
 the child ($R$) is some unknown function of the DNA of the parent ($x$).
-$I(R,x)$ then measures the overlap of the sequences, in entropy space.
+$I(R,x)$ then measures the mutual dependence of the sequences, in entropy space.
 
 The mutual information indicates how much of a response is determined by a particular input.
 As an illustration, FR UF separations might account for half of the variation in fuel cycle costs.  
@@ -466,13 +470,18 @@ of the contingency table and may not be easily expressed in general.
 
 The uncertainty $U$ is the first metric to be used to rank the relative value of input 
 parameters to a response.  Informally, the uncertainty is defined
-as the mutual information divided by the entropy.
+as the mutual information divided by the entropy because it represents the fraction of the
+response which is predictable given an input.
 
 More exactly, the \emph{uncertainty coefficients} are used to rank inputs.  They are 
-specified with the conditional notation $U(x|R)$.  Such coefficients are calculated via:
+specified with the conditional notation $U(x|R)$.  Such coefficients are calculated via \cite{Yao2003}:
 \begin{equation}
 U(x|R) = \frac{I(R,x)}{H(x)}
 \label{eq:U_x_R}
+\end{equation}
+\begin{equation}
+U(R|x) = \frac{I(R,x)}{H(R)}
+\label{eq:U_R_x}
 \end{equation}
 Equation \ref{eq:U_x_R} measures the extent to which knowing the input $x$ 
 is the same as knowing the response $R$.  As such, $U(x|R)$ has the following properties:
@@ -494,6 +503,9 @@ uncertainty coefficient $U(R|x)$.  Hence, the scaling factor seen in equation
 U(x|R) = \frac{H(R)}{H(x)} U(R|x)
 \label{uncertainty_scale}
 \end{equation}
+This scaling factor is obtained by combining equations \ref{eq:U_x_R} \& \ref{eq:U_R_x} via the mutual  
+information term.
+
 
 Moreover, a related uncertainty coefficient may be calculated for the three dimensional 
 case of two inputs to one
@@ -525,29 +537,29 @@ coefficient $U(x|R)$ for every slice over $y$.  In doing so, a set of $C$ uncert
 such that,
 \begin{equation}
 \label{eq:U_x_R_y}
-U(x|R)|y = \left\{ \left.U(x|R)\right|_{l_0}^{l_1}, \left.U(x|R)\right|_{l_1}^{l_2}, \ldots \left.U(x|R)\right|_{l_{C-1}}^{l_C}  \right\}
+\left\{U(x|R)|y\right\} = \left\{ \left.U(x|R)\right|_{l_0}^{l_1}, \left.U(x|R)\right|_{l_1}^{l_2}, \ldots \left.U(x|R)\right|_{l_{C-1}}^{l_C}  \right\}
 \end{equation}
 where $l$ is a sequence of $C+1$ points that defines the bin boundaries of $y$.
 From here, the mean $\mu$ and standard deviation $\sigma$ of the set seen in equation \ref{eq:U_x_R_y} may be 
 calculated.
 \begin{equation}
-\mu(U(x|R)|y) = \frac{1}{C} \sum_c^C U(x|R)|y_c 
+\mu(\left\{U(x|R)|y\right\}) = \frac{1}{C} \sum_c^C \left\{U(x|R)|y\right\}_c 
 \end{equation}
 \begin{equation}
-\sigma(U(x|R)|y) = \sqrt{ \frac{1}{C} \sum_c^C \left( U(x|R)|y_c - \mu(U(x|R)|y) \right)^2 } 
+\sigma(U(x|R)|y) = \sqrt{ \frac{1}{C} \sum_c^C \left( \left\{U(x|R)|y\right\}_c - \mu(\left\{U(x|R)|y\right\}) \right)^2 } 
 \end{equation}
 However, the choice of slicing along $y$ is somewhat arbitrary.  One could instead slice along $x$ 
-and compute $\mu(U(y|R)|x)$ and $\sigma(U(y|R)|x)$
+and compute $\mu(\left\{U(y|R)|x\right\})$ and $\sigma(\left\{U(y|R)|x\right\})$
 by analogy to the equations above.
 
 Dividing the standard deviation by the mean yields a \emph{coefficient of variation} $c_v$:
-\begin{equation} c_v(U(x|R)|y) = \frac{\sigma(U(x|R)|y)}{\mu(U(x|R)|y)} \end{equation}
-Unlike the uncertainty coefficient, $c_v(U(x|R)|y)$ is not symmetric with respect to $x$ and $y$.  
+\begin{equation} c_v(\left\{U(x|R)|y\right\}) = \frac{\sigma(\left\{U(x|R)|y\right\})}{\mu(\left\{U(x|R)|y\right\})} \end{equation}
+Unlike the uncertainty coefficient, $c_v(\left\{U(x|R)|y\right\})$ is not symmetric with respect to $x$ and $y$.  
 Thus the same pair will have a different rank when measuring
-with $c_v(U(y|R)|x)$ instead.  A symmetric expression of the coefficient of variation is obtained by taking 
+with $c_v(\left\{U(y|R)|x\right\})$ instead.  A symmetric expression of the coefficient of variation is obtained by taking 
 the average of the non-symmetric terms:
 \begin{equation}
-c_v(x|y|R) = \frac{1}{2} \left(c_v(U(x|R)|y) + c_v(U(y|R)|x)\right)
+c_v(x|y|R) = \frac{1}{2} \left(c_v(\left\{U(x|R)|y\right\}) + c_v(\left\{U(y|R)|x\right\})\right)
 \end{equation}
 This measure has the following properties:
 \begin{enumerate}
