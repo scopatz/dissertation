@@ -36,7 +36,12 @@ parameterization in terms of fluence is no longer an optimal choice.  Instead, t
 contains cross section data as a function of burn time under a constant power irradiation.  The reactor model 
 uses perturbations of these cross sections to compute the same information as in the one-group 
 formulation.  Namely, the multiplication factor, fuel burnup, and fuel vector at all desired burn times
-are calculated.  By necessity, the flux spectrum itself is also solved for.
+are calculated.  By necessity, the flux spectrum itself is also solved for.  
+
+The purpose of this new multiple energy group reactor model, like with the one-group model, is to 
+execute as quickly as possible.  Unlike in the one-group model, energy-dependent physics will be included.  
+This will enable the inclusion of additional reactor types in an essential physics fuel 
+cycle model (see discussion in \cite{Scopatz2009}).
 
 The multigroup reactor model is discussed in the following sections.  In \S \ref{mg_sec:xs_gen} 
 there is an in depth treatment of the formulation of the cross section library and reactor 
@@ -629,9 +634,9 @@ may be done at RMG run-time rather than during library generation.
 The Korea Atomic Energy Research Institute (KAERI) provides simple cross section information
 for almost 3000 nuclides at a variety of energies \cite{KAER2000}.  Specifically, data for
 thermal (2.53E-08 [MeV]) and fission spectrum average (taken as 1.0 [MeV]) were used as representative
-thermal and fast cross sections.  Ignoring all other effects (particularly epithermal resonances), 
-group constants were computed by linearly interpolating these two cross sections.  Call 
-$\sigma_{r_x}^t$ and $\sigma_{r_x}^f$ the thermal and fast cross sections respectively.  The group
+thermal and fast cross sections.  Ignoring all other effects (particularly epithermal resonances which 
+may have a large impact),  group constants were computed by linearly interpolating these two cross sections.  
+Call $\sigma_{r_x}^t$ and $\sigma_{r_x}^f$ the thermal and fast cross sections respectively.  The group
 constants for a reaction $r_x$ were estimated using equation \ref{group_const_est}.
 \begin{equation}
 \label{group_const_est}
@@ -768,8 +773,8 @@ In order to perform the correct interpolation, the two perturbations that are cl
 state of the reactor, $a_1^*$ \& $a_2^*$, must be found.  Here the $a_p^*$ notation indicates that 
 the indices have been sorted in order of increasing distance.  
 
-However, the space that the reactor parameters live in is at least 10-dimensional.  Moreover, 
-the scale for these parameters may vary greatly from one $a$ to the next.  Therefore, a realistic
+However, the space that the parameters exist in is at least 10-dimensional, as defined by Table \ref{char_perturbable_variables}.  
+Moreover, the scale for these parameters may vary greatly from one $a$ to the next.  Therefore, a realistic
 nearness metric must normalize the values for these parameters individually before calculating a
 global distance.  Equation \ref{nn_distance} calculates $d_p$, the distance of the $p$\superscript{th} 
 perturbation from the state of the reactor.
@@ -818,7 +823,8 @@ homogenized full-core cross sections are given by the reduction in equation \ref
 \Sigma_{r_x,\tau g} = \frac{V_{\mbox{fuel}}\Sigma_{r_x,\mbox{fuel},\tau g} + \zeta_{\tau g}V_{\mbox{cool}}\Sigma_{r_x,\mbox{cool},\tau g}}
                            {V_{\mbox{fuel}} + \zeta_{\tau g}V_{\mbox{cool}}}
 \end{equation}
-Here, $\zeta_{tg}$ is the disadvantage factor per group.  This is computed via the macroscopic 
+Here, $\zeta_{tg}$ is the disadvantage factor per group.  This is defined as the 
+average flux in the coolant divided by the average flux in the fuel. It is computed via the macroscopic 
 cross sections and the lattice functions found in \cite{Lamarsh2002}.  
 
 
@@ -1039,7 +1045,9 @@ may be seen in Figures \ref{spec_BOL} \& \ref{spec_EOL}.
 By inspection, there is good agreement between the RMG and Serpent spectra.  Quantitatively, 
 the fractional deviation lies between 0.5 - 5\% for most groups.  The groups for which 
 significantly larger $\varepsilon$ are present (10 - 85\%) are  the low energy groups 
-where the flux may be smaller by orders of magnitudes.  Differences in Figures \ref{spec_BOL} \& 
+where the flux may be smaller by orders of magnitudes.  
+The coefficients of determination ($R^2$) for both figures are greater than 0.98, indicating a
+strong correllation between Serpent and RMG spectra.  Differences in Figures \ref{spec_BOL} \& 
 \ref{spec_EOL} are partially explained by the difference in regions for which the flux is defined.
 The RMG curves here represent a homogenized full-core, while the Serpent spectra are only for the 
 fuel region.  Given the higher probability of thermal scattering events in the coolant and a greater likelihood of
@@ -1047,6 +1055,7 @@ absorption reactions in the fuel, the harder Serpent fuel spectrum is expected.
 
 As previously discussed, the RMG modifies the above spectra by a disadvantage factor when computing 
 reaction rates to account for spectral differences between the fuel and coolant regions.
+Recall that $\zeta_{\tau g}$ is defined as the flux in the coolant divided by the flux in the fuel.
 Figure \ref{zeta_BOL_EOL} shows $\zeta_{\tau g}$ as a function of group for both BOL \& EOL.
 Because the absorption cross section of the fuel is larger than that of the coolant, 
 $\zeta_{\tau g}$ will always be greater than unity.  Moreover, the disadvantage factor generally
@@ -1129,7 +1138,9 @@ mass concentrations are largely a function of the error in the lowest energy gro
 
 
 However, the true strength of the RMG methodology is 
-that it takes into account the time evolution of the cross sections as well.  For the same set 
+that it takes into account the time evolution of the cross sections as well.  
+Prior essential physics reactor methods assumed static fluxes as well as cross sections \cite{Scopatz2009}.
+For the same set 
 of nuclides above, Figures \ref{act_xs_benchmark}-\ref{fp_xs_benchmark} display total, absorption,
 scattering and fission one-group cross sections as a function of burn time.  One-group cross sections 
 are used here in favor of the multigroup cross sections because they capture the total differences 
@@ -1238,8 +1249,8 @@ reactor model previously presented.  However, the benefit of using additional gr
 spectrum is allowed to change over the course of the fuel burn.  For fast reactors,
 changes in the spectrum are minimal so the error induced by the R1G from a static spectrum
 is negligible.  On the other hand, the RMG enables appropriate modeling of forms such as inert matrix 
-fuel for which R1G models could not capture dramatic shifts in local spectra induced by the compositional
-evolution of in-core material.
+fuel \cite{Sokolov2006} for which R1G models could not capture dramatic shifts in local spectra induced 
+by the compositional evolution of in-core material.
 
 Another constraint with the RMG as formulated is that a multidimensional linear interpolation is 
 used when calculating $\sigma_{r_x,i\tau g}$ from the reactor library $\sigma_{r_x,ipg}$.  Therefore, 
