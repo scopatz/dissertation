@@ -65,13 +65,54 @@ measure supports fuel cycle analysis and TD\&D decision-making by identifying in
 parent technologies) that can, if also altered, augment or reduce the effect of the decision
 being considered.
 
-The remainder of this chapter is organized as follows.  \S \ref{cts_sec:methodology} begins 
-with a summary of the methodology employed to carry out the study.  \S \ref{cts_sec:nfcsim} describes the 
-fuel cycle simulations and method for sampling the input parameters to be varied, 
-while \S \ref{cts_sec:ct} presents the theoretical background underpinning the entropy-based
-statistical measures.  \S \ref{cts_sec:results} provides results for the statistical measures 
-applied to the scenario space outlined in \S \ref{cts_sec:nfcsim} and offers several case 
-studies that illustrate the interpretation of the statistical outcomes.
+
+The remainder of this paper is organized as follows.  \S \ref{cts_sec:it-overview} provides a brief overview
+of the field of information theory and its underlying metrics, which are relied on heavily in this paper.
+\S \ref{cts_sec:methodology} presents an algorithmic summary of the
+methodology employed to carry out the fuel cycle study.  \S \ref{cts_sec:nfcsim} describes the fuel cycle
+simulations and method for sampling the input parameters to be varied, while \S \ref{cts_sec:ct}
+presents the theoretical background underpinning the entropy-based
+statistical measures.  \S \ref{cts_sec:results} provides results for the statistical measures applied to the scenario
+space outlined in \S \ref{cts_sec:nfcsim} and offers several case studies that illustrate the interpretation
+of the statistical outcomes.  \S \ref{cts_sec:conclusion} concludes with options for future work.
+
+
+
+\section{Information Theory Overview}
+\label{cts_sec:it-overview}
+
+The field of Information Theory is often said to have formed with C. E. Shannon's seminal 1948 publication
+entitled ``A Mathematical Theory of Communication'' \cite{Shannon1948}.  In this treatise he detailed a parameter
+known as \emph{entropy} and applied it to the challenge of conveying messages using the minimal
+amount of information.  He applied this entropy-based framework to discrete and continuous, noisy and noiseless
+communication systems.
+
+Shannon's entropy is a probabilistic quantity named in analogy to the thermodynamic property.
+The statistical dynamic entity was first formulated via the H-Theorem set down by L. Boltzmann
+\cite{Boltzmann1872}.  This theorem shows that the entropy of a collection of particles
+may only increase with time until the state of maximum entropy.   This state is described by the
+kinetic energy of the particles having Gaussian distribution.
+
+Both the physical and Shannon entropy are measures of a complex system given a set of
+micro-states or probabilities.  They therefore can be used as a way to correlate the system
+as a whole to its underlying independent variables \cite{Watanabe1960}.  As Science, Engineering,
+and Technology have progressed to problems of greater complexity such statistical measures
+have found many applications.
+
+In Biology, particularly in the sub-field of bioinformatics, information theory plays a
+central role \cite{Rashevsky1955, Yockey2011}.  The advent of computers has enabled new
+analysis tools in Linguistics, which often use entropy-based measures \cite{Manning1999}.
+Moreover, information theory continues to have broad reaching applications within Cryptography
+\cite{Ahlswede1993}.
+
+One method of constructing discrete probability distributions are known as contingency tables.
+These were first formulated by K. Pearson in a biological context
+\cite{Pearson1904}.  Contingency tables are intended to be used to determine correlations
+between the variables on their axes.  Coupled with entropy-based measures, contingency
+tables provide a scalable substitute for linear 1D sensitivity studies of complex
+systems.  Here they will be applied to the nuclear fuel cycle.
+
+
 
 \section{Methodology}
 \index{Methodology@\emph{Methodology}}
@@ -564,13 +605,13 @@ c_v(x|y|R) = \frac{1}{2} \left(c_v(\left\{U(x|R)|y\right\}) + c_v(\left\{U(y|R)|
 This measure has the following properties:
 \begin{enumerate}
     \item Defined on the range $[0, 1]$ since $0 \le U \le 1$.
-    \item $c_v = 0$ implies that $\sigma = 0$, which indicates that $U(x|R)$
+    \item $c_v(x|y|R) = 0$ implies that $\sigma = 0$, which indicates that $U(x|R)$
         shows no dependence on $y$.  Thus there are no covariant effects observed.
-    \item $c_v = 1$ indicates that $\sigma = \mu$.  This connotes
+    \item $c_v(x|y|R) = 1$ indicates that $\sigma = \mu$.  This connotes
         that the value of $x$ soley governs the response $R$ from $y$.
 \end{enumerate}
 
-The difference in ranking parameter pairs using $U(x,y|R)$ rather than using $c_v(U(x|R)|y)$ is that 
+The difference in ranking parameter pairs using $U(x,y|R)$ rather than using $c_v(x|y|R)$ is that 
 the uncertainty coefficient measures the magnitude of the effect on $R$ while the coefficients of 
 variation measure the 
 interdependence of $x$ and $y$ on the response. For example, the HLW storage time together with the LWR UF 
@@ -589,7 +630,7 @@ The goal of using CTs, similar to other sensitivity studies \cite{Scopatz2010b} 
 analyses \cite{Barratt2004}, is to quantitatively rank fuel cycle inputs against their effect on 
 the chosen response.  Here, the two dimensional uncertainty $U(x|R)$ takes the place of a 
 traditional sensitivity.  Likewise, the three dimensional $U(x,y|R)$ may be seen as a sensitivity 
-for a pair of parameters.  Lastly, the coefficient of variation $c_v(U(x|R)|y)$ is taken as a 
+for a pair of parameters.  Lastly, the coefficient of variation $c_v(x|y|R)$ is taken as a 
 measure of covariance effects between $x$ and $y$.  The covariance metric shows that some parameter 
 pairs have a significant joint effect on the fuel cycle. Hence, $x$ and $y$ may exhibit a greater 
 (or less than) commensurate response on the fuel cycle response than the sum of $x$ and $y$ 
