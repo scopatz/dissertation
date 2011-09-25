@@ -1,0 +1,7 @@
+#! /bin/bash
+
+latex scopatz_uofc_flash.tex
+bibtex scopatz_uofc_flash.aux
+latex scopatz_uofc_flash.tex
+latex scopatz_uofc_flash.tex
+dvipdf scopatz_uofc_flash.dvi
